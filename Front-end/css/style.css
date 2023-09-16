@@ -1,0 +1,33 @@
+/* start of card design for blog pages */
+a.blog-link{
+    text-decoration: none;
+}
+.blog-card {
+    position: relative;
+    display: inline-block;
+    width: 20rem;
+    /* box-shadow: 0 5px 9px -6px black; */
+    box-shadow: 0 0px 17px -3px black;
+    cursor: pointer;
+}
+
+.blog-card img {
+    margin: 0 auto;
+    height: 210px;
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+
+.blog-card .blog-card-title {
+    /* font-family: var(--title-font); */
+    font-size: 22px;
+    /* color: var(--dark-brown) */
+}
+
+.blog-card .blog-card-text {
+    font-size: 16px;
+    /* color: var(--dark-pink) */
+}
+
+/* end of card design for blog pages */
+
