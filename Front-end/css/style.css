@@ -58,7 +58,7 @@ a.blog-link{
 
 .header_section {
     background-color: #ffffff;
-    box-shadow: 0 1px 5px black;
+    box-shadow: 1px 0 10px black;
     padding-left: 20px;
     padding-top: 10px;
     padding-right: 10px;
@@ -199,3 +199,21 @@ a.blog-link{
     color: #136567;
   }
   /*end header section*/
+/* footer section*/
+.footer_section {
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 4.5rem;
+    box-shadow: 0 1px 10px black;
+  }
+  
+  .footer_section p {
+    color: #000000;
+    padding: 25px 0;
+    margin: 0;
+   
+  }
+  
+/* end footer section*/
