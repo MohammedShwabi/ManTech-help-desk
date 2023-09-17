@@ -3,47 +3,46 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Blog Detail</title>
+        <title>Header</title>
         <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+        <!-- Custom styles for this template -->
         <link rel="stylesheet" href="css/style.css">
+        <!-- responsive style -->
+  <link href="css/responsive.css" rel="stylesheet" />
         <script src="js/bootstrap.bundle.min.js"></script>
         <script src="js/jquery-3.6.0.min.js"></script>
+        <script src="js/frontend.js"></script>
     </head>    
     <body>
        
     <!-- header section strats -->
-    <header class="header_section">
-      <nav class="navbar navbar-expand-lg custom_nav-container ">
-        <a class="navbar-brand w_color" href="index.html">
-          <span>
-          ManTech
-          </span>
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class=""> </span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <div class="d-flex mx-auto flex-column flex-lg-row align-items-center">
-            <ul class="navbar-nav  ">
-              <li class="nav-item active">
-                <a class="nav-link" href="blogs.html">Blogs</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href=""> FAQs</a>
-              </li>
+     
+    <div class="popUp"></div> <!-- default pop up div -->
+    <div class="dimmer"></div> <!-- "full screen" background behind .popUp div -->
+    
+    <header class="header clearfix">
+        <div class="clearfix display-flex align-items contentHolder" data-items="center">
+            <div class="logo"><a href=""><img src="http://placehold.it/230x60/" alt="logo Placeholder"></a></div>
+            <nav class="menu">
+                <ol>
+                   <li class="mobileMenu mobileSocial">
+                      <ul class="social">
+                        <li><a href=""><img src="http://placehold.it/60x60/" alt="logo Placeholder"></a></li>
+                      </ul>
+                  </li>
+                    <li class="mainMenu"><a href="">Blog</a></li>
+                    <li class="mainMenu"><a href="">FAQs</a></li>
+                   
+                </ol>
+                <div class="hamburger"><span></span></div>
+                <div class="dimmer"></div>
+                <div class="profile"></div>
+            </nav> 
+            <ul class="social">
+              <li><a href=""><img src="http://placehold.it/60x60/" alt="logo Placeholder"></a></li>
             </ul>
-          </div>
-          <div class="quote_btn-container">
-            <a href="">
-              <span>
-                Login
-              </span>
-              <i class="fa fa-user" aria-hidden="true"></i>
-            </a>
-          </div>
-        </div>
-      </nav>
-    </header>
+      </div>
+  </header>
     <!-- end header section -->
 

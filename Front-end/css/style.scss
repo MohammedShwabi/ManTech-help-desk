@@ -1,0 +1,528 @@
+@import "compass";
+// colors
+$white: #fff;
+$black:#000;
+$secondary-color:#fff;
+$hover-color:#808080;
+// fonts
+$font-serif-family:helvetica,
+arial,
+sans-serif;
+// time
+$transTime:0.5s;
+
+
+// Responsive Sizes
+$mobile:"max-width:767px";
+
+
+
+$header-background-color:$black;
+
+$header-link-color:$white;
+$hamburger-color:"$header-link-color";
+
+/* == Header ================================================= */
+
+header {
+  background-color: $header-background-color;
+  border-bottom: 2px solid $hover-color;
+  font-family: $font-serif-family;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 110;
+  @include transition(top $transTime ease);
+  &.hidden {
+    top: -6em;
+    @media screen and (max-width: 1024px) {
+      top: -7em;
+    }
+    @media screen and (max-width: 600px) {
+      .contentHolder {
+        nav.menu {
+          top: -3em;
+        }
+      }
+    }
+  }
+  nav {
+    float: right;
+    margin-right: 15px;
+    text-transform: uppercase;
+    z-index: 95;
+    ol {
+      margin: 0;
+      padding: 0;
+      position: relative;
+      li {
+        display: inline-block;
+        list-style: none;
+        position: relative;
+        margin: 0;
+        padding: 0;
+        &:hover ul {
+          display: block;
+        }
+        &.mobileMenu {
+          display: none;
+        }
+        &.mobileSub {
+          display: none;
+        }
+        a {
+          color: $header-link-color;
+          cursor: pointer;
+          display: block;
+          font-size: ems(18px);
+          padding: 30px 20px;
+          position: relative;
+          text-decoration: none;
+          $border-width: 80%;
+          &:after {
+            content: '';
+            border-bottom: 1px dashed $secondary-color;
+            bottom: 21px;
+            left: (100% - $border-width) / 2;
+            opacity: 0;
+            position: absolute;
+            width: $border-width;
+            z-index: 111;
+            @include transition-property(opacity);
+            @include transition-duration(0.35s);
+          }
+          &:visited {
+            color: $secondary-color;
+            &:after {
+              content: '';
+              opacity: 1;
+            }
+          }
+          &:hover {
+            color: $hover-color;
+            &:after {
+              content: '';
+              opacity: 1;
+            }
+          }
+          &.active {
+            color: $hover-color;
+            &:after {
+              content: '';
+              opacity: 1;
+            }
+            &:visited {
+              color: $hover-color;
+              &:after {
+                content: '';
+                opacity: 1;
+              }
+            }
+          }
+        }
+        svg {
+          display: none;
+        }
+      }
+    }
+    ol ul.submenu {
+      background-color: $header-background-color;
+      display: none;
+      left: 0;
+      padding: 10px 0;
+      position: absolute;
+      top: 100%;
+      width:150px;
+      @include box-shadow(0 1px 1px 2px rgba(0, 0, 0, 0.05));
+      li {
+        display: block;
+        width: 100%;
+        a {
+          color: $secondary-color;
+          line-height: 25px;
+          padding: 10px 27px;
+          text-decoration: none;
+          &:after {
+            content: '';
+            display: none;
+          }
+          &:hover {
+            color: $hover-color;
+            background-color: $secondary-color;
+          }
+          &.button {
+            border: none;
+            color: $secondary-color;
+            font-size: ems(18px);
+            margin: 0;
+            &:hover {
+              background: none;
+              color: $hover-color;
+            }
+          }
+        }
+      }
+      li:before {
+        content: "";
+      }
+    }
+    .dimmer {
+      left: 100%;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      top: 0;
+      background-color: rgba(0, 0, 0, 0.7);
+      &.active {
+        display: block;
+        left: 50%;
+        @include transition(all $transTime ease);
+      }
+    }
+    .hamburger {
+      display: none;
+      z-index: 1;
+    }
+  }
+  .contentHolder {
+    padding: 0 25px;
+    .logo a img {
+      max-height: 50px;
+    }
+    @include display-flex; // delete this
+    @include align-items(center); // delete this
+    @media screen and (max-width: 1250px) {
+      nav {
+        ol li a {
+          padding-left: 8px;
+          padding-right: 8px;
+        }
+      }
+      .logo {
+        max-width: 325px;
+      }
+    }
+    @media screen and (max-width: 1175px) {
+      nav {
+        ol li a {
+          font-size: ems(17px);
+        }
+      }
+      .logo {
+        max-width: 300px;
+      }
+    }
+    @media screen and (max-width: 1100px) {
+      nav {
+        ol li a {
+          font-size: ems(16px);
+          padding-left: 5px;
+          padding-right: 5px;
+        }
+      }
+      .logo {
+        max-width: 285px;
+      }
+    }
+    @media screen and (max-width: 1024px) {
+      @include flex-wrap(wrap);
+      nav {
+        order: 2;
+        width: 100%;
+        margin-right: 0;
+        padding-left: 25px;
+        padding-right: 25px;
+        ol {
+          @include display-flex;
+          @include justify-content(space-around);
+          li a {
+            font-size: ems(18px);
+            padding: 18px;
+            &:after {
+              content: '';
+              bottom: 14px;
+            }
+          }
+        }
+      }
+      .logo {
+        margin-top: 15px;
+        max-width: 325px;
+        padding-top: 0;
+      }
+    }
+    @media screen and (max-width: 850px) {
+      nav {
+        padding-left: 12px;
+        padding-right: 12px;
+      }
+    }
+    @media screen and (max-width: 800px) {
+      nav {
+        padding-left: 0px;
+        padding-right: 0px;
+      }
+    }
+    @media only screen and ($mobile) {
+      nav {
+        ol {
+          li a {
+            font-size: ems(17px);
+            padding-left: 10px;
+            padding-right: 10px;
+          }
+          ul.submenu {
+            li a {
+              font-size: .8em;
+            }
+            &.sub-about {
+              width: 218px;
+            }
+          }
+        }
+      }
+    }
+    @media screen and (max-width: 620px) {
+      padding: 0;
+      @include flex-direction(column);
+      nav {
+        display: block;
+        height: 45px;
+        left: 0;
+        margin: 0;
+        order: 1;
+        position: fixed;
+        top: 0px;
+        width: 100%;
+        @include transition(top $transTime ease);
+        ol {
+          background-color: $header-background-color;
+          bottom: 0;
+          display: block;
+          left: 0;
+          margin-left: -1000px;
+          position: fixed;
+          top: 0;
+          width: 75vw;
+          z-index: 20;
+          @include transition(margin-left $transTime ease);
+          &.active {
+            margin-left: 0;
+            overflow-y: scroll;
+            @include transition(margin-left $transTime ease);
+          }
+          li {
+            display: block;
+            border-bottom: 1px dashed $secondary-color;
+            &.mobileMenu {
+              display: block;
+              &.mobileSocial {
+                border-bottom: none;
+              }
+              ul.social {
+                display: block;
+                margin: 0;
+                padding-left: 15px;
+                li {
+                  border-bottom: none;
+                  display: inline-block;
+                  &:before {
+                    content: "";
+                  }
+                  a {
+                    width: inherit;
+                    padding: 5px 5px 0 0;
+                  }
+                  svg {
+                    width: 25px;
+                    height: 25px;
+                    margin: 10px 0;
+                    path {
+                      fill: $secondary-color;
+                    }
+                    &:hover {
+                      path {
+                        fill: $hover-color;
+                        @include transition(all $transTime ease);
+                      }
+                    }
+                  }
+                }
+              }
+            }
+            a {
+              display: inline-block;
+              font-size: ems(16px);
+              padding: 16px 15px;
+              width: 85%;
+              color: $secondary-color;
+              &:after {
+                content: '';
+                display: none;
+              }
+              &:visited {
+                color: $hover-color;
+              }
+              &:hover {
+                color: $hover-color;
+              }
+            }
+            svg {
+              cursor: pointer;
+              display: inline-block;
+              width: 18px;
+              height: 18px;
+              float: right;
+              margin: 10px 15px 10px 0;
+              path {
+                fill: $secondary-color;
+                @include transition(all $transTime ease);
+              }
+            }
+          }
+        }
+        ol ul.submenu {
+          background-color: $header-background-color;
+          display: none;
+          margin-top: -1px;
+          max-height: 0;
+          overflow: hidden;
+          padding: 0;
+          position: relative;
+          width: 100%;
+          li a {
+            color: $secondary-color;
+            font-size: ems(18px);
+            &:hover {
+              color: $hover-color;
+            }
+            &.button {
+              background-color: $secondary-color;
+              color: $white;
+              border: none;
+              margin: 0;
+              max-width: 100%;
+              text-align: left;
+              &:hover {
+                background-color: $hover-color;
+                color: $white;
+              }
+            }
+          }
+          &.sub-about {
+            width: 100%;
+          }
+        }
+        .hamburger {
+          display: inline-block;
+          position: absolute;
+          top: 22px;
+          right: 10px;
+          height: 100%;
+          padding: 12px 25px;
+          color: $hamburger-color;
+          cursor: pointer;
+          z-index:100;
+          span {
+            left: 0;
+          }
+          span,
+          span:before,
+          span:after {
+            cursor: pointer;
+            border-radius: 1px;
+            height: 7px;
+            width: 38px;
+            background: $hamburger-color;
+            position: absolute;
+            display: block;
+            content: '';
+            transition: background 500ms ease-in-out;
+          }
+          span:before {
+            top: -13px;
+            transition: all 500ms ease-in-out;
+          }
+          span:after {
+            bottom: -13px;
+            transition: all 500ms ease-in-out;
+          }
+          &.active {
+            span {
+              background-color: transparent;
+            }
+            span:before,
+            &.active span:after {
+              top: 0;
+            }
+            span:before {
+              transition: all 500ms ease-in-out;
+              transform: rotate(-45deg);
+            }
+            span:after {
+              transition: all 500ms ease-in-out;
+              transform: rotate(45deg);
+            }
+          }
+        }
+      }
+      .logo {
+        order: 2;
+        margin-bottom: 10px;
+        margin-left: 21px;
+        padding-top: 0;
+        max-width: 100%;
+        img {
+          max-width: 100%;
+        }
+      }
+      .social {
+        display: none;
+      }
+    }
+  }
+  .logo {
+    float: left;
+    margin-right: auto;
+    max-width: 350px;
+  }
+  @media screen and (max-width: 600px) {
+    border-top: 0;
+    position: relative;
+  }
+}
+
+.no-scrolling {
+  overflow: hidden;
+  position: fixed;
+}
+
+.social {
+  line-height: 0;
+  margin: 0;
+  padding: 0;
+  svg {
+    width: 25px;
+    height: 25px;
+    &:nth-child(1) {
+      margin: 0 10px;
+    }
+    path {
+      fill: $secondary-color;
+    }
+    &:hover {
+      path {
+        fill: $hover-color;
+        @include transition(all $transTime ease);
+      }
+    }
+  }
+  li {
+    list-style: none;
+    display: inline-block;
+    &:before {
+      content: '';
+    }
+  }
+}
