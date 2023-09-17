@@ -58,7 +58,7 @@ a.blog-link{
 
 .header_section {
     background-color: #ffffff;
-    box-shadow: 1px 0 10px black;
+    box-shadow: 0 0px 17px -3px gray;
     padding-left: 20px;
     padding-top: 10px;
     padding-right: 10px;
@@ -206,7 +206,7 @@ a.blog-link{
     bottom: 0;
     width: 100%;
     height: 4.5rem;
-    box-shadow: 0 1px 10px black;
+    box-shadow: 0 0px 17px -3px gray;
   }
   
   .footer_section p {
