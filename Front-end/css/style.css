@@ -146,25 +146,6 @@ a.blog-link{
 
 /* end profile */
 
-  
-/* footer section*/
-.footer_section {
-    text-align: center;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 4.5rem;
-    box-shadow: 0 0px 17px -3px gray;
-  }
-  
-  .footer_section p {
-    color: #000000;
-    padding: 25px 0;
-    margin: 0;
-   
-  }
-  
-/* end footer section*/
 
 /* Start of maryam section*/
 @font-face {
