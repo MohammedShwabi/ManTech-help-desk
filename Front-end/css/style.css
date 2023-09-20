@@ -550,3 +550,111 @@ header .contentHolder nav ol li.mobileMenu ul.social li {
   }
   
 /* end footer section*/
+
+/* Start of maryam section*/
+@font-face {
+  font-family: 'Simpfxo';
+  src: 
+  url('fonts/simpfxo-webfont.woff') format('woff'),
+  url('fonts/simpfxo-webfont.woff2') format('woff2');
+  
+}
+
+.page_header{
+  color:#136567 ;
+  font-weight: 500;
+  font-size: 3em;
+  margin-top: 8vh;
+  text-align: center;
+}
+
+.btn_container{
+  display: flex;
+  justify-content: end;
+  align-items: end;
+}
+.web_btn{
+  display:inline-block;
+  padding:0em 2em;
+  margin-right: 8vw;
+  box-sizing: border-box;
+  font-size: 2vw;
+  font-family: "Simpfxo";
+  color:#FFFFFF;
+  background-color:#136567;
+  text-align:center;
+  border: #136567 0.5vh  solid;
+  border-radius:2em;
+  -webkit-border-radius: 2rem;
+  -moz-border-radius: 2rem;
+  -ms-border-radius: 2rem;
+  -o-border-radius: 2rem
+  }
+  .web_btn:hover{
+  background-color:#fff;
+  border: #136567 0.5vh  solid;
+  color: #136567;
+  }
+  
+  .submenu-div{
+    margin-top: 8vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .submenu-items{
+    color: #808080;
+    padding: 1vw 7vw;
+    font-size: 1.5em;
+    text-align: center;
+    font-family: "Simpfxo";
+  }
+  .submenu-items:hover{
+    color: #136567;
+  }
+
+  .list-container{
+    margin: 4vw 18vw;
+    
+  }
+  .list-item{
+    background-color: #f8f8f8;
+    margin: 5vh 0vw;
+    padding: 1.5vh 1vw;
+    border: transparent 1px solid;
+    border-radius: 0.7em;
+    box-shadow:  #dadada 0vh 0vw 0.5vw,#dadada 0vh 0vw 1vw;
+  }
+  .pri-sec{
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #D50000;
+    height: 2em;
+    width: 2em;
+    border-radius: 50%;
+    font-size: 1.5em;
+  }
+  .list-text{
+    color:#3c3c3c;
+    font-size: 1.2em;
+    font-family: Arial;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .list-status{
+    color: #136567;
+    font-size: 1.2em;
+    font-family: "Simpfxo";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+
+
+ 
+
+/* End of maryam section*/
