@@ -30,7 +30,7 @@ use `ManTech`;
 --
 
 CREATE TABLE `blogs` (
-  `id` int(11) NOT NULL,
+  `id` int(11) primary key AUTO_INCREMENT NOT NULL,
   `photo` varchar(30) NOT NULL,
   `title` varchar(60) NOT NULL,
   `description` text NOT NULL,
@@ -334,7 +334,7 @@ CREATE TABLE `compliants` (
   `answer` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-select * from compliants inner join employees on employees.id = compliants.emp_id and employees.id = 1;
+-- select * from compliants inner join employees on employees.id = compliants.emp_id and employees.id = 1;
 
 -- --------------------------------------------------------
 
@@ -365,6 +365,8 @@ insert into `departments` (`id`, `name`) VALUES
 CREATE TABLE `employees` (
   `id` int(11) NOT NULL,
   `full_name` varchar(50) NOT NULL,
+  `gender` ENUM('Male', 'Female') NOT NULL,
+  `activated` BOOLEAN NOT NULL DEFAULT 0,
   `email` varchar(50) NOT NULL,
   `password` varchar(60) NOT NULL,
   `phone_no` varchar(20) NOT NULL,
@@ -373,33 +375,35 @@ CREATE TABLE `employees` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- dumpy data
-insert into `employees` (`id`, `full_name`, `email`, `password`, `phone_no`, `photo`, `dep_id`) VALUES
+
+INSERT INTO `employees` (`id`, `full_name`, `email`, `password`, `phone_no`, `photo`, `dep_id`, `gender`, `activated`) VALUES
 -- this is the admin account
-(1, 'Hesham Noaman', 'admin@gmail.com', 'admin', '01236547890', 'avatar.svg', null),
+(1, 'Hesham Noaman', 'admin@gmail.com', 'admin', '01236547890', 'avatar.svg', null, 'Male', 1),
 
 -- this is normal user
-(2, 'Jane Smith', 'janesmith@example.com', 'password2', '555-2222', 'avatar.svg', 2),
-(3, 'Mike Johnson', 'mikejohnson@example.com', 'password3', '555-3333', 'avatar.svg', 3),
-(4, 'Emily Brown', 'emilybrown@example.com', 'password4', '555-4444', 'avatar.svg', 4),
-(5, 'David Wilson', 'davidwilson@example.com', 'password5', '555-5555', 'avatar.svg', 5),
-(6, 'Sarah Lee', 'sarahlee@example.com', 'password6', '555-6666', 'avatar.svg', 1),
-(7, 'Michael Chen', 'michaelchen@example.com', 'password7', '555-7777', 'avatar.svg', 2),
-(8, 'Linda Davis', 'lindadavis@example.com', 'password8', '555-8888', 'avatar.svg', 3),
-(9, 'Daniel Kim', 'danielkim@example.com', 'password9', '555-9999', 'avatar.svg', 4),
-(10, 'Lisa Patel', 'lisapatel@example.com', 'password10', '555-1010', 'avatar.svg', 5),
-(11, 'John Doe', 'johndoe@example.com', 'password1', '555-1111', 'avatar.svg', 1),
+(2, 'Jane Smith', 'janesmith@example.com', 'password2', '555-2222', 'avatar.svg', 2, 'Female', 1),
+(3, 'Mike Johnson', 'mikejohnson@example.com', 'password3', '555-3333', 'avatar.svg', 3, 'Male', 1),
+(4, 'Emily Brown', 'emilybrown@example.com', 'password4', '555-4444', 'avatar.svg', 4, 'Female', 1),
+(5, 'David Wilson', 'davidwilson@example.com', 'password5', '555-5555', 'avatar.svg', 5, 'Male', 1),
+(6, 'Sarah Lee', 'sarahlee@example.com', 'password6', '555-6666', 'avatar.svg', 1, 'Female', 1),
+(7, 'Michael Chen', 'michaelchen@example.com', 'password7', '555-7777', 'avatar.svg', 2, 'Male', 1),
+(8, 'Linda Davis', 'lindadavis@example.com', 'password8', '555-8888', 'avatar.svg', 3, 'Female', 1),
+(9, 'Daniel Kim', 'danielkim@example.com', 'password9', '555-9999', 'avatar.svg', 4, 'Male', 1),
+(10, 'Lisa Patel', 'lisapatel@example.com', 'password10', '555-1010', 'avatar.svg', 5, 'Female', 1),
+(11, 'John Doe', 'johndoe@example.com', 'password1', '555-1111', 'avatar.svg', 1, 'Male', 1),
 
 -- this is technician user
-(12, 'Robert Turner', 'robertturner@example.com', 'password12', '555-2222', 'robert.jpg', 6),
-(13, 'Karen Baker', 'karenbaker@example.com', 'password13', '555-3333', 'karen.jpg', 6),
-(14, 'William Garcia', 'williamgarcia@example.com', 'password14', '555-4444', 'william.jpg', 6),
-(15, 'Samantha Martinez', 'samanthamartinez@example.com', 'password15', '555-5555', 'samantha.jpg', 6),
-(16, 'Joseph Hernandez', 'josephhernandez@example.com', 'password16', '555-6666', 'joseph.jpg', 6),
-(17, 'Nancy Davis', 'nancydavis@example.com', 'password17', '555-7777', 'nancy.jpg', 6),
-(18, 'Daniel Rodriguez', 'danielrodriguez@example.com', 'password18', '555-8888', 'daniel.jpg', 6),
-(19, 'Linda Martinez', 'lindamartinez@example.com', 'password19', '555-9999', 'linda.jpg', 6),
-(20, 'Jennifer Adams', 'jenniferadams@example.com', 'password11', '555-1111', 'jennifer.jpg', 6),
-(21, 'Christopher Smith', 'christophersmith@example.com', 'password20', '555-1010', 'christopher.jpg', 6);
+(12, 'Robert Turner', 'robertturner@example.com', 'password12', '555-2222', 'robert.jpg', 6, 'Male', 1),
+(13, 'Karen Baker', 'karenbaker@example.com', 'password13', '555-3333', 'karen.jpg', 6, 'Female', 1),
+(14, 'William Garcia', 'williamgarcia@example.com', 'password14', '555-4444', 'william.jpg', 6, 'Male', 1),
+(15, 'Samantha Martinez', 'samanthamartinez@example.com', 'password15', '555-5555', 'samantha.jpg', 6, 'Female', 1),
+(16, 'Joseph Hernandez', 'josephhernandez@example.com', 'password16', '555-6666', 'joseph.jpg', 6, 'Male', 1),
+(17, 'Nancy Davis', 'nancydavis@example.com', 'password17', '555-7777', 'nancy.jpg', 6, 'Female', 1),
+(18, 'Daniel Rodriguez', 'danielrodriguez@example.com', 'password18', '555-8888', 'daniel.jpg', 6, 'Male', 1),
+(19, 'Linda Martinez', 'lindamartinez@example.com', 'password19', '555-9999', 'linda.jpg', 6, 'Female', 1),
+(20, 'Jennifer Adams', 'jenniferadams@example.com', 'password11', '555-1111', 'jennifer.jpg', 6, 'Male', 1),
+(21, 'Christopher Smith', 'christophersmith@example.com', 'password20', '555-1010', 'christopher.jpg', 6, 'Female', 1);
+
 
 
 -- --------------------------------------------------------
@@ -409,7 +413,7 @@ insert into `employees` (`id`, `full_name`, `email`, `password`, `phone_no`, `ph
 --
 
 CREATE TABLE `faqs` (
-  `id` int(11) NOT NULL,
+  `id` int(11) primary key AUTO_INCREMENT NOT NULL,
   `question` text NOT NULL,
   `answer` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
