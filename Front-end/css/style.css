@@ -80,3 +80,21 @@ a.blog-link{
     box-shadow: 0 0px 17px -3px #c8c8c8;
 }
 /* end header */
+
+/* start footer section*/
+.footer {
+    flex-shrink: 0 !important;
+    font-size: 1.4rem;
+    margin-top: auto;
+    box-shadow: 0px -5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.footer dissv {
+    font-size: 20px;
+    /* font-family: var(--title-font); */
+    margin-top: auto;
+    box-shadow: 0px -5px 10px rgba(0, 0, 0, 0.1);
+    /* background-color: var(--light-yellow); */
+} 
+
+/* end footer section*/
