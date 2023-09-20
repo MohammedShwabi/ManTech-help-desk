@@ -107,3 +107,40 @@ a.blog-link{
     box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .125);
 }
 /* end faqs */
+
+/* start profile */
+.profile-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--main-color);
+}
+
+.profile-container {
+    padding: 0;
+    width: 10rem;
+    height: 10rem;
+    border-radius: 10rem;
+    overflow: hidden;
+    box-shadow: 0 0px 17px -3px var(--black);
+}
+.profile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 10rem;
+}
+.edit-link {
+    font-size: 1.5rem;
+    color: #c8c8c8;
+}
+
+.profile-detail .table tr {
+    color: var(--black);
+    font-size: 1.5rem;
+}
+.profile-detail .table .profile-icon{
+    color: var(--main-color);
+}
+
+/* end profile */
+
