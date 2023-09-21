@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.84.0">
+    <title>Sidebars · Bootstrap v5.0</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">
+
+
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
+            <div class="col-2 p-0">
+                <div class="container-fluid side-bar">
+                    <div class="icon-container">
+                        <img src="img/helpDeskLogo.svg" alt="Logo" style="width:9rem;" class="img-fluid" />
+                    </div>
+
+
+                    <div class="photo-container text-center mt-3">
+                        <img src="img/profile.svg" alt="Logo" class=" nav-photo img-fluid" id="round-profile" />
+                    </div>
+
+                    <div class="side-bar-container mt-5">
+                        <ul class="list-unstyled ">
+                            <li class="mb-2 w-100">
+                                <button class="btn side-header btn-toggle align-items-start collapsed w-100"
+                                    data-bs-toggle="collapse" data-bs-target="#complaints-collapse"
+                                    aria-expanded="false">
+                                    <span class="ps-4">
+                                        Complaints
+                                    </span>
+                                </button>
+                                <div class="collapse show" id="complaints-collapse">
+                                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                        <li><a href="#" class="slide-link">Categories</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li class="mb-2">
+                                <button class="btn side-header btn-toggle collapsed w-100"
+                                    data-bs-toggle="collapse" data-bs-target="#reports-collapse"
+                                    aria-expanded="false">
+                                    <span class="ps-4">
+                                        Reports
+                                    </span>
+                                </button>
+                                <div class="collapse" id="reports-collapse">
+                                    <ul class="btn-toggle-nav ps-4 list-unstyled fw-normal pb-1 small">
+                                        <li><a href="#" class="slide-link">Closed</a></li>
+                                        <li><a href="#" class="slide-link">Pending</a></li>
+                                        <li><a href="#" class="slide-link">Departments</a></li>
+                                        <li><a href="#" class="slide-link">Categories</a></li>
+                                        <li><a href="#" class="slide-link">Technicians</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="mb-2">
+                                <button class="btn side-header btn-toggle  collapsed w-100"
+                                    data-bs-toggle="collapse" data-bs-target="#employees-collapse" aria-expanded="false">
+                                    <span class="ps-4">
+                                        Employees
+                                    </span>
+                                </button>
+                                <div class="collapse" id="employees-collapse ">
+                                    <ul class="btn-toggle-nav ps-4 list-unstyled fw-normal pb-1 small">
+                                        <li><a href="#" class="slide-link">Add employee</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-10 ">
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
+<!-- <div class="flex-shrink-0 p-3 bg-white shadow">
+                    <a href="/"
+                        class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
+                        <svg class="bi me-2" width="30" height="24">
+                            <use xlink:href="#bootstrap" />
+                        </svg>
+                        <span class="fs-5 fw-semibold">Collapsible</span>
+                    </a>
+                    <ul class="list-unstyled ps-0">
+                        <li class="mb-1">
+                            <button class="btn btn-toggle align-items-center collapsed"
+                                data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
+                                Home
+                            </button>
+                            <div class="collapse show" id="home-collapse">
+                                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                    <li><a href="#" class="slide-link">Overview</a></li>
+                                    <li><a href="#" class="slide-link">Updates</a></li>
+                                    <li><a href="#" class="slide-link">Reports</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="mb-1">
+                            <button class="btn btn-toggle align-items-center collapsed"
+                                data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
+                                Dashboard
+                            </button>
+                            <div class="collapse" id="dashboard-collapse">
+                                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                    <li><a href="#" class="slide-link">Overview</a></li>
+                                    <li><a href="#" class="slide-link">Weekly</a></li>
+                                    <li><a href="#" class="link-dark">Monthly</a></li>
+                                    <li><a href="#" class="link-dark">Annually</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="mb-1">
+                            <button class="btn btn-toggle align-items-center collapsed"
+                                data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
+                                Orders
+                            </button>
+                            <div class="collapse" id="orders-collapse">
+                                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                    <li><a href="#" class="link-dark">New</a></li>
+                                    <li><a href="#" class="link-dark">Processed</a></li>
+                                    <li><a href="#" class="link-dark">Shipped</a></li>
+                                    <li><a href="#" class="link-dark">Returned</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="border-top my-3"></li>
+                        <li class="mb-1">
+                            <button class="btn btn-toggle align-items-center collapsed"
+                                data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
+                                Account
+                            </button>
+                            <div class="collapse" id="account-collapse">
+                                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                    <li><a href="#" class="link-dark">New...</a></li>
+                                    <li><a href="#" class="link-dark">Profile</a></li>
+                                    <li><a href="#" class="link-dark">Settings</a></li>
+                                    <li><a href="#" class="link-dark">Sign out</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div> -->
