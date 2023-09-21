@@ -157,7 +157,7 @@ a.blog-link{
 }
 
 .page_header{
-  color:#136567 ;
+  color:var(--main-color) ;
   font-weight: 500;
   font-size: 3em;
   margin-top: 8vh;
@@ -172,14 +172,15 @@ a.blog-link{
 .web_btn{
   display:inline-block;
   padding:0em 2em;
-  margin-right: 8vw;
+  margin-top: 2vh;
+  margin-right: 14vw;
   box-sizing: border-box;
-  font-size: 2vw;
+  font-size: 1.7em;
   font-family: "Simpfxo";
   color:#FFFFFF;
-  background-color:#136567;
+  background-color:var(--main-color);
   text-align:center;
-  border: #136567 0.5vh  solid;
+  border: var(--main-color) 0.5vh  solid;
   border-radius:2em;
   -webkit-border-radius: 2rem;
   -moz-border-radius: 2rem;
@@ -188,12 +189,12 @@ a.blog-link{
   }
   .web_btn:hover{
   background-color:#fff;
-  border: #136567 0.5vh  solid;
-  color: #136567;
+  border: var(--main-color) 0.5vh  solid;
+  color: var(--main-color);
   }
   
   .submenu-div{
-    margin-top: 8vh;
+    margin-top: 5vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -206,12 +207,11 @@ a.blog-link{
     font-family: "Simpfxo";
   }
   .submenu-items:hover{
-    color: #136567;
+    color: var(--main-color);
   }
 
-  .list-container{
-    margin: 4vw 18vw;
-    
+  .list-container,.display-container{
+    margin: 5vh 17vw 5vh 20vw;
   }
   .list-item{
     background-color: #f8f8f8;
@@ -241,15 +241,80 @@ a.blog-link{
     align-items: center;
   }
   .list-status{
-    color: #136567;
+    color: var(--main-color);
     font-size: 1.2em;
     font-family: "Simpfxo";
     display: flex;
     justify-content: center;
     align-items: center;
   }
+  .cat-list{
+  color:var(--main-color) ;
+  font-weight: 500;
+  font-size: 2em;
+  text-align: center;
+  }
+  .cat-list-container{
+    margin: 4vw 32vw;
+  }
+  .cat-list-text{
+    color:#3c3c3c;
+    font-size: 1.5em;
+    font-family: Arial;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .comp-answer-input,.cat-input{
+    background-color: #f8f8f8;
+    margin: 5vh auto;
+    width: 30vw;
+    padding: 1.5vh 1vw;
+    border: #b8b8b8 1.5px solid;
+    border-radius: 2em;
+  }
 
-
+  .cat-container{
+    display: flex;
+    justify-content: end;
+    align-items: end;
+  }
+  .cat-txt{
+    display:inline-block;
+    padding:0em 2em;
+    font-size: 1.7em;
+    font-family: Arial;
+    color: #707070;
+    text-align:center;
+    }
+    .pri-txt{
+      color: #D50000;
+      font-family: "Simpfxo";
+      font-size: 2em;
+    }
+    .display-container{
+      margin-top: 15vh;
+    }
+    .comp-head{
+      color: #606060;
+      margin-top: 5vh;
+      margin-left: 2vw;
+    }
+    .comp-desc{
+      margin: 5vh 10vw 4vw 4vw;
+      color: #3E3E3E;
+      font-size: 1.2em;
+      line-height: 3.8vh;
+    }
+    .comp-answer-input{
+      margin: 2vh 10vw 4vw 6vw;
+      width: 45vw;
+      height: 40vh;
+      padding: 2vh 2vw;
+      resize: none;
+      font-size: 1.2em ;
+    }
+    
 
  
 
