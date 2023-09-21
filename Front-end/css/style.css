@@ -3,20 +3,18 @@
   --black: #000000;
   --white: #FFFFFF;
   --main-color: #136567;
-  --light-gray : #c8c8c8;
+  --light-gray: #c8c8c8;
+  --gray: #808080;
 }
 
-html, body {
+html,
+body {
   height: 100%;
-  width:  100%;
+  width: 100%;
   margin: 0;
   padding: 0;
 }
 
-/* body{
-  width: 100%;
-  height: 100%;
-} */
 
 /* start of card design for blog pages */
 a.blog-link {
@@ -178,8 +176,9 @@ a.blog-link {
   padding-right: 0;
   box-shadow: 10px 0 5px -2px var(--light-gray);
 }
-.side-bar .icon-container{
-  box-shadow:0  10px  5px -2px var(--light-gray);
+
+.side-bar .icon-container {
+  box-shadow: 0 10px 5px -2px var(--light-gray);
 
 }
 
@@ -188,6 +187,7 @@ a.blog-link {
   text-align: start;
   padding-left: 0;
   font-weight: bold;
+  position: relative;
 }
 
 .side-bar .side-bar-container .side-header:focus {
@@ -197,10 +197,22 @@ a.blog-link {
 
 }
 
+.side-bar .side-bar-container ul li  {
+  padding-top: 0.6rem
+}
+
 .side-bar .side-bar-container .slide-link {
   padding-left: 3rem !important;
-
+  text-decoration: none;
+  color: var(--gray);
 }
+
+.side-bar .side-bar-container .side-header .side-bar-icon {
+  position: absolute;
+right: 2rem;
+}
+
+
 
 /* end side bar */
 /* Start of maryam section*/

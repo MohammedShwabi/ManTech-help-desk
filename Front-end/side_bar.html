@@ -12,19 +12,22 @@
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">
 
 
-
+    <link rel="stylesheet" href="css/all.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/all.min.js"></script>
+    <script src="js/frontend.js"></script>
+
 </head>
 
 <body class="h-100">
     <div class="container-fluid h-100">
         <div class="row h-100 ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|} ">
-            <div class="col-2 p-0">
+            <div class="col-lg-2  p-0">
                 <div class="container-fluid side-bar h-100">
-                    <div class="icon-container p-4">
+                    <div class="icon-container p-3">
                         <img src="img/helpDeskLogo.svg" alt="Logo" style="width:9rem;" class="img-fluid" />
                     </div>
 
@@ -42,6 +45,10 @@
                                     <span class="ps-4">
                                         Complaints
                                     </span>
+                                    <span class="side-bar-icon">
+                                        <i class="fa-solid fa-chevron-down open-icon" style="display: none;"></i>
+                                        <i class="fa-solid fa-chevron-up close-icon " ></i>  
+                                    </span>
                                 </button>
                                 <div class="collapse show" id="complaints-collapse">
                                     <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
@@ -49,22 +56,26 @@
                                     </ul>
                                 </div>
                             </li>
-                           
+
 
                             <li class="mb-2 w-100">
                                 <button class="btn side-header btn-toggle align-items-start collapsed w-100"
-                                    data-bs-toggle="collapse" data-bs-target="#reports-collapse"
-                                    aria-expanded="false">
+                                    data-bs-toggle="collapse" data-bs-target="#reports-collapse" aria-expanded="false">
                                     <span class="ps-4">
                                         Reports
                                     </span>
+                                    <span class="side-bar-icon">
+                                        <i class="fa-solid fa-chevron-down open-icon" style="display: none;"></i>
+                                        <i class="fa-solid fa-chevron-up close-icon " ></i>  
+                                    </span>
                                 </button>
-                                <div class="collapse " id="reports-collapse">
+                                <div class="collapse show" id="reports-collapse">
                                     <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                        <li><a href="#" class="slide-link">All</a></li>
+                                        <li><a href="#" class="slide-link">Closed</a></li>
+                                        <li><a href="#" class="slide-link">Pending</a></li>
                                         <li><a href="#" class="slide-link">Departments</a></li>
                                         <li><a href="#" class="slide-link">Categories</a></li>
-                                        <li><a href="#" class="slide-link">Support Users</a></li>
+                                        <li><a href="#" class="slide-link">Technicians</a></li>
                                     </ul>
                                 </div>
                             </li>
@@ -74,10 +85,14 @@
                                     data-bs-toggle="collapse" data-bs-target="#employees-collapse"
                                     aria-expanded="false">
                                     <span class="ps-4">
-                                        Employees
+                                        Employees  
+                                    </span>
+                                    <span class="side-bar-icon">
+                                        <i class="fa-solid fa-chevron-down open-icon" style="display: none;"></i>
+                                        <i class="fa-solid fa-chevron-up close-icon " ></i>  
                                     </span>
                                 </button>
-                                <div class="collapse " id="employees-collapse">
+                                <div class="collapse show" id="employees-collapse">
                                     <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                                         <li><a href="#" class="slide-link">Add employee</a></li>
                                     </ul>
@@ -90,7 +105,7 @@
 
 
             </div>
-            <div class="col-10 ">
+            <div class="col-lg-10 ">
             </div>
         </div>
     </div>
@@ -99,70 +114,3 @@
 </body>
 
 </html>
-<!-- <div class="flex-shrink-0 p-3 bg-white shadow">
-                    <a href="/"
-                        class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
-                        <svg class="bi me-2" width="30" height="24">
-                            <use xlink:href="#bootstrap" />
-                        </svg>
-                        <span class="fs-5 fw-semibold">Collapsible</span>
-                    </a>
-                    <ul class="list-unstyled ps-0">
-                        <li class="mb-1">
-                            <button class="btn btn-toggle align-items-center collapsed"
-                                data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
-                                Home
-                            </button>
-                            <div class="collapse show" id="home-collapse">
-                                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                    <li><a href="#" class="slide-link">Overview</a></li>
-                                    <li><a href="#" class="slide-link">Updates</a></li>
-                                    <li><a href="#" class="slide-link">Reports</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="mb-1">
-                            <button class="btn btn-toggle align-items-center collapsed"
-                                data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
-                                Dashboard
-                            </button>
-                            <div class="collapse" id="dashboard-collapse">
-                                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                    <li><a href="#" class="slide-link">Overview</a></li>
-                                    <li><a href="#" class="slide-link">Weekly</a></li>
-                                    <li><a href="#" class="link-dark">Monthly</a></li>
-                                    <li><a href="#" class="link-dark">Annually</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="mb-1">
-                            <button class="btn btn-toggle align-items-center collapsed"
-                                data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
-                                Orders
-                            </button>
-                            <div class="collapse" id="orders-collapse">
-                                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                    <li><a href="#" class="link-dark">New</a></li>
-                                    <li><a href="#" class="link-dark">Processed</a></li>
-                                    <li><a href="#" class="link-dark">Shipped</a></li>
-                                    <li><a href="#" class="link-dark">Returned</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="border-top my-3"></li>
-                        <li class="mb-1">
-                            <button class="btn btn-toggle align-items-center collapsed"
-                                data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
-                                Account
-                            </button>
-                            <div class="collapse" id="account-collapse">
-                                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                    <li><a href="#" class="link-dark">New...</a></li>
-                                    <li><a href="#" class="link-dark">Profile</a></li>
-                                    <li><a href="#" class="link-dark">Settings</a></li>
-                                    <li><a href="#" class="link-dark">Sign out</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                    </ul>
-                </div> -->
