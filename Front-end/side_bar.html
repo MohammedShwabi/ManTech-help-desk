@@ -19,21 +19,21 @@
     <script src="js/jquery-3.6.0.min.js"></script>
 </head>
 
-<body>
-    <div class="container-fluid">
-        <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
+<body class="h-100">
+    <div class="container-fluid h-100">
+        <div class="row h-100 ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|} ">
             <div class="col-2 p-0">
-                <div class="container-fluid side-bar">
-                    <div class="icon-container">
+                <div class="container-fluid side-bar h-100">
+                    <div class="icon-container p-4">
                         <img src="img/helpDeskLogo.svg" alt="Logo" style="width:9rem;" class="img-fluid" />
                     </div>
 
 
-                    <div class="photo-container text-center mt-3">
+                    <div class="photo-container text-center mt-4">
                         <img src="img/profile.svg" alt="Logo" class=" nav-photo img-fluid" id="round-profile" />
                     </div>
 
-                    <div class="side-bar-container mt-5">
+                    <div class="side-bar-container mt-4">
                         <ul class="list-unstyled ">
                             <li class="mb-2 w-100">
                                 <button class="btn side-header btn-toggle align-items-start collapsed w-100"
@@ -49,38 +49,41 @@
                                     </ul>
                                 </div>
                             </li>
+                           
 
-                            <li class="mb-2">
-                                <button class="btn side-header btn-toggle collapsed w-100"
+                            <li class="mb-2 w-100">
+                                <button class="btn side-header btn-toggle align-items-start collapsed w-100"
                                     data-bs-toggle="collapse" data-bs-target="#reports-collapse"
                                     aria-expanded="false">
                                     <span class="ps-4">
                                         Reports
                                     </span>
                                 </button>
-                                <div class="collapse" id="reports-collapse">
-                                    <ul class="btn-toggle-nav ps-4 list-unstyled fw-normal pb-1 small">
-                                        <li><a href="#" class="slide-link">Closed</a></li>
-                                        <li><a href="#" class="slide-link">Pending</a></li>
+                                <div class="collapse " id="reports-collapse">
+                                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                        <li><a href="#" class="slide-link">All</a></li>
                                         <li><a href="#" class="slide-link">Departments</a></li>
                                         <li><a href="#" class="slide-link">Categories</a></li>
-                                        <li><a href="#" class="slide-link">Technicians</a></li>
+                                        <li><a href="#" class="slide-link">Support Users</a></li>
                                     </ul>
                                 </div>
                             </li>
-                            <li class="mb-2">
-                                <button class="btn side-header btn-toggle  collapsed w-100"
-                                    data-bs-toggle="collapse" data-bs-target="#employees-collapse" aria-expanded="false">
+
+                            <li class="mb-2 w-100">
+                                <button class="btn side-header btn-toggle align-items-start collapsed w-100"
+                                    data-bs-toggle="collapse" data-bs-target="#employees-collapse"
+                                    aria-expanded="false">
                                     <span class="ps-4">
                                         Employees
                                     </span>
                                 </button>
-                                <div class="collapse" id="employees-collapse ">
-                                    <ul class="btn-toggle-nav ps-4 list-unstyled fw-normal pb-1 small">
+                                <div class="collapse " id="employees-collapse">
+                                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                                         <li><a href="#" class="slide-link">Add employee</a></li>
                                     </ul>
                                 </div>
                             </li>
+
                         </ul>
                     </div>
                 </div>
