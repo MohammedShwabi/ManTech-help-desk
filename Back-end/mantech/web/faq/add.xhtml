@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <f:view>
+            <h:form>
+                <h1><h:outputText value="Create/Edit"/></h1>
+                <h:panelGrid columns="3">
+                    <h:outputLabel value="Question:" for="question" />
+                    <h:inputTextarea rows="4" cols="30" id="question" value="#{fAQManagedBean.faqs.question}" title="Question" required="true" 
+                                     requiredMessage="The Question field is required." validatorMessage="Validation Error: Length is less than allowable minimum of '5'" >
+                        <f:validateLength minimum="5" maximum="5000" />
+                    </h:inputTextarea>
+                    <h:message for="question" style="color:blue" />
+                    
+                    <h:outputLabel value="Answer:" for="answer" />
+                    <h:inputTextarea rows="4" cols="30" id="answer" value="#{fAQManagedBean.faqs.answer}" title="Answer" required="true" 
+                                     requiredMessage="The Answer field is required." validatorMessage="Validation Error: Length is less than allowable minimum of '5'" >
+                        <f:validateLength minimum="5" maximum="5000" />
+                    </h:inputTextarea>
+                    <h:message for="answer" style="color:blue" />
+                    
+                </h:panelGrid>
+                <h:commandButton value="Add" action="#{fAQManagedBean.addQuestion()}" />
+            </h:form>
+        </f:view>
+
+    </h:body>
+</html>
+
