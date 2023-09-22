@@ -448,7 +448,7 @@ td {
 }
 
 .display-container {
-  margin-top: 15vh;
+  margin-top: 10vh;
 }
 
 .comp-head {
@@ -475,10 +475,97 @@ td {
 
 .delete-icon {
   color: #D50000;
+  cursor: pointer;
 }
 
 .edit-icon {
-  color: #136567;
+  color: var(--main-color);
+  cursor: pointer;
+}
+
+.icons-container{
+  margin: 0vh 6vw 6vh 6vw;
+  display: flex;
+  align-items: end;
+  justify-content: end;
+  font-size: 1.5em;
+}
+
+.prog-container {
+  margin-bottom: 14vh;
+}
+
+.progressbar-text {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px;
+}
+
+.progressbar-text li {
+  list-style-type: none;
+  float: left;
+  position: relative;
+  color: #717171;
+  font-size: 1.1em;
+  margin: 1vh 0vw 1vh 0vw;
+
+}
+.prog-container .steps{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  position: relative;
+
+}
+.steps .status-circle{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 50px;
+  background-color: white;
+  border-radius: 50%;
+  border: #AEADAD 4px solid;
+}
+.steps .progressbar{
+  position:absolute;
+  height: 4px;
+  width: 100%;
+  background-color: #AEADAD;
+  z-index: -1;
+}
+.progressbar .indicator{
+  position: absolute;
+  height: 100%;
+  width: 31.5%;
+  background-color: var(--main-color);
+}
+.steps .done{
+  background-color: var(--main-color);
+  border-color: var(--main-color);
+}
+.steps .cur{
+  border: 6px var(--main-color) solid;
+}
+#del-model-box{
+  padding: 1.5em;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: 80%;
+  max-width: 400px;
+  background-color: white;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: #919191 0vh 0vw 0.5vw, #919191 0vh 0vw 1vw;
+  display: none;
+}
+#del-model-box .del-button{
+  color: white;
+  background-color: #D50000;
 }
 
 
