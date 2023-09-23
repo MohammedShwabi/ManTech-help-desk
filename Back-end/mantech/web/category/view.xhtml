@@ -11,30 +11,57 @@
 
             <h:form>
                 <h1><h:outputText value="List"/></h1>
-                <h:dataTable value="#{categoryManagedBean.findAll()}" var="item" border="1" cellpadding="4px">
+                <h:dataTable id="categoryTable" value="#{categoryManagedBean.findAll()}" var="item" border="1" cellpadding="4px">
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="Name"/>
                         </f:facet>
-                        <h:outputText value="#{item.name}"/>
+                        <!-- Render output text if not editing -->
+                        <h:panelGroup rendered="#{!categoryManagedBean.isEditing(item)}">
+                            <h:outputText value="#{item.name}"/>
+                        </h:panelGroup>
+                        <!-- Render input text if editing -->
+                        <h:panelGroup rendered="#{categoryManagedBean.isEditing(item)}">
+                            <h:inputText value="#{categoryManagedBean.editingCategory.name}" />
+                        </h:panelGroup>
+
                     </h:column>
-                    
+
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="Action"/>
                         </f:facet>
-                        <h:commandLink value="update" action="#{categoryManagedBean}" />
+                        <!-- Render "Update/OK" or "Update" button based on edit state -->
+                        <h:commandLink value="#{categoryManagedBean.isEditing(item) ? 'OK' : 'Update'}" 
+                                       action="#{categoryManagedBean.checkUpdate(item)}" />
+                        <br/>
+                        <!-- Render "Cancel" button when editing -->
+                        <h:commandLink value="Cancel" action="#{categoryManagedBean.cancelEdit()}" rendered="#{categoryManagedBean.isEditing(item)}" />
                     </h:column>
-                    
+
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="Action"/>
                         </f:facet>
                         <h:commandLink value="delete" action="#{categoryManagedBean.delete(item)}" onclick="return confirm('are sure to delete this?')" />
                     </h:column>
-                    
+
                 </h:dataTable>
+
             </h:form>
+
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:inputText id="name" value="#{categoryManagedBean.categories.name}" required="true" 
+                                 requiredMessage="The Name field is required." validatorMessage="Name must be between 5 and 20 characters." >
+                        <f:validateLength minimum="5" maximum="20" />
+                        <f:ajax execute="@this" render="categoryTable" />
+                    </h:inputText>
+                    <h:message for="name" style="color:blue" />
+                </h:panelGrid>
+                <h:commandButton value="Add" action="#{categoryManagedBean.addCategory}" />
+            </h:form>
+
         </f:view>
 
     </h:body>

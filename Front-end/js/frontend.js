@@ -16,3 +16,11 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 });
+
+let delModelbox=document.getElementById('del-model-box');
+function displayModel(){
+    delModelbox.style.display="block";
+}
+function closeModel(){
+    delModelbox.style.display="none";
+}
