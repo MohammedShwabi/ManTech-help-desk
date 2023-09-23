@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <f:view>
+
+
+            <h:form>
+                <h1><h:outputText value="update"/></h1>
+                <h:panelGrid columns="2">
+                    
+                    <h:outputLabel value="Photo:" for="photo" />
+                    <h:inputText id="photo" value="#{blogsManagedBean.blogs.photo}" title="Photo" required="true" requiredMessage="The Photo field is required."/>
+                    <h:outputLabel value="Title:" for="title" />
+                    <h:inputText id="title" value="#{blogsManagedBean.blogs.title}" title="Title" required="true" requiredMessage="The Title field is required."/>
+                    <h:outputLabel value="Description:" for="description" />
+                    <h:inputTextarea rows="4" cols="30" id="description" value="#{blogsManagedBean.blogs.description}" title="Description" required="true" requiredMessage="The Description field is required."/>
+                    <h:outputLabel value="Blog:" for="blog" />
+                    <h:inputTextarea rows="4" cols="30" id="blog" value="#{blogsManagedBean.blogs.blog}" title="Blog" required="true" requiredMessage="The Blog field is required."/>
+                    <h:outputLabel value="CreatedAt:" for="createdAt" />
+                    <h:inputText id="createdAt" value="#{blogsManagedBean.blogs.createdAt}" title="CreatedAt" required="true" requiredMessage="The CreatedAt field is required.">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                </h:panelGrid>
+                            <h:commandButton value="Save Changes" action="#{blogsManagedBean.update()}" />
+
+            </h:form>
+        </f:view>
+
+    </body>
+</html>
