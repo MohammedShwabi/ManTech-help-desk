@@ -323,18 +323,39 @@ CREATE TABLE `compliants` (
   `title` varchar(100) NOT NULL,
   `description` text NOT NULL,
   `photo` varchar(30) DEFAULT NULL,
-  `priority` varchar(20) NOT NULL DEFAULT 'medium',
-  `status` varchar(20) NOT NULL DEFAULT 'waiting',
-  `resend` tinyint(4) NOT NULL DEFAULT 0,
+  `priority` ENUM('low', 'medium', 'high') NOT NULL DEFAULT 'medium',
+  `status` ENUM('waiting', 'pending', 'closed') NOT NULL NOT NULL DEFAULT 'waiting',
+  `resend` BOOLEAN NOT NULL DEFAULT 0,
   `created_date` datetime NOT NULL,
-  `closed_date` datetime NOT NULL,
+  `closed_date` datetime DEFAULT NULL,
   `emp_id` int(11) NOT NULL,
   `cat_id` int(11) NOT NULL,
-  `tech_id` int(11) NOT NULL,
-  `answer` text NOT NULL
+  `tech_id` int(11) DEFAULT NULL,
+  `answer` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- select * from compliants inner join employees on employees.id = compliants.emp_id and employees.id = 1;
+INSERT INTO `compliants` (`id`, `title`, `description`, `photo`, `priority`, `status`, `resend`, `created_date`, `closed_date`, `emp_id`, `cat_id`, `tech_id`, `answer`) VALUES
+(1, 'Printer Not Printing', 'The office printer is not printing any documents. We need it fixed urgently.', 'printer_issue.jpg', 'high', 'closed', 0, '2023-09-22 23:38:14', '2023-09-24 23:38:14', 2, 1, 12, 'Assigned to technician. Technician will check and repair the printer.'),
+(2, 'Email Login Issue', 'I am unable to log in to my email account. It keeps showing an error message.', 'email_issue.png', 'medium', 'closed', 0, '2023-09-21 23:38:14', '2023-09-24 23:38:14', 3, 2, 13, 'Email server issue detected. Investigating the problem.'),
+(3, 'Computer Won’t Boot', 'My computer won’t start up. It gets stuck on the loading screen.', 'computer_issue.jpg', 'high', 'closed', 0, '2023-09-23 23:38:14', '2023-09-24 23:38:14', 4, 1, 14, 'Diagnosing hardware issue. Replacing faulty components.'),
+(4, 'Software Crashing', 'The software we use for accounting keeps crashing. We can’t do our work.', 'software_issue.png', 'medium', 'closed', 0, '2023-09-20 23:38:14', '2023-09-24 23:38:14', 5, 2, 15, 'Updating software to the latest version to resolve crashes.'),
+(5, 'Network Connection Problem', 'Our office network keeps dropping, causing disruptions in work.', 'network_issue.jpg', 'high', 'closed', 0, '2023-09-22 23:38:14', '2023-09-24 23:38:14', 6, 1, 16, 'Identified network router issue. Rebooting router and optimizing settings.'),
+(6, 'Slow Internet Speed', 'The internet speed is painfully slow. It’s affecting our productivity.', 'internet_issue.jpg', 'low', 'closed', 0, '2023-09-19 23:38:14', '2023-09-24 23:38:14', 7, 2, 17, 'Investigating internet service provider issue. Contacting ISP for resolution.'),
+(7, 'Printer Jammed', 'The printer is jammed with paper. It needs to be cleared and fixed.', 'printer_issue.jpg', 'medium', 'closed', 0, '2023-09-22 23:38:14', '2023-09-24 23:38:14', 8, 1, 18, 'Printer cleared and serviced. It should work properly now.'),
+(8, 'Email Attachment Issue', 'I can’t attach files to my emails. The attachment button is not working.', 'email_issue.png', 'high', 'closed', 0, '2023-09-21 23:38:14', '2023-09-24 23:38:14', 9, 2, 19, 'Resolved email client issue. Attachment feature is working.'),
+(9, 'Computer Virus Detected', 'My computer is showing signs of a virus. Need it checked and cleaned.', 'computer_issue.jpg', 'low', 'closed', 0, '2023-09-23 23:38:14', '2023-09-24 23:38:14', 10, 1, 20, 'Running antivirus scan and removing detected threats.'),
+(10, 'Software License Expired', 'The license for our critical software has expired. We need it renewed.', 'software_issue.png', 'medium', 'closed', 0, '2023-09-20 23:38:14', '2023-09-24 23:38:14', 11, 2, 21, 'Renewed software license. Software is fully functional now.'),
+(11, 'Printer Not Responding', 'The printer is not responding to any print commands. Please fix it.', 'printer_issue.jpg', 'high', 'closed', 0, '2023-09-22 23:38:14', '2023-09-24 23:38:14', 2, 1, 12, 'Printer driver issue resolved. Printer is operational.'),
+(12, 'Email Server Down', 'The email server seems to be down. We can’t send or receive emails.', 'email_issue.png', 'medium', 'closed', 0, '2023-09-21 23:38:14', '2023-09-24 23:38:14', 3, 2, 13, 'Email server restarted. Email services are back online.'),
+(13, 'Computer Overheating', 'My computer is overheating and shutting down. It needs cooling.', 'computer_issue.jpg', 'low', 'closed', 0, '2023-09-23 23:38:14', '2023-09-24 23:38:14', 4, 1, 14, 'Cleaned computer’s cooling system. Temperature issue resolved.'),
+(14, 'Software Update Required', 'We need an urgent update for our software to fix bugs and glitches.', 'software_issue.png', 'medium', 'closed', 0, '2023-09-20 23:38:14', '2023-09-24 23:38:14', 5, 2, 15, 'Software updated to the latest version. Bugs fixed.'),
+(15, 'Network Router Failure', 'Our network router has stopped working. We need a replacement.', 'network_issue.jpg', 'high', 'closed', 0, '2023-09-22 23:38:14', '2023-09-24 23:38:14', 6, 1, 16, 'Replaced faulty router. Network is stable now.'),
+(16, 'Slow Wi-Fi Connection', 'The Wi-Fi connection is extremely slow. It needs to be faster.', 'internet_issue.jpg', 'low', 'closed', 0, '2023-09-19 23:38:14', '2023-09-24 23:38:14', 7, 2, 17, 'Optimized Wi-Fi settings for faster speeds.'),
+(17, 'Printer Out of Ink', 'The printer is out of ink. We need a new cartridge.', 'printer_issue.jpg', 'medium', 'closed', 0, '2023-09-22 23:38:14', '2023-09-24 23:38:14', 8, 1, 18, 'Installed a new ink cartridge. Printer is ready to use.'),
+(18, 'Email Filter Issue', 'Some important emails are going to the spam folder. Please fix the filter.', 'email_issue.png', 'high', 'closed', 0, '2023-09-21 23:38:14', '2023-09-24 23:38:14', 9, 2, 19, 'Adjusted email filter settings. Important emails now go to the inbox.'),
+(19, 'Computer Freezing Frequently', 'My computer keeps freezing, making it impossible to work.', 'computer_issue.jpg', 'low', 'waiting', 0, '2023-09-23 23:38:14', NULL, 1, 2, NULL, NULL),
+(20, 'Software Compatibility Issue', 'Our software is not compatible with the latest OS. We need an update.', 'software_issue.png', 'medium', 'waiting', 0, '2023-09-20 23:38:14', NULL, 2, 2, NULL, NULL);
+
 
 -- --------------------------------------------------------
 

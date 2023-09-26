@@ -11,15 +11,20 @@
 
             <h:form>
                 <h1><h:outputText value="Create/Edit"/></h1>
-                <h:panelGrid columns="2">
+                <h:panelGrid columns="3">
 
                     <h:outputLabel value="Email:" for="email" />
-                    <h:inputText id="email" value="#{employeeManagedBean.employee.email}" title="Email" required="true" requiredMessage="The Email field is required."/>
-                    <h:outputLabel value="Password:" for="password" />
-                    <h:inputText id="password" value="#{employeeManagedBean.employee.password}" title="Password" required="true" requiredMessage="The Password field is required."/>
+                    <h:inputText id="email" value="#{loginManagedBean.email}" required="true" requiredMessage="The Email field is required." />
+                    <h:message for="email" style="color:blue" />
 
-                </h:panelGrid>
-                <h:commandButton value="login" action="" />
+                    <h:outputLabel value="Password:" for="password" />
+                    <h:inputSecret id="password" value="#{loginManagedBean.password}" required="true"  requiredMessage="The Password field is required." />
+                    <h:message for="password" style="color:blue" />
+
+                    <h:commandButton value="Login" action="#{loginManagedBean.login}" />
+                    <h:outputText value="#{loginManagedBean.message}" rendered="#{not empty loginManagedBean.message}" />
+
+                </h:panelGrid>               
             </h:form>
         </f:view>
 

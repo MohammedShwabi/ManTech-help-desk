@@ -69,32 +69,51 @@ public class EmployeesFacade extends AbstractFacade<Employees> {
         TypedQuery<Long> query = em.createQuery("SELECT COUNT(e) FROM Employees e WHERE e.email = :email AND e.id != :currentEmployeeId", Long.class);
         query.setParameter("email", email);
         query.setParameter("currentEmployeeId", currentEmployeeId);
-        
-         System.out.println("SQL Query: " + query.toString());
-         System.out.println("email : " + email);
-         System.out.println("id : " + currentEmployeeId);
-        
+
+        System.out.println("SQL Query: " + query.toString());
+        System.out.println("email : " + email);
+        System.out.println("id : " + currentEmployeeId);
+
         // Execute the query and get the result as a Long
         Long count = query.getSingleResult();
 //        System.out.println("erorrerewr: " + query.toString() + "count: " + count);
-        
+
         // If count is 0, the email is unique (excluding the current employee)
         return count == 0;
-        
+
     }
-    
-    // Method to check email uniqueness while excluding the current employee
-//    public boolean isEmailUnique(String email, Long currentEmployeeId) {
-//        // Create a query to count the number of employees with the given email
-//        Query query = em.createQuery("SELECT COUNT(e) FROM Employee e WHERE e.email = :email AND e.id != :currentEmployeeId");
+
+//    public Employees login(String email, String password) {
+//        TypedQuery<Employees> query = em.createQuery("SELECT e FROM Employees e WHERE e.email = :email AND e.password = :password", Employees.class);
 //        query.setParameter("email", email);
-//        query.setParameter("currentEmployeeId", currentEmployeeId);
+//        query.setParameter("password", password);
 //
-//        // Execute the query and get the result as a Long
-//        Long count = (Long) query.getSingleResult();
-//
-//        // If count is 0, the email is unique (excluding the current employee)
-//        return count == 0;
+//        List<Employees> resultList = query.getResultList();
+//        if (!resultList.isEmpty()) {
+//            return resultList.get(0);
+//        } else {
+//            return null; // No matching employee found
+//        }
 //    }
+    public Employees login(String email, String password) {
+        TypedQuery<Employees> query = em.createQuery(
+                "SELECT e FROM Employees e LEFT JOIN FETCH e.depId WHERE e.email = :email AND e.password = :password", Employees.class);
+        query.setParameter("email", email);
+        query.setParameter("password", password);
+
+        try {
+            return query.getSingleResult();
+        } catch (Exception e) {
+            return null; // Return null if no matching user is found
+        }
+    }
+
+    public List<Employees> findAllTechnician() {
+        // to get it by departmetn name istead of id
+        // "SELECT e FROM Employees e JOIN e.depId d WHERE d.name = :departmentName",
+        TypedQuery<Employees> query = em.createQuery("SELECT e FROM Employees e WHERE e.depId.id = :departmentId", Employees.class);
+        query.setParameter("departmentId", 6);
+        return query.getResultList();
+    }
 
 }

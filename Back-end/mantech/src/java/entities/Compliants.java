@@ -66,32 +66,28 @@ public class Compliants implements Serializable {
     private String photo;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 20)
+    @Size(min = 1, max = 6)
     @Column(name = "priority")
     private String priority;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 20)
+    @Size(min = 1, max = 8)
     @Column(name = "status")
     private String status;
     @Basic(optional = false)
     @NotNull
     @Column(name = "resend")
-    private short resend;
+    private boolean resend;
     @Basic(optional = false)
     @NotNull
     @Column(name = "created_date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "closed_date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date closedDate;
-    @Basic(optional = false)
-    @NotNull
     @Lob
-    @Size(min = 1, max = 65535)
+    @Size(max = 65535)
     @Column(name = "answer")
     private String answer;
     @JoinColumn(name = "cat_id", referencedColumnName = "id")
@@ -101,7 +97,7 @@ public class Compliants implements Serializable {
     @ManyToOne(optional = false)
     private Employees empId;
     @JoinColumn(name = "tech_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Employees techId;
 
     public Compliants() {
@@ -111,7 +107,7 @@ public class Compliants implements Serializable {
         this.id = id;
     }
 
-    public Compliants(Integer id, String title, String description, String priority, String status, short resend, Date createdDate, Date closedDate, String answer) {
+    public Compliants(Integer id, String title, String description, String priority, String status, boolean resend, Date createdDate) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -119,8 +115,6 @@ public class Compliants implements Serializable {
         this.status = status;
         this.resend = resend;
         this.createdDate = createdDate;
-        this.closedDate = closedDate;
-        this.answer = answer;
     }
 
     public Integer getId() {
@@ -171,11 +165,11 @@ public class Compliants implements Serializable {
         this.status = status;
     }
 
-    public short getResend() {
+    public boolean getResend() {
         return resend;
     }
 
-    public void setResend(short resend) {
+    public void setResend(boolean resend) {
         this.resend = resend;
     }
 

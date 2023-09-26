@@ -32,6 +32,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Departments.findAll", query = "SELECT d FROM Departments d")
     , @NamedQuery(name = "Departments.findById", query = "SELECT d FROM Departments d WHERE d.id = :id")
+    , @NamedQuery(name = "Departments.findAllExceptId", query = "SELECT d FROM Departments d WHERE d.id != :excludedId")
     , @NamedQuery(name = "Departments.findByName", query = "SELECT d FROM Departments d WHERE d.name = :name")})
 public class Departments implements Serializable {
 

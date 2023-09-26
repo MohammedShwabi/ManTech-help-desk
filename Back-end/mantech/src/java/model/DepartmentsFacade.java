@@ -6,6 +6,7 @@
 package model;
 
 import entities.Departments;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -28,5 +29,11 @@ public class DepartmentsFacade extends AbstractFacade<Departments> {
     public DepartmentsFacade() {
         super(Departments.class);
     }
-    
+
+    public List<Departments> findEmployeeDepartments(Integer excludedId) {
+        return em.createNamedQuery("Departments.findAllExceptId")
+                .setParameter("excludedId", excludedId)
+                .getResultList();
+    }
+
 }
