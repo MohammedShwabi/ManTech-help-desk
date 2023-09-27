@@ -6,6 +6,8 @@
 package model;
 
 import entities.Compliants;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -47,4 +49,40 @@ public class CompliantsFacade extends AbstractFacade<Compliants> {
         query.setParameter("columnID", columnID);
         return query.getResultList();
     }
+
+    public List<Compliants> filterPendingComplaints(int selectedCategory, int selectedDepartment, String selectedPriority, int selectedDays) {
+
+        String jpql = "SELECT c FROM Compliants c WHERE "
+                + "(:selectedCategory = 0 OR c.catId.id = :selectedCategory) AND "
+                + "(:selectedDepartment = 0 OR c.empId.depId.id = :selectedDepartment) AND "
+                + "(:selectedPriority = 'all' OR c.priority = :selectedPriority) AND ";
+        
+        if (selectedDays != 0) {
+            jpql += "c.createdDate >= :selectedDays AND ";
+        }
+
+        // get only the pending report  
+        jpql += "c.status = 'pending'";
+
+        TypedQuery<Compliants> query = em.createQuery(jpql, Compliants.class)
+                .setParameter("selectedCategory", selectedCategory)
+                .setParameter("selectedDepartment", selectedDepartment)
+                .setParameter("selectedPriority", selectedPriority);
+
+        // to add the selectedDays parameter if any
+        if (selectedDays != 0) {
+          Date startDate = calculateStartDate(selectedDays); // Convert selected days to a date
+            query.setParameter("selectedDays", startDate);
+        }
+        
+        return query.getResultList();
+    }
+
+    // to convert the pending days to date
+    public Date calculateStartDate(int selectedDays) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_MONTH, -selectedDays);
+        return calendar.getTime();
+    }
+
 }

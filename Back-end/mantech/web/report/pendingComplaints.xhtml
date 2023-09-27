@@ -1,12 +1,116 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Pending Complaints</title>
     </h:head>
     <h:body>
-        Hello from Facelets
+
+        <h:form>
+            <!-- Dropdown to select category -->
+            <h:outputLabel for="categoryDropdown" value="Filter by Category: " />
+            <h:selectOneMenu id="categoryDropdown" value="#{pendingComplaintManagedBean.selectedCategory}">
+                <f:selectItem itemValue="" itemLabel="All Categories" />
+                <f:selectItems value="#{pendingComplaintManagedBean.getFilterItems('cat')}" />
+                <f:ajax render="complaintsTable complaintsCount" />
+            </h:selectOneMenu>
+
+            <!-- Dropdown to select department -->
+            <h:outputLabel for="departmentDropdown" value="Filter by Department: " />
+            <h:selectOneMenu id="departmentDropdown" value="#{pendingComplaintManagedBean.selectedDepartment}">
+                <f:selectItem itemValue="0" itemLabel="All Departments" />
+                <f:selectItems value="#{pendingComplaintManagedBean.getFilterItems('dep')}" />
+                <f:ajax render="complaintsTable complaintsCount" />
+            </h:selectOneMenu>
+
+            <!-- Dropdown to select priority -->
+            <h:outputLabel for="priorityDropdown" value="Filter by Priority: " />
+            <h:selectOneMenu id="priorityDropdown" value="#{pendingComplaintManagedBean.selectedPriority}">
+                <f:selectItem itemValue="all" itemLabel="All Priorities" />
+
+                <f:selectItem itemValue="high" itemLabel="High" />
+                <f:selectItem itemValue="medium" itemLabel="Medium" />
+                <f:selectItem itemValue="low" itemLabel="Low" />
+
+                <f:ajax render="complaintsTable complaintsCount" />
+            </h:selectOneMenu>
+
+            <!-- Dropdown to select Pending Days -->
+            <h:outputLabel for="pendingDaysDropdown" value="Filter by Pending Days: " />
+            <h:selectOneMenu id="pendingDaysDropdown" value="#{pendingComplaintManagedBean.selectedDays}">
+                <f:selectItems value="#{pendingComplaintManagedBean.pendingDaysOptions}" />
+                <f:ajax render="complaintsTable complaintsCount" />
+            </h:selectOneMenu>
+          
+            <!-- Complaint count -->
+            <h3><h:outputText id="complaintsCount" value="#{pendingComplaintManagedBean.filteredComplaints.size()} Complaints"/></h3>
+
+            <!-- Display filtered complaints -->
+            <h:dataTable id="complaintsTable" value="#{pendingComplaintManagedBean.filteredComplaints}" var="item" border="1" cellpadding="4px">
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Id"/>
+                    </f:facet>
+                    <h:outputText value="#{item.id}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Priority"/>
+                    </f:facet>
+                    <h:outputText value="#{item.priority}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="CreatedDate"/>
+                    </f:facet>
+                    <h:outputText value="#{item.createdDate}">
+                        <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Pending for"/>
+                    </f:facet>
+
+                    <h:outputText value="#{pendingComplaintManagedBean.getPendingTime(item.createdDate)}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Category"/>
+                    </f:facet>
+                    <h:outputText value="#{item.catId.name}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Employee Name"/>
+                    </f:facet>
+                    <h:outputText value="#{item.empId.fullName}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Department"/>
+                    </f:facet>
+                    <h:outputText value="#{item.empId.depId.name}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Technician Name"/>
+                    </f:facet>
+                    <h:outputText value="#{item.techId.fullName}"/>
+                </h:column>
+            </h:dataTable>
+
+        </h:form>
+
     </h:body>
 </html>
-
