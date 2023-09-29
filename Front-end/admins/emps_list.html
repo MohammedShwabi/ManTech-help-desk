@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/all.min.css">
+  <script src="../js/all.min.js"></script>
+</head>
+
+<body>
+  <p class="page_header">Employees </p>
+  <div class="btn_container">
+    <button class="web_btn">Add</button>
+  </div>
+
+
+  <div class="list-container ">
+
+    <div class="custom-select col-3 mt-0">
+      <button class="select-button" role="combobox" aria-labelledby="select button" aria-haspopup="listbox"
+        aria-expanded="false" aria-controls="select-dropdown">
+        <span class="selected-value">Departements</span>
+        <span class="arrow"></span>
+      </button>
+      <ul class="select-dropdown" role="listbox" id="select-dropdown">
+        <li role="option">
+          <input type="radio" />
+          <label>Departement 1</label>
+        </li>
+        <li role="option">
+          <input type="radio" />
+          <label>Departement 2</label>
+        </li>
+        <li role="option">
+          <input type="radio" />
+          <label>Departement 3</label>
+        </li>
+        <li role="option">
+          <input type="radio" />
+          <label>Departement 4</label>
+        </li>
+        <li role="option">
+          <input type="radio" />
+          <label>Departement 5</label>
+        </li>
+        <li role="option">
+          <input type="radio" />
+          <label>Departement 6</label>
+        </li>
+      </ul>
+    </div>
+
+    <div class="list-item row">
+      <div class="pic-sec col-1 ">
+        <img src="../img/profile.svg" />
+      </div>
+      <div class="list-text col-2">Ahmed Ali</div>
+      <div class="list-text col-3">Ahmed123@gmail.com</div>
+      <div class="list-text col-3">Educational Service Dep.</div>
+      <div class="col-2">
+        <input type="radio" />
+        <label>Active</label>
+      </div>
+      <div class="col-1">
+        <div class="row mt-2 edit-icon">
+          <i class="fa-solid fa-pen"></i>
+        </div>
+        <div class="row mt-2 delete-icon" onclick="displayModel()">
+          <i class="fa-solid fa-trash"></i>
+        </div>
+
+      </div>
+    </div>
+
+   
+
+  </div>
+
+  <div id="del-model-box">
+        <h5 class="modal-title mb-4" id="exampleModalLabel">Are you sure you want to delete:</h5>
+        <div style="display: flex;justify-content: center;">
+            <button type="button" class="btn btn-secondary m-2 me-3" onclick="closeModel()">No</button>
+            <button type="button" class="btn del-button m-2 ms-3">Yes</button>
+        </div>
+    </div>
+    <script src="../js/frontend.js"></script>
+
+
+</body>
+
+
+</html>

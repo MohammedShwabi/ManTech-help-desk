@@ -2,241 +2,239 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.84.0">
-    <title>Sidebars · Bootstrap v5.0</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Hugo 0.84.0">
+  <title>Sidebars · Bootstrap v5.0</title>
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">
 
 
-    <link rel="stylesheet" href="css/all.min.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/jquery-3.6.0.min.js"></script>
-    <script src="js/all.min.js"></script>
-    <script src="js/frontend.js"></script>
+  <link rel="stylesheet" href="css/all.min.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/jquery-3.6.0.min.js"></script>
+  <script src="js/all.min.js"></script>
+  <script src="js/frontend.js"></script>
 
 </head>
 
 <body class="h-100">
-    <div class="container-fluid h-100">
-        <div class="row h-100 ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|} ">
-            <div class="col-lg-2  p-0">
-                <div class="container-fluid side-bar h-100">
-                    <div class="icon-container p-3">
-                        <img src="img/helpDeskLogo.svg" alt="Logo" style="width:9rem;" class="img-fluid" />
-                    </div>
+  <div class="container-fluid h-100">
+    <div class="row h-100 ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|} ">
+      <div class="col-lg-2  p-0">
+        <div class="container-fluid side-bar h-100">
+          <div class="icon-container p-3">
+            <img src="img/helpDeskLogo.svg" alt="Logo" style="width:9rem;" class="img-fluid" />
+          </div>
 
 
-                    <div class="photo-container text-center mt-4">
-                        <img src="img/profile.svg" alt="Logo" class=" nav-photo img-fluid" id="round-profile" />
-                    </div>
+          <div class="photo-container text-center mt-4">
+            <img src="img/profile.svg" alt="Logo" class=" nav-photo img-fluid" id="round-profile" />
+          </div>
 
-                    <div class="side-bar-container mt-4">
-                        <ul class="list-unstyled ">
-                            <li class="mb-2 w-100">
-                                <button class="btn side-header btn-toggle align-items-start collapsed w-100"
-                                    data-bs-toggle="collapse" data-bs-target="#complaints-collapse"
-                                    aria-expanded="false">
-                                    <span class="ps-4">
-                                        Complaints
-                                    </span>
-                                    <span class="side-bar-icon">
-                                        <i class="fa-solid fa-chevron-down open-icon" style="display: none;"></i>
-                                        <i class="fa-solid fa-chevron-up close-icon "></i>
-                                    </span>
-                                </button>
-                                <div class="collapse show" id="complaints-collapse">
-                                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                        <li><a href="#" class="slide-link">Categories</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-
-
-                            <li class="mb-2 w-100">
-                                <button class="btn side-header btn-toggle align-items-start collapsed w-100"
-                                    data-bs-toggle="collapse" data-bs-target="#reports-collapse" aria-expanded="false">
-                                    <span class="ps-4">
-                                        Reports
-                                    </span>
-                                    <span class="side-bar-icon">
-                                        <i class="fa-solid fa-chevron-down open-icon" style="display: none;"></i>
-                                        <i class="fa-solid fa-chevron-up close-icon "></i>
-                                    </span>
-                                </button>
-                                <div class="collapse show" id="reports-collapse">
-                                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                        <li><a href="#" class="slide-link">Closed</a></li>
-                                        <li><a href="#" class="slide-link">Pending</a></li>
-                                        <li><a href="#" class="slide-link">Departments</a></li>
-                                        <li><a href="#" class="slide-link">Categories</a></li>
-                                        <li><a href="#" class="slide-link">Technicians</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-
-                            <li class="mb-2 w-100">
-                                <button class="btn side-header btn-toggle align-items-start collapsed w-100"
-                                    data-bs-toggle="collapse" data-bs-target="#employees-collapse"
-                                    aria-expanded="false">
-                                    <span class="ps-4">
-                                        Employees
-                                    </span>
-                                    <span class="side-bar-icon">
-                                        <i class="fa-solid fa-chevron-down open-icon" style="display: none;"></i>
-                                        <i class="fa-solid fa-chevron-up close-icon "></i>
-                                    </span>
-                                </button>
-                                <div class="collapse show" id="employees-collapse">
-                                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                        <li><a href="#" class="slide-link">Add employee</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-
-                        </ul>
-                    </div>
+          <div class="side-bar-container mt-4">
+            <ul class="list-unstyled ">
+              <li class="mb-2 w-100">
+                <button class="btn side-header btn-toggle align-items-start collapsed w-100" data-bs-toggle="collapse"
+                  data-bs-target="#complaints-collapse" aria-expanded="false">
+                  <span class="ps-4">
+                    Complaints
+                  </span>
+                  <span class="side-bar-icon">
+                    <i class="fa-solid fa-chevron-down open-icon" style="display: none;"></i>
+                    <i class="fa-solid fa-chevron-up close-icon "></i>
+                  </span>
+                </button>
+                <div class="collapse show" id="complaints-collapse">
+                  <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    <li><a href="#" class="slide-link">Categories</a></li>
+                  </ul>
                 </div>
+              </li>
 
 
-            </div>
-            <div class="col-lg-10 p-0">
-                <p class="page_header">Reports </p>
-
-                <div class="report-div text-center p-3 mt-4">
-                    <a class="report-items">Closed</a>
-                    <a class="report-items">Pending</a>
-                    <a class="report-items">Departments</a>
-                    <a class="report-items">Categories</a>
-                    <a class="report-items">Technicians</a>
+              <li class="mb-2 w-100">
+                <button class="btn side-header btn-toggle align-items-start collapsed w-100" data-bs-toggle="collapse"
+                  data-bs-target="#reports-collapse" aria-expanded="false">
+                  <span class="ps-4">
+                    Reports
+                  </span>
+                  <span class="side-bar-icon">
+                    <i class="fa-solid fa-chevron-down open-icon" style="display: none;"></i>
+                    <i class="fa-solid fa-chevron-up close-icon "></i>
+                  </span>
+                </button>
+                <div class="collapse show" id="reports-collapse">
+                  <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    <li><a href="#" class="slide-link">Closed</a></li>
+                    <li><a href="#" class="slide-link">Pending</a></li>
+                    <li><a href="#" class="slide-link">Departments</a></li>
+                    <li><a href="#" class="slide-link">Categories</a></li>
+                    <li><a href="#" class="slide-link">Technicians</a></li>
+                  </ul>
                 </div>
+              </li>
 
-                <div class="report-filter p-5 ">
-                    <div class="all-filters">
-                        <select name="filters" class="filters rounded-3">
-                            <option value="w">Categories</option>
-                            <option value="w">Categories</option>
-                            <option value="w">Categories</option>
-                            <option value="w">Categories</option>
-                        </select>
-                    </div>
-                    <div class="complaints-no">
-                        <span class="number pe-1"> 12 </span> Complaints
-                    </div>
+              <li class="mb-2 w-100">
+                <button class="btn side-header btn-toggle align-items-start collapsed w-100" data-bs-toggle="collapse"
+                  data-bs-target="#employees-collapse" aria-expanded="false">
+                  <span class="ps-4">
+                    Employees
+                  </span>
+                  <span class="side-bar-icon">
+                    <i class="fa-solid fa-chevron-down open-icon" style="display: none;"></i>
+                    <i class="fa-solid fa-chevron-up close-icon "></i>
+                  </span>
+                </button>
+                <div class="collapse show" id="employees-collapse">
+                  <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    <li><a href="#" class="slide-link">Add employee</a></li>
+                  </ul>
                 </div>
+              </li>
 
-                <div class="report-table">
-                <table>
-                    <thead>
-                      <tr>
-                        <th scope="col" class="no-place">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row" class="no-place">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                      </tr>
-                      <tr>
-                        <th scope="row" class="no-place">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                      </tr>
-                      <tr>
-                        <th scope="row" class="no-place">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                      </tr>
-                      <tr>
-                        <th scope="row" class="no-place">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                      </tr>
-                      <tr>
-                        <th scope="row" class="no-place">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                      </tr>
-                      <tr>
-                        <th scope="row" class="no-place">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                      </tr>
-                      <tr>
-                        <th scope="row" class="no-place">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                      </tr>
-                      <tr>
-                        <th scope="row" class="no-place">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                      </tr>
-                      <tr>
-                        <th scope="row" class="no-place">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                      </tr>
-                      <tr>
-                        <th scope="row" class="no-place">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                      </tr>
-                      <tr>
-                        <th scope="row" class="no-place">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                      </tr>
-                      <tr>
-                        <th scope="row" class="no-place">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                      </tr>
-                      <tr>
-                        <th scope="row" class="no-place">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                      </tr>
-                      <tr>
-                        <th scope="row" class="no-place">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                      </tr>
-                      <tr>
-                        <th scope="row" class="no-place">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-            </div>
+            </ul>
+          </div>
         </div>
+
+
+      </div>
+      <div class="col-lg-10 p-0">
+        <p class="page_header">Reports </p>
+
+        <div class="report-div text-center p-3 mt-4">
+          <a class="report-items">Closed</a>
+          <a class="report-items">Pending</a>
+          <a class="report-items">Departments</a>
+          <a class="report-items">Categories</a>
+          <a class="report-items">Technicians</a>
+        </div>
+
+        <div class="report-filter p-5 ">
+          <div class="all-filters">
+            <select name="filters" class="filters rounded-3">
+              <option value="w">Categories</option>
+              <option value="w">Categories</option>
+              <option value="w">Categories</option>
+              <option value="w">Categories</option>
+            </select>
+          </div>
+          <div class="complaints-no">
+            <span class="number pe-1"> 12 </span> Complaints
+          </div>
+        </div>
+
+        <div class="report-table">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col" class="no-place">#</th>
+                <th scope="col">First</th>
+                <th scope="col">Last</th>
+                <th scope="col">Handle</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row" class="no-place">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+              </tr>
+              <tr>
+                <th scope="row" class="no-place">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+              </tr>
+              <tr>
+                <th scope="row" class="no-place">3</th>
+                <td>Larry</td>
+                <td>the Bird</td>
+                <td>@twitter</td>
+              </tr>
+              <tr>
+                <th scope="row" class="no-place">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+              </tr>
+              <tr>
+                <th scope="row" class="no-place">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+              </tr>
+              <tr>
+                <th scope="row" class="no-place">3</th>
+                <td>Larry</td>
+                <td>the Bird</td>
+                <td>@twitter</td>
+              </tr>
+              <tr>
+                <th scope="row" class="no-place">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+              </tr>
+              <tr>
+                <th scope="row" class="no-place">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+              </tr>
+              <tr>
+                <th scope="row" class="no-place">3</th>
+                <td>Larry</td>
+                <td>the Bird</td>
+                <td>@twitter</td>
+              </tr>
+              <tr>
+                <th scope="row" class="no-place">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+              </tr>
+              <tr>
+                <th scope="row" class="no-place">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+              </tr>
+              <tr>
+                <th scope="row" class="no-place">3</th>
+                <td>Larry</td>
+                <td>the Bird</td>
+                <td>@twitter</td>
+              </tr>
+              <tr>
+                <th scope="row" class="no-place">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+              </tr>
+              <tr>
+                <th scope="row" class="no-place">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+              </tr>
+              <tr>
+                <th scope="row" class="no-place">3</th>
+                <td>Larry</td>
+                <td>the Bird</td>
+                <td>@twitter</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
+  </div>
 
 
 </body>
