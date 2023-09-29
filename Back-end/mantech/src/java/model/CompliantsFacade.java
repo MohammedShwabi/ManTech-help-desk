@@ -56,7 +56,7 @@ public class CompliantsFacade extends AbstractFacade<Compliants> {
                 + "(:selectedCategory = 0 OR c.catId.id = :selectedCategory) AND "
                 + "(:selectedDepartment = 0 OR c.empId.depId.id = :selectedDepartment) AND "
                 + "(:selectedPriority = 'all' OR c.priority = :selectedPriority) AND ";
-        
+
         if (selectedDays != 0) {
             jpql += "c.createdDate >= :selectedDays AND ";
         }
@@ -71,10 +71,10 @@ public class CompliantsFacade extends AbstractFacade<Compliants> {
 
         // to add the selectedDays parameter if any
         if (selectedDays != 0) {
-          Date startDate = calculateStartDate(selectedDays); // Convert selected days to a date
+            Date startDate = calculateStartDate(selectedDays); // Convert selected days to a date
             query.setParameter("selectedDays", startDate);
         }
-        
+
         return query.getResultList();
     }
 
