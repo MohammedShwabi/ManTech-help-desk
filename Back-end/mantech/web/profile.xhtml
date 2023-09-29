@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form    enctype="multipart/form-data" >
+        <h:outputText value="photo :    "/>
+        <h:outputText value="#{profileManagedBean.user.photo}"/>
+        <h:inputFile value="#{profileManagedBean.file}"  />
+        <h:commandButton value="Save Changes" action="#{profileManagedBean.editImage()}" />
+        <br/>
+         <h:outputText value="email :    "/>
+        <h:outputText value="#{profileManagedBean.user.email}"/><br/>
+        <h:outputText value="password :    "/>
+        <h:outputText value="#{profileManagedBean.user.password}"/>
+        <h:link value="password reset" outcome="#{profileManagedBean.goToPasswordReset(profileManagedBean.user)}" /> <br/> <br/>
+       <h:outputText value="phoneNo :    "/>
+       
+        <h:outputText value="#{profileManagedBean.user.phoneNo}"/><br/>
+       <h:outputText value="department :    "/>
+       <h:outputText value="#{profileManagedBean.department.name}"/><br/>
+        
+            </h:form>
+    </h:body>
+</html>
+

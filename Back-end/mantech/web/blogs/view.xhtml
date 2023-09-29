@@ -16,6 +16,7 @@ and open the template in the editor.
         <f:view>
        
             <h:link value="add" outcome="#{blogsManagedBean.gotoAdd()}" /> <br/> <br/>
+            
             <h:form>
                 <h1><h:outputText value="blogs"/></h1>
                 <h:dataTable value="#{blogsManagedBean.findAll()}" var="item"  border="1" cellpadding="4px">

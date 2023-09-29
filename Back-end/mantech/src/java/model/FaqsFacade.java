@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package model;
-
 import entities.Faqs;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

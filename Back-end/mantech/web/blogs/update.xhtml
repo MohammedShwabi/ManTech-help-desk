@@ -16,12 +16,12 @@ and open the template in the editor.
         <f:view>
 
 
-            <h:form>
+            <h:form enctype="multipart/form-data">
                 <h1><h:outputText value="update"/></h1>
                 <h:panelGrid columns="2">
                     
                     <h:outputLabel value="Photo:" for="photo" />
-                    <h:inputText id="photo" value="#{blogsManagedBean.blogs.photo}" title="Photo" required="true" requiredMessage="The Photo field is required."/>
+                  <h:inputFile value="#{blogsManagedBean.file}" />
                     <h:outputLabel value="Title:" for="title" />
                     <h:inputText id="title" value="#{blogsManagedBean.blogs.title}" title="Title" required="true" requiredMessage="The Title field is required."/>
                     <h:outputLabel value="Description:" for="description" />

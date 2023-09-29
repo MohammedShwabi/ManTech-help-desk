@@ -109,7 +109,7 @@ public class Departments implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Departments[ id=" + id + " ]";
+        return  id.toString();
     }
     
 }

@@ -83,8 +83,9 @@ public BlogsManagedBean() {    }
 
  // Method to add a new question
     public String addBlog() throws IOException {
-      String path=  upload();
-        blogs.setPhoto("hjhjhjhj");
+        String name=  upload();
+        System.out.println(name);
+        blogs.setPhoto(name);
         blogsFacade.create(blogs);
       
         
@@ -102,18 +103,21 @@ public BlogsManagedBean() {    }
     
     
 // to save edited question details
-    public String update() {
+    public String update()throws IOException {
+        String name=  upload();
+        System.out.println(name);
+        blogs.setPhoto(name);
         blogsFacade.edit(blogs);
         this.resetBlogs();
         return "view"; // Redirect to a view page
     }
     
-    
+    //upload image blog
     
     public String upload() throws IOException {
         String fileName = file.getSubmittedFileName();
         InputStream fileContent = file.getInputStream();
-         String uploadDirectory = "/file:/C:/Users/Almomyz/Documents/GitHub/ManTech-help-desk/Back-end/mantech/";
+         String uploadDirectory = "C:\\Users\\Almomyz\\Documents\\GitHub\\ManTech-help-desk\\Back-end\\mantech\\web\\upload\\";
         String filePath = uploadDirectory + fileName;
          try {
             
@@ -146,8 +150,20 @@ public BlogsManagedBean() {    }
         e.printStackTrace();
         }
          
-         System.err.println(filePath);
+         System.out.println(filePath);
         
-        return  filePath;
+        return  fileName;
     }
+
+
+
+
+
+
+
+
+
+
+
+
 }
