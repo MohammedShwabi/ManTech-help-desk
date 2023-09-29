@@ -85,4 +85,9 @@ public class CompliantsFacade extends AbstractFacade<Compliants> {
         return calendar.getTime();
     }
 
+    public List<Compliants> findWaitingComplaints() {
+        TypedQuery<Compliants> query = em.createNamedQuery("Compliants.findByStatus", Compliants.class);
+        query.setParameter("status", "waiting");
+        return query.getResultList();
+    }
 }
