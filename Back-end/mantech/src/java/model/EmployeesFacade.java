@@ -5,6 +5,7 @@
  */
 package model;
 
+import entities.Departments;
 import entities.Employees;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -49,16 +50,14 @@ public class EmployeesFacade extends AbstractFacade<Employees> {
         System.err.println("Selected Department Name: " + departmentId);
 
         if (departmentId == 0) {
-            System.out.println("Retrieving all employees...");
-            TypedQuery<Employees> query = em.createQuery("SELECT e FROM Employees e", Employees.class);
-            return query.getResultList();
+            return em.createNamedQuery("Employees.findAllExceptAdmin")
+                    .setParameter("excludedId", 1)
+                    .getResultList();
         } else {
-            System.out.println("Retrieving employees in department: " + departmentId);
-            TypedQuery<Employees> query = em.createQuery("SELECT e FROM Employees e WHERE e.depId.id = :departmentId", Employees.class);
-            query.setParameter("departmentId", departmentId);
-
-            System.out.println("SQL Query: " + query.toString());
-            return query.getResultList();
+            return em.createNamedQuery("Employees.findByDepartmentExceptAdmin")
+                    .setParameter("departmentId", departmentId)
+                    .setParameter("excludedId", 1)
+                    .getResultList();
         }
     }
 

@@ -66,14 +66,10 @@ public class EmployeeManagedBean implements Serializable {
     public String addEmployee() {
         Departments department = departmentsFacade.find(selectedDepartmentId);
         employee.setDepId(department);
+        employee.setPhoto("profile.svg");
         employeesFacade.create(employee);
         this.resetEmployee();
         return "view"; // Redirect to a view page
-    }
-
-    // for get all employee data
-    public List<Employees> findAll() {
-        return employeesFacade.findAll();
     }
 
     // to go to update page and pass the current object to fill the form input

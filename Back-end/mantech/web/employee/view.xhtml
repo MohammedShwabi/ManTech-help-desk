@@ -32,7 +32,7 @@
                     <c:forEach  var="item" items="#{employeeManagedBean.filteredEmployees}" varStatus="item-i">
                     <div class="list-item row" >
                         <div class="pic-sec col-1 ">
-                            <img src="#{item.photo}" />
+                            <img src="../img/#{item.photo}" />
                         </div>
                         <div class="list-text col-2">#{item.fullName}</div>
                         <div class="list-text col-3">#{item.email}</div>

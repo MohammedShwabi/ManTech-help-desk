@@ -35,6 +35,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Employees.findAll", query = "SELECT e FROM Employees e")
+    , @NamedQuery(name = "Employees.findAllExceptAdmin", query = "SELECT e FROM Employees e WHERE e.id != :excludedId")
+    , @NamedQuery(name = "Employees.findByDepartmentExceptAdmin", query = "SELECT e FROM Employees e WHERE e.depId.id = :departmentId AND e.id != :excludedId")
     , @NamedQuery(name = "Employees.findById", query = "SELECT e FROM Employees e WHERE e.id = :id")
     , @NamedQuery(name = "Employees.findByFullName", query = "SELECT e FROM Employees e WHERE e.fullName = :fullName")
     , @NamedQuery(name = "Employees.findByGender", query = "SELECT e FROM Employees e WHERE e.gender = :gender")
@@ -82,12 +84,14 @@ public class Employees implements Serializable {
     @Size(min = 1, max = 20)
     @Column(name = "phone_no")
     private String phoneNo;
-    @Size(max = 30)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 30)
     @Column(name = "photo")
     private String photo;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "empId")
     private List<Compliants> compliantsList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "techId")
+    @OneToMany(mappedBy = "techId")
     private List<Compliants> compliantsList1;
     @JoinColumn(name = "dep_id", referencedColumnName = "id")
     @ManyToOne
@@ -100,7 +104,7 @@ public class Employees implements Serializable {
         this.id = id;
     }
 
-    public Employees(Integer id, String fullName, String gender, boolean activated, String email, String password, String phoneNo) {
+    public Employees(Integer id, String fullName, String gender, boolean activated, String email, String password, String phoneNo, String photo) {
         this.id = id;
         this.fullName = fullName;
         this.gender = gender;
@@ -108,6 +112,7 @@ public class Employees implements Serializable {
         this.email = email;
         this.password = password;
         this.phoneNo = phoneNo;
+        this.photo = photo;
     }
 
     public Integer getId() {

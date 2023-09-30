@@ -34,8 +34,8 @@ CREATE TABLE `blogs` (
   `photo` varchar(30) NOT NULL,
   `title` varchar(60) NOT NULL,
   `description` text NOT NULL,
-  `blog` text NOT NULL DEFAULT CURRENT_DATE(),
-  `created_at` date NOT NULL
+  `blog` text NOT NULL,
+  `created_at` date NOT NULL DEFAULT CURRENT_DATE()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
@@ -88,6 +88,7 @@ CREATE TABLE `complaint_by_month` (
 `id` int(11)
 ,`priority` enum('low','medium','high')
 ,`created_date` datetime
+,`pending_date` datetime
 ,`closed_date` datetime
 ,`employee` varchar(50)
 ,`cat_id` int(11)
@@ -114,7 +115,8 @@ CREATE TABLE `compliants` (
   `priority` enum('low','medium','high') NOT NULL DEFAULT 'medium',
   `status` enum('waiting','pending','closed') NOT NULL DEFAULT 'waiting',
   `resend` tinyint(1) NOT NULL DEFAULT 0,
-  `created_date` datetime NOT NULL,
+  `created_date` datetime NOT NULL DEFAULT CURRENT_DATE(),
+  `pending_date` datetime DEFAULT NULL,
   `closed_date` datetime DEFAULT NULL,
   `emp_id` int(11) NOT NULL,
   `cat_id` int(11) NOT NULL,
@@ -126,27 +128,27 @@ CREATE TABLE `compliants` (
 -- Dumping data for table `compliants`
 --
 
-INSERT INTO `compliants` (`id`, `title`, `description`, `photo`, `priority`, `status`, `resend`, `created_date`, `closed_date`, `emp_id`, `cat_id`, `tech_id`, `answer`) VALUES
-(1, 'Printer Not Printing', 'The office printer is not printing any documents. We need it fixed urgently.', 'printer_issue.jpg', 'high', 'closed', 0, '2020-01-22 23:38:14', '2020-01-24 23:38:14', 2, 1, 12, 'Assigned to technician. Technician will check and repair the printer.'),
-(2, 'Email Login Issue', 'I am unable to log in to my email account. It keeps showing an error message.', 'email_issue.png', 'medium', 'closed', 0, '2020-02-21 23:38:14', '2020-02-24 23:38:14', 3, 2, 13, 'Email server issue detected. Investigating the problem.'),
-(3, 'Computer Won’t Boot', 'My computer won’t start up. It gets stuck on the loading screen.', 'computer_issue.jpg', 'high', 'closed', 0, '2020-03-23 23:38:14', '2020-03-24 23:38:14', 4, 1, 14, 'Diagnosing hardware issue. Replacing faulty components.'),
-(4, 'Software Crashing', 'The software we use for accounting keeps crashing. We can’t do our work.', 'software_issue.png', 'medium', 'closed', 0, '2021-04-20 23:38:14', '2021-04-24 23:38:14', 5, 2, 15, 'Updating software to the latest version to resolve crashes.'),
-(5, 'Network Connection Problem', 'Our office network keeps dropping, causing disruptions in work.', 'network_issue.jpg', 'high', 'closed', 0, '2021-05-22 23:38:14', '2021-05-24 23:38:14', 6, 1, 16, 'Identified network router issue. Rebooting router and optimizing settings.'),
-(6, 'Slow Internet Speed', 'The internet speed is painfully slow. It’s affecting our productivity.', 'internet_issue.jpg', 'low', 'closed', 0, '2021-06-19 23:38:14', '2021-06-24 23:38:14', 7, 2, 17, 'Investigating internet service provider issue. Contacting ISP for resolution.'),
-(7, 'Printer Jammed', 'The printer is jammed with paper. It needs to be cleared and fixed.', 'printer_issue.jpg', 'medium', 'closed', 0, '2022-07-22 23:38:14', '2022-07-24 23:38:14', 8, 1, 18, 'Printer cleared and serviced. It should work properly now.'),
-(8, 'Email Attachment Issue', 'I can’t attach files to my emails. The attachment button is not working.', 'email_issue.png', 'high', 'closed', 0, '2022-08-21 23:38:14', '2022-08-24 23:38:14', 9, 2, 19, 'Resolved email client issue. Attachment feature is working.'),
-(9, 'Computer Virus Detected', 'My computer is showing signs of a virus. Need it checked and cleaned.', 'computer_issue.jpg', 'low', 'closed', 0, '2022-10-23 23:38:14', '2022-10-24 23:38:14', 10, 1, 20, 'Running antivirus scan and removing detected threats.'),
-(10, 'Software License Expired', 'The license for our critical software has expired. We need it renewed.', 'software_issue.png', 'medium', 'closed', 0, '2023-09-20 23:38:14', '2023-09-24 23:38:14', 11, 2, 21, 'Renewed software license. Software is fully functional now.'),
-(11, 'Printer Not Responding', 'The printer is not responding to any print commands. Please fix it.', 'printer_issue.jpg', 'high', 'closed', 0, '2023-09-22 23:38:14', '2023-09-24 23:38:14', 2, 1, 12, 'Printer driver issue resolved. Printer is operational.'),
-(12, 'Email Server Down', 'The email server seems to be down. We can’t send or receive emails.', 'email_issue.png', 'medium', 'closed', 0, '2023-09-21 23:38:14', '2023-09-24 23:38:14', 3, 2, 13, 'Email server restarted. Email services are back online.'),
-(13, 'Computer Overheating', 'My computer is overheating and shutting down. It needs cooling.', 'computer_issue.jpg', 'low', 'closed', 0, '2023-09-23 23:38:14', '2023-09-24 23:38:14', 4, 1, 14, 'Cleaned computer’s cooling system. Temperature issue resolved.'),
-(14, 'Software Update Required', 'We need an urgent update for our software to fix bugs and glitches.', 'software_issue.png', 'medium', 'closed', 0, '2023-09-20 23:38:14', '2023-09-24 23:38:14', 5, 2, 15, 'Software updated to the latest version. Bugs fixed.'),
-(15, 'Network Router Failure', 'Our network router has stopped working. We need a replacement.', 'network_issue.jpg', 'high', 'closed', 0, '2023-09-22 23:38:14', '2023-09-24 23:38:14', 6, 1, 16, 'Replaced faulty router. Network is stable now.'),
-(16, 'Slow Wi-Fi Connection', 'The Wi-Fi connection is extremely slow. It needs to be faster.', 'internet_issue.jpg', 'low', 'pending', 0, '2023-09-19 23:38:14', NULL, 7, 2, 17, NULL),
-(17, 'Printer Out of Ink', 'The printer is out of ink. We need a new cartridge.', 'printer_issue.jpg', 'medium', 'pending', 0, '2023-09-22 23:38:14', NULL, 8, 1, 18, NULL),
-(18, 'Email Filter Issue', 'Some important emails are going to the spam folder. Please fix the filter.', 'email_issue.png', 'high', 'pending', 0, '2023-09-21 23:38:14', NULL, 9, 2, 19, NULL),
-(19, 'Computer Freezing Frequently', 'My computer keeps freezing, making it impossible to work.', 'computer_issue.jpg', 'low', 'waiting', 0, '2023-09-23 23:38:14', NULL, 1, 2, NULL, NULL),
-(20, 'Software Compatibility Issue', 'Our software is not compatible with the latest OS. We need an update.', 'software_issue.png', 'medium', 'waiting', 1, '2023-09-20 23:38:14', NULL, 2, 2, NULL, NULL);
+INSERT INTO `compliants` (`id`, `title`, `description`, `photo`, `priority`, `status`, `resend`, `created_date`, `pending_date`, `closed_date`, `emp_id`, `cat_id`, `tech_id`, `answer`) VALUES
+(1, 'Printer Not Printing', 'The office printer is not printing any documents. We need it fixed urgently.', 'printer_issue.jpg', 'high', 'closed', 0, '2020-01-22 23:38:14', '2020-01-23 12:59:33', '2020-01-24 23:38:14', 2, 1, 12, 'Assigned to technician. Technician will check and repair the printer.'),
+(2, 'Email Login Issue', 'I am unable to log in to my email account. It keeps showing an error message.', 'email_issue.png', 'medium', 'closed', 0, '2020-02-21 23:38:14', '2020-02-23 12:21:30', '2020-02-24 23:38:14', 3, 2, 13, 'Email server issue detected. Investigating the problem.'),
+(3, 'Computer Won’t Boot', 'My computer won’t start up. It gets stuck on the loading screen.', 'computer_issue.jpg', 'high', 'closed', 0, '2020-03-23 23:38:14', '2020-03-24 16:48:21', '2020-03-24 23:38:14', 4, 1, 14, 'Diagnosing hardware issue. Replacing faulty components.'),
+(4, 'Software Crashing', 'The software we use for accounting keeps crashing. We can’t do our work.', 'software_issue.png', 'medium', 'closed', 0, '2021-04-20 23:38:14', '2021-04-21 04:07:38', '2021-04-24 23:38:14', 5, 2, 15, 'Updating software to the latest version to resolve crashes.'),
+(5, 'Network Connection Problem', 'Our office network keeps dropping, causing disruptions in work.', 'network_issue.jpg', 'high', 'closed', 0, '2021-05-22 23:38:14', '2021-05-23 03:51:01', '2021-05-24 23:38:14', 6, 1, 16, 'Identified network router issue. Rebooting router and optimizing settings.'),
+(6, 'Slow Internet Speed', 'The internet speed is painfully slow. It’s affecting our productivity.', 'internet_issue.jpg', 'low', 'closed', 0, '2021-06-19 23:38:14', '2021-06-21 11:27:46', '2021-06-24 23:38:14', 7, 2, 17, 'Investigating internet service provider issue. Contacting ISP for resolution.'),
+(7, 'Printer Jammed', 'The printer is jammed with paper. It needs to be cleared and fixed.', 'printer_issue.jpg', 'medium', 'closed', 0, '2022-07-22 23:38:14', '2022-07-23 10:38:57', '2022-07-24 23:38:14', 8, 1, 18, 'Printer cleared and serviced. It should work properly now.'),
+(8, 'Email Attachment Issue', 'I can’t attach files to my emails. The attachment button is not working.', 'email_issue.png', 'high', 'closed', 0, '2022-08-21 23:38:14', '2022-08-22 17:44:31', '2022-08-24 23:38:14', 9, 2, 19, 'Resolved email client issue. Attachment feature is working.'),
+(9, 'Computer Virus Detected', 'My computer is showing signs of a virus. Need it checked and cleaned.', 'computer_issue.jpg', 'low', 'closed', 0, '2022-10-23 23:38:14', '2022-10-24 13:17:37', '2022-10-24 23:38:14', 10, 1, 20, 'Running antivirus scan and removing detected threats.'),
+(10, 'Software License Expired', 'The license for our critical software has expired. We need it renewed.', 'software_issue.png', 'medium', 'closed', 0, '2023-09-20 23:38:14', '2023-09-21 08:20:59', '2023-09-24 23:38:14', 11, 2, 21, 'Renewed software license. Software is fully functional now.'),
+(11, 'Printer Not Responding', 'The printer is not responding to any print commands. Please fix it.', 'printer_issue.jpg', 'high', 'closed', 0, '2023-09-22 23:38:14', '2023-09-23 11:28:45', '2023-09-24 23:38:14', 2, 1, 12, 'Printer driver issue resolved. Printer is operational.'),
+(12, 'Email Server Down', 'The email server seems to be down. We can’t send or receive emails.', 'email_issue.png', 'medium', 'closed', 0, '2023-09-21 23:38:14', '2023-09-22 08:50:55', '2023-09-24 23:38:14', 3, 2, 13, 'Email server restarted. Email services are back online.'),
+(13, 'Computer Overheating', 'My computer is overheating and shutting down. It needs cooling.', 'computer_issue.jpg', 'low', 'closed', 0, '2023-09-23 23:38:14', '2023-09-24 01:13:35', '2023-09-24 23:38:14', 4, 1, 14, 'Cleaned computer’s cooling system. Temperature issue resolved.'),
+(14, 'Software Update Required', 'We need an urgent update for our software to fix bugs and glitches.', 'software_issue.png', 'medium', 'closed', 0, '2023-09-20 23:38:14', '2023-09-21 18:34:43', '2023-09-24 23:38:14', 5, 2, 15, 'Software updated to the latest version. Bugs fixed.'),
+(15, 'Network Router Failure', 'Our network router has stopped working. We need a replacement.', 'network_issue.jpg', 'high', 'closed', 0, '2023-09-22 23:38:14', '2023-09-23 01:27:16', '2023-09-24 23:38:14', 6, 1, 16, 'Replaced faulty router. Network is stable now.'),
+(16, 'Slow Wi-Fi Connection', 'The Wi-Fi connection is extremely slow. It needs to be faster.', 'internet_issue.jpg', 'low', 'pending', 0, '2023-09-19 23:38:14', '2023-09-20 23:38:14', NULL, 7, 2, 17, NULL),
+(17, 'Printer Out of Ink', 'The printer is out of ink. We need a new cartridge.', 'printer_issue.jpg', 'medium', 'pending', 0, '2023-09-22 23:38:14', '2023-09-23 23:38:14', NULL, 8, 1, 18, NULL),
+(18, 'Email Filter Issue', 'Some important emails are going to the spam folder. Please fix the filter.', 'email_issue.png', 'high', 'pending', 0, '2023-09-21 23:38:14', '2023-09-22 03:38:14', NULL, 9, 2, 19, NULL),
+(19, 'Computer Freezing Frequently', 'My computer keeps freezing, making it impossible to work.', 'computer_issue.jpg', 'low', 'waiting', 0, '2023-09-23 23:38:14', NULL, NULL, 3, 2, NULL, NULL),
+(20, 'Software Compatibility Issue', 'Our software is not compatible with the latest OS. We need an update.', 'software_issue.png', 'medium', 'waiting', 1, '2023-09-20 23:38:14', NULL, NULL, 2, 2, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -185,7 +187,7 @@ CREATE TABLE `employees` (
   `email` varchar(50) NOT NULL,
   `password` varchar(60) NOT NULL,
   `phone_no` varchar(20) NOT NULL,
-  `photo` varchar(30) DEFAULT NULL,
+  `photo` varchar(30) NOT NULL DEFAULT 'profile.svg',
   `dep_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
@@ -194,27 +196,27 @@ CREATE TABLE `employees` (
 --
 
 INSERT INTO `employees` (`id`, `full_name`, `gender`, `activated`, `email`, `password`, `phone_no`, `photo`, `dep_id`) VALUES
-(1, 'Hesham Noaman', 'Male', 1, 'admin@gmail.com', 'admin', '01236547890', 'avatar.svg', NULL),
-(2, 'Jane Smith', 'Female', 1, 'janesmith@example.com', 'password2', '555-2222', 'avatar.svg', 2),
-(3, 'Mike Johnson', 'Male', 1, 'mikejohnson@example.com', 'password3', '555-3333', 'avatar.svg', 3),
-(4, 'Emily Brown', 'Female', 1, 'emilybrown@example.com', 'password4', '555-4444', 'avatar.svg', 4),
-(5, 'David Wilson', 'Male', 1, 'davidwilson@example.com', 'password5', '555-5555', 'avatar.svg', 5),
-(6, 'Sarah Lee', 'Female', 1, 'sarahlee@example.com', 'password6', '555-6666', 'avatar.svg', 1),
-(7, 'Michael Chen', 'Male', 1, 'michaelchen@example.com', 'password7', '555-7777', 'avatar.svg', 2),
-(8, 'Linda Davis', 'Female', 1, 'lindadavis@example.com', 'password8', '555-8888', 'avatar.svg', 3),
-(9, 'Daniel Kim', 'Male', 1, 'danielkim@example.com', 'password9', '555-9999', 'avatar.svg', 4),
-(10, 'Lisa Patel', 'Female', 1, 'lisapatel@example.com', 'password10', '555-1010', 'avatar.svg', 5),
-(11, 'John Doe', 'Male', 1, 'johndoe@example.com', 'password1', '555-1111', 'avatar.svg', 1),
-(12, 'Robert Turner', 'Male', 1, 'robertturner@example.com', 'password12', '555-2222', 'robert.jpg', 6),
-(13, 'Karen Baker', 'Female', 1, 'karenbaker@example.com', 'password13', '555-3333', 'karen.jpg', 6),
-(14, 'William Garcia', 'Male', 1, 'williamgarcia@example.com', 'password14', '555-4444', 'william.jpg', 6),
-(15, 'Samantha Martinez', 'Female', 1, 'samanthamartinez@example.com', 'password15', '555-5555', 'samantha.jpg', 6),
-(16, 'Joseph Hernandez', 'Male', 1, 'josephhernandez@example.com', 'password16', '555-6666', 'joseph.jpg', 6),
-(17, 'Nancy Davis', 'Female', 1, 'nancydavis@example.com', 'password17', '555-7777', 'nancy.jpg', 6),
-(18, 'Daniel Rodriguez', 'Male', 1, 'danielrodriguez@example.com', 'password18', '555-8888', 'daniel.jpg', 6),
-(19, 'Linda Martinez', 'Female', 1, 'lindamartinez@example.com', 'password19', '555-9999', 'linda.jpg', 6),
-(20, 'Jennifer Adams', 'Male', 1, 'jenniferadams@example.com', 'password11', '555-1111', 'jennifer.jpg', 6),
-(21, 'Christopher Smith', 'Female', 1, 'christophersmith@example.com', 'password20', '555-1010', 'christopher.jpg', 6);
+(1, 'Hesham Noaman', 'Male', 1, 'admin@gmail.com', 'admin', '01236547890', 'profile.svg', NULL),
+(2, 'Jane Smith', 'Female', 1, 'janesmith@example.com', 'password2', '555-2222', 'profile.svg', 2),
+(3, 'Mike Johnson', 'Male', 1, 'mikejohnson@example.com', 'password3', '555-3333', 'profile.svg', 3),
+(4, 'Emily Brown', 'Female', 1, 'emilybrown@example.com', 'password4', '555-4444', 'profile.svg', 4),
+(5, 'David Wilson', 'Male', 1, 'davidwilson@example.com', 'password5', '555-5555', 'profile.svg', 5),
+(6, 'Sarah Lee', 'Female', 1, 'sarahlee@example.com', 'password6', '555-6666', 'profile.svg', 1),
+(7, 'Michael Chen', 'Male', 1, 'michaelchen@example.com', 'password7', '555-7777', 'profile.svg', 2),
+(8, 'Linda Davis', 'Female', 1, 'lindadavis@example.com', 'password8', '555-8888', 'profile.svg', 3),
+(9, 'Daniel Kim', 'Male', 1, 'danielkim@example.com', 'password9', '555-9999', 'profile.svg', 4),
+(10, 'Lisa Patel', 'Female', 1, 'lisapatel@example.com', 'password10', '555-1010', 'profile.svg', 5),
+(11, 'John Doe', 'Male', 1, 'johndoe@example.com', 'password1', '555-1111', 'profile.svg', 1),
+(12, 'Robert Turner', 'Male', 1, 'robertturner@example.com', 'password12', '555-2222', 'profile.svg', 6),
+(13, 'Karen Baker', 'Female', 1, 'karenbaker@example.com', 'password13', '555-3333', 'profile.svg', 6),
+(14, 'William Garcia', 'Male', 1, 'williamgarcia@example.com', 'password14', '555-4444', 'profile.svg', 6),
+(15, 'Samantha Martinez', 'Female', 1, 'samanthamartinez@example.com', 'password15', '555-5555', 'profile.svg', 6),
+(16, 'Joseph Hernandez', 'Male', 1, 'josephhernandez@example.com', 'password16', '555-6666', 'profile.svg', 6),
+(17, 'Nancy Davis', 'Female', 1, 'nancydavis@example.com', 'password17', '555-7777', 'profile.svg', 6),
+(18, 'Daniel Rodriguez', 'Male', 1, 'danielrodriguez@example.com', 'password18', '555-8888', 'profile.svg', 6),
+(19, 'Linda Martinez', 'Female', 1, 'lindamartinez@example.com', 'password19', '555-9999', 'profile.svg', 6),
+(20, 'Jennifer Adams', 'Male', 1, 'jenniferadams@example.com', 'password11', '555-1111', 'profile.svg', 6),
+(21, 'Christopher Smith', 'Female', 1, 'christophersmith@example.com', 'password20', '555-1010', 'profile.svg', 6);
 
 -- --------------------------------------------------------
 
@@ -261,7 +263,7 @@ INSERT INTO `faqs` (`id`, `question`, `answer`) VALUES
 --
 DROP TABLE IF EXISTS `complaint_by_month`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `complaint_by_month`  AS SELECT `comp`.`id` AS `id`, `comp`.`priority` AS `priority`, `comp`.`created_date` AS `created_date`, `comp`.`closed_date` AS `closed_date`, `emp`.`full_name` AS `employee`, `cat`.`id` AS `cat_id`, `cat`.`name` AS `category`, `dep`.`id` AS `dep_id`, `dep`.`name` AS `department`, `tech`.`full_name` AS `technician`, date_format(`comp`.`created_date`,'%Y-%m') AS `formatted_month`, yearweek(`comp`.`created_date`,3) AS `week_number`, cast(`comp`.`created_date` as date) AS `date` FROM ((((`compliants` `comp` join `employees` `emp` on(`emp`.`id` = `comp`.`emp_id`)) join `departments` `dep` on(`dep`.`id` = `emp`.`dep_id`)) join `employees` `tech` on(`tech`.`id` = `comp`.`tech_id`)) join `categories` `cat` on(`cat`.`id` = `comp`.`cat_id`)) WHERE `comp`.`status` = 'closed' ORDER BY `comp`.`id` ASC ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `complaint_by_month`  AS SELECT `comp`.`id` AS `id`, `comp`.`priority` AS `priority`, `comp`.`created_date` AS `created_date`, `comp`.`pending_date` AS `pending_date`, `comp`.`closed_date` AS `closed_date`, `emp`.`full_name` AS `employee`, `cat`.`id` AS `cat_id`, `cat`.`name` AS `category`, `dep`.`id` AS `dep_id`, `dep`.`name` AS `department`, `tech`.`full_name` AS `technician`, date_format(`comp`.`created_date`,'%Y-%m') AS `formatted_month`, yearweek(`comp`.`created_date`,3) AS `week_number`, cast(`comp`.`created_date` as date) AS `date` FROM ((((`compliants` `comp` join `employees` `emp` on(`emp`.`id` = `comp`.`emp_id`)) join `departments` `dep` on(`dep`.`id` = `emp`.`dep_id`)) join `employees` `tech` on(`tech`.`id` = `comp`.`tech_id`)) join `categories` `cat` on(`cat`.`id` = `comp`.`cat_id`)) WHERE `comp`.`status` = 'closed' ORDER BY `comp`.`id` ASC ;
 
 --
 -- Indexes for dumped tables

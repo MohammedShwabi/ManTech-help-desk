@@ -41,6 +41,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Compliants.findByStatus", query = "SELECT c FROM Compliants c WHERE c.status = :status")
     , @NamedQuery(name = "Compliants.findByResend", query = "SELECT c FROM Compliants c WHERE c.resend = :resend")
     , @NamedQuery(name = "Compliants.findByCreatedDate", query = "SELECT c FROM Compliants c WHERE c.createdDate = :createdDate")
+    , @NamedQuery(name = "Compliants.findByPendingDate", query = "SELECT c FROM Compliants c WHERE c.pendingDate = :pendingDate")
     , @NamedQuery(name = "Compliants.findByClosedDate", query = "SELECT c FROM Compliants c WHERE c.closedDate = :closedDate")})
 public class Compliants implements Serializable {
 
@@ -83,6 +84,9 @@ public class Compliants implements Serializable {
     @Column(name = "created_date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;
+    @Column(name = "pending_date")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date pendingDate;
     @Column(name = "closed_date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date closedDate;
@@ -179,6 +183,14 @@ public class Compliants implements Serializable {
 
     public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
+    }
+
+    public Date getPendingDate() {
+        return pendingDate;
+    }
+
+    public void setPendingDate(Date pendingDate) {
+        this.pendingDate = pendingDate;
     }
 
     public Date getClosedDate() {

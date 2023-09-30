@@ -60,6 +60,9 @@ public class ComplaintByMonth implements Serializable {
     @Column(name = "created_date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;
+    @Column(name = "pending_date")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date pendingDate;
     @Column(name = "closed_date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date closedDate;
@@ -125,6 +128,14 @@ public class ComplaintByMonth implements Serializable {
 
     public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
+    }
+
+    public Date getPendingDate() {
+        return pendingDate;
+    }
+
+    public void setPendingDate(Date pendingDate) {
+        this.pendingDate = pendingDate;
     }
 
     public Date getClosedDate() {
