@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>waiting complaint</title>
+    </h:head>
+    <h:body>
+        <f:view>
+
+            <h:form>
+                <h1><h:outputText value="waiting complaint"/></h1>
+
+                <!-- Data table for displaying complaints -->
+                <h:dataTable id="complaintTable" value="#{waitingComplaintManagedBean.waitingComplaint}" var="item" border="1" cellpadding="4px">
+
+                    <!-- Column for displaying "Resend" header -->
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Resend"/>
+                        </f:facet>
+                        <!-- Display an icon if the item's "resend" property is true -->
+                        <h:panelGroup rendered="#{item.resend}">
+                            <!-- you can change this to any icon you want -->
+                            <h:graphicImage value="resend_messages.png" width="40px" alt="Resend Icon" />
+                        </h:panelGroup>
+                    </h:column>
+
+                    <!-- Column for displaying "Priority" -->
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Priority"/>
+                        </f:facet>
+
+                        <!-- Dropdown for selecting priority -->
+                        <h:selectOneMenu id="priorityDropdown" value="#{item.priority}" onchange="updatePriority(this)">
+                            <f:selectItem itemValue="high" itemLabel="High" />
+                            <f:selectItem itemValue="medium" itemLabel="Medium" />
+                            <f:selectItem itemValue="low" itemLabel="Low" />
+                        </h:selectOneMenu>
+
+                        <!-- Hidden input field to store item ID -->
+                        <h:inputHidden id="itemId" value="#{item.id}" />
+
+                    </h:column>
+
+                    <!-- Column for displaying "Title" -->
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Title"/>
+                        </f:facet>
+                        <h:outputText value="#{item.title}"/>
+                    </h:column>
+
+                    <!-- Column for displaying "Technician" -->
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="technician"/>
+                        </f:facet>
+
+                        <!-- Dropdown for selecting a technician -->
+                        <h:selectOneMenu id="technicianDropdown" value="#{waitingComplaintManagedBean.selectedTechnicianID}">
+                            <f:selectItems value="#{waitingComplaintManagedBean.technicianItems}" />
+                        </h:selectOneMenu>
+
+                    </h:column>
+
+                    <!-- Column for assigning a complaint -->
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="assign"/>
+                        </f:facet>
+                        <h:commandLink value="assign" action="#{waitingComplaintManagedBean.assignComplaint(item)}" />
+                    </h:column>
+
+                    <!-- Column for showing complaint details -->
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="destails"/>
+                        </f:facet>
+                        <h:commandLink value="more destails" action="#{waitingComplaintManagedBean.showDetails(item)}" />
+                    </h:column>
+
+                </h:dataTable>
+            </h:form>
+        </f:view>
+
+        <script>
+            function updatePriority(select) {
+                // Get the selected priority value from the dropdown
+                var priority = select.value;
+                // Find the hidden input field with the ID "itemId" in the same container
+                var complaintId = select.parentElement.querySelector('[id$="itemId"]').value;
+
+                // Create a new FormData object
+                var formData = new FormData();
+
+                // Append the parameters to the FormData object
+                formData.append('complaintId', complaintId);
+                formData.append('priority', priority);
+
+                // Use AJAX to update the priority in the database
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', 'updatePriority.xhtml', true);
+
+                // Send the FormData object as the request body
+                xhr.send(formData);
+
+            }
+        </script>
+
+    </h:body>
+</html>
+

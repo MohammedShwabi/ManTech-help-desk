@@ -57,7 +57,6 @@ public class DepartmentManagedBean implements Serializable {
         });
         return departmentItems;
     }
-    // to here gpt
 
     /**
      * Creates a new instance of DepartmentManagedBean
