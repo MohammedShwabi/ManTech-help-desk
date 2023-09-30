@@ -10,7 +10,7 @@
         <h:outputText value="photo :    "/>
         <h:outputText value="#{profileManagedBean.user.photo}"/>
         <h:inputFile value="#{profileManagedBean.file}"  />
-        <h:commandButton value="Save Changes" action="#{profileManagedBean.editImage()}" />
+        <h:commandButton value="edit photo" action="#{profileManagedBean.editImage()}" />
         <br/>
          <h:outputText value="email :    "/>
         <h:outputText value="#{profileManagedBean.user.email}"/><br/>
@@ -21,7 +21,7 @@
        
         <h:outputText value="#{profileManagedBean.user.phoneNo}"/><br/>
        <h:outputText value="department :    "/>
-       <h:outputText value="#{profileManagedBean.department.name}"/><br/>
+       <h:outputText value="#{profileManagedBean.user.depId.name}"/><br/>
         
             </h:form>
     </h:body>

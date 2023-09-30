@@ -90,12 +90,7 @@ public class ProfileManagedBean implements Serializable {
        return user;
     }
     
-public  Departments getDepartment() {
-        System.out.println(user.getDepId());
-       Departments  department=departmentsFacade.find(Integer.parseInt(user.getDepId().toString()));
-        
-     return  department;
-    }
+
     
     public String goToPasswordReset(Employees user){
     this.user=user;
