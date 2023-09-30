@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    
+  
+    <!-- start navbar -->
+    <ui:composition>
+    <nav class="navbar navbar-expand-md fixed-top navbar-light shadow" style="margin-bottom: 2vh;position: fixed">
+        <div class="container">
+            <a class="navbar-brand"
+                href="#">
+                <img src="../img/helpDeskLogo.svg" alt="Logo" style="width:9rem;" class="img-fluid" />
+            </a>
+
+            <button class="navbar-toggler" type="button" aria-label="navbar toggler" data-bs-toggle="collapse"
+                data-bs-target=".navitems">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-center  navitems" id="mynavbar">
+                <ul class="navbar-nav nav-icon ms-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">
+                            <p class="nav-text">Blogs </p>
+                        </a>
+                    </li>
+                    <li
+                        class="nav-item">
+                        <a class="nav-link" href="#">
+                            <p class="nav-text">Faqs</p>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto ">
+                    <li>
+                        <a class="navbar-brand " href="#">
+                            <!-- edit here -->
+                                <img src="../img/profile.svg" alt="Logo" class=" nav-photo img-fluid"
+                                    id="round-profile" />
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+    </ui:composition>
+</html>
+

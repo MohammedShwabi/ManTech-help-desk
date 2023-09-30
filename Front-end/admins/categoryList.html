@@ -24,7 +24,7 @@
                 <div class="row mt-2 edit-icon">
                     <i class="fa-solid fa-pen"></i>
                 </div>
-                <div class="row mt-2 delete-icon" onclick="">
+                <div class="row mt-2 delete-icon" onclick="displayModel()">
                     <i class="fa-solid fa-trash"></i>
                 </div>
                 
@@ -37,7 +37,7 @@
                 <div class="row mt-2 edit-icon">
                     <i class="fa-solid fa-pen"></i>
                 </div>
-                <div class="row mt-2 delete-icon">
+                <div class="row mt-2 delete-icon" onclick="displayModel()">
                     <i class="fa-solid fa-trash"></i>
                 </div>
                 
@@ -52,7 +52,14 @@
     </div>
 
 
-
+    <div id="del-model-box">
+        <h5 class="modal-title mb-4" id="exampleModalLabel">Are you sure you want to delete:</h5>
+        <div style="display: flex;justify-content: center;">
+            <button type="button" class="btn btn-secondary m-2 me-3" onclick="closeModel()">No</button>
+            <button type="button" class="btn del-button m-2 ms-3">Yes</button>
+        </div>
+    </div>
+    <script src="../js/frontend.js"></script>
 
 </body>
 
