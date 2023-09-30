@@ -93,7 +93,16 @@
                         <h:outputText value="CreatedDate"/>
                     </f:facet>
                     <h:outputText value="#{item.createdDate}">
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </h:column>
+                
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="PendingDate"/>
+                    </f:facet>
+                    <h:outputText value="#{item.pendingDate}">
+                        <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
                     </h:outputText>
                 </h:column>
 
@@ -102,15 +111,15 @@
                         <h:outputText value="ClosedDate"/>
                     </f:facet>
                     <h:outputText value="#{item.closedDate}">
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
                     </h:outputText>
                 </h:column>
-
+                
                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="Solved Time"/>
                     </f:facet>
-                    <h:outputText value="#{complaintsBean.getSolvedTime(item.createdDate, item.closedDate)}" />
+                    <h:outputText value="#{complaintsBean.getSolvedTime(item.pendingDate, item.closedDate)}" />
                 </h:column>
 
                 <h:column>

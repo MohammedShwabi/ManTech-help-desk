@@ -34,7 +34,7 @@ public class CompliantsFacade extends AbstractFacade<Compliants> {
     }
 
     public List<Object[]> getFilteredComplaints(String columnName, int columnID) {
-        String jpql = "SELECT c.id, cat.name, emp.fullName, dep.name, c.createdDate, c.closedDate, tech.fullName "
+        String jpql = "SELECT c.id, cat.name, emp.fullName, dep.name, c.createdDate, c.closedDate, tech.fullName, c.pendingDate "
                 + "FROM Compliants c "
                 + "JOIN c.catId cat "
                 + "JOIN c.empId emp "
@@ -58,7 +58,7 @@ public class CompliantsFacade extends AbstractFacade<Compliants> {
                 + "(:selectedPriority = 'all' OR c.priority = :selectedPriority) AND ";
 
         if (selectedDays != 0) {
-            jpql += "c.createdDate >= :selectedDays AND ";
+            jpql += "c.pendingDate >= :selectedDays AND ";
         }
 
         // get only the pending report  
@@ -81,7 +81,7 @@ public class CompliantsFacade extends AbstractFacade<Compliants> {
     // to convert the pending days to date
     public Date calculateStartDate(int selectedDays) {
         Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.DAY_OF_MONTH, -selectedDays);
+        calendar.add(Calendar.DAY_OF_MONTH, - selectedDays);
         return calendar.getTime();
     }
 

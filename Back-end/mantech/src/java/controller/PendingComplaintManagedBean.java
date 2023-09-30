@@ -146,6 +146,8 @@ public class PendingComplaintManagedBean implements Serializable {
             pendingDaysOptions = new ArrayList<>();
             pendingDaysOptions.add(new SelectItem(0, "All Days")); // Default option
             pendingDaysOptions.add(new SelectItem(1, "1 Day"));
+            pendingDaysOptions.add(new SelectItem(2, "2 Days"));
+            pendingDaysOptions.add(new SelectItem(3, "3 Days"));
             pendingDaysOptions.add(new SelectItem(7, "7 Days"));
             pendingDaysOptions.add(new SelectItem(30, "30 Days"));
         }

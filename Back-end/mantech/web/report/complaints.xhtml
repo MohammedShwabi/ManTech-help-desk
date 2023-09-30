@@ -2,8 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Facelet Title</title>
         <script src="../js/jquery-3.6.0.min.js"></script>
@@ -53,13 +52,17 @@
                             #{complaintsBean.fromatDate(complaint[4])}
                     </h:column>
                     <h:column>
+                        <f:facet name="header">Pending date</f:facet>
+                            #{complaintsBean.fromatDate(complaint[7])}
+                    </h:column>
+                    <h:column>
                         <f:facet name="header">Closed At</f:facet>
                             #{complaintsBean.fromatDate(complaint[5])}
 
                     </h:column>
                     <h:column>
                         <f:facet name="header">Solved Time</f:facet>
-                            #{complaintsBean.getSolvedTime(complaint[4], complaint[5])}
+                            #{complaintsBean.getSolvedTime(complaint[7], complaint[5])}
                     </h:column>
                     <h:column>
                         <f:facet name="header">Technician Name</f:facet>
