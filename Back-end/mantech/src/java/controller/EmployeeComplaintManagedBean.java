@@ -16,6 +16,9 @@ import java.io.InputStream;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -42,23 +45,21 @@ public class EmployeeComplaintManagedBean implements Serializable {
 
     @EJB
     private CompliantsFacade compliantsFacade;
-    
+
     private Compliants compliants;
-    
+
     // possibale value:
     // all, waiting, pending, closed
     private String selectedComplaintStatus = "all"; // Default status
 
     // save the choosed item
     private Integer selectedCategoryId;
-    
+
     // it should get it from the session after the user login
     int employeeId = 2;
-    
+
     private Part file;
 
-   
-    
     public Part getFile() {
         return file;
     }
@@ -136,21 +137,20 @@ public class EmployeeComplaintManagedBean implements Serializable {
     }
 
     // Method to add a new employee
-    public String addComplaint()throws IOException  {
+    public String addComplaint() throws IOException {
         Categories categories = categoriesFacade.find(selectedCategoryId);
         Employees employees = employeesFacade.find(employeeId);
-        
-        
+
         compliants.setCreatedDate(new Date());
         compliants.setCatId(categories);
         compliants.setEmpId(employees);
         compliants.setStatus("waiting");
-       
-        if(file ==null){
-        compliants.setPhoto("defult image");
-        }else{
-        String pathImage= upload();
-        compliants.setPhoto(pathImage);
+
+        if (file == null) {
+            compliants.setPhoto("defult image");
+        } else {
+            String pathImage = upload();
+            compliants.setPhoto(pathImage);
         }
         compliantsFacade.create(compliants);
         this.resetComplaint();
@@ -164,29 +164,19 @@ public class EmployeeComplaintManagedBean implements Serializable {
         // Clear the selectedDepartmentId
         selectedCategoryId = null;
     }
-    public String gotoUpdate(Compliants compliants) {
-        this.compliants=compliants;
-        return "update";
-    }
-    
-        public String upload() throws IOException {
+
+    public String upload() throws IOException {
         String fileName = file.getSubmittedFileName();
         InputStream fileContent = file.getInputStream();
-         String uploadDirectory = "C:\\Users\\Almomyz\\Documents\\GitHub\\ManTech-help-desk\\Back-end\\mantech\\web\\upload\\comlant_photos\\";
+        String uploadDirectory = "C:\\Users\\Almomyz\\Documents\\GitHub\\ManTech-help-desk\\Back-end\\mantech\\web\\upload\\comlant_photos\\";
         String filePath = uploadDirectory + fileName;
-         try {
-            
-            
-            
+        try {
+
             // Process the uploaded file as needed (e.g., save it to a directory, store it in a database, etc.)
-            
             // Example: Save the file in a specific directory inside your project
-           
-           
-            
             // Create a file object representing the destination file
             File destinationFile = new File(filePath);
-            
+
             // Use Java I/O streams to save the file
             FileOutputStream outputStream = new FileOutputStream(destinationFile);
             byte[] buffer = new byte[4096];
@@ -196,22 +186,48 @@ public class EmployeeComplaintManagedBean implements Serializable {
             }
             outputStream.close();
             fileContent.close();
-            
-            
-            
+
             // Optionally, you can show a success message to the user
         } catch (IOException e) {
             // Handle any exceptions that may occur during the file upload process
-        e.printStackTrace();
+            e.printStackTrace();
         }
-         
-         System.out.println(filePath);
-        
-         
-         
-         
-        return  fileName;
+
+        System.out.println(filePath);
+
+        return fileName;
     }
 
+    // to delete the complaint
+    public String delete() {
+        compliantsFacade.remove(compliants);
+        return "view?faces-redirect=true"; // Navigate to a different JSF page to display details 
+    }
+
+    // to resend the complaint
+    public String resend() {
+        compliants.setResend(true);
+        compliantsFacade.edit(compliants);
+        return "complaintDetails?faces-redirect=true"; // Navigate to a different JSF page to display details 
+    }
+
+    // to show or hide the resend btn
+    public boolean renderResend() {
+        return !compliants.getResend() && isWaitingComplaintOverdue(compliants.getCreatedDate());
+    }
+
+    public boolean isWaitingComplaintOverdue(Date createDate) {
+        // Convert the java.util.Date to java.time.LocalDate
+        LocalDate closedLocalDate = createDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+        // Get the current date
+        LocalDate currentDate = LocalDate.now();
+
+        // Calculate the difference in days
+        long daysDifference = ChronoUnit.DAYS.between(closedLocalDate, currentDate);
+
+        // Check if the difference is 2 days or more
+        return daysDifference >= 2;
+    }
 
 }
