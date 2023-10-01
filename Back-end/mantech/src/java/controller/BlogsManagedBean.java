@@ -12,6 +12,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -95,6 +96,7 @@ public BlogsManagedBean() {    }
     public String addBlog() throws IOException {
         String name=  upload();
         System.out.println(name);
+        blogs.setCreatedAt(new Date());
         blogs.setPhoto(name);
         blogsFacade.create(blogs);
       

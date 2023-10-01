@@ -29,10 +29,7 @@ and open the template in the editor.
                     <h:inputTextarea rows="4" cols="30" id="description" value="#{blogsManagedBean.blogs.description}" title="Description" required="true" requiredMessage="The Description field is required."/>
                     <h:outputLabel value="Blog:" for="blog" />
                     <h:inputTextarea rows="4" cols="30" id="blog" value="#{blogsManagedBean.blogs.blog}" title="Blog" required="true" requiredMessage="The Blog field is required."/>
-                    <h:outputLabel value="CreatedAt:" for="createdAt" />
-                    <h:inputText id="createdAt" value="#{blogsManagedBean.blogs.createdAt}" title="CreatedAt" required="true" requiredMessage="The CreatedAt field is required.">
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:inputText>
+                    
                 </h:panelGrid>
                 <h:commandButton value="Add blog" action="#{blogsManagedBean.addBlog()}" />
             </h:form>

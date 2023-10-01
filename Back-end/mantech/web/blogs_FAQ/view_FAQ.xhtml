@@ -13,45 +13,6 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
-        
-        <f:view>
-
-
-            <h:form>
-                <h1><h:outputText value="BLOGS"/></h1>
-                <h:dataTable value="#{blogsManagedBean.findAll()}" rows="5" var="item"   border="1" cellpadding="4px">
-                    
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Photo"/>
-                        </f:facet>
-                        <h:outputText value="#{item.photo}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Title"/>
-                        </f:facet>
-                        <h:outputText value="#{item.title}"/>
-                    </h:column>
-                    
-                    
-                    
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Action"/>
-                        </f:facet>
-                        <h:commandLink value="details" action="#{blogsManagedBean.gotoDetailsBlog()}" />
-                    </h:column>
-                </h:dataTable>
-            </h:form>
-            
-        </f:view>
-        
-        
-        
-        
-        
-        
         <f:view>
 
 
@@ -77,9 +38,5 @@ and open the template in the editor.
         </f:view>
 
         
-        
-        
-        
-
     </body>
 </html>
