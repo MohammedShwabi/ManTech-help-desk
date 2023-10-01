@@ -14,9 +14,9 @@
             <h:form>
                 <!-- Dropdown to select filter type -->
                 <h:selectOneMenu value="#{complaintsBean.selectedFilterType}">
-                    <f:selectItem itemValue="tech" itemLabel="Technician" />
-                    <f:selectItem itemValue="cat" itemLabel="Category" />
-                    <f:selectItem itemValue="dep" itemLabel="Department" />
+                    <f:selectItem itemValue="techId" itemLabel="Technician" />
+                    <f:selectItem itemValue="catId" itemLabel="Category" />
+                    <f:selectItem itemValue="empId.depId" itemLabel="Department" />
                     <f:ajax render="filterDropdown complaintsTable complaintsCount" listener="#{complaintsBean.resetFilterID}" />
                 </h:selectOneMenu>
 
@@ -33,41 +33,48 @@
                 <h:dataTable id="complaintsTable" value="#{complaintsBean.filteredComplaints}" var="complaint" border="1" cellpadding="4px" >
                     <h:column>
                         <f:facet name="header">Complaint ID </f:facet>
-                            #{complaint[0]}
+                            #{complaint.id}
                     </h:column>
                     <h:column>
                         <f:facet name="header">Category Name</f:facet>
-                            #{complaint[1]}
+                            #{complaint.catId.name}
                     </h:column>
                     <h:column>
                         <f:facet name="header">Employee Name</f:facet>
-                            #{complaint[2]}
+                            #{complaint.empId.fullName}
                     </h:column>
                     <h:column>
                         <f:facet name="header">Department Name</f:facet>
-                            #{complaint[3]}
+                            #{complaint.empId.depId.name}
                     </h:column>
                     <h:column>
                         <f:facet name="header">Created At</f:facet>
-                            #{complaintsBean.fromatDate(complaint[4])}
+                            #{complaintsBean.fromatDate(complaint.createdDate)}
                     </h:column>
                     <h:column>
                         <f:facet name="header">Pending date</f:facet>
-                            #{complaintsBean.fromatDate(complaint[7])}
+                            #{complaintsBean.fromatDate(complaint.pendingDate)}
                     </h:column>
                     <h:column>
                         <f:facet name="header">Closed At</f:facet>
-                            #{complaintsBean.fromatDate(complaint[5])}
+                            #{complaintsBean.fromatDate(complaint.closedDate)}
 
                     </h:column>
                     <h:column>
                         <f:facet name="header">Solved Time</f:facet>
-                            #{complaintsBean.getSolvedTime(complaint[7], complaint[5])}
+                            #{complaintsBean.getSolvedTime(complaint.pendingDate, complaint.closedDate)}
                     </h:column>
                     <h:column>
                         <f:facet name="header">Technician Name</f:facet>
-                            #{complaint[6]}
+                            #{complaint.techId.fullName}
                     </h:column>
+
+                    <!-- Column for showing complaint details -->
+                    <h:column>
+                        <f:facet name="header">destails</f:facet>
+                        <h:commandLink value="more destails" action="#{closedComplaintManagedBean.showDetails(complaint)}" />
+                    </h:column>
+
                 </h:dataTable>
             </h:form>
         </f:view>

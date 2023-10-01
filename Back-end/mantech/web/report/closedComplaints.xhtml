@@ -39,7 +39,8 @@
             </h:selectOneMenu>
 
             <!-- Radio buttons to select pending days filter -->
-            <h:outputLabel value="Filter by Pending Days:" />
+            <br/><br/>
+            <h:outputLabel value="Filter by Created Date:" />
             <h:selectOneRadio value="#{closedComplaintManagedBean.selectedFilter}">
                 <f:selectItem  itemValue="day" itemLabel="Day" />
                 <f:selectItem itemValue="month" itemLabel="Month" />
@@ -69,7 +70,7 @@
             <h:commandButton value="Filter" action="closedComplaints" />
             <h:commandButton value="Rest" action="#{closedComplaintManagedBean.restFilter()}" />
 
-            
+
             <!-- Complaint count -->
             <h3><h:outputText id="complaintsCount" value="#{closedComplaintManagedBean.getFilteredComplaints().size()} Complaints"/></h3>
 
@@ -96,7 +97,7 @@
                         <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
                     </h:outputText>
                 </h:column>
-                
+
                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="PendingDate"/>
@@ -114,7 +115,7 @@
                         <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
                     </h:outputText>
                 </h:column>
-                
+
                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="Solved Time"/>
@@ -150,6 +151,13 @@
                     <h:outputText value="#{item.technician}"/>
                 </h:column>
 
+                <!-- Column for showing complaint details -->
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="destails"/>
+                    </f:facet>
+                    <h:commandLink value="more destails" action="#{closedComplaintManagedBean.showDetails(closedComplaintManagedBean.convertComplaintByMonthToCompliants(item))}" />
+                </h:column>
 
             </h:dataTable>
 

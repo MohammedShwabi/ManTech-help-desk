@@ -7,10 +7,12 @@ package controller;
 
 import entities.Categories;
 import entities.ComplaintByMonth;
+import entities.Compliants;
 import entities.Departments;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -19,6 +21,7 @@ import javax.faces.model.SelectItem;
 import model.CategoriesFacade;
 import model.ComplaintByMonthFacade;
 import model.DepartmentsFacade;
+import model.EmployeesFacade;
 
 /**
  *
@@ -29,6 +32,9 @@ import model.DepartmentsFacade;
 public class ClosedComplaintManagedBean implements Serializable {
 
     @EJB
+    private EmployeesFacade employeesFacade;
+
+    @EJB
     private ComplaintByMonthFacade complaintByMonthFacade;
 
     @EJB
@@ -37,12 +43,13 @@ public class ClosedComplaintManagedBean implements Serializable {
     @EJB
     private CategoriesFacade categoriesFacade;
 
+    private Compliants compliants;
+
     // to hold the selected filter options
     private int selectedCategory = 0; // Default to "All Categories"
     private int selectedDepartment = 0; // Default to "All Departments"
     private String selectedPriority = "all";  // Default to "All Priority"
-    
-    
+
     // these for filtering based on raido btn
     private String selectedFilter = "day";
 
@@ -54,6 +61,15 @@ public class ClosedComplaintManagedBean implements Serializable {
 
     // this if the filter is by month
     private String selectedYearMonth;
+
+    // getter and setter for complaints
+    public Compliants getCompliants() {
+        return compliants;
+    }
+
+    public void setCompliants(Compliants compliants) {
+        this.compliants = compliants;
+    }
 
     // getter and setter for all selected filter options
     public int getSelectedCategory() {
@@ -79,7 +95,7 @@ public class ClosedComplaintManagedBean implements Serializable {
     public void setSelectedPriority(String selectedPriority) {
         this.selectedPriority = selectedPriority;
     }
-    
+
     // getter and setter for all radio filter
     public String getSelectedFilter() {
         return selectedFilter;
@@ -122,7 +138,7 @@ public class ClosedComplaintManagedBean implements Serializable {
 
     // to rest the filter
     public String restFilter() {
-        
+
         selectedFilter = "day";
         selectedDate = null;
         selectedWeek = null;
@@ -174,4 +190,38 @@ public class ClosedComplaintManagedBean implements Serializable {
 
         return selectItems;
     }
+
+    // to go to complaintDetails page
+    public String showDetails(Compliants c) {
+        // Store the selected complaint in a property for display in a different view
+        this.compliants = c;
+        return "complaintDetails?faces-redirect=true"; // Navigate to a different JSF page to display details
+    }
+
+    public Compliants convertComplaintByMonthToCompliants(ComplaintByMonth complaintByMonth) {
+        Compliants comp = new Compliants();
+
+        comp.setId(complaintByMonth.getId());
+        comp.setTitle(complaintByMonth.getTitle());
+        comp.setDescription(complaintByMonth.getDescription());
+        comp.setPhoto(complaintByMonth.getPhoto());
+        comp.setPriority(complaintByMonth.getPriority());
+        comp.setStatus(complaintByMonth.getStatus());
+        comp.setResend(complaintByMonth.getResend());
+        comp.setCreatedDate(complaintByMonth.getCreatedDate());
+        comp.setPendingDate(complaintByMonth.getPendingDate());
+        comp.setClosedDate(complaintByMonth.getClosedDate());
+        comp.setEmpId(employeesFacade.find(complaintByMonth.getEmpId()));
+        comp.setCatId(categoriesFacade.find(complaintByMonth.getCatId()));
+        comp.setTechId(employeesFacade.find(complaintByMonth.getTechId()));
+        comp.setAnswer(complaintByMonth.getAnswer());
+
+        return comp;
+    }
+    
+     public String fromatDate(Date date) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        return simpleDateFormat.format(date);
+    }
+
 }
