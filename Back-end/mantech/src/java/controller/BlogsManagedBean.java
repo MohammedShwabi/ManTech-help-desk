@@ -56,13 +56,23 @@ public class BlogsManagedBean implements Serializable{
     
     
 public BlogsManagedBean() {    }
-
+ int id=1;
 
  // for get all Blogs data
     public List<Blogs> findAll() {
         return blogsFacade.findAll();
     }
-   
+    
+    public Blogs find() {
+        return blogsFacade.find(id);
+    }
+ 
+    public String gotoDetailsBlog() {
+      blogs=blogsFacade.find(id);
+        
+        return "blog_details";
+    }
+    
  public String gotoAdd() {
         // Reset the Employee object
         blogs = new Blogs();

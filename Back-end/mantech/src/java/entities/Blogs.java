@@ -68,6 +68,7 @@ public class Blogs implements Serializable {
     private String blog;
     @Basic(optional = false)
     @NotNull
+    
     @Column(name = "created_at")
     @Temporal(TemporalType.DATE)
     private Date createdAt;
@@ -85,7 +86,7 @@ public class Blogs implements Serializable {
         this.title = title;
         this.description = description;
         this.blog = blog;
-        this.createdAt = createdAt;
+        
     }
 
     public Integer getId() {
