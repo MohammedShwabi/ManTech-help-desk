@@ -10,11 +10,22 @@
         <f:view>
 
             <h:form>
+
+
+                <h:panelGroup rendered="#{employeeComplaintManagedBean.compliants.status eq 'waiting'}" >
+
+                    <h:commandLink value="update" action="update" /> <br />
+                    <h:commandLink value="delete" action="#{employeeComplaintManagedBean.delete()}" onclick="return confirm('are sure to delete?')" /> <br />                        
+                    <h:commandLink rendered="#{employeeComplaintManagedBean.renderResend()}" value="resend" action="#{employeeComplaintManagedBean.resend()}" /> <br />
+
+                </h:panelGroup>
+                <br />
+
                 <!-- Display the selected complaint details -->
                 <h1><h:outputText value="Complaint Details"/></h1>
 
                 <h:outputText value="------------------" /><br /><br />
-                
+
                 <h:outputText value="Created Date: " />
                 <h:outputText value="#{employeeComplaintManagedBean.compliants.createdDate}" >
                     <f:convertDateTime pattern="dd/MM/yyyy" />
