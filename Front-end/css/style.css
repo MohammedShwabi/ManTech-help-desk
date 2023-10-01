@@ -287,6 +287,93 @@ td {
 }
 
 /* end report */
+/*start add Complaint*/
+.add_complait {
+  width: 80vw;
+  margin: auto;
+}
+.add_complait h2 {
+  margin: 5vw 10vw 4vw 6vw ;
+  text-transform: capitalize;
+  text-align: center;
+  color: #136567;
+  font-size: 2.4em;
+}
+
+.select_category, .select_priority {
+  display: block;
+  width: 60vw;
+  height: 40px;
+  margin: 2.5vw auto;
+  border: 2px solid #136567;
+  border-radius: 15px;
+  padding-left: 15px;
+  font-size:16px;
+  cursor: pointer;
+}
+
+form input:first-of-type,
+input:nth-of-type(2),
+form textarea {
+  display: block;
+  width: 60vw;
+  height: 40px;
+  margin: 2.5vw auto;
+  border: 2px solid #136567;
+  border-radius: 15px;
+  padding-left: 15px;
+  font-size:16px;
+}
+form textarea {
+  height: 200px;
+  border-radius: 20px;
+  padding: 15px;
+  font-family: inherit;
+}
+form input:last-of-type {
+  width: 20vw;
+  height: 5vw;
+  margin: 2.2vw 0px 5vw 30vw;
+  border: 1px solid #FFF;
+  border-radius: 2vw;
+  background: #136567;
+  color: #FFF;
+  font-size:16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+@media (max-width:750px) {
+  .add_complait h2 {
+      font-size: 30px;
+      text-align: center;
+      margin: 5vw 0 ;
+  }
+}
+
+@media (max-width:400px) {
+  .add_complait h2 {
+      font-size: 25px;
+  }
+  form input:first-of-type,
+  input:nth-of-type(2) {
+      width: 80vw;
+      height: 40px;
+      margin: 2.5vw auto;
+      padding-left: 5px;
+}
+  form textarea {
+      width: 80vw;
+      text-align: center;
+  }
+  form input:last-of-type {
+      width: 26vw;
+      height: 8vw;
+  }
+}
+
+/*End add Complaint*/
+
+
 /* Start of maryam section*/
 @font-face {
   font-family: 'Simpfxo';
@@ -718,8 +805,5 @@ td {
 .admin-list-container{
   margin: 12vh 16vw 5vh 13vw;
 }
-
-
-
 
 /* End of maryam section*/
