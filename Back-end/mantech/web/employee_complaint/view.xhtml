@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+        <style>            
+            .selected-link {
+                color: red; 
+            }
+
+        </style>
+    </h:head>
+    <h:body>
+        <f:view>
+
+            <h:button value="Add" outcome="#{employeeComplaintManagedBean.gotoAdd()}" />
+            <br/><br/>
+
+            <h:form>
+                <h1><h:outputText value="Complaint"/></h1>
+
+                <!-- links to filter complaints by status with AJAX -->
+                <h:panelGroup id="filterStatus">
+                    <h:commandLink value="All" styleClass="#{employeeComplaintManagedBean.selectedComplaintStatus eq 'all' ? 'selected-link' : ''}">
+                        <f:ajax execute="@this" render="complaintTable filterStatus" listener="#{employeeComplaintManagedBean.setSelectedComplaintStatus('all')}" />
+                    </h:commandLink><br/>
+                    <h:commandLink value="Waiting" styleClass="#{employeeComplaintManagedBean.selectedComplaintStatus eq 'waiting' ? 'selected-link' : ''}">
+                        <f:ajax execute="@this" render="complaintTable filterStatus" listener="#{employeeComplaintManagedBean.setSelectedComplaintStatus('waiting')}" />
+                    </h:commandLink><br/>
+                    <h:commandLink value="Pending" styleClass="#{employeeComplaintManagedBean.selectedComplaintStatus eq 'pending' ? 'selected-link' : ''}">
+                        <f:ajax execute="@this" render="complaintTable filterStatus" listener="#{employeeComplaintManagedBean.setSelectedComplaintStatus('pending')}" />
+                    </h:commandLink><br/>
+                    <h:commandLink value="Closed" styleClass="#{employeeComplaintManagedBean.selectedComplaintStatus eq 'closed' ? 'selected-link' : ''}">
+                        <f:ajax execute="@this" render="complaintTable filterStatus" listener="#{employeeComplaintManagedBean.setSelectedComplaintStatus('closed')}" />
+                    </h:commandLink>
+                </h:panelGroup>
+
+                <h:dataTable id="complaintTable" value="#{employeeComplaintManagedBean.findEmployeeComplaint()}" var="item" border="1" cellpadding="4px">
+
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Priority"/>
+                        </f:facet>
+                        <h:outputText value="#{item.priority}"/>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Title"/>
+                        </f:facet>
+                        <h:outputText value="#{item.title}"/>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Status"/>
+                        </f:facet>
+                        <h:outputText value="#{item.status}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Resend"/>
+                        </f:facet>
+                        <h:outputText value="#{item.resend}"/>
+                    </h:column>
+
+                    <!-- Column for showing complaint details -->
+                    <h:column>
+                        <f:facet name="header">destails</f:facet>
+                        <h:commandLink value="more destails" action="#{employeeComplaintManagedBean.showDetails(item)}" />
+                    </h:column>
+
+                </h:dataTable>
+            </h:form>
+        </f:view>
+
+    </h:body>
+</html>
+

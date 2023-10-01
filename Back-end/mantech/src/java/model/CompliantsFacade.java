@@ -49,7 +49,6 @@ public class CompliantsFacade extends AbstractFacade<Compliants> {
 //        query.setParameter("columnID", columnID);
 //        return query.getResultList();
 //    }
-    
     public List<Compliants> getFilteredComplaints(String columnName, int columnID) {
         String jpql = "SELECT c FROM Compliants c "
                 // to filter by specific item id or get all item
@@ -102,4 +101,12 @@ public class CompliantsFacade extends AbstractFacade<Compliants> {
         query.setParameter("status", "waiting");
         return query.getResultList();
     }
+
+    public List<Compliants> findEmployeeComplaint(int employeeId, String status) {
+        return em.createNamedQuery("Compliants.findByEmployeeComplaint", Compliants.class)
+                .setParameter("employeeID", employeeId)
+                .setParameter("status", status)
+                .getResultList();
+    }
+
 }

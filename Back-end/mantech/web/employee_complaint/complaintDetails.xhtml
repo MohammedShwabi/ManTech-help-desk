@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Complaint Details</title>
+    </h:head>
+    <h:body>
+        <f:view>
+
+            <h:form>
+                <!-- Display the selected complaint details -->
+                <h1><h:outputText value="Complaint Details"/></h1>
+
+                <h:outputText value="------------------" /><br /><br />
+                
+                <h:outputText value="Created Date: " />
+                <h:outputText value="#{employeeComplaintManagedBean.compliants.createdDate}" >
+                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                </h:outputText>
+                <br /><br />
+
+                <!-- to hide the Closed Date if its empty -->
+                <h:outputText value="Pending Date: " rendered="#{not empty employeeComplaintManagedBean.compliants.pendingDate}" />
+                <h:outputText value="#{employeeComplaintManagedBean.compliants.pendingDate}" >
+                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                </h:outputText>
+                <br /><br />
+
+                <!-- to hide the Closed Date if its empty -->
+                <h:outputText value="Created Date: " rendered="#{not empty employeeComplaintManagedBean.compliants.closedDate}" />
+                <h:outputText value="#{employeeComplaintManagedBean.compliants.closedDate}">
+                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                </h:outputText>
+                <br /><br />
+
+                <h:outputText value="------------------" /><br /><br />
+
+                <!-- Display the details of the selected complaint -->
+                <h:outputText value="ID: # #{employeeComplaintManagedBean.compliants.id}" /><br /><br />
+                <h:outputText value="priority: #{employeeComplaintManagedBean.compliants.priority}" /><br /><br />
+                <h:outputText value="Resend: #{employeeComplaintManagedBean.compliants.resend}" /><br /><br />
+                <h:outputText value="Category: #{employeeComplaintManagedBean.compliants.catId.name}" /><br /><br />
+                <h:outputText value="Employee: #{employeeComplaintManagedBean.compliants.empId.fullName}" /><br /><br />
+                <h:outputText value="Title: #{employeeComplaintManagedBean.compliants.title}" /><br /><br />
+                <h:outputText value="Description: #{employeeComplaintManagedBean.compliants.description}" /><br /><br />
+                <h:outputText value="Photo: #{employeeComplaintManagedBean.compliants.photo}" /><br /><br />
+
+                <h:outputText value="Complaint Answer" /><br /><br />
+                <h:outputText value="Technician: #{employeeComplaintManagedBean.compliants.techId.fullName}" /><br /><br />
+
+                <!-- to hide the answer if its no exist -->
+                <h:outputText value="Answer: " rendered="#{not empty employeeComplaintManagedBean.compliants.answer}" />
+                <h:outputText value="#{employeeComplaintManagedBean.compliants.answer}" /><br /><br />
+
+
+            </h:form>
+        </f:view>
+
+    </h:body>
+</html>

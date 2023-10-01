@@ -11,8 +11,8 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import javax.ejb.EJB;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
-import model.DepartmentsFacade;
 import model.EmployeesFacade;
 
 /**
@@ -25,14 +25,13 @@ public class LoginManagedBean implements Serializable {
 
     private String email;
     private String password;
-    private Employees loggedInEmployee;
     private String message;
+
+//    @ManagedProperty(value = "#{userBean}")
+    private Employees loggedInEmployee;
 
     @EJB
     private EmployeesFacade employeesFacade;
-
-    @EJB
-    private DepartmentsFacade departmentsFacade;
 
     public String getEmail() {
         return email;
@@ -50,14 +49,6 @@ public class LoginManagedBean implements Serializable {
         this.password = password;
     }
 
-    public Employees getLoggedInEmployee() {
-        return loggedInEmployee;
-    }
-
-    public void setLoggedInEmployee(Employees loggedInEmployee) {
-        this.loggedInEmployee = loggedInEmployee;
-    }
-
     public String getMessage() {
         return message;
     }
@@ -66,6 +57,14 @@ public class LoginManagedBean implements Serializable {
         this.message = message;
     }
 
+    public Employees getLoggedInEmployee() {
+        return loggedInEmployee;
+    }
+
+//    public void setLoggedInEmployee(Employees loggedInEmployee) {
+//        this.loggedInEmployee = loggedInEmployee;
+//    }
+
     /**
      * Creates a new instance of LoginManagedBean
      */
@@ -73,14 +72,20 @@ public class LoginManagedBean implements Serializable {
     }
 
     public String login() {
+        // Check if email and password are valid
         loggedInEmployee = employeesFacade.login(email, password);
 
         if (loggedInEmployee != null) {
+            // to get the department id 
+            // null for admin
+            // "Allied system" for technical
+            // other for normal employee
             Departments department = loggedInEmployee.getDepId();
 
             // save the current employee details
             saveEmployeeDetails(loggedInEmployee);
-            
+
+            // Redirect the user to the appropriate page based on their role
             if (department == null) {
                 // If department is null, go to the admin page
                 return "admin?faces-redirect=true";
@@ -103,9 +108,9 @@ public class LoginManagedBean implements Serializable {
         FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("loggedInEmployee", loggedInEmployee);
     }
 
-    // use this in any page to
+    // use this in any page to check the user
     public static void check_user() {
-        
+
         FacesContext facesContext = FacesContext.getCurrentInstance();
         Employees loggedInEmployeea = (Employees) facesContext.getExternalContext().getSessionMap().get("loggedInEmployee");
 
@@ -117,5 +122,12 @@ public class LoginManagedBean implements Serializable {
             // Handle the case when the user is not logged in or the session has expired
             System.out.println("buy");
         }
+    }
+
+    // Logout method to clear the session and redirect to the login page
+    public String logout() {
+        loggedInEmployee = null;
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        return "login?faces-redirect=true";
     }
 }

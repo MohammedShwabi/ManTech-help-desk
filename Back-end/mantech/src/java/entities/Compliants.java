@@ -40,6 +40,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Compliants.findByPriority", query = "SELECT c FROM Compliants c WHERE c.priority = :priority")
     , @NamedQuery(name = "Compliants.findByStatus", query = "SELECT c FROM Compliants c WHERE c.status = :status")
     , @NamedQuery(name = "Compliants.findByResend", query = "SELECT c FROM Compliants c WHERE c.resend = :resend")
+    , @NamedQuery(name = "Compliants.findByEmployeeComplaint", query = "SELECT c FROM Compliants c WHERE c.empId.id = :employeeID AND (:status = 'all' OR c.status = :status)")
     , @NamedQuery(name = "Compliants.findByCreatedDate", query = "SELECT c FROM Compliants c WHERE c.createdDate = :createdDate")
     , @NamedQuery(name = "Compliants.findByPendingDate", query = "SELECT c FROM Compliants c WHERE c.pendingDate = :pendingDate")
     , @NamedQuery(name = "Compliants.findByClosedDate", query = "SELECT c FROM Compliants c WHERE c.closedDate = :closedDate")})
