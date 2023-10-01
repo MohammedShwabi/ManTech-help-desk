@@ -262,8 +262,16 @@ INSERT INTO `faqs` (`id`, `question`, `answer`) VALUES
 -- Structure for view `complaint_by_month`
 --
 DROP TABLE IF EXISTS `complaint_by_month`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `complaint_by_month`  AS SELECT `comp`.`id` AS `id`, `comp`.`priority` AS `priority`, `comp`.`created_date` AS `created_date`, `comp`.`pending_date` AS `pending_date`, `comp`.`closed_date` AS `closed_date`, `emp`.`full_name` AS `employee`, `cat`.`id` AS `cat_id`, `cat`.`name` AS `category`, `dep`.`id` AS `dep_id`, `dep`.`name` AS `department`, `tech`.`full_name` AS `technician`, date_format(`comp`.`created_date`,'%Y-%m') AS `formatted_month`, yearweek(`comp`.`created_date`,3) AS `week_number`, cast(`comp`.`created_date` as date) AS `date` FROM ((((`compliants` `comp` join `employees` `emp` on(`emp`.`id` = `comp`.`emp_id`)) join `departments` `dep` on(`dep`.`id` = `emp`.`dep_id`)) join `employees` `tech` on(`tech`.`id` = `comp`.`tech_id`)) join `categories` `cat` on(`cat`.`id` = `comp`.`cat_id`)) WHERE `comp`.`status` = 'closed' ORDER BY `comp`.`id` ASC ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `complaint_by_month`  
+AS SELECT `comp`.`id` AS `id`, `title`, `description`, `comp`.`photo`, `priority`, `status`, `resend`, `answer`,
+`created_date`, `pending_date`, `closed_date`,
+`emp`.`id` AS `emp_id`, `emp`.`full_name` AS `employee`,
+`cat`.`id` AS `cat_id`, `cat`.`name` AS `category`,
+`dep`.`id` AS `dep_id`, `dep`.`name` AS `department`,
+`tech`.`id` AS `tech_id`, `tech`.`full_name` AS `technician`,
+date_format(`comp`.`created_date`,'%Y-%m') AS `formatted_month`, yearweek(`comp`.`created_date`,3) AS `week_number`,
+cast(`comp`.`created_date` as date) AS `date` 
+FROM ((((`compliants` `comp` join `employees` `emp` on(`emp`.`id` = `comp`.`emp_id`)) join `departments` `dep` on(`dep`.`id` = `emp`.`dep_id`)) join `employees` `tech` on(`tech`.`id` = `comp`.`tech_id`)) join `categories` `cat` on(`cat`.`id` = `comp`.`cat_id`)) WHERE `comp`.`status` = 'closed' ORDER BY `comp`.`id` ASC ;
 
 --
 -- Indexes for dumped tables

@@ -6,6 +6,7 @@
 package controller;
 
 import entities.Categories;
+import entities.Compliants;
 import entities.Departments;
 import entities.Employees;
 import javax.inject.Named;
@@ -51,8 +52,8 @@ public class ComplaintManagedBean implements Serializable {
         "dep"
         "cat"
      */
-    private String selectedFilterType = "tech"; // Default filter
-
+    private String selectedFilterType = "techId"; // Default filter
+    
     public int getSelectedFilterID() {
         return selectedFilterID;
     }
@@ -75,7 +76,7 @@ public class ComplaintManagedBean implements Serializable {
     }
 
     // To save the filtered list of complaints
-    public List<Object[]> getFilteredComplaints() {
+    public List<Compliants> getFilteredComplaints() {
         return compliantsFacade.getFilteredComplaints(selectedFilterType, selectedFilterID);
     }
 
@@ -88,13 +89,13 @@ public class ComplaintManagedBean implements Serializable {
         filterItems.add(new SelectItem(0, "All"));
 
         switch (selectedFilterType) {
-            case "tech":
+            case "techId":
                 filterItems.addAll(getSelectItems(employeesFacade.findAllTechnician()));
                 break;
-            case "cat":
+            case "catId":
                 filterItems.addAll(getSelectItems(categoriesFacade.findAll()));
                 break;
-            case "dep":
+            case "empId.depId":
                 filterItems.addAll(getSelectItems(departmentsFacade.findEmployeeDepartments(6)));
                 break;
         }
@@ -174,5 +175,5 @@ public class ComplaintManagedBean implements Serializable {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEEE dd/MM/yyyy");
         return simpleDateFormat.format(date);
     }
-
+    
 }

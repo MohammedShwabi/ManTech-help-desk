@@ -39,7 +39,8 @@
             </h:selectOneMenu>
 
             <!-- Radio buttons to select pending days filter -->
-            <h:outputLabel value="Filter by Pending Days:" />
+            <br/><br/>
+            <h:outputLabel value="Filter by Created Date:" />
             <h:selectOneRadio value="#{closedComplaintManagedBean.selectedFilter}">
                 <f:selectItem  itemValue="day" itemLabel="Day" />
                 <f:selectItem itemValue="month" itemLabel="Month" />
@@ -69,7 +70,7 @@
             <h:commandButton value="Filter" action="closedComplaints" />
             <h:commandButton value="Rest" action="#{closedComplaintManagedBean.restFilter()}" />
 
-            
+
             <!-- Complaint count -->
             <h3><h:outputText id="complaintsCount" value="#{closedComplaintManagedBean.getFilteredComplaints().size()} Complaints"/></h3>
 
@@ -93,7 +94,16 @@
                         <h:outputText value="CreatedDate"/>
                     </f:facet>
                     <h:outputText value="#{item.createdDate}">
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="PendingDate"/>
+                    </f:facet>
+                    <h:outputText value="#{item.pendingDate}">
+                        <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
                     </h:outputText>
                 </h:column>
 
@@ -102,7 +112,7 @@
                         <h:outputText value="ClosedDate"/>
                     </f:facet>
                     <h:outputText value="#{item.closedDate}">
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
                     </h:outputText>
                 </h:column>
 
@@ -110,7 +120,7 @@
                     <f:facet name="header">
                         <h:outputText value="Solved Time"/>
                     </f:facet>
-                    <h:outputText value="#{complaintsBean.getSolvedTime(item.createdDate, item.closedDate)}" />
+                    <h:outputText value="#{complaintsBean.getSolvedTime(item.pendingDate, item.closedDate)}" />
                 </h:column>
 
                 <h:column>
@@ -141,6 +151,13 @@
                     <h:outputText value="#{item.technician}"/>
                 </h:column>
 
+                <!-- Column for showing complaint details -->
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="destails"/>
+                    </f:facet>
+                    <h:commandLink value="more destails" action="#{closedComplaintManagedBean.showDetails(closedComplaintManagedBean.convertComplaintByMonthToCompliants(item))}" />
+                </h:column>
 
             </h:dataTable>
 

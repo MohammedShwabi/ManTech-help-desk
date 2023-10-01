@@ -42,7 +42,7 @@
                 <f:selectItems value="#{pendingComplaintManagedBean.pendingDaysOptions}" />
                 <f:ajax render="complaintsTable complaintsCount" />
             </h:selectOneMenu>
-          
+
             <!-- Complaint count -->
             <h3><h:outputText id="complaintsCount" value="#{pendingComplaintManagedBean.filteredComplaints.size()} Complaints"/></h3>
 
@@ -74,10 +74,19 @@
 
                 <h:column>
                     <f:facet name="header">
+                        <h:outputText value="PendingDate"/>
+                    </f:facet>
+                    <h:outputText value="#{item.pendingDate}">
+                        <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
                         <h:outputText value="Pending for"/>
                     </f:facet>
 
-                    <h:outputText value="#{pendingComplaintManagedBean.getPendingTime(item.createdDate)}">
+                    <h:outputText value="#{pendingComplaintManagedBean.getPendingTime(item.pendingDate)}">
                         <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                     </h:outputText>
                 </h:column>
@@ -108,6 +117,13 @@
                     </f:facet>
                     <h:outputText value="#{item.techId.fullName}"/>
                 </h:column>
+
+                <!-- Column for showing complaint details -->
+                <h:column>
+                    <f:facet name="header">destails</f:facet>
+                    <h:commandLink value="more destails" action="#{closedComplaintManagedBean.showDetails(item)}" />
+                </h:column>
+
             </h:dataTable>
 
         </h:form>
