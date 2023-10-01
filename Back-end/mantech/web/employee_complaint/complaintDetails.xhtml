@@ -54,7 +54,9 @@
                 <h:outputText value="Answer: " rendered="#{not empty employeeComplaintManagedBean.compliants.answer}" />
                 <h:outputText value="#{employeeComplaintManagedBean.compliants.answer}" /><br /><br />
 
-
+     
+      <h:commandLink value="update" action="#{employeeComplaintManagedBean.gotoUpdate(item)}" /><br/>
+            <h:commandLink value="delete" action="#{blogsManagedBean.delete(item)}" onclick="return confirm('are sure to delete this Blog?')" /><br/>
             </h:form>
         </f:view>
 

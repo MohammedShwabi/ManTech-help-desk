@@ -94,10 +94,16 @@ public BlogsManagedBean() {    }
 
  // Method to add a new question
     public String addBlog() throws IOException {
-        String name=  upload();
-        System.out.println(name);
+        
+        if(file==null){
+            //doing something here
+        }else{
+            String pathImage=  upload();
+            blogs.setPhoto(pathImage);
+        }
+        
         blogs.setCreatedAt(new Date());
-        blogs.setPhoto(name);
+        
         blogsFacade.create(blogs);
       
         
@@ -129,7 +135,7 @@ public BlogsManagedBean() {    }
     public String upload() throws IOException {
         String fileName = file.getSubmittedFileName();
         InputStream fileContent = file.getInputStream();
-         String uploadDirectory = "C:\\Users\\Almomyz\\Documents\\GitHub\\ManTech-help-desk\\Back-end\\mantech\\web\\upload\\";
+         String uploadDirectory = "C:\\Users\\Almomyz\\Documents\\GitHub\\ManTech-help-desk\\Back-end\\mantech\\web\\upload\\blogs_photos\\";
         String filePath = uploadDirectory + fileName;
          try {
             

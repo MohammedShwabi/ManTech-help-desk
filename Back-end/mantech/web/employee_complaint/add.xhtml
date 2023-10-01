@@ -8,7 +8,7 @@
     </h:head>
     <h:body>
         <f:view>
-            <h:form>
+            <h:form enctype="multipart/form-data">
                 <h1><h:outputText value="Create/Edit"/></h1>
                 <h:panelGrid columns="3">
 
@@ -21,7 +21,7 @@
                     <h:message for="description" style="color:blue" />
 
                     <h:outputLabel value="Photo:" for="photo" />
-                    <h:inputText id="photo" value="#{employeeComplaintManagedBean.compliants.photo}" title="Photo" />
+                    <h:inputFile value="#{employeeComplaintManagedBean.file}" />
                     <h:message for="photo" style="color:blue" />
 
                     <h:outputLabel value="Category:" for="categoryDropdown" />

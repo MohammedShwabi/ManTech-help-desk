@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <f:view>
+
+
+            <h:form>
+                <h1><h:outputText value="Create/Edit"/></h1>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="Id:" for="id" />
+                    <h:inputText id="id" value="#{employeeComplaintManagedBean.compliants.id}" title="Id" required="true" requiredMessage="The Id field is required."/>
+                    <h:outputLabel value="Title:" for="title" />
+                    <h:inputText id="title" value="#{employeeComplaintManagedBean.compliants.title}" title="Title" required="true" requiredMessage="The Title field is required."/>
+                    <h:outputLabel value="Description:" for="description" />
+                    <h:inputTextarea rows="4" cols="30" id="description" value="#{employeeComplaintManagedBean.compliants.description}" title="Description" required="true" requiredMessage="The Description field is required."/>
+                    <h:outputLabel value="Photo:" for="photo" />
+                    <h:inputText id="photo" value="#{employeeComplaintManagedBean.compliants.photo}" title="Photo" />
+                    <h:outputLabel value="Priority:" for="priority" />
+                    <h:inputText id="priority" value="#{employeeComplaintManagedBean.compliants.priority}" title="Priority" required="true" requiredMessage="The Priority field is required."/>
+                    <h:outputLabel value="Status:" for="status" />
+                    <h:inputText id="status" value="#{employeeComplaintManagedBean.compliants.status}" title="Status" required="true" requiredMessage="The Status field is required."/>
+                    <h:outputLabel value="Resend:" for="resend" />
+                    <h:inputText id="resend" value="#{employeeComplaintManagedBean.compliants.resend}" title="Resend" required="true" requiredMessage="The Resend field is required."/>
+                    <h:outputLabel value="CreatedDate:" for="createdDate" />
+                    <h:inputText id="createdDate" value="#{employeeComplaintManagedBean.compliants.createdDate}" title="CreatedDate" required="true" requiredMessage="The CreatedDate field is required.">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="PendingDate:" for="pendingDate" />
+                    <h:inputText id="pendingDate" value="#{employeeComplaintManagedBean.compliants.pendingDate}" title="PendingDate" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="ClosedDate:" for="closedDate" />
+                    <h:inputText id="closedDate" value="#{employeeComplaintManagedBean.compliants.closedDate}" title="ClosedDate" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="Answer:" for="answer" />
+                    <h:inputTextarea rows="4" cols="30" id="answer" value="#{employeeComplaintManagedBean.compliants.answer}" title="Answer" />
+                    <h:outputLabel value="CatId:" for="catId" />
+                    <h:selectOneMenu id="catId" value="#{employeeComplaintManagedBean.compliants.catId}" title="CatId" required="true" requiredMessage="The CatId field is required.">
+                        <!-- TODO: update below reference to list of available items-->
+                        <f:selectItems value="#{fixme}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="EmpId:" for="empId" />
+                    <h:selectOneMenu id="empId" value="#{employeeComplaintManagedBean.compliants.empId}" title="EmpId" required="true" requiredMessage="The EmpId field is required.">
+                        <!-- TODO: update below reference to list of available items-->
+                        <f:selectItems value="#{fixme}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="TechId:" for="techId" />
+                    <h:selectOneMenu id="techId" value="#{employeeComplaintManagedBean.compliants.techId}" title="TechId" >
+                        <!-- TODO: update below reference to list of available items-->
+                        <f:selectItems value="#{fixme}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+            </h:form>
+        </f:view>
+
+    </body>
+</html>

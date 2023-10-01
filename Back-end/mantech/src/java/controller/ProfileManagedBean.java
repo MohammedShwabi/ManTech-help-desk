@@ -98,7 +98,7 @@ public class ProfileManagedBean implements Serializable {
     }
     
     public String passwordReset(){
-       String after; 
+       String after=""; 
    if(OldPassword.compareTo(user.getPassword())==0&&NewPassword.compareTo(ConfirmNewPassword)==0){
      user.setPassword(NewPassword);
      employeesFacade.edit(user);
@@ -107,15 +107,21 @@ public class ProfileManagedBean implements Serializable {
      ConfirmNewPassword="";
       after="profile";
    }else{
-   after="login";
+   //doing some thing here
+   return after;
    }
     
     return after;
     }
 
     public void editImage()throws IOException{
-    String nameImage=upload();
-    user.setPhoto(nameImage);
+   if(file==null){
+            //doing something here
+        }else{
+            String pathImage=  upload();
+            user.setPhoto(pathImage);
+        }
+        
     employeesFacade.edit(user);
     }
     
@@ -124,7 +130,7 @@ public class ProfileManagedBean implements Serializable {
         public String upload() throws IOException {
         String fileName = file.getSubmittedFileName();
         InputStream fileContent = file.getInputStream();
-         String uploadDirectory = "C:\\Users\\Almomyz\\Documents\\GitHub\\ManTech-help-desk\\Back-end\\mantech\\web\\upload\\";
+         String uploadDirectory = "C:\\Users\\Almomyz\\Documents\\GitHub\\ManTech-help-desk\\Back-end\\mantech\\web\\upload\\profiles_photos\\";
         String filePath = uploadDirectory + fileName;
          try {
             

@@ -5,9 +5,14 @@
  */
 package controller;
 
+import entities.Blogs;
 import entities.Categories;
 import entities.Compliants;
 import entities.Employees;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
@@ -16,6 +21,7 @@ import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.model.SelectItem;
+import javax.servlet.http.Part;
 import model.CategoriesFacade;
 import model.CompliantsFacade;
 import model.EmployeesFacade;
@@ -48,6 +54,18 @@ public class EmployeeComplaintManagedBean implements Serializable {
     
     // it should get it from the session after the user login
     int employeeId = 2;
+    
+    private Part file;
+
+   
+    
+    public Part getFile() {
+        return file;
+    }
+
+    public void setFile(Part file) {
+        this.file = file;
+    }
 
     public CompliantsFacade getCompliantsFacade() {
         return compliantsFacade;
@@ -118,18 +136,22 @@ public class EmployeeComplaintManagedBean implements Serializable {
     }
 
     // Method to add a new employee
-    public String addComplaint() {
+    public String addComplaint()throws IOException  {
         Categories categories = categoriesFacade.find(selectedCategoryId);
         Employees employees = employeesFacade.find(employeeId);
+        
         
         compliants.setCreatedDate(new Date());
         compliants.setCatId(categories);
         compliants.setEmpId(employees);
         compliants.setStatus("waiting");
-        
-        // edit here to add image
-        compliants.setPhoto("test_photo.png");
-
+       
+        if(file ==null){
+        compliants.setPhoto("defult image");
+        }else{
+        String pathImage= upload();
+        compliants.setPhoto(pathImage);
+        }
         compliantsFacade.create(compliants);
         this.resetComplaint();
         return "view"; // Redirect to a view page
@@ -142,5 +164,54 @@ public class EmployeeComplaintManagedBean implements Serializable {
         // Clear the selectedDepartmentId
         selectedCategoryId = null;
     }
+    public String gotoUpdate(Compliants compliants) {
+        this.compliants=compliants;
+        return "update";
+    }
+    
+        public String upload() throws IOException {
+        String fileName = file.getSubmittedFileName();
+        InputStream fileContent = file.getInputStream();
+         String uploadDirectory = "C:\\Users\\Almomyz\\Documents\\GitHub\\ManTech-help-desk\\Back-end\\mantech\\web\\upload\\comlant_photos\\";
+        String filePath = uploadDirectory + fileName;
+         try {
+            
+            
+            
+            // Process the uploaded file as needed (e.g., save it to a directory, store it in a database, etc.)
+            
+            // Example: Save the file in a specific directory inside your project
+           
+           
+            
+            // Create a file object representing the destination file
+            File destinationFile = new File(filePath);
+            
+            // Use Java I/O streams to save the file
+            FileOutputStream outputStream = new FileOutputStream(destinationFile);
+            byte[] buffer = new byte[4096];
+            int bytesRead;
+            while ((bytesRead = fileContent.read(buffer)) != -1) {
+                outputStream.write(buffer, 0, bytesRead);
+            }
+            outputStream.close();
+            fileContent.close();
+            
+            
+            
+            // Optionally, you can show a success message to the user
+        } catch (IOException e) {
+            // Handle any exceptions that may occur during the file upload process
+        e.printStackTrace();
+        }
+         
+         System.out.println(filePath);
+        
+         
+         
+         
+        return  fileName;
+    }
+
 
 }
