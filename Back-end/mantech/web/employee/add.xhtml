@@ -52,6 +52,11 @@
                         <f:validateRegex pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}$" />
                     </h:inputText>
                     <h:message for="password" style="color:blue" />
+                    <h:outputLabel value="Confirm  Password:" for="Confirm_New_Password" />
+                    <h:inputText id="Confirm_New_Password" value="#{employeeManagedBean.confirm_Password}" title="Confirm New Password" required="true"  requiredMessage="The Password field is required." validatorMessage="Validation Error: Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one digit">
+                    <f:validateRegex pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}$" />
+                    </h:inputText>
+                    
                 </h:panelGrid>
                 <h:commandButton value="Add Employee" action="#{employeeManagedBean.addEmployee()}" />
             </h:form>

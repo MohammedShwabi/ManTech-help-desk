@@ -108,7 +108,7 @@ public BlogsManagedBean() {    }
       
         
         this.resetBlogs();
-        return "view"; // Redirect to a view page
+        return "view?faces-redirect=true"; // Redirect to a view page
     }
     
 
@@ -122,12 +122,20 @@ public BlogsManagedBean() {    }
     
 // to save edited question details
     public String update()throws IOException {
+        
+        if(file!=null){
         String name=  upload();
-        System.out.println(name);
         blogs.setPhoto(name);
         blogsFacade.edit(blogs);
         this.resetBlogs();
-        return "view"; // Redirect to a view page
+         return "view?faces-redirect=true";
+        }
+        else{
+         blogsFacade.edit(blogs);
+        this.resetBlogs();
+        return "view?faces-redirect=true";
+        }
+         // Redirect to a view page
     }
     
     //upload image blog

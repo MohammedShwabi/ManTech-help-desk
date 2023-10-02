@@ -72,7 +72,7 @@ public class FAQManagedBean implements Serializable {
     public String addQuestion() {
         faqsFacade.create(faqs);
         this.resetQuestion();
-        return "view"; // Redirect to a view page
+        return "view?faces-redirect=true"; // Redirect to a view page
     }
     
     // reset the question object
@@ -85,6 +85,6 @@ public class FAQManagedBean implements Serializable {
     public String update() {
         faqsFacade.edit(faqs);
         this.resetQuestion();
-        return "view"; // Redirect to a view page
+        return "view?faces-redirect=true"; // Redirect to a view page
     }
 }
