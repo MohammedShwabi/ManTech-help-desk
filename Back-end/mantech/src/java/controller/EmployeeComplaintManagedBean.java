@@ -155,6 +155,20 @@ public class EmployeeComplaintManagedBean implements Serializable {
         this.resetComplaint();
         return "view"; // Redirect to a view page
     }
+    
+    
+    public String updateComplaint() throws IOException {
+
+        if (file == null) {
+            compliants.setPhoto("defult image");
+        } else {
+            String pathImage = upload();
+            compliants.setPhoto(pathImage);
+        }
+        compliantsFacade.edit(compliants);
+        this.resetComplaint();
+        return "view"; // Redirect to a view page
+    }
 
     // reset the complaint object
     public void resetComplaint() {
@@ -167,7 +181,7 @@ public class EmployeeComplaintManagedBean implements Serializable {
     public String upload() throws IOException {
         String fileName = file.getSubmittedFileName();
         InputStream fileContent = file.getInputStream();
-        String uploadDirectory = "C:\\Users\\Almomyz\\Documents\\GitHub\\ManTech-help-desk\\Back-end\\mantech\\web\\upload\\comlant_photos\\";
+        String uploadDirectory = "C:\\Users\\Almomyz\\Documents\\GitHub\\ManTech-help-desk\\Back-end\\mantech\\web\\upload\\complaints_photos\\";
         String filePath = uploadDirectory + fileName;
         try {
 
