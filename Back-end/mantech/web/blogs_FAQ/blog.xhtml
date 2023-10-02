@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+        <link rel="stylesheet" href="../css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="../css/style.css"/>
+        <link rel="stylesheet" href="../css/all.min.css"/>
+        <script src="../js/all.min.js"></script>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+    </h:head>
+    <h:body>
+        <!-- Include the header -->
+        <ui:include src="../header.xhtml" />
+        <br/>
+        <!-- Main content goes here -->
+        <div id="content" class="mt-5">
+
+            <div class="container">
+                <div class="row mt-4 justify-content-center">
+                    <div class="cards" id="cards_container">
+                        <!-- check if there is a blog -->
+                        <!-- display all blog -->
+                        <ui:repeat value="#{blogsManagedBean.findAll()}" var="item">
+                            <div class="card blog-card m-4" onclick="window.location.href = g" role="button">
+                                <img src="../img/blogs.jpeg" class="img-fluid" alt="..." />
+                                <!-- show blog name and blog desc and limit to specific character -->
+                                <div class="blog-card-body pt-4 ps-3">
+                                    <b class="blog-card-title">
+                                        #{item.title}
+                                    </b>
+                                    <p class="blog-card-text pb-2 pt-2">
+                                        #{item.description}
+                                    </p>
+                                </div>
+                            </div>
+                        </ui:repeat>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Include the footer -->
+        <ui:include src="../footer.xhtml" />
+    </h:body>
+</html>
+
