@@ -5,7 +5,6 @@
  */
 package controller;
 
-import entities.Blogs;
 import entities.Categories;
 import entities.Compliants;
 import entities.Employees;
