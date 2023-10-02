@@ -23,11 +23,20 @@ and open the template in the editor.
                     <h:outputLabel value="Photo:" for="photo" />
                   <h:inputFile value="#{blogsManagedBean.file}" />
                     <h:outputLabel value="Title:" for="title" />
-                    <h:inputText id="title" value="#{blogsManagedBean.blogs.title}" title="Title" required="true" requiredMessage="The Title field is required."/>
+                    <h:inputText id="title" value="#{blogsManagedBean.blogs.title}" title="Title" required="true" requiredMessage="The Title field is required.">
+                   <f:validateLength minimum="5" maximum="50" />
+      
+                    </h:inputText>
+                   
                     <h:outputLabel value="Description:" for="description" />
-                    <h:inputTextarea rows="4" cols="30" id="description" value="#{blogsManagedBean.blogs.description}" title="Description" required="true" requiredMessage="The Description field is required."/>
+                    <h:inputTextarea rows="4" cols="30" id="description" value="#{blogsManagedBean.blogs.description}" title="Description" required="true" requiredMessage="The Description field is required.">
+                     <f:validateLength minimum="5" maximum="50" />
+                    </h:inputTextarea>   
+                        
                     <h:outputLabel value="Blog:" for="blog" />
-                    <h:inputTextarea rows="4" cols="30" id="blog" value="#{blogsManagedBean.blogs.blog}" title="Blog" required="true" requiredMessage="The Blog field is required."/>
+                    <h:inputTextarea rows="4" cols="30" id="blog" value="#{blogsManagedBean.blogs.blog}" title="Blog" required="true" requiredMessage="The Blog field is required.">
+                    <f:validateLength minimum="5" maximum="50" />
+                    </h:inputTextarea>
                     <h:outputLabel value="CreatedAt:" for="createdAt" />
                     <h:inputText id="createdAt" value="#{blogsManagedBean.blogs.createdAt}" title="CreatedAt" required="true" requiredMessage="The CreatedAt field is required.">
                         <f:convertDateTime pattern="MM/dd/yyyy" />

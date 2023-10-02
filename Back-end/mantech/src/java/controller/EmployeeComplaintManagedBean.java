@@ -132,6 +132,7 @@ public class EmployeeComplaintManagedBean implements Serializable {
     public String gotoAdd() {
         // Reset the Employee object and selected department
         compliants = new Compliants();
+        
         return "add";
     }
 
@@ -153,7 +154,7 @@ public class EmployeeComplaintManagedBean implements Serializable {
         }
         compliantsFacade.create(compliants);
         this.resetComplaint();
-        return "view"; // Redirect to a view page
+        return "view?faces-redirect=true"; // Redirect to a view page
     }
     
     

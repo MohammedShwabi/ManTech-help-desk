@@ -20,7 +20,7 @@ and open the template in the editor.
 
            <h:form>
                 <h1><h:outputText value="BLOGS"/></h1>
-                <h:dataTable value="#{blogsManagedBean.findAll()}" rows="5" var="item"   border="1" cellpadding="4px">
+                <h:dataTable value="#{bolgs_FAQManagedBean.findAllBlogs()}" rows="5" var="item"   border="1" cellpadding="4px">
                     
                     <h:column>
                         <f:facet name="header">
@@ -41,7 +41,7 @@ and open the template in the editor.
                         <f:facet name="header">
                             <h:outputText value="Action"/>
                         </f:facet>
-                        <h:commandLink value="details" action="#{blogsManagedBean.gotoDetailsBlog()}" />
+                        <h:commandLink value="details" action="#{bolgs_FAQManagedBean.gotoDetailsBlog()}" />
                     </h:column>
                 </h:dataTable>
             </h:form>

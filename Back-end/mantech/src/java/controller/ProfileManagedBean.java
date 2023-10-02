@@ -105,7 +105,7 @@ public class ProfileManagedBean implements Serializable {
      OldPassword="";
      NewPassword="";
      ConfirmNewPassword="";
-      after="profile";
+      after="profile?faces-redirect=true";
    }else{
    //doing some thing here
    return after;
