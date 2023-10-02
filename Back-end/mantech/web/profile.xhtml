@@ -12,58 +12,63 @@
         <script src="../js/bootstrap.bundle.min.js"></script>
     </h:head>
     <h:body>
-        
+
         <!-- Include the header -->
         <ui:include src="header.xhtml" />
         <br/>
-        
-        
+
+
         <!-- Main content goes here -->
         <div id="content" class="mt-5">
             <div class="container mt-5">
-                <div class="row justify-content-md-center mb-4 pt-4">
-                    <p class="profile-title text-center">
-                        Profile
-                    </p>
-                </div>
+                <h:form    enctype="multipart/form-data" >
+                    <div class="row justify-content-md-center mb-4 pt-4">
+                        <p class="profile-title text-center">
+                            Profile
+                        </p>
+                    </div>
 
-                <div class="row justify-content-md-center">
-                    <div class="profile-container">
-                        <img src="img/profile.png" alt="image" class="profile-img"></img>
+                    <h:outputText value="photo :    "/>
+                    <h:outputText value="#{profileManagedBean.user.photo}"/>
+                    <h:inputFile value="#{profileManagedBean.file}"  />
+                    <h:commandButton value="edit photo" action="#{profileManagedBean.editImage()}" />
+                    <br/>
+                    <div class="row justify-content-md-center">
+                        <div class="profile-container">
+                            <img src="img/profile.png" alt="image" class="profile-img"></img>
+                        </div>
                     </div>
-                </div>
-                <div class="row justify-content-md-center mt-4">
-                    <a href="#" class="edit-link edit-photo text-center">
-                        Edit
-                    </a>
-                </div>
-                <div class="row justify-content-center mt-5">
-                    <div class="col-md-4 profile-detail">
-                        <table class="table table-borderless">
-                            <tr>
-                                <td><i class="profile-icon fa-solid fa-envelope"></i></td>
-                                <td>UserName@gmail.com</td>
-                            </tr>
-                            <tr>
-                                <td><i class="profile-icon fa-solid fa-lock"></i></td>
-                                <td>**************</td>
-                                <td>
-                                    <a href="#" class="edit-link edit-photo text-center">
-                                        Reset
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><i class="profile-icon fa-solid fa-phone"></i></td>
-                                <td>777 888 999</td>
-                            </tr>
-                            <tr>
-                                <td><i class="profile-icon fa-solid fa-user-tie"></i></td>
-                                <td>Devlober</td>
-                            </tr>
-                        </table>
+                    <div class="row justify-content-md-center mt-4">
+                        <a href="#" class="edit-link edit-photo text-center">
+                            Edit
+                        </a>
                     </div>
-                </div>
+                    <div class="row justify-content-center mt-5">
+                        <div class="col-md-4 profile-detail">
+                            <table class="table table-borderless">
+                                <tr>
+                                    <td><i class="profile-icon fa-solid fa-envelope"></i></td>
+                                    <td><h:outputText value="#{profileManagedBean.user.email}"/></td>
+                                </tr>
+                                <tr>
+                                    <td><i class="profile-icon fa-solid fa-lock"></i></td>
+                                    <td><h:outputText value="#{profileManagedBean.user.password}"/></td>
+                                    <td>
+                                        <h:link class="edit-link edit-photo text-center" value="Reset" outcome="#{profileManagedBean.goToPasswordReset(profileManagedBean.user)}" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><i class="profile-icon fa-solid fa-phone"></i></td>
+                                    <td><h:outputText value="#{profileManagedBean.user.phoneNo}"/></td>
+                                </tr>
+                                <tr>
+                                    <td><i class="profile-icon fa-solid fa-user-tie"></i></td>
+                                    <td><h:outputText value="#{profileManagedBean.user.depId.name}"/></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </h:form>
             </div>
         </div>
 
