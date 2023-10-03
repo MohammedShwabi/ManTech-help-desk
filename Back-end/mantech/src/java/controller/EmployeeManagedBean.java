@@ -39,7 +39,6 @@ public class EmployeeManagedBean implements Serializable {
         this.confirm_Password = confirm_Password;
     }
 
-    
     @EJB
     private DepartmentsFacade departmentsFacade;
 
@@ -74,22 +73,21 @@ public class EmployeeManagedBean implements Serializable {
 
     // Method to add a new employee
     public String addEmployee() {
-        String after="";
-        if(employee.getPassword().compareTo(confirm_Password)==0){
-        Departments department = departmentsFacade.find(selectedDepartmentId);
-        employee.setDepId(department);
-        employee.setPhoto("profile.svg");
-        employeesFacade.create(employee);
-        this.resetEmployee();
-        return "view?faces-redirect=true";
-        // Redirect to a view page
-        }
-        else{
+        String after = "";
+        if (employee.getPassword().compareTo(confirm_Password) == 0) {
+            Departments department = departmentsFacade.find(selectedDepartmentId);
+            employee.setDepId(department);
+            employee.setPhoto("profile.svg");
+            employeesFacade.create(employee);
+            this.resetEmployee();
+            return "view?faces-redirect=true";
+            // Redirect to a view page
+        } else {
             //do some thing here
-            
-        return "no matchin g password and Confirm  Password";
+
+            return "no matchin g password and Confirm  Password";
         }
-         
+
     }
 
     // to go to update page and pass the current object to fill the form input
@@ -160,8 +158,7 @@ public class EmployeeManagedBean implements Serializable {
         // Check if the email is already used by another employee (excluding the current employee being updated)
 //        Employees currentEmployee = this.getEmployee(); // Get the current employee being updated
 //        boolean isEmailUnique = employeesFacade.isEmailUnique(email, currentEmployee.getId());
-
-        Integer emp_id = (employee.getId() == null)? 0 : employee.getId();
+        Integer emp_id = (employee.getId() == null) ? 0 : employee.getId();
         boolean isEmailUnique = employeesFacade.isEmailUnique(email, emp_id);
 
         if (!isEmailUnique) {

@@ -20,16 +20,14 @@ and open the template in the editor.
                 <h1><h:outputText value="Create/Edit"/></h1>
                 <h:panelGrid columns="2">
                     <h:outputLabel value="Photo:" for="photo" />
-  
                     <h:inputFile id="photo" value="#{blogsManagedBean.file}" required="true" title="photo" requiredMessage="The photo field is required."/>
-                    
                     <h:outputLabel value="Title:" for="title" />
                     <h:inputText id="title" value="#{blogsManagedBean.blogs.title}" title="Title" required="true" requiredMessage="The Title field is required.">
-                   <f:validateLength minimum="5" maximum="50" />
+                   <f:validateLength minimum="10" maximum="60" />
                     </h:inputText>
                     <h:outputLabel value="Description:" for="description" />
                     <h:inputTextarea rows="4" cols="30" id="description" value="#{blogsManagedBean.blogs.description}" title="Description" required="true" requiredMessage="The Description field is required.">
-                   <f:validateLength minimum="5" maximum="50" />
+                   <f:validateLength minimum="10"  />
                     </h:inputTextarea>
                     <h:outputLabel value="Blog:" for="blog" />
                     <h:inputTextarea rows="4" cols="30" id="blog" value="#{blogsManagedBean.blogs.blog}" title="Blog" required="true" requiredMessage="The Blog field is required.">
