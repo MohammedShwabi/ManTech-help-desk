@@ -28,12 +28,13 @@ import model.EmployeesFacade;
 @Named(value = "profileManagedBean")
 @SessionScoped
 public class ProfileManagedBean implements Serializable {
-  int id=2;
+
+    int id = 2;
     @EJB
     private EmployeesFacade employeesFacade;
     @EJB
-    private DepartmentsFacade departmentsFacade ;
-    private  Employees employees=new Employees();
+    private DepartmentsFacade departmentsFacade;
+    private Employees employees = new Employees();
     Employees user;
 
     String OldPassword;
@@ -48,7 +49,6 @@ public class ProfileManagedBean implements Serializable {
     public void setFile(Part file) {
         this.file = file;
     }
-  
 
     public String getOldPassword() {
         return OldPassword;
@@ -73,7 +73,7 @@ public class ProfileManagedBean implements Serializable {
     public void setConfirmNewPassword(String ConfirmNewPassword) {
         this.ConfirmNewPassword = ConfirmNewPassword;
     }
-    
+
     public Employees getEmployees() {
         return employees;
     }
@@ -81,71 +81,55 @@ public class ProfileManagedBean implements Serializable {
     public void setEmployees(Employees employees) {
         this.employees = employees;
     }
-    
-    
-    public Employees getUser(){
+
+    public Employees getUser() {
         //System.out.println(user.getDepId());
-        Employees user= employeesFacade.find(2) ;
-         
-       return user;
-    }
-    
+        Employees user = employeesFacade.find(2);
 
-    
-    public String goToPasswordReset(Employees user){
-    this.user=user;
-    return "password_reset";
-    }
-    
-    public String passwordReset(){
-       String after=""; 
-   if(OldPassword.compareTo(user.getPassword())==0&&NewPassword.compareTo(ConfirmNewPassword)==0){
-     user.setPassword(NewPassword);
-     employeesFacade.edit(user);
-     OldPassword="";
-     NewPassword="";
-     ConfirmNewPassword="";
-      after="profile?faces-redirect=true";
-   }else{
-   //doing some thing here
-   return after;
-   }
-    
-    return after;
+        return user;
     }
 
-    public void editImage()throws IOException{
-   if(file==null){
+    public String goToPasswordReset(Employees user) {
+        this.user = user;
+        return "password_reset";
+    }
+
+    public String passwordReset() {
+        String after = "";
+        if (OldPassword.compareTo(user.getPassword()) == 0 && NewPassword.compareTo(ConfirmNewPassword) == 0) {
+            user.setPassword(NewPassword);
+            employeesFacade.edit(user);
+            OldPassword = "";
+            NewPassword = "";
+            ConfirmNewPassword = "";
+            after = "profile?faces-redirect=true";
+        } else {
+            //doing some thing here
+            return after;
+        }
+
+        return after;
+    }
+
+    public void editImage() throws IOException {
+        if (file == null) {
             //doing something here
-        }else{
-            String pathImage=  upload();
+        } else {
+            String pathImage = upload();
             user.setPhoto(pathImage);
         }
-        
-    employeesFacade.edit(user);
+
+        employeesFacade.edit(user);
     }
-    
-                
-                
-        public String upload() throws IOException {
+
+    public String upload() throws IOException {
         String fileName = file.getSubmittedFileName();
         InputStream fileContent = file.getInputStream();
-         String uploadDirectory = "C:\\Users\\Almomyz\\Documents\\GitHub\\ManTech-help-desk\\Back-end\\mantech\\web\\upload\\profiles_photos\\";
+        String uploadDirectory = "C:\\Users\\Almomyz\\Documents\\GitHub\\ManTech-help-desk\\Back-end\\mantech\\web\\upload\\profiles_photos\\";
         String filePath = uploadDirectory + fileName;
-         try {
-            
-            
-            
-            // Process the uploaded file as needed (e.g., save it to a directory, store it in a database, etc.)
-            
-            // Example: Save the file in a specific directory inside your project
-           
-           
-            
-            // Create a file object representing the destination file
+        try {
+
             File destinationFile = new File(filePath);
-            
-            // Use Java I/O streams to save the file
             FileOutputStream outputStream = new FileOutputStream(destinationFile);
             byte[] buffer = new byte[4096];
             int bytesRead;
@@ -154,27 +138,21 @@ public class ProfileManagedBean implements Serializable {
             }
             outputStream.close();
             fileContent.close();
-            
-            
-            
-            // Optionally, you can show a success message to the user
+
         } catch (IOException e) {
-            // Handle any exceptions that may occur during the file upload process
-        e.printStackTrace();
+
+            e.printStackTrace();
         }
-         
-         System.out.println(filePath);
-        
-        return  fileName;
+
+        System.out.println(filePath);
+
+        return fileName;
     }
 
-     
-    
-    
     /**
      * Creates a new instance of ProfileManagedBean
      */
     public ProfileManagedBean() {
     }
-    
+
 }

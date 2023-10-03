@@ -21,19 +21,21 @@ import model.FaqsFacade;
  */
 @Named(value = "bolgs_FAQManagedBean")
 @SessionScoped
-public class Bolgs_FAQManagedBean implements Serializable {
-    int id=2;
+public class BolgsFAQManagedBean implements Serializable {
+
+    int id = 2;
     @EJB
     private BlogsFacade blogsFacade;
-     @EJB
+    @EJB
     private FaqsFacade faqsFacade;
-     private Faqs faqs = new Faqs();
-     private Blogs blogs = new Blogs();
+    private Faqs faqs = new Faqs();
+    private Blogs blogs = new Blogs();
+
     /**
-     * 
+     *
      * Creates a new instance of Bolgs_FAQManagedBean
      */
-    public Bolgs_FAQManagedBean() {
+    public BolgsFAQManagedBean() {
     }
 
     public Faqs getFaqs() {
@@ -51,18 +53,17 @@ public class Bolgs_FAQManagedBean implements Serializable {
     public void setBlogs(Blogs blogs) {
         this.blogs = blogs;
     }
-    
-    
-     public List<Blogs> findAllBlogs() {
+
+    public List<Blogs> findAllBlogs() {
         return blogsFacade.findAll();
     }
+
     public String gotoDetailsBlog() {
-      blogs=blogsFacade.find(id);
-        
+        blogs = blogsFacade.find(id);
+
         return "blog_details";
     }
-    
-    
+
     public List<Faqs> findAllFAQ() {
         return faqsFacade.findAll();
     }
