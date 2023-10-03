@@ -20,6 +20,8 @@
                 </div>
                 <div class="col-lg-10 ">
                     <div class="container">
+                        <h:link value="add" outcome="#{blogsManagedBean.gotoAdd()}" /> <br/> <br/>
+
                         <div class="row mt-4 justify-content-center">
                             <div class="cards" id="cards_container">
                                 <!-- check if there is a blog -->
@@ -38,6 +40,22 @@
                                                     <p class="blog-card-text pb-2 pt-2">
                                                         #{item.description}
                                                     </p>
+                                                    <ul class="blog-links">
+                                                        <li>
+                                                            <h:commandLink  action="#{blogsManagedBean.delete(item)}"  onclick="return confirm('are sure to delete this Blog?')" >
+                                                                <div id="delete_icon" class="shadow" data-tip="Delete">
+                                                                    <i class="fa fa-trash-can"></i>
+                                                                </div>
+                                                            </h:commandLink>
+                                                        </li>
+                                                        <li>
+                                                            <h:commandLink  action="#{blogsManagedBean.gotoUpdate(item)}" >
+                                                                <div class="shadow" id="edit_icon" data-tip="Edit">
+                                                                    <i class="fa fa-pen"></i>
+                                                                </div>
+                                                            </h:commandLink>
+                                                        </li>
+                                                    </ul>
                                                 </div>
                                             </div>
                                         </h:commandLink>
