@@ -48,6 +48,11 @@ a.blog-link {
     /* color: var(--dark-pink) */
 }
 
+.no-link-style , .no-link-style:hover {
+    color: inherit; /* Use the parent's text color */
+    text-decoration: none; /* Remove underlines */
+}
+
 /* end of card design for blog pages */
 
 /* start blog details */
