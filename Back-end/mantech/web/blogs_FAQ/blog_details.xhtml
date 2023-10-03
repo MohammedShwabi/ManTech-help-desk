@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Facelet Title</title>
         <link rel="stylesheet" href="../css/bootstrap.min.css"/>
@@ -30,11 +31,15 @@
                         <b class="blog-title">
                             #{bolgs_FAQManagedBean.blogs.title}
                         </b>
-                        <span class="blog-date"><i class="fa fa-calendar"></i> #{bolgs_FAQManagedBean.blogs.createdAt}</span>
+                        <span class="blog-date"><i class="fa fa-calendar"></i> 
+                        <h:outputText value="#{bolgs_FAQManagedBean.blogs.createdAt}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        </span>
 
                     </div>
                     <p class="blog-text pb-2 pt-2">
-                        <strong>#{bolgs_FAQManagedBean.blogs.description}</strong>.
+                        <strong>#{bolgs_FAQManagedBean.blogs.description}</strong>.<br></br>
                         #{bolgs_FAQManagedBean.blogs.blog}
                     </p>
                 </div>
