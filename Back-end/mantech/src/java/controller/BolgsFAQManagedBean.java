@@ -23,7 +23,6 @@ import model.FaqsFacade;
 @SessionScoped
 public class BolgsFAQManagedBean implements Serializable {
 
-    int id = 2;
     @EJB
     private BlogsFacade blogsFacade;
     @EJB
@@ -58,8 +57,8 @@ public class BolgsFAQManagedBean implements Serializable {
         return blogsFacade.findAll();
     }
 
-    public String gotoDetailsBlog() {
-        blogs = blogsFacade.find(id);
+    public String gotoDetailsBlog(Blogs blogs) {
+      this.blogs = blogs;
 
         return "blog_details";
     }

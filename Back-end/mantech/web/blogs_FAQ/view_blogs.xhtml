@@ -27,7 +27,7 @@
 
 
                             <ui:repeat value="#{bolgs_FAQManagedBean.findAllBlogs()}" var="item">
-                                <h:commandLink styleClass="no-link-style"  action="#{bolgs_FAQManagedBean.gotoDetailsBlog()}" >
+                                <h:commandLink styleClass="no-link-style"  action="#{bolgs_FAQManagedBean.gotoDetailsBlog(item)}" >
                                     <div class="card blog-card m-4" 
                                          role="button">
                                         <img src="../upload/blogs_photos/#{item.photo}" class="img-fluid" alt="..." />
