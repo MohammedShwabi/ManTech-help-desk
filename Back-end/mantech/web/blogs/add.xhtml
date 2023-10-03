@@ -21,7 +21,7 @@ and open the template in the editor.
                 <h:panelGrid columns="2">
                     <h:outputLabel value="Photo:" for="photo" />
   
-                    <h:inputFile value="#{blogsManagedBean.file}" />
+                    <h:inputFile id="photo" value="#{blogsManagedBean.file}" required="true" title="photo" requiredMessage="The photo field is required."/>
                     
                     <h:outputLabel value="Title:" for="title" />
                     <h:inputText id="title" value="#{blogsManagedBean.blogs.title}" title="Title" required="true" requiredMessage="The Title field is required.">
@@ -33,7 +33,7 @@ and open the template in the editor.
                     </h:inputTextarea>
                     <h:outputLabel value="Blog:" for="blog" />
                     <h:inputTextarea rows="4" cols="30" id="blog" value="#{blogsManagedBean.blogs.blog}" title="Blog" required="true" requiredMessage="The Blog field is required.">
-                   <f:validateLength minimum="5" maximum="50" />
+                   <f:validateLength minimum="15" />
                     </h:inputTextarea> 
                 </h:panelGrid>
                 <h:commandButton value="Add blog" action="#{blogsManagedBean.addBlog()}" />

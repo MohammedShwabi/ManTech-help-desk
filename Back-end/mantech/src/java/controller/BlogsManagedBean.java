@@ -97,18 +97,23 @@ public BlogsManagedBean() {    }
         
         if(file==null){
             //doing something here
+                    return "image is required"; 
+
         }else{
             String pathImage=  upload();
             blogs.setPhoto(pathImage);
+            blogs.setCreatedAt(new Date());    
+             blogsFacade.create(blogs);
+             this.resetBlogs();
+
+        return "view?faces-redirect=true"; 
+        // Redirect to a view page
+        
         }
         
-        blogs.setCreatedAt(new Date());
         
-        blogsFacade.create(blogs);
       
         
-        this.resetBlogs();
-        return "view?faces-redirect=true"; // Redirect to a view page
     }
     
 
