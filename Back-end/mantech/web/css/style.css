@@ -65,9 +65,24 @@ a.blog-link {
 
 }
 
-.blog-title {
+
+.blog-title-continar {
+    position: relative;
+}
+.blog-title-continar .blog-title {
     font-size: 26px;
 }
+.blog-title-continar .blog-date {
+    position: absolute;
+    right: 4rem;
+    top: 1rem;
+}
+@media(max-width: 768px) {
+    .blog-title-container .blog-date {
+        position: static; /* Change to the default positioning for small screens */
+    }
+}
+
 
 .blog-text {
     font-size: 18px;
