@@ -46,7 +46,7 @@
                             <h:inputText class="input-type" id="createdAt" value="#{blogsManagedBean.blogs.createdAt}" title="CreatedAt" required="true" requiredMessage="The CreatedAt field is required.">
                                 <f:convertDateTime pattern="MM/dd/yyyy" />
                             </h:inputText>
-                            <h:commandButton value="Save Changes" action="#{blogsManagedBean.update()}" />
+                            <h:commandButton class="web_btn mb-4 me-0" value="Save Changes" action="#{blogsManagedBean.update()}" />
 
                         </h:form>
                     </f:view>
