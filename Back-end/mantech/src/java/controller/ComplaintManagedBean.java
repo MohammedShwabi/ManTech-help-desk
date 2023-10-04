@@ -53,7 +53,7 @@ public class ComplaintManagedBean implements Serializable {
         "catId"
      */
     private String selectedFilterType = "techId"; // Default filter
-    
+
     public int getSelectedFilterID() {
         return selectedFilterID;
     }
@@ -79,7 +79,6 @@ public class ComplaintManagedBean implements Serializable {
     public List<Compliants> getFilteredComplaints() {
         return compliantsFacade.getFilteredComplaints(selectedFilterType, selectedFilterID);
     }
-
 
     // For select filter item drop-down list
     // Create a SelectItem which contains both the displayed label and the corresponding value.
@@ -144,36 +143,45 @@ public class ComplaintManagedBean implements Serializable {
 
         StringBuilder formattedDifference = new StringBuilder();
 
-        if (days > 0) {
-            formattedDifference.append(days).append(" day");
-            if (days > 1) {
-                formattedDifference.append("s");
-            }
-        }
-
-        if (hours > 0) {
-            formattedDifference.append(" and ");
-            formattedDifference.append(hours).append(" hour");
-            if (hours > 1) {
-                formattedDifference.append("s");
+        if (days > 0 || hours > 0 || minutes > 0) {
+            if (days > 0) {
+                formattedDifference.append(days).append(" day");
+                if (days > 1) {
+                    formattedDifference.append("s");
+                }
             }
 
-        }
-        if (minutes > 0) {
-            formattedDifference.append(" and ");
-            formattedDifference.append(minutes).append(" minute");
-            if (minutes > 1) {
-                formattedDifference.append("s");
+            if (hours > 0) {
+                if (formattedDifference.length() > 0) {
+                    formattedDifference.append(" and ");
+                }
+
+                formattedDifference.append(hours).append(" hour");
+                if (hours > 1) {
+                    formattedDifference.append("s");
+                }
+
             }
+            if (minutes > 0) {
+                if (formattedDifference.length() > 0) {
+                    formattedDifference.append(" and ");
+                }
 
+                formattedDifference.append(minutes).append(" minute");
+                if (minutes > 1) {
+                    formattedDifference.append("s");
+                }
+
+            }
+            return formattedDifference.toString();
+        } else {
+            return "Less than a minute";
         }
-
-        return formattedDifference.toString();
     }
 
     public static String fromatDate(Date date) {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEEE dd/MM/yyyy");
         return simpleDateFormat.format(date);
     }
-    
+
 }

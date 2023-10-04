@@ -130,12 +130,12 @@ public class PendingComplaintManagedBean implements Serializable {
     }
 
     // to get the "pending for" column using theis format 2 days 4 hours 3 mints
-    public String getPendingTime(Date startDate) {
+    public String getPendingTime(Date pendingDate) {
         
         // get the current data
         Date currentDate = new Date();
         
-        return ComplaintManagedBean.getSolvedTime(startDate, currentDate);
+        return ComplaintManagedBean.getSolvedTime(pendingDate, currentDate);
     }
     
     // For pending days drop-down list
