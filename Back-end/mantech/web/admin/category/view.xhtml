@@ -4,7 +4,8 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
         <title>Facelet Title</title>
         <link rel="stylesheet" href="../../css/bootstrap.min.css"/>
@@ -62,7 +63,7 @@
             </c:forEach>
             <h:form>
                 <div class="row">
-                    <h:inputText class="cat-input" value="#{categoryManagedBean.categories.name}" required="true" 
+                    <h:inputText class="cat-input" a:placeholder="Category Name" value="#{categoryManagedBean.categories.name}"  required="true" 
                                  requiredMessage="The Name field is required." validatorMessage="Name must be between 5 and 20 characters.">
                         <f:validateLength minimum="5" maximum="20" />
                         <f:ajax execute="@this" render="categoryTable" />

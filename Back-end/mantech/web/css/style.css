@@ -567,7 +567,7 @@ td {
     font-size: 1.2em;
     font-family: Arial;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 }
 
@@ -761,11 +761,17 @@ td {
     background-color: #D50000;
 }
 
-.share-icon {
+.share-icon{
     color: var(--main-color);
     font-size: 1.5em;
-    transform: rotate(20deg);
 }
+.share-icon:hover{
+    color:rgba(19, 101, 103,0.8) ;
+}
+.share-icon-i {
+    transform: rotate(10deg);
+}
+
 .send-icon{
     color: rgba(19, 101, 103,0.7);
     font-size: 1.5em;
@@ -802,6 +808,7 @@ td {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    color: #3c3c3c;
 }
 
 .selected-value {
@@ -892,7 +899,7 @@ td {
 }
 
 .admin-list-container{
-    margin: 12vh 16vw 5vh 13vw;
+    margin: 12vh 14vw 5vh 15vw;
 }
 .upd_btn {
     font-size: 1.2em;
@@ -937,6 +944,9 @@ td {
     line-height: 16px;
     font-size: 12px;
 }
+.clickable-div{
+    display: none;
+}
 
 
-/* End of maryam section*/a
+/* End of maryam section*/
