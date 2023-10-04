@@ -1,42 +1,59 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <head>
-        <title>TODO supply a title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-        <f:view>
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+     >
+    <h:head>
+        <title>Facelet Title</title>
+        <link rel="stylesheet" href="../css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="../css/style.css"/>
+        <link rel="stylesheet" href="../css/all.min.css"/>
+        <script src="../js/all.min.js"></script>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+    </h:head>
+    <h:body>
+        <!-- Include the header -->
+        <ui:include src="../header.xhtml" />
+        <br/>
+        <br/>
+        <!-- Main content goes here -->
+        <div id="content" class="mt-5">
+            <div class="container mt-5 mb-5">
+                <div class="row justify-content-md-center">
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <img src="../img/FAQs.svg" class="img-fluid" alt="..." />
+                    </div>
+                    <div class="col-lg-8 col-md-6">
+                        <div class="accordion accordion-flush shadow" id="accordionExample">
+                            <ui:repeat value="#{bolgs_FAQManagedBean.findAllFAQ()}" var="item">
+                                <div class="accordion-item">
+                                    <div class="card">
+                                        <h2 class="accordion-header" id="heading_#{item.id}">
+                                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                                    data-bs-target="#collapse_#{item.id}" aria-expanded="true"
+                                                    aria-controls="collapse_#{item.id}">
+                                                #{item.question}
+                                            </button>
+                                        </h2>
+                                        <div id="collapse_#{item.id}" class="accordion-collapse collapse" aria-labelledby="heading_#{item.id}"
+                                             data-bs-parent="#accordionExample">
+                                            <div class="accordion-body">
+                                                <p>#{item.answer}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ui:repeat>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+        </div>
 
-            <h:form>
-                <h1><h:outputText value="FAQ"/></h1>
-                <h:dataTable value="#{fAQManagedBean.findAll()}" var="item"  rows="5"    border="1" cellpadding="4px">
-                   
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Question"/>
-                        </f:facet>
-                        <h:outputText value="#{item.question}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Action"/>
-                        </f:facet>
-                        <h:commandLink value="details" action="#{fAQManagedBean.gotoAddgotoDetailsFAQ()}" />
-                    </h:column>
-                   
-                </h:dataTable>
-            </h:form>
-        </f:view>
-
-        
-    </body>
+        <!-- Include the footer -->
+        <ui:include src="../footer.xhtml" />
+    </h:body>
 </html>
+

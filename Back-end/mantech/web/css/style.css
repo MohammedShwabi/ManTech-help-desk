@@ -14,7 +14,34 @@ body {
     margin: 0;
     padding: 0;
 }
-
+/*all inputs*/ 
+.input-type{
+    display: block;
+    width: 60vw;
+    height: 40px;
+    margin: 1vw auto 2vw auto;
+    border: 2px solid #136567;
+    border-radius: 15px;
+    padding-left: 15px;
+    font-size: 16px;
+}
+/*all textArea*/
+.input-type-textarea{
+     width: 60vw;
+    height: 200px;
+    border-radius: 20px;
+    padding: 15px;
+    font-family: inherit;
+    margin: 1vw auto 2vw auto;
+}
+/*costoum-lable*/
+.costoum-lable{
+    display: block;
+    font-size: 1.5rem;
+    text-align: start;
+    padding-left: 10vw;
+    color: var(--main-color);
+}
 
 /* start of card design for blog pages */
 a.blog-link {
@@ -48,8 +75,126 @@ a.blog-link {
     /* color: var(--dark-pink) */
 }
 
+.no-link-style , .no-link-style:hover {
+    color: inherit; /* Use the parent's text color */
+    text-decoration: none; /* Remove underlines */
+}
+
 /* end of card design for blog pages */
 
+
+/* start  style for blog link */
+/* hover style */
+.blog-card .blog-links {
+    width: 213px;
+    margin: 0;
+    list-style: none;
+    opacity: 0;
+    transform: translateX(-50%) translateY(-50%);
+    position: absolute;
+    top: 48%;
+    left: 50%;
+    transition: all .4s ease 0s
+}
+
+.blog-card:hover .blog-links {
+    opacity: 1;
+    top: 50%
+}
+
+.blog-links li {
+    display: inline-block;
+    margin: 0 0.2rem;
+}
+
+ul:has(> li:nth-child(2)):not(:has(> li:nth-child(3)))>li {
+    margin: 0 1rem;
+}
+
+.blog-links li #delete_icon , #edit_icon{
+    background: #fff;
+    font-size: 1.4rem;
+    line-height: 3.2rem;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 2rem;
+    display: block;
+    position: relative;
+    transition: all .4s ease-out 0s;
+    -webkit-transition: all .4s ease-out 0s;
+    -moz-transition: all .4s ease-out 0s;
+    -ms-transition: all .4s ease-out 0s;
+    -o-transition: all .4s ease-out 0s;
+    -webkit-border-radius: 2rem;
+    -moz-border-radius: 2rem;
+    -ms-border-radius: 2rem;
+    -o-border-radius: 2rem;
+    text-align: center;
+}
+
+.blog-links li a:hover {
+    box-shadow: 1px 1px 30px 0 rgba(0, 0, 0, .2)
+}
+
+/* style for each icon bg and hover color */
+.blog-links li:hover .fa-pen,
+.blog-links li:hover .fa-trash-can {
+    color: #fff
+}
+
+.blog-links li a .fa-trash-can {
+    color: red
+}
+
+.blog-links li #edit_icon .fa-pen {
+    color: var(--main-color)
+}
+
+.blog-links li #edit_icon:hover .fa-pen {
+    color: var(--white)
+}
+
+.blog-links li #edit_icon:hover {
+    background: var(--main-color)
+}
+
+.blog-links li #delete_icon:hover {
+    background: red
+}
+
+/* tool tip */
+.blog-links li div:before,
+.blog-links li div:after {
+    content: attr(data-tip);
+    color: #fff;
+    background-color: #555;
+    font-size: 14px;
+    line-height: 18px;
+    padding: 5px 10px;
+    white-space: nowrap;
+    display: none;
+    transform: translateX(-50%);
+    position: absolute;
+    left: 50%;
+    top: -40px;
+    transition: all 0.3s ease 0s;
+}
+
+.blog-links li div:after {
+    content: '';
+    height: 10px;
+    width: 10px;
+    padding: 0;
+    transform: translateX(-50%) rotate(45deg);
+    top: -18px;
+    z-index: -1;
+}
+
+.blog-links li div:hover:before,
+.blog-links li div:hover:after {
+    display: block;
+}
+/* end  style for blog link */
 /* start blog details */
 .blog-img {
     padding-right: 0;
@@ -65,9 +210,24 @@ a.blog-link {
 
 }
 
-.blog-title {
+
+.blog-title-continar {
+    position: relative;
+}
+.blog-title-continar .blog-title {
     font-size: 26px;
 }
+.blog-title-continar .blog-date {
+    position: absolute;
+    right: 4rem;
+    top: 1rem;
+}
+@media(max-width: 768px) {
+    .blog-title-container .blog-date {
+        position: static; /* Change to the default positioning for small screens */
+    }
+}
+
 
 .blog-text {
     font-size: 18px;
@@ -75,6 +235,10 @@ a.blog-link {
 
 /* end blog details */
 /* start header */
+.navbar {
+    background-color: var(--white);
+}
+
 .navbar-nav .active {
     color: var(--main-color);
     font-weight: bold;

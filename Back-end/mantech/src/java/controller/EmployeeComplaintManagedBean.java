@@ -5,7 +5,6 @@
  */
 package controller;
 
-import entities.Blogs;
 import entities.Categories;
 import entities.Compliants;
 import entities.Employees;
@@ -133,6 +132,7 @@ public class EmployeeComplaintManagedBean implements Serializable {
     public String gotoAdd() {
         // Reset the Employee object and selected department
         compliants = new Compliants();
+        
         return "add";
     }
 
@@ -154,6 +154,20 @@ public class EmployeeComplaintManagedBean implements Serializable {
         }
         compliantsFacade.create(compliants);
         this.resetComplaint();
+        return "view?faces-redirect=true"; // Redirect to a view page
+    }
+    
+    
+    public String updateComplaint() throws IOException {
+
+        if (file == null) {
+            compliants.setPhoto("defult image");
+        } else {
+            String pathImage = upload();
+            compliants.setPhoto(pathImage);
+        }
+        compliantsFacade.edit(compliants);
+        this.resetComplaint();
         return "view"; // Redirect to a view page
     }
 
@@ -168,7 +182,7 @@ public class EmployeeComplaintManagedBean implements Serializable {
     public String upload() throws IOException {
         String fileName = file.getSubmittedFileName();
         InputStream fileContent = file.getInputStream();
-        String uploadDirectory = "C:\\Users\\Almomyz\\Documents\\GitHub\\ManTech-help-desk\\Back-end\\mantech\\web\\upload\\comlant_photos\\";
+        String uploadDirectory = "C:\\Users\\Almomyz\\Documents\\GitHub\\ManTech-help-desk\\Back-end\\mantech\\web\\upload\\complaints_photos\\";
         String filePath = uploadDirectory + fileName;
         try {
 
@@ -208,7 +222,7 @@ public class EmployeeComplaintManagedBean implements Serializable {
     public String resend() {
         compliants.setResend(true);
         compliantsFacade.edit(compliants);
-        return "complaintDetails?faces-redirect=true"; // Navigate to a different JSF page to display details 
+        return "complaintDetails?faces-redirect=tru1?2e"; // Navigate to a different JSF page to display details 
     }
 
     // to show or hide the resend btn

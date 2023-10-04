@@ -4,97 +4,84 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <ui:composition>
-        <div class="side">
-            <div class="container-fluid h-100 ">
-            
-                <div class="col-lg-2  p-0">
-                    <div class="container-fluid side-bar">
-                        <div class="icon-container p-3">
-                            <img src="../img/helpDeskLogo.svg" alt="Logo" style="width:9rem;" class="img-fluid" />
-                        </div>
+        <div class="container-fluid side-bar h-100">
+            <div class="icon-container p-3">
+                <img src="../../img/helpDeskLogo.svg" alt="Logo" style="width:9rem;" class="img-fluid" />
+            </div>
 
 
-                        <div class="photo-container text-center mt-4">
-                            <img src="../img/profile.svg" alt="Logo" class=" nav-photo img-fluid" id="round-profile" />
-                        </div>
+            <div class="photo-container text-center mt-4">
+                <img src="../../img/profile.svg" alt="Logo" class=" nav-photo img-fluid" id="round-profile" />
+            </div>
 
-                        <div class="side-bar-container mt-4">
-                            <ul class="list-unstyled ">
-                                <li class="mb-2 w-100">
-                                    <button class="btn side-header btn-toggle align-items-start collapsed w-100"
-                                            data-bs-toggle="collapse" data-bs-target="#complaints-collapse"
-                                            aria-expanded="false">
-                                        <span class="ps-4">
-                                            Complaints
-                                        </span>
-                                        <span class="side-bar-icon">
-                                            <i class="fa-solid fa-chevron-down open-icon" style="display: none;"></i>
-                                            <i class="fa-solid fa-chevron-up close-icon " ></i>  
-                                        </span>
-                                    </button>
-                                    <div class="collapse show" id="complaints-collapse">
-                                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                            <li><a href="#" class="slide-link">Categories</a></li>
-                                        </ul>
-                                    </div>
-                                </li>
-
-
-                                <li class="mb-2 w-100">
-                                    <button class="btn side-header btn-toggle align-items-start collapsed w-100"
-                                            data-bs-toggle="collapse" data-bs-target="#reports-collapse" aria-expanded="false">
-                                        <span class="ps-4">
-                                            Reports
-                                        </span>
-                                        <span class="side-bar-icon">
-                                            <i class="fa-solid fa-chevron-down open-icon" style="display: none;"></i>
-                                            <i class="fa-solid fa-chevron-up close-icon " ></i>  
-                                        </span>
-                                    </button>
-                                    <div class="collapse show" id="reports-collapse">
-                                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                            <li><a href="#" class="slide-link">Closed</a></li>
-                                            <li><a href="#" class="slide-link">Pending</a></li>
-                                            <li><a href="#" class="slide-link">Departments</a></li>
-                                            <li><a href="#" class="slide-link">Categories</a></li>
-                                            <li><a href="#" class="slide-link">Technicians</a></li>
-                                        </ul>
-                                    </div>
-                                </li>
-
-                                <li class="mb-2 w-100">
-                                    <button class="btn side-header btn-toggle align-items-start collapsed w-100"
-                                            data-bs-toggle="collapse" data-bs-target="#employees-collapse"
-                                            aria-expanded="false">
-                                        <span class="ps-4">
-                                            Employees  
-                                        </span>
-                                        <span class="side-bar-icon">
-                                            <i class="fa-solid fa-chevron-down open-icon" style="display: none;"></i>
-                                            <i class="fa-solid fa-chevron-up close-icon " ></i>  
-                                        </span>
-                                    </button>
-                                    <div class="collapse show" id="employees-collapse">
-                                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                            <li><a href="#" class="slide-link">Add employee</a></li>
-                                        </ul>
-                                    </div>
-                                </li>
-
+            <div class="side-bar-container mt-4">
+                <ul class="list-unstyled ">
+                    <li class="mb-2 w-100">
+                        <button class="btn side-header btn-toggle align-items-start collapsed w-100"
+                                data-bs-toggle="collapse" data-bs-target="#complaints-collapse"
+                                aria-expanded="false">
+                            <span class="ps-4">
+                                Complaints
+                            </span>
+                            <span class="side-bar-icon">
+                                <i class="fa-solid fa-chevron-down open-icon" style="display: none;"></i>
+                                <i class="fa-solid fa-chevron-up close-icon " ></i>  
+                            </span>
+                        </button>
+                        <div class="collapse show" id="complaints-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                <li><a href="#" class="slide-link">Categories</a></li>
                             </ul>
                         </div>
-                    </div>
+                    </li>
 
 
-                </div>
-                
-           
+                    <li class="mb-2 w-100">
+                        <button class="btn side-header btn-toggle align-items-start collapsed w-100"
+                                data-bs-toggle="collapse" data-bs-target="#reports-collapse" aria-expanded="false">
+                            <span class="ps-4">
+                                Reports
+                            </span>
+                            <span class="side-bar-icon">
+                                <i class="fa-solid fa-chevron-down open-icon" style="display: none;"></i>
+                                <i class="fa-solid fa-chevron-up close-icon " ></i>  
+                            </span>
+                        </button>
+                        <div class="collapse show" id="reports-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                <li><a href="#" class="slide-link">Closed</a></li>
+                                <li><a href="#" class="slide-link">Pending</a></li>
+                                <li><a href="#" class="slide-link">Departments</a></li>
+                                <li><a href="#" class="slide-link">Categories</a></li>
+                                <li><a href="#" class="slide-link">Technicians</a></li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="mb-2 w-100">
+                        <button class="btn side-header btn-toggle align-items-start collapsed w-100"
+                                data-bs-toggle="collapse" data-bs-target="#employees-collapse"
+                                aria-expanded="false">
+                            <span class="ps-4">
+                                Employees  
+                            </span>
+                            <span class="side-bar-icon">
+                                <i class="fa-solid fa-chevron-down open-icon" style="display: none;"></i>
+                                <i class="fa-solid fa-chevron-up close-icon " ></i>  
+                            </span>
+                        </button>
+                        <div class="collapse show" id="employees-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                <li><a href="#" class="slide-link">Add employee</a></li>
+                            </ul>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
         </div>
-        </div>
-        
+    </ui:composition>
 
-        </ui:composition>
-  
 </html>
-        
+
 

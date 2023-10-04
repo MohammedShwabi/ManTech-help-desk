@@ -1,29 +1,80 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Facelet Title</title>
+        <link rel="stylesheet" href="../css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="../css/style.css"/>
+        <link rel="stylesheet" href="../css/all.min.css"/>
+        <script src="../js/all.min.js"></script>
+        <script src="../js/bootstrap.bundle.min.js"></script>
     </h:head>
     <h:body>
-        <h:form    enctype="multipart/form-data" >
-        <h:outputText value="photo :    "/>
-        <h:outputText value="#{profileManagedBean.user.photo}"/>
-        <h:inputFile value="#{profileManagedBean.file}"  />
-        <h:commandButton value="edit photo" action="#{profileManagedBean.editImage()}" />
+
+        <!-- Include the header -->
+        <ui:include src="header.xhtml" />
         <br/>
-         <h:outputText value="email :    "/>
-        <h:outputText value="#{profileManagedBean.user.email}"/><br/>
-        <h:outputText value="password :    "/>
-        <h:outputText value="#{profileManagedBean.user.password}"/>
-        <h:link value="password reset" outcome="#{profileManagedBean.goToPasswordReset(profileManagedBean.user)}" /> <br/> <br/>
-       <h:outputText value="phoneNo :    "/>
-       
-        <h:outputText value="#{profileManagedBean.user.phoneNo}"/><br/>
-       <h:outputText value="department :    "/>
-       <h:outputText value="#{profileManagedBean.user.depId.name}"/><br/>
-        
-            </h:form>
+
+
+        <!-- Main content goes here -->
+        <div id="content" class="mt-5">
+            <div class="container mt-5">
+                <h:form    enctype="multipart/form-data" >
+                    <div class="row justify-content-md-center mb-4 pt-4">
+                        <p class="profile-title text-center">
+                            Profile
+                        </p>
+                    </div>
+
+                    <h:outputText value="photo :    "/>
+                    <h:outputText value="#{profileManagedBean.user.photo}"/>
+                    <h:inputFile value="#{profileManagedBean.file}"  />
+                    <h:commandButton value="edit photo" action="#{profileManagedBean.editImage()}" />
+                    <br/>
+
+                    <div class="row justify-content-md-center">
+                        <div class="profile-container">
+                            <img src="img/profile.png" alt="image" class="profile-img"></img>
+                        </div>
+                    </div>
+                    <div class="row justify-content-md-center mt-4">
+                        <a href="#" class="edit-link edit-photo text-center">
+                            Edit
+                        </a>
+                    </div>
+                    <div class="row justify-content-center mt-5">
+                        <div class="col-md-4 profile-detail">
+                            <table class="table table-borderless">
+                                <tr>
+                                    <td><i class="profile-icon fa-solid fa-envelope"></i></td>
+                                    <td><h:outputText value="#{profileManagedBean.user.email}"/></td>
+                                </tr>
+                                <tr>
+                                    <td><i class="profile-icon fa-solid fa-lock"></i></td>
+                                    <td><h:outputText value="#{profileManagedBean.user.password}"/></td>
+                                    <td>
+                                        <h:link class="edit-link edit-photo text-center" value="Reset" outcome="#{profileManagedBean.goToPasswordReset(profileManagedBean.user)}" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><i class="profile-icon fa-solid fa-phone"></i></td>
+                                    <td><h:outputText value="#{profileManagedBean.user.phoneNo}"/></td>
+                                </tr>
+                                <tr>
+                                    <td><i class="profile-icon fa-solid fa-user-tie"></i></td>
+                                    <td><h:outputText value="#{profileManagedBean.user.depId.name}"/></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </h:form>
+            </div>
+        </div>
+
+        <!-- Include the footer -->
+        <ui:include src="footer.xhtml" />
     </h:body>
 </html>
 

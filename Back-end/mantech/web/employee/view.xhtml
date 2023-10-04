@@ -2,80 +2,80 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Facelet Title</title>
-        <link rel="stylesheet" href="../css/bootstrap.min.css"/>
-        <link rel="stylesheet" href="../css/style.css"/>
-        <link rel="stylesheet" href="../css/all.min.css"/>
-        <script src="../js/all.min.js"></script>
-        <script src="../js/jquery-3.6.0.min.js"></script>
+        <style>            
+            .selected-link {
+                color: red; 
+            }
+
+        </style>
     </h:head>
     <h:body>
+        <f:view>
 
-        <p class="page_header">Employees </p>
-        <div class="btn_container">
-            <h:button class="web_btn" value="Add" outcome="#{employeeManagedBean.gotoAdd()}" />
-        </div>
-        <h:form>
-            <div class="list-container ">
+            <h:button value="Add" outcome="#{employeeComplaintManagedBean.gotoAdd()}" />
+            <br/><br/>
 
-                <div class="custom-select col-3 mt-0">
-                    <h:selectOneMenu class="select-button" id="departmentDropdown" value="#{employeeManagedBean.selectedDepartmentID}">
-                        <f:selectItem itemValue="0" itemLabel="All Departments" />
-                        <f:selectItems value="#{departmentManagedBean.departmentItems}" />
-                        <f:ajax execute="@this" render="employeeTable" />
-                    </h:selectOneMenu>
-                </div>
-                <h:panelGroup layout="block" id="employeeTable">
-                    <c:forEach  var="item" items="#{employeeManagedBean.filteredEmployees}" varStatus="item-i">
-                    <div class="list-item row" >
-                        <div class="pic-sec col-1 ">
-                            <img src="../img/#{item.photo}" />
-                        </div>
-                        <div class="list-text col-2">#{item.fullName}</div>
-                        <div class="list-text col-3">#{item.email}</div>
-                        <div class="list-text col-3">#{item.depId.name}</div>
-                        <div class="col-2">
-                            <h:selectBooleanCheckbox styleClass="custom-checkbox" value="#{item.activated}" id="statusCheckbox">
-                                <f:ajax execute="@this" render="@this" listener="#{employeeManagedBean.changeEmployeeStatus(item, !item.activated)}"/>
-                            </h:selectBooleanCheckbox>
-                            <h:outputLabel value="Activate" for="statusCheckbox" />
-                        </div>
-                        <div class="col-1">
-                            <div class="row mt-2 ">
-                                <h:commandLink class="edit-icon" action="#{employeeManagedBean.gotoUpdate(item)}">
-                                    <i class="fa-solid fa-pen"></i>
-                                </h:commandLink>
-                            </div>
-                            <div class="row mt-2 ">
-                                <h:commandLink class="delete-icon" action="#{employeeManagedBean.delete(item)}" onclick="return confirm('are sure to delete this employee?')">
-                                    <i class="fa-solid fa-trash"></i>
-                                </h:commandLink>
-                            </div>
+            <h:form>
+                <h1><h:outputText value="Complaint"/></h1>
 
-                        </div>
-                    </div>
-                </c:forEach>
+                <!-- links to filter complaints by status with AJAX -->
+                <h:panelGroup id="filterStatus">
+                    <h:commandLink value="All" styleClass="#{employeeComplaintManagedBean.selectedComplaintStatus eq 'all' ? 'selected-link' : ''}">
+                        <f:ajax execute="@this" render="complaintTable filterStatus" listener="#{employeeComplaintManagedBean.setSelectedComplaintStatus('all')}" />
+                    </h:commandLink><br/>
+                    <h:commandLink value="Waiting" styleClass="#{employeeComplaintManagedBean.selectedComplaintStatus eq 'waiting' ? 'selected-link' : ''}">
+                        <f:ajax execute="@this" render="complaintTable filterStatus" listener="#{employeeComplaintManagedBean.setSelectedComplaintStatus('waiting')}" />
+                    </h:commandLink><br/>
+                    <h:commandLink value="Pending" styleClass="#{employeeComplaintManagedBean.selectedComplaintStatus eq 'pending' ? 'selected-link' : ''}">
+                        <f:ajax execute="@this" render="complaintTable filterStatus" listener="#{employeeComplaintManagedBean.setSelectedComplaintStatus('pending')}" />
+                    </h:commandLink><br/>
+                    <h:commandLink value="Closed" styleClass="#{employeeComplaintManagedBean.selectedComplaintStatus eq 'closed' ? 'selected-link' : ''}">
+                        <f:ajax execute="@this" render="complaintTable filterStatus" listener="#{employeeComplaintManagedBean.setSelectedComplaintStatus('closed')}" />
+                    </h:commandLink>
                 </h:panelGroup>
 
+                <h:dataTable id="complaintTable" value="#{employeeComplaintManagedBean.findEmployeeComplaint()}" var="item" border="1" cellpadding="4px">
 
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Priority"/>
+                        </f:facet>
+                        <h:outputText value="#{item.priority}"/>
+                    </h:column>
 
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Title"/>
+                        </f:facet>
+                        <h:outputText value="#{item.title}"/>
+                    </h:column>
 
-            </div>
-        </h:form>
-        <div id="del-model-box">
-            <h5 class="modal-title mb-4" id="exampleModalLabel">Are you sure you want to delete:</h5>
-            <div style="display: flex;justify-content: center;">
-                <button type="button" class="btn btn-secondary m-2 me-3" onclick="closeModel()">No</button>
-                <button type="button" class="btn del-button m-2 ms-3">Yes</button>
-            </div>
-        </div>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Status"/>
+                        </f:facet>
+                        <h:outputText value="#{item.status}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Resend"/>
+                        </f:facet>
+                        <h:outputText value="#{item.resend}"/>
+                    </h:column>
 
+                    <!-- Column for showing complaint details -->
+                    <h:column>
+                        <f:facet name="header">destails</f:facet>
+                        <h:commandLink value="more destails" action="#{employeeComplaintManagedBean.showDetails(item)}" />
+                    </h:column>
 
-        <script src="../js/frontend.js"></script>
+                </h:dataTable>
+            </h:form>
+        </f:view>
+
     </h:body>
-
 </html>
 

@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <f:view>
+
+
+            <h:form>
+                <h1><h:outputText value="Create/Edit"/></h1>
+                <h:panelGrid columns="3">
+
+                    <h:outputLabel value="FullName:" for="fullName" />
+                    <h:inputText id="fullName" value="#{employeeManagedBean.employee.fullName}" title="Full Name" required="true" 
+                                 requiredMessage="The Full Name field is required." validatorMessage="Validation Error: Length is less than allowable minimum of '5'" >
+                        <f:validateLength minimum="5" maximum="50" />
+                    </h:inputText>
+                    <h:message for="fullName" style="color:blue" />
+
+                    <h:outputLabel value="PhoneNo:" for="phoneNo" />
+                    <h:inputText id="phoneNo" value="#{employeeManagedBean.employee.phoneNo}" title="Phone No" required="true" 
+                                 requiredMessage="The Phone No field is required." validatorMessage="Validation Error: Phone No must have exactly 9 digits" >
+                        <f:validateRegex pattern="^\d{9}$" />
+                    </h:inputText>
+                    <h:message for="phoneNo" style="color:blue" />
+
+                    <h:outputLabel value="Gender:" for="gender" />
+                    <h:selectOneMenu id="gender" value="#{employeeManagedBean.employee.gender}" title="Gender" required="true" requiredMessage="The gender field is gender." >
+                        <f:selectItem itemValue="Male" itemLabel="Male" />
+                        <f:selectItem itemValue="Female" itemLabel="Female" />
+                    </h:selectOneMenu>
+                    <h:message for="gender" style="color:blue" />
+
+                    <h:outputLabel value="Department:" for="department" />
+                    <h:selectOneMenu id="department" value="#{employeeManagedBean.selectedDepartmentId}" title="Department" required="true" requiredMessage="The department field is required." >
+                        <f:selectItems value="#{departmentManagedBean.departmentItems}" />
+                    </h:selectOneMenu> 
+                    <h:message for="department" style="color:blue" />
+
+                    <h:outputLabel value="Email:" for="email" />
+                    <h:inputText id="email" value="#{employeeManagedBean.employee.email}" title="Email" required="true"
+                                 requiredMessage="The Email field is required." 
+                                 validator="#{employeeManagedBean.validateUniqueEmail}">
+                    </h:inputText>
+                    <h:message for="email" style="color:blue" />
+                    
+                    <h:outputLabel value="Password:" for="password" />
+                    <h:inputText id="password" value="#{employeeManagedBean.employee.password}" title="Password" required="true" 
+                                 requiredMessage="The Password field is required." validatorMessage="Validation Error: Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one digit" >
+                        <f:validateRegex pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}$" />
+                    </h:inputText>
+                    <h:message for="password" style="color:blue" />
+
+                </h:panelGrid>
+                <h:commandButton value="Save Changes" action="#{employeeManagedBean.update()}" />
+            </h:form>
+        </f:view>
+
+    </h:body>
+</html>
+

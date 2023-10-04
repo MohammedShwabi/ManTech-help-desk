@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.84.0">
+    <title>Sidebars · Bootstrap v5.0</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">
+
+
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/all.min.js"></script>
+    <script src="js/frontend.js"></script>
+
+</head>
+
+<body class="h-100">
+    <div class="container-fluid h-100">
+        <div class="row h-100 ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|} ">
+            <div class="col-lg-2  p-0">
+                <div class="container-fluid side-bar h-100">
+                    <div class="icon-container p-3">
+                        <img src="img/helpDeskLogo.svg" alt="Logo" style="width:9rem;" class="img-fluid" />
+                    </div>
+
+
+                    <div class="photo-container text-center mt-4">
+                        <img src="img/profile.svg" alt="Logo" class=" nav-photo img-fluid" id="round-profile" />
+                    </div>
+
+                    <div class="side-bar-container mt-4">
+                        <ul class="list-unstyled ">
+                            <li class="mb-2 w-100">
+                                <button class="btn side-header btn-toggle align-items-start collapsed w-100"
+                                    data-bs-toggle="collapse" data-bs-target="#complaints-collapse"
+                                    aria-expanded="false">
+                                    <span class="ps-4">
+                                        Complaints
+                                    </span>
+                                    <span class="side-bar-icon">
+                                        <i class="fa-solid fa-chevron-down open-icon" style="display: none;"></i>
+                                        <i class="fa-solid fa-chevron-up close-icon " ></i>  
+                                    </span>
+                                </button>
+                                <div class="collapse show" id="complaints-collapse">
+                                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                        <li><a href="#" class="slide-link">Categories</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+
+
+                            <li class="mb-2 w-100">
+                                <button class="btn side-header btn-toggle align-items-start collapsed w-100"
+                                    data-bs-toggle="collapse" data-bs-target="#reports-collapse" aria-expanded="false">
+                                    <span class="ps-4">
+                                        Reports
+                                    </span>
+                                    <span class="side-bar-icon">
+                                        <i class="fa-solid fa-chevron-down open-icon" style="display: none;"></i>
+                                        <i class="fa-solid fa-chevron-up close-icon " ></i>  
+                                    </span>
+                                </button>
+                                <div class="collapse show" id="reports-collapse">
+                                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                        <li><a href="#" class="slide-link">Closed</a></li>
+                                        <li><a href="#" class="slide-link">Pending</a></li>
+                                        <li><a href="#" class="slide-link">Departments</a></li>
+                                        <li><a href="#" class="slide-link">Categories</a></li>
+                                        <li><a href="#" class="slide-link">Technicians</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li class="mb-2 w-100">
+                                <button class="btn side-header btn-toggle align-items-start collapsed w-100"
+                                    data-bs-toggle="collapse" data-bs-target="#employees-collapse"
+                                    aria-expanded="false">
+                                    <span class="ps-4">
+                                        Employees  
+                                    </span>
+                                    <span class="side-bar-icon">
+                                        <i class="fa-solid fa-chevron-down open-icon" style="display: none;"></i>
+                                        <i class="fa-solid fa-chevron-up close-icon " ></i>  
+                                    </span>
+                                </button>
+                                <div class="collapse show" id="employees-collapse">
+                                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                        <li><a href="#" class="slide-link">Add employee</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-lg-10 text-center ">
+                <p class="page_header">Add Blog </p>
+
+                < action="#">
+                    <input type="text" placeholder="photo">
+                    <input type="text" placeholder="title">
+                    <textarea name="" id="" cols="30" rows="10"></textarea>
+                    <textarea name="" id="" cols="30" rows="10"></textarea>
+                    <input type="text">
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

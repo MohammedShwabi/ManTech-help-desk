@@ -11,8 +11,11 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import javax.ejb.EJB;
-import javax.faces.bean.ManagedProperty;
+import javax.faces.application.FacesMessage;
+import javax.faces.application.NavigationHandler;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 import model.EmployeesFacade;
 
 /**
@@ -23,16 +26,18 @@ import model.EmployeesFacade;
 @SessionScoped
 public class LoginManagedBean implements Serializable {
 
+    // Variables for email and password and message
     private String email;
     private String password;
     private String message;
 
-//    @ManagedProperty(value = "#{userBean}")
+    // Variables for logged in employee details
     private Employees loggedInEmployee;
 
     @EJB
     private EmployeesFacade employeesFacade;
 
+    // Getter and setter methods for email and password and message
     public String getEmail() {
         return email;
     }
@@ -57,14 +62,6 @@ public class LoginManagedBean implements Serializable {
         this.message = message;
     }
 
-    public Employees getLoggedInEmployee() {
-        return loggedInEmployee;
-    }
-
-//    public void setLoggedInEmployee(Employees loggedInEmployee) {
-//        this.loggedInEmployee = loggedInEmployee;
-//    }
-
     /**
      * Creates a new instance of LoginManagedBean
      */
@@ -82,19 +79,20 @@ public class LoginManagedBean implements Serializable {
             // other for normal employee
             Departments department = loggedInEmployee.getDepId();
 
-            // save the current employee details
-            saveEmployeeDetails(loggedInEmployee);
+            // Store the employee in the session
+            HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+            session.setAttribute("loggedInEmployee", loggedInEmployee);
 
             // Redirect the user to the appropriate page based on their role
             if (department == null) {
                 // If department is null, go to the admin page
-                return "admin?faces-redirect=true";
+                return "/admin/admin_list?faces-redirect=true";
             } else if ("Allied system".equals(department.getName())) {
                 // If department is 'Allied system', go to the technician page
-                return "technician?faces-redirect=true";
+                return "/technician/view?faces-redirect=true";
             } else {
                 // For other departments, go to the employee page
-                return "employee?faces-redirect=true";
+                return "/employee/view?faces-redirect=true";
             }
         } else {
             message = "Invalid email or password.";
@@ -102,32 +100,54 @@ public class LoginManagedBean implements Serializable {
         }
     }
 
-    public void saveEmployeeDetails(Employees loggedInEmployee) {
-
-        // Store the employee in the session
-        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("loggedInEmployee", loggedInEmployee);
-    }
-
-    // use this in any page to check the user
-    public static void check_user() {
-
-        FacesContext facesContext = FacesContext.getCurrentInstance();
-        Employees loggedInEmployeea = (Employees) facesContext.getExternalContext().getSessionMap().get("loggedInEmployee");
-
-        // Check if loggedInEmployee is null, which means the user is not logged in or the session has expired
-        if (loggedInEmployeea != null) {
-            System.out.println("hi");
-            // You can access employee properties like loggedInEmployee.getFullName(), loggedInEmployee.getDepId(), etc.
-        } else {
-            // Handle the case when the user is not logged in or the session has expired
-            System.out.println("buy");
-        }
-    }
-
-    // Logout method to clear the session and redirect to the login page
+    /*
     public String logout() {
-        loggedInEmployee = null;
-        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        // Invalidate the user's session
+        ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+        HttpSession session = (HttpSession) externalContext.getSession(false);
+        session.invalidate();
+
+        // Redirect to the login page
         return "login?faces-redirect=true";
     }
+     */
+    // Logout method to clear the session and redirect to the login page
+    public String logout() {
+        // Get the current FacesContext
+        FacesContext context = FacesContext.getCurrentInstance();
+
+        // Get the ExternalContext
+        ExternalContext externalContext = context.getExternalContext();
+
+        // Get the HttpSession
+        HttpSession session = (HttpSession) externalContext.getSession(false);
+
+        // Check if the user is logged in
+        if (session != null) {
+            // Remove the loggedInEmployee attribute from the session
+            session.removeAttribute("loggedInEmployee");
+        }
+
+        // Redirect to the login page
+        gotoLogin(context);
+
+        // Return null to indicate a successful logout
+        return null;
+    }
+
+    // Handle redirection to login page
+    public static void gotoLogin(FacesContext context) {
+        // Configure the Flash scope to keep messages during a redirect
+        context.getExternalContext().getFlash().setKeepMessages(true);
+
+        // Create an error message and add it to the FacesContext
+        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "You have been logged out.", null));
+
+        // Obtain the NavigationHandler associated with the application
+        NavigationHandler navHandler = context.getApplication().getNavigationHandler();
+
+        // Trigger a navigation to the login page with a redirect
+        navHandler.handleNavigation(context, null, "/login.xhtml?faces-redirect=true");
+    }
+    
 }

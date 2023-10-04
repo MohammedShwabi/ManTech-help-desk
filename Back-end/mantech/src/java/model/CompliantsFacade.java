@@ -108,5 +108,12 @@ public class CompliantsFacade extends AbstractFacade<Compliants> {
                 .setParameter("status", status)
                 .getResultList();
     }
+    
+    public List<Compliants> findTechnicianComplaint(int technicianId, String status) {
+        return em.createNamedQuery("Compliants.findByTechnicianComplaint", Compliants.class)
+                .setParameter("technicianID", technicianId)
+                .setParameter("status", status)
+                .getResultList();
+    }
 
 }
