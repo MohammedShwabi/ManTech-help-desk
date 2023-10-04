@@ -38,7 +38,7 @@
                                 <h:inputTextarea class="input-type-textarea" id="blog" value="#{blogsManagedBean.blogs.blog}" title="Blog" required="true" requiredMessage="The Blog field is required.">
                                     <f:validateLength minimum="15" />
                                 </h:inputTextarea><br></br> 
-                            <h:commandButton value="Add blog" action="#{blogsManagedBean.addBlog()}" />
+                                <h:commandButton class="web_btn mb-4 me-0" value="Add blog" action="#{blogsManagedBean.addBlog()}" />
                         </h:form>
                     </f:view>
                 </div>

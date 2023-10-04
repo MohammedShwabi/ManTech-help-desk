@@ -27,7 +27,7 @@ body {
 }
 /*all textArea*/
 .input-type-textarea{
-     width: 60vw;
+    width: 60vw;
     height: 200px;
     border-radius: 20px;
     padding: 15px;
@@ -81,7 +81,16 @@ a.blog-link {
 }
 
 /* end of card design for blog pages */
-
+/*design add blog btn*/
+.blog-container{
+    position: relative;
+}
+.add-blog-btn{
+    position: fixed;
+    text-decoration: none;
+    top: 38rem;
+    right: 4rem;
+}
 
 /* start  style for blog link */
 /* hover style */
