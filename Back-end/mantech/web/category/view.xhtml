@@ -32,8 +32,8 @@
                             <div class="row mt-2">
                                 <h:form>
                                     <!-- Render "Update/OK" or "Update" button based on edit state -->
-                                    <h:commandLink class="edit-icon me-1" action="#{categoryManagedBean.checkUpdate(item)}" > <i class="fa-solid fa-pen"></i></h:commandLink>
-                                    <h:commandLink class="delete-icon ms-1" action="#{categoryManagedBean.delete(item)}" onclick="return confirm('are sure to delete this?')" ><i class="fa-solid fa-trash"></i></h:commandLink>
+                                    <h:commandLink class="edit-icon me-3" action="#{categoryManagedBean.checkUpdate(item)}" > <i class="fa-solid fa-pen"></i></h:commandLink>
+                                    <h:commandLink class="delete-icon me-3" action="#{categoryManagedBean.delete(item)}" onclick="return confirm('are sure to delete this?')" ><i class="fa-solid fa-trash"></i></h:commandLink>
 
                                 </h:form>
                             </div>
@@ -51,8 +51,8 @@
                                 <h:message for="name" style="color:red" />
                             </div>
                             <div class="btn_container">
-                                <h:commandButton value="Save" action="#{categoryManagedBean.checkUpdate(item)}" class="upd_btn m-0"/>
-                                <h:commandButton value="Cancel" class="can_btn m-0" action="#{categoryManagedBean.cancelEdit()}" rendered="#{categoryManagedBean.isEditing(item)}" />
+                                <h:commandButton value="Save" action="#{categoryManagedBean.checkUpdate(item)}" class="upd_btn m-0 ms-1"/>
+                                <h:commandButton value="Cancel" class="can_btn m-0 ms-1" action="#{categoryManagedBean.cancelEdit()}" rendered="#{categoryManagedBean.isEditing(item)}" />
                             </div>
                         </h:form>
                     </h:panelGroup>
