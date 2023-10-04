@@ -13,9 +13,12 @@ import java.io.InputStream;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.servlet.http.Part;
 import model.BlogsFacade;
 
@@ -25,7 +28,11 @@ import model.BlogsFacade;
  */
 @Named(value = "blogsManagedBean")
 @SessionScoped
+//@RequestScoped
 public class BlogsManagedBean implements Serializable {
+
+    @Inject
+    private LoginManagedBean loginBean;
 
     private Part file;
 
@@ -54,18 +61,11 @@ public class BlogsManagedBean implements Serializable {
      */
     public BlogsManagedBean() {
     }
-    int id = 1;
 
     // for get all Blogs data
     public List<Blogs> findAll() {
         return blogsFacade.findAll();
     }
-
-    public Blogs find() {
-        return blogsFacade.find(id);
-    }
-
-   
 
     public String gotoAdd() {
         // Reset the Employee object
@@ -76,7 +76,7 @@ public class BlogsManagedBean implements Serializable {
     // to go to update page and pass the current object to fill the form input
     public String gotoUpdate(Blogs blog) {
         this.blogs = blog;
-        return "update";
+        return "update?faces-redirect=true";
     }
 
     // to delete an Blogs
@@ -90,7 +90,6 @@ public class BlogsManagedBean implements Serializable {
         if (file == null) {
             //doing something here
             return "image is required";
-
         } else {
             String pathImage = upload();
             blogs.setPhoto(pathImage);
@@ -102,7 +101,6 @@ public class BlogsManagedBean implements Serializable {
             // Redirect to a view page
 
         }
-
     }
 
     // reset the question object
@@ -117,15 +115,11 @@ public class BlogsManagedBean implements Serializable {
         if (file != null) {
             String name = upload();
             blogs.setPhoto(name);
-            blogsFacade.edit(blogs);
-            this.resetBlogs();
-            return "view?faces-redirect=true";
-        } else {
-            blogsFacade.edit(blogs);
-            this.resetBlogs();
-            return "view?faces-redirect=true";
         }
+        blogsFacade.edit(blogs);
+        this.resetBlogs();
         // Redirect to a view page
+        return "view?faces-redirect=true";
     }
 
     //upload image blog

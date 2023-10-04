@@ -4,62 +4,45 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Add Employee</title>
+        <title>Facelet Title</title>
     </h:head>
     <h:body>
         <f:view>
-            <h:form>
-                <h1>Add Employee</h1>
+            <h:form enctype="multipart/form-data">
+                <h1><h:outputText value="Create/Edit"/></h1>
                 <h:panelGrid columns="3">
-                    
-                    <h:outputLabel value="Full Name:" for="fullName" />
-                    <h:inputText id="fullName" value="#{employeeManagedBean.employee.fullName}" title="Full Name" required="true" 
-                                 requiredMessage="The Full Name field is required." validatorMessage="Validation Error: Length is less than allowable minimum of '5'" >
-                        <f:validateLength minimum="5" maximum="50" />
-                    </h:inputText>
-                    <h:message for="fullName" style="color:blue" />
-                    
-                    <h:outputLabel value="Phone No:" for="phoneNo" />
-                    <h:inputText id="phoneNo" value="#{employeeManagedBean.employee.phoneNo}" title="Phone No" required="true" 
-                                 requiredMessage="The Phone No field is required." validatorMessage="Validation Error: Phone No must have exactly 9 digits" >
-                        <f:validateRegex pattern="^\d{9}$" />
-                    </h:inputText>
-                    <h:message for="phoneNo" style="color:blue" />
-                    
-                    <h:outputLabel value="Gender:" for="gender" />
-                    <h:selectOneMenu id="gender" value="#{employeeManagedBean.employee.gender}" title="Gender" required="true" requiredMessage="The gender field is gender.">
-                        <f:selectItem itemValue="Male" itemLabel="Male" />
-                        <f:selectItem itemValue="Female" itemLabel="Female" />
+
+                    <h:outputLabel value="Title:" for="title" />
+                    <h:inputText id="title" value="#{employeeComplaintManagedBean.compliants.title}" title="Title" required="true" requiredMessage="The Title field is required."/>
+                    <h:message for="title" style="color:blue" />
+
+                    <h:outputLabel value="Description:" for="description" />
+                    <h:inputTextarea rows="4" cols="30" id="description" value="#{employeeComplaintManagedBean.compliants.description}" title="Description" required="true" requiredMessage="The Description field is required."/>
+                    <h:message for="description" style="color:blue" />
+
+                    <h:outputLabel value="Photo:" for="photo" />
+                    <h:inputFile value="#{employeeComplaintManagedBean.file}" />
+                    <h:message for="photo" style="color:blue" />
+
+                    <h:outputLabel value="Category:" for="categoryDropdown" />
+                    <h:selectOneMenu id="categoryDropdown" value="#{employeeComplaintManagedBean.selectedCategoryId}" title="Category" required="true" requiredMessage="The Category field is required.">
+                        <f:selectItems value="#{employeeComplaintManagedBean.getCategoryItems()}" />
                     </h:selectOneMenu>
-                    <h:message for="gender" style="color:blue" />
-                    
-                    <h:outputLabel value="Department:" for="department" />
-                    <h:selectOneMenu id="department" value="#{employeeManagedBean.selectedDepartmentId}" title="Department" required="true" requiredMessage="The department field is required." >
-                        <f:selectItems value="#{departmentManagedBean.departmentItems}" />
+                    <h:message for="categoryDropdown" style="color:blue" />
+
+                    <h:outputLabel value="Priority:" for="priorityDropdown" />
+                    <h:selectOneMenu id="priorityDropdown" value="#{employeeComplaintManagedBean.compliants.priority}" title="Priority" required="true" requiredMessage="The Priority field is required.">
+                        <f:selectItem itemValue="high" itemLabel="High" />
+                        <f:selectItem itemValue="medium" itemLabel="Medium" />
+                        <f:selectItem itemValue="low" itemLabel="Low" />
                     </h:selectOneMenu>
-                    <h:message for="department" style="color:blue" />
-                    
-                    <h:outputLabel value="Email:" for="email" />
-                    <h:inputText id="email" value="#{employeeManagedBean.employee.email}" title="Email" required="true"
-                                 requiredMessage="The Email field is required." 
-                                 validator="#{employeeManagedBean.validateUniqueEmail}">
-                    </h:inputText>
-                    <h:message for="email" style="color:blue" />
-                    
-                    <h:outputLabel value="Password:" for="password" />
-                    <h:inputText id="password" value="#{employeeManagedBean.employee.password}" title="Password" required="true" 
-                                 requiredMessage="The Password field is required." validatorMessage="Validation Error: Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one digit" >
-                        <f:validateRegex pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}$" />
-                    </h:inputText>
-                    <h:message for="password" style="color:blue" />
-                    <h:outputLabel value="Confirm  Password:" for="Confirm_New_Password" />
-                    <h:inputText id="Confirm_New_Password" value="#{employeeManagedBean.confirm_Password}" title="Confirm New Password" required="true"  requiredMessage="The Password field is required." validatorMessage="Validation Error: Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one digit">
-                    <f:validateRegex pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}$" />
-                    </h:inputText>
-                    
+                    <h:message for="priorityDropdown" style="color:blue" />
+
                 </h:panelGrid>
-                <h:commandButton value="Add Employee" action="#{employeeManagedBean.addEmployee()}" />
+                <h:commandButton value="Add complaint" action="#{employeeComplaintManagedBean.addComplaint()}" />
             </h:form>
         </f:view>
+
     </h:body>
 </html>
+

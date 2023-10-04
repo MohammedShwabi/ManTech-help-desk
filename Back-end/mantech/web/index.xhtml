@@ -1,37 +1,45 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        Hello from man-tech help disk <br/>
-        <h:link value="go to employee" outcome="employee/view" /> <br/>
-        <h:link value="go to FAQ" outcome="faq/view" /> <br/>
-        <h:link value="go to Categories" outcome="category/view" /> <br/>
-        <h:link value="go to Blogs" outcome="blogs/view" /> <br/>
-        <h:link value="go to Login" outcome="login" /> <br/>
-        <h:link value="go to technicians report" outcome="report/complaints" /> <br/>
-        <h:link value="go to pending report" outcome="report/pendingComplaints" /> <br/>
-        <h:link value="go to closed report" outcome="report/closedComplaints" /> <br/>
-
-        <h:link value="go to complaints" outcome="complaint/view" /> <br/>
-        <h:link value="go to emplyee complaint" outcome="employee_complaint/view" /><br/>
-
-        <h:link value="go to technician complaint" outcome="technician_complaint/view" /><br/>
-
-        <h:link value="go to waiting complaint" outcome="complaint/view" /> <br/>
-
-        <h:link value="go to header_temp" outcome="header_temp" /><br/>
-        <h:link value="go to sidebar_temp" outcome="sidebar_temp" /><br/>
-        <h:link value="view_blogs" outcome="blogs_FAQ/view_blogs" /> <br/>
+        Hello from man-tech help disk <br />
         
-        <h1>Done</h1>
-        <h:link value="go to profile " outcome="profile" /> <br/>  
-        <h:link value="view_FAQ User" outcome="blogs_FAQ/view_FAQ" /> <br/>
-        <h:link value="view_blogs" outcome="blogs_FAQ/view_blogs" /> <br/>
+        <h4>do not forget to login at first</h4>
+        <h:link value="go to login" outcome="login" /> <br />
+
+        <h4>for employee</h4>
+        <h:link value="go to employee" outcome="employee/view" /> <br />
+
+        <h4>for technician</h4>
+        <h:link value="go to technician complaint" outcome="technician/view" /><br />
+
+        <h4>for any one</h4>
+        <h:link value="go to blogs show" outcome="blogs_FAQ/view_blogs" /><br />
+        <h:link value="go to FAQ show" outcome="blogs_FAQ/view_FAQ" /><br />
+
+        <h4>for admin</h4>
+        <h:link value="go to employee" outcome="admin/employee/view" /> <br />
+        <h:link value="go to category" outcome="admin/category/view" /> <br />
+
+        <h:link value="go to Blogs" outcome="admin/blogs/view" /> <br />
+        <h:link value="go to faq" outcome="admin/faq/view" /> <br />
+
+        <h:link value="go to complaint" outcome="admin/complaint/view" /> <br />
+
+        <h:link value="go to closed Complaints" outcome="admin/report/closedComplaints" /> <br />
+        <h:link value="go to pending Complaints" outcome="admin/report/pendingComplaints" /> <br />
+
+        <h:link value="go to Complaints filters" outcome="admin/report/complaints" /> <br />  <br />
+
+        <h:form>
+            <h:commandButton value="Logout" action="#{loginManagedBean.logout}" />  <br />
+        </h:form>
+
 
     </h:body>
-</html>
 
+</html>
