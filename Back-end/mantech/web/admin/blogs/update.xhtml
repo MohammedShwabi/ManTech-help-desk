@@ -1,51 +1,62 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <head>
-        <title>TODO supply a title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-        <f:view>
+    <h:head>
+        <title>Facelet Title</title>
+        <link rel="stylesheet" href="../../css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="../../css/style.css"/>
+        <link rel="stylesheet" href="../../css/all.min.css"/>
+        <script src="../../js/all.min.js"></script>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
+        <script src="../../js/frontend.js"></script>
+    </h:head>
+    <h:body>
+        <div class="container-fluid">
+            <div class="row justify-content-md-center">
+                <div class="col-lg-2  p-0">
+                    <ui:include src="../../side_bar.xhtml" />
+                </div>
+                <div class="col-lg-10 text-center">
+                    <f:view>
 
 
-            <h:form enctype="multipart/form-data">
-                <h1><h:outputText value="update"/></h1>
-                <h:panelGrid columns="2">
-                    
-                    <h:outputLabel value="Photo:" for="photo" />
-                  <h:inputFile value="#{blogsManagedBean.file}" />
-                    <h:outputLabel value="Title:" for="title" />
-                    <h:inputText id="title" value="#{blogsManagedBean.blogs.title}" title="Title" required="true" requiredMessage="The Title field is required.">
-                   <f:validateLength minimum="5" maximum="50" />
-      
-                    </h:inputText>
-                   
-                    <h:outputLabel value="Description:" for="description" />
-                    <h:inputTextarea rows="4" cols="30" id="description" value="#{blogsManagedBean.blogs.description}" title="Description" required="true" requiredMessage="The Description field is required.">
-                     <f:validateLength minimum="5" maximum="50" />
-                    </h:inputTextarea>   
-                        
-                    <h:outputLabel value="Blog:" for="blog" />
-                    <h:inputTextarea rows="4" cols="30" id="blog" value="#{blogsManagedBean.blogs.blog}" title="Blog" required="true" requiredMessage="The Blog field is required.">
-                    <f:validateLength minimum="5" maximum="50" />
-                    </h:inputTextarea>
-                    <h:outputLabel value="CreatedAt:" for="createdAt" />
-                    <h:inputText id="createdAt" value="#{blogsManagedBean.blogs.createdAt}" title="CreatedAt" required="true" requiredMessage="The CreatedAt field is required.">
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:inputText>
-                </h:panelGrid>
+                        <h:form enctype="multipart/form-data">
+                            <h:outputText class="page_header" value="Edit Blog"/>
+                            <h:outputLabel class="costoum-lable" value="Photo:" for="photo" />
+                            <h:inputFile class="input-type" value="#{blogsManagedBean.file}" />
+                            <h:outputLabel class="costoum-lable" value="Title:" for="title" />
+                            <h:inputText class="input-type" id="title" value="#{blogsManagedBean.blogs.title}" title="Title" required="true" requiredMessage="The Title field is required.">
+                                <f:validateLength minimum="5" maximum="50" />
+
+                            </h:inputText>
+
+                            <h:outputLabel class="costoum-lable" value="Description:" for="description" />
+                            <h:inputTextarea class="input-type-textarea" rows="4" cols="30" id="description" value="#{blogsManagedBean.blogs.description}" title="Description" required="true" requiredMessage="The Description field is required.">
+                                <f:validateLength minimum="5" maximum="50" />
+                            </h:inputTextarea>   
+
+                            <h:outputLabel class="costoum-lable" value="Blog:" for="blog" />
+                            <h:inputTextarea class="input-type-textarea" rows="4" cols="30" id="blog" value="#{blogsManagedBean.blogs.blog}" title="Blog" required="true" requiredMessage="The Blog field is required.">
+                                <f:validateLength minimum="5" maximum="50" />
+                            </h:inputTextarea>
+                            <h:outputLabel class="costoum-lable" value="CreatedAt:" for="createdAt" />
+                            <h:inputText class="input-type" id="createdAt" value="#{blogsManagedBean.blogs.createdAt}" title="CreatedAt" required="true" requiredMessage="The CreatedAt field is required.">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:inputText>
                             <h:commandButton value="Save Changes" action="#{blogsManagedBean.update()}" />
 
-            </h:form>
-        </f:view>
+                        </h:form>
+                    </f:view>
 
-    </body>
+                </div>
+            </div>
+        </div>
+
+        <!-- Include the footer -->
+        <ui:include src="../../footer.xhtml" />
+    </h:body>
 </html>
+

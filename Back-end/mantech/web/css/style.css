@@ -14,7 +14,34 @@ body {
     margin: 0;
     padding: 0;
 }
-
+/*all inputs*/ 
+.input-type{
+    display: block;
+    width: 60vw;
+    height: 40px;
+    margin: 1vw auto 2vw auto;
+    border: 2px solid #136567;
+    border-radius: 15px;
+    padding-left: 15px;
+    font-size: 16px;
+}
+/*all textArea*/
+.input-type-textarea{
+     width: 60vw;
+    height: 200px;
+    border-radius: 20px;
+    padding: 15px;
+    font-family: inherit;
+    margin: 1vw auto 2vw auto;
+}
+/*costoum-lable*/
+.costoum-lable{
+    display: block;
+    font-size: 1.5rem;
+    text-align: start;
+    padding-left: 10vw;
+    color: var(--main-color);
+}
 
 /* start of card design for blog pages */
 a.blog-link {
