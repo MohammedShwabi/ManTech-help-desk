@@ -2,49 +2,64 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Facelet Title</title>
+        <link rel="stylesheet" href="../../css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="../../css/style.css"/>
+        <link rel="stylesheet" href="../../css/all.min.css"/>
+        <script src="../../js/all.min.js"></script>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
+        <script src="../../js/frontend.js"></script>
     </h:head>
     <h:body>
-        <f:view>
-            
-            <h:link value="add" outcome="#{fAQManagedBean.gotoAdd()}" /> <br/> <br/>
-            
-            <h:form>
-                <h1><h:outputText value="List"/></h1>
-                <h:dataTable value="#{fAQManagedBean.findAll()}" var="item" border="1" cellpadding="4px" >
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Question"/>
-                        </f:facet>
-                        <h:outputText value="#{item.question}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Answer"/>
-                        </f:facet>
-                        <h:outputText value="#{item.answer}"/>
-                    </h:column>
-                    
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Action"/>
-                        </f:facet>
-                        <h:commandLink value="update" action="#{fAQManagedBean.gotoUpdate(item)}" />
-                    </h:column>
-                    
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Action"/>
-                        </f:facet>
-                        <h:commandLink value="delete" action="#{fAQManagedBean.delete(item)}" onclick="return confirm('are sure to delete this?')" />
-                    </h:column>
-                    
-                </h:dataTable>
-            </h:form>
-        </f:view>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-2  p-0">
+                    <ui:include src="../../side_bar.xhtml" />
+                </div>
+                <div class="col-lg-10 ">
+                    <div class="container mt-5 mb-5">
+                        <h:link class="web_btn mb-4 me-0 add-blog-btn  overflow-visible" value="Add FAQ" outcome="#{fAQManagedBean.gotoAdd()}" /> <br/> <br/>
+                        <div class="row justify-content-md-center">
+                            <div class="col-lg-10 col-md-6">
+                                <div class="accordion accordion-flush shadow" id="accordionExample">
+                                    <h:form>
+                                        <ui:repeat value="#{fAQManagedBean.findAll()}" var="item">
+                                            <div class="accordion-item">
+                                                <div class="card">
+                                                    <h2 class="accordion-header" id="heading_#{item.id}">
+                                                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                                                data-bs-target="#collapse_#{item.id}" aria-expanded="true"
+                                                                aria-controls="collapse_#{item.id}">
+                                                            #{item.question}
+                                                        </button>
+                                                    </h2>
+                                                    <div id="collapse_#{item.id}" class="accordion-collapse collapse" aria-labelledby="heading_#{item.id}"
+                                                         data-bs-parent="#accordionExample">
+                                                        <div class="accordion-body">
+                                                            <p>#{item.answer}</p>
+                                                        </div>
+                                                        <div class="text-center mb-3 mt-0 ">
+                                                            <h:commandLink class="web_btn me-0 mt-0 me-lg-5 faq-btn" value="Update" action="#{fAQManagedBean.gotoUpdate(item)}" />
+                                                            <h:commandLink class="web_btn me-0 mt-0 ms-lg-5 faq-btn faq-btn-delete" value="Delete" action="#{fAQManagedBean.delete(item)}" onclick="return confirm('are sure to delete this?')" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </ui:repeat>
+                                    </h:form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        <!-- Include the footer -->
+        <ui:include src="../../footer.xhtml" />
     </h:body>
 </html>
 
