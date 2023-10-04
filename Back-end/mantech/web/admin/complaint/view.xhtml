@@ -24,8 +24,8 @@
                                 </h:panelGroup>
                             </div>
                             <div class="list-item m-0 pe-0 col-lg-10">
-                                <h:commandLink class="col-lg-11 m-1" style="text-decoration: none;display: inherit" action="#{waitingComplaintManagedBean.showDetails(item)}">
-                                    
+                                <h:commandLink class="col-lg-6 m-1" style="text-decoration: none;display: inherit" action="#{waitingComplaintManagedBean.showDetails(item)}">
+
                                     <h:panelGroup rendered="#{item.priority == 'high'}">
                                         <!-- you can change this to any icon you want -->
                                         <div class="pri-sec col-lg-1 ">H</div>
@@ -40,16 +40,16 @@
                                     </h:panelGroup>
                                     <h:inputHidden id="itemId" value="#{item.id}" />
 
-                                    <div class="list-text col-lg-5 col-md-5 ms-3 ">#{item.title}</div>
-
-                                    <div class="custom-select col-lg-2 ms-1  mt-0">
-                                        <h:selectOneMenu class="select-button" id="technicianDropdown" value="#{waitingComplaintManagedBean.selectedTechnicianID}">
-                                            <f:selectItems value="#{waitingComplaintManagedBean.technicianItems}" />
-                                        </h:selectOneMenu>
-
-                                    </div>
-
+                                    <div class="list-text col-lg-9 col-md-9 ms-3 ">#{item.title}</div>
                                 </h:commandLink>
+                                <div class="custom-select col-lg-2 ms-1  mt-0">
+                                    <h:selectOneMenu class="select-button" id="technicianDropdown" value="#{waitingComplaintManagedBean.selectedTechnicianID}">
+                                        <f:selectItems value="#{waitingComplaintManagedBean.technicianItems}" />
+                                    </h:selectOneMenu>
+
+                                </div>
+
+
                                 <div class=" col-lg-1 me-1">
                                     <h:commandLink class="share-icon " action="#{waitingComplaintManagedBean.assignComplaint(item)}">
                                         <i class="share-icon-i fa-solid fa-paper-plane "></i>
