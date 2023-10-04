@@ -36,7 +36,7 @@ public class TechnicianFilter implements Filter {
             Employees loggedInEmployee = (Employees) session.getAttribute("loggedInEmployee");
 
             // Check if the user is technician
-            if (loggedInEmployee.getDepId() != null && "Allied system".equals(loggedInEmployee.getDepId().getName())) {
+            if (loggedInEmployee.getDepId().getId() == 6) {
                 // Technician has access to technician-related folders, so continue the request
                 chain.doFilter(request, response);
                 return;

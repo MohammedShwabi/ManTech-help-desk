@@ -164,7 +164,7 @@ public class ClosedComplaintManagedBean implements Serializable {
                 filterItems.addAll(getSelectItems(categoriesFacade.findAll()));
                 break;
             case "dep":
-                filterItems.addAll(getSelectItems(departmentsFacade.findEmployeeDepartments(6)));
+                filterItems.addAll(getSelectItems(departmentsFacade.findEmployeeDepartments()));
                 break;
         }
         return filterItems;

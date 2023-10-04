@@ -35,18 +35,19 @@ public class EmployeeFilter implements Filter {
 
             Employees loggedInEmployee = (Employees) session.getAttribute("loggedInEmployee");
 
-            // Check if the user is technician
-            if (loggedInEmployee.getDepId() != null
-                    && !"Allied system".equals(loggedInEmployee.getDepId().getName())) {
+            // get the department id
+            int depID = loggedInEmployee.getDepId().getId();
+
+            // Check if the user is employee
+            if (depID != 6 && depID != 7) {
                 // Employee has access to employee-related folders, so continue the request
                 chain.doFilter(request, response);
                 return;
             }
         }
-        
+
         // Redirect to an unauthorized page (customize the page as needed)
         // request.getRequestDispatcher("/unauthorized.xhtml").forward(request, response);
-        
         // User is not logged in, redirect to the login page
         request.getRequestDispatcher("/login.xhtml").forward(request, response);
     }

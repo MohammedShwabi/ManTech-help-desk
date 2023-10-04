@@ -37,7 +37,7 @@ public class AdminFilter implements Filter {
             Employees loggedInEmployee = (Employees) session.getAttribute("loggedInEmployee");
             
             // Check if the user is an admin
-            if (loggedInEmployee.getDepId() == null) {
+            if (loggedInEmployee.getDepId().getId() == 7) {
                 // Admin has access to all folders, so continue the request
                 chain.doFilter(request, response);
                 return;

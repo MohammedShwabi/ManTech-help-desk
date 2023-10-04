@@ -13,12 +13,9 @@ import java.io.InputStream;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.context.FacesContext;
-import javax.inject.Inject;
 import javax.servlet.http.Part;
 import model.BlogsFacade;
 
@@ -30,9 +27,6 @@ import model.BlogsFacade;
 @SessionScoped
 //@RequestScoped
 public class BlogsManagedBean implements Serializable {
-
-    @Inject
-    private LoginManagedBean loginBean;
 
     private Part file;
 

@@ -51,7 +51,7 @@ public class DepartmentManagedBean implements Serializable {
     // <f:selectItems value="#{departmentManagedBean.find_all()}" var="dept" itemValue="#{dept.id}" itemLabel="#{dept.name}" />
     public List<SelectItem> getDepartmentItems() {
         departmentItems = new ArrayList<>();
-        List<Departments> departments = departmentsFacade.findAll();
+        List<Departments> departments = departmentsFacade.findEmployeeDepartments();
         departments.forEach((dept) -> {
             departmentItems.add(new SelectItem(dept.getId(), dept.getName()));
         });
@@ -63,10 +63,4 @@ public class DepartmentManagedBean implements Serializable {
      */
     public DepartmentManagedBean() {
     }
-
-    // to get all the department
-    public List<Departments> find_all() {
-        return departmentsFacade.findAll();
-    }
-
 }

@@ -9,7 +9,6 @@ import entities.Departments;
 import entities.Employees;
 import model.EmployeesFacade;
 import model.DepartmentsFacade;
-
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -123,11 +122,7 @@ public class EmployeeManagedBean implements Serializable {
     private Integer selectedDepartmentID = 0; // Default to "All" departments
 
     public List<Employees> getFilteredEmployees() {
-//        if ("All".equals(selectedDepartmentName)) {
-//            return employeesFacade.findAll();
-//        } else {
         return employeesFacade.findByDepartmentID(selectedDepartmentID);
-//        }
     }
 
     public Integer getSelectedDepartmentID() {

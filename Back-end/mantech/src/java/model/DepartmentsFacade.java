@@ -30,10 +30,8 @@ public class DepartmentsFacade extends AbstractFacade<Departments> {
         super(Departments.class);
     }
 
-    public List<Departments> findEmployeeDepartments(Integer excludedId) {
-        return em.createNamedQuery("Departments.findAllExceptId")
-                .setParameter("excludedId", excludedId)
-                .getResultList();
+    public List<Departments> findEmployeeDepartments() {
+        return em.createNamedQuery("Departments.findEmployeeDepartments").getResultList();
     }
 
 }

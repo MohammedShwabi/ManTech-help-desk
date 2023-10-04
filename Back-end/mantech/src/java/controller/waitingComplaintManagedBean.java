@@ -10,8 +10,8 @@ import entities.Employees;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
-import java.util.AbstractList;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.model.SelectItem;
@@ -85,6 +85,8 @@ public class waitingComplaintManagedBean implements Serializable {
         c.setTechId(selectedTechnician);
         // also update the status of the complaint to be pending
         c.setStatus("pending");
+        // and add the pending date
+        c.setPendingDate(new Date());
 
         // save change to db
         compliantsFacade.edit(c);

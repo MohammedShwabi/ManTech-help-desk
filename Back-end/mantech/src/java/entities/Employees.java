@@ -35,8 +35,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Employees.findAll", query = "SELECT e FROM Employees e")
-    , @NamedQuery(name = "Employees.findAllExceptAdmin", query = "SELECT e FROM Employees e WHERE e.id != :excludedId")
-    , @NamedQuery(name = "Employees.findByDepartmentExceptAdmin", query = "SELECT e FROM Employees e WHERE e.depId.id = :departmentId AND e.id != :excludedId")
+    , @NamedQuery(name = "Employees.findByDepartmentExceptAdmin", query = "SELECT e FROM Employees e WHERE (0 = :departmentId OR e.depId.id = :departmentId) AND e.depId.id != 7")
+    , @NamedQuery(name = "Employees.findAllTechnician", query = "SELECT e FROM Employees e WHERE e.depId.id = 6")
     , @NamedQuery(name = "Employees.findById", query = "SELECT e FROM Employees e WHERE e.id = :id")
     , @NamedQuery(name = "Employees.findByFullName", query = "SELECT e FROM Employees e WHERE e.fullName = :fullName")
     , @NamedQuery(name = "Employees.findByGender", query = "SELECT e FROM Employees e WHERE e.gender = :gender")

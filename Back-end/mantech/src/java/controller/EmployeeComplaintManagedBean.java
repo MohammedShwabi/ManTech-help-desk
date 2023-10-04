@@ -54,8 +54,8 @@ public class EmployeeComplaintManagedBean implements Serializable {
     // save the choosed item
     private Integer selectedCategoryId;
 
-    // it should get it from the session after the user login
-    int employeeId = 2;
+    // get the current logged in user from the session
+    Employees currentUser = LoginManagedBean.getCurrentUser();
 
     private Part file;
 
@@ -119,7 +119,7 @@ public class EmployeeComplaintManagedBean implements Serializable {
 
     // to filter complaints by status
     public List<Compliants> findEmployeeComplaint() {
-        return compliantsFacade.findEmployeeComplaint(employeeId, selectedComplaintStatus);
+        return compliantsFacade.findEmployeeComplaint(currentUser.getId(), selectedComplaintStatus);
     }
 
     // to go to complaintDetails page
@@ -132,18 +132,17 @@ public class EmployeeComplaintManagedBean implements Serializable {
     public String gotoAdd() {
         // Reset the Employee object and selected department
         compliants = new Compliants();
-        
+
         return "add";
     }
 
     // Method to add a new employee
     public String addComplaint() throws IOException {
         Categories categories = categoriesFacade.find(selectedCategoryId);
-        Employees employees = employeesFacade.find(employeeId);
 
         compliants.setCreatedDate(new Date());
         compliants.setCatId(categories);
-        compliants.setEmpId(employees);
+        compliants.setEmpId(currentUser);
         compliants.setStatus("waiting");
 
         if (file == null) {
@@ -156,8 +155,7 @@ public class EmployeeComplaintManagedBean implements Serializable {
         this.resetComplaint();
         return "view?faces-redirect=true"; // Redirect to a view page
     }
-    
-    
+
     public String updateComplaint() throws IOException {
 
         if (file == null) {

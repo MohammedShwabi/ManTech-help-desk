@@ -48,9 +48,9 @@ public class ComplaintManagedBean implements Serializable {
     private int selectedFilterID = 0; // Default to "All"
     /*
         allower value for first param:
-        "tech"
-        "dep"
-        "cat"
+        "techId"
+        "empId.depId"
+        "catId"
      */
     private String selectedFilterType = "techId"; // Default filter
     
@@ -96,7 +96,7 @@ public class ComplaintManagedBean implements Serializable {
                 filterItems.addAll(getSelectItems(categoriesFacade.findAll()));
                 break;
             case "empId.depId":
-                filterItems.addAll(getSelectItems(departmentsFacade.findEmployeeDepartments(6)));
+                filterItems.addAll(getSelectItems(departmentsFacade.findEmployeeDepartments()));
                 break;
         }
         return filterItems;

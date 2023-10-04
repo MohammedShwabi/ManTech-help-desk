@@ -58,8 +58,7 @@ public class BolgsFAQManagedBean implements Serializable {
     }
 
     public String gotoDetailsBlog(Blogs blogs) {
-      this.blogs = blogs;
-
+        this.blogs = blogs;
         return "blog_details";
     }
 

@@ -6,6 +6,7 @@
 package controller;
 
 import entities.Compliants;
+import entities.Employees;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
@@ -39,8 +40,8 @@ public class TechnicianComplaintManagedBean implements Serializable {
     // all, pending, closed
     private String selectedComplaintStatus = "all"; // Default status
 
-    // it should get it from the session after the user login
-    int technicianId = 17;
+    // get the current logged in user from the session
+    Employees currentUser = LoginManagedBean.getCurrentUser();
 
     public String getSelectedComplaintStatus() {
         return selectedComplaintStatus;
@@ -58,7 +59,7 @@ public class TechnicianComplaintManagedBean implements Serializable {
 
     // to filter complaints by status
     public List<Compliants> findTechnicianComplaint() {
-        return compliantsFacade.findTechnicianComplaint(technicianId, selectedComplaintStatus);
+        return compliantsFacade.findTechnicianComplaint(currentUser.getId(), selectedComplaintStatus);
     }
 
     // to go to complaintDetails page

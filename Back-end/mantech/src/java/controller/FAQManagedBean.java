@@ -24,7 +24,6 @@ public class FAQManagedBean implements Serializable {
     @EJB
     private FaqsFacade faqsFacade;
     private Faqs faqs = new Faqs();
-    int id = 1;
 
     public Faqs getFaqs() {
         return faqs;
@@ -43,12 +42,6 @@ public class FAQManagedBean implements Serializable {
     // for get all FAQ data
     public List<Faqs> findAll() {
         return faqsFacade.findAll();
-    }
-
-    public String gotoAddgotoDetailsFAQ() {
-        // Reset the Employee object
-        faqs = faqsFacade.find(id);
-        return "FAQ_details";
     }
 
     public String gotoAdd() {

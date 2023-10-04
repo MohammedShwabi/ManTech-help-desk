@@ -5,7 +5,6 @@
  */
 package controller;
 
-import entities.Departments;
 import entities.Employees;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -74,25 +73,24 @@ public class LoginManagedBean implements Serializable {
 
         if (loggedInEmployee != null) {
             // to get the department id 
-            // null for admin
-            // "Allied system" for technical
-            // other for normal employee
-            Departments department = loggedInEmployee.getDepId();
+            // 7 for admin, 6 for technician and other for normal employee
+            int depID = loggedInEmployee.getDepId().getId();
 
             // Store the employee in the session
             HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
             session.setAttribute("loggedInEmployee", loggedInEmployee);
 
             // Redirect the user to the appropriate page based on their role
-            if (department == null) {
-                // If department is null, go to the admin page
-                return "/admin/admin_list?faces-redirect=true";
-            } else if ("Allied system".equals(department.getName())) {
-                // If department is 'Allied system', go to the technician page
-                return "/technician/view?faces-redirect=true";
-            } else {
-                // For other departments, go to the employee page
-                return "/employee/view?faces-redirect=true";
+            switch (depID) {
+                case 7:
+                    // If department ID is 7, go to the admin page
+                    return "/admin/admin_list?faces-redirect=true";
+                case 6:
+                    // If department ID is 6, go to the technician page
+                    return "/technician/view?faces-redirect=true";
+                default:
+                    // For other departments, go to the employee page
+                    return "/employee/view?faces-redirect=true";
             }
         } else {
             message = "Invalid email or password.";
@@ -100,17 +98,6 @@ public class LoginManagedBean implements Serializable {
         }
     }
 
-    /*
-    public String logout() {
-        // Invalidate the user's session
-        ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-        HttpSession session = (HttpSession) externalContext.getSession(false);
-        session.invalidate();
-
-        // Redirect to the login page
-        return "login?faces-redirect=true";
-    }
-     */
     // Logout method to clear the session and redirect to the login page
     public String logout() {
         // Get the current FacesContext
@@ -149,5 +136,22 @@ public class LoginManagedBean implements Serializable {
         // Trigger a navigation to the login page with a redirect
         navHandler.handleNavigation(context, null, "/login.xhtml?faces-redirect=true");
     }
-    
+
+    public static Employees getCurrentUser() {
+
+        // Get the FacesContext
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+
+        // Get the ExternalContext
+        ExternalContext externalContext = facesContext.getExternalContext();
+
+        // Get the HttpSession
+        HttpSession session = (HttpSession) externalContext.getSession(false);
+
+        // Access the loggedInEmployee object from the session
+        Employees loggedInUser = (Employees) session.getAttribute("loggedInEmployee");
+
+        return loggedInUser;
+    }
+
 }

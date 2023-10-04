@@ -171,7 +171,8 @@ INSERT INTO `departments` (`id`, `name`) VALUES
 (3, 'Learning services'),
 (4, 'Internal system'),
 (5, 'Human resource'),
-(6, 'Allied system');
+(6, 'Allied system'),
+(7, 'Administration');
 
 -- --------------------------------------------------------
 
