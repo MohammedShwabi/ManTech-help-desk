@@ -5,18 +5,18 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Facelet Title</title>
-        <link rel="stylesheet" href="../css/bootstrap.min.css"/>
-        <link rel="stylesheet" href="../css/style.css"/>
-        <link rel="stylesheet" href="../css/all.min.css"/>
-        <script src="../js/all.min.js"></script>
-        <script src="../js/bootstrap.bundle.min.js"></script>
-        <script src="../js/frontend.js"></script>
+        <link rel="stylesheet" href="../../css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="../../css/style.css"/>
+        <link rel="stylesheet" href="../../css/all.min.css"/>
+        <script src="../../js/all.min.js"></script>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
+        <script src="../../js/frontend.js"></script>
     </h:head>
     <h:body>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-2  p-0">
-                    <ui:include src="../side_bar.xhtml" />
+                    <ui:include src="../../side_bar.xhtml" />
                 </div>
                 <div class="col-lg-10 ">
                     <div class="container">
@@ -28,10 +28,9 @@
                                 <!-- display all blog -->
                                 <h:form>
                                     <ui:repeat value="#{blogsManagedBean.findAll()}" var="item">
-                                        <h:commandLink styleClass="no-link-style"  action="#{blogsManagedBean.gotoDetailsBlog(item)}" >
                                             <div class="card blog-card m-4" 
                                                  role="button">
-                                                <img src="../upload/blogs_photos/#{item.photo}" class="img-fluid" alt="..." />
+                                                <img src="../../upload/blogs_photos/#{item.photo}" class="img-fluid" alt="..." />
                                                 <!-- show blog name and blog desc and limit to a specific character -->
                                                 <div class="blog-card-body pt-4 ps-3">
                                                     <b class="blog-card-title">
@@ -58,7 +57,7 @@
                                                     </ul>
                                                 </div>
                                             </div>
-                                        </h:commandLink>
+                                       
                                     </ui:repeat>
                                 </h:form>
                             </div>
@@ -70,7 +69,7 @@
         </div>
 
         <!-- Include the footer -->
-        <ui:include src="../footer.xhtml" />
+        <ui:include src="../../footer.xhtml" />
     </h:body>
 </html>
 
