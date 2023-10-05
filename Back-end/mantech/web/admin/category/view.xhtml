@@ -15,55 +15,50 @@
 
     </h:head>
     <h:body>
-       
+
         <p class="page_header">Categories</p>
 
-
-
         <div class="cat-list-container">
-            <c:forEach var="item" items="#{categoryManagedBean.findAll()}" varStatus="item-i">
-                <div class="list-item row">
-                    <!-- Render output text if not editing -->
-                    <h:panelGroup rendered="#{!categoryManagedBean.isEditing(item)}">
-                        <div class="cat-list col-1">#{item.id}</div>
-                        <div class="cat-list-text col-9" >
-                            #{item.name}
-                        </div>
-                        <div class="col-2">
-                            <div class="row mt-2">
-                                <h:form>
-                                    <!-- Render "Update/OK" or "Update" button based on edit state -->
-                                    <h:commandLink class="edit-icon me-3" action="#{categoryManagedBean.checkUpdate(item)}" > <i class="fa-solid fa-pen"></i></h:commandLink>
-                                    <h:commandLink class="delete-icon me-3" action="#{categoryManagedBean.delete(item)}" onclick="return confirm('are sure to delete this?')" ><i class="fa-solid fa-trash"></i></h:commandLink>
-
-                                </h:form>
+            <h:form id="editForm">
+                <c:forEach id="categoryTable" var="item" items="#{categoryManagedBean.findAll()}" varStatus="item-i">
+                    <div class="list-item row">
+                        <!-- Render output text if not editing -->
+                        <h:panelGroup rendered="#{!categoryManagedBean.isEditing(item)}">
+                            <div class="cat-list col-1">#{item.id}</div>
+                            <div class="cat-list-text col-9" >
+                                #{item.name}
                             </div>
-                        </div>
-                    </h:panelGroup>
-                    <!-- Render input text if editing -->
-                    <h:panelGroup rendered="#{categoryManagedBean.isEditing(item)}">
-                        <h:form>
+                            <div class="col-2">
+                                <div class="row mt-2">
+                                    <!-- Render "Update" button based on edit state -->
+                                    <h:commandLink class="edit-icon me-3" action="#{categoryManagedBean.startEditing(item)}" > <i class="fa-solid fa-pen"></i></h:commandLink>
+                                    <h:commandLink class="delete-icon me-3" action="#{categoryManagedBean.delete(item)}" onclick="return confirm('are sure to delete this?')" ><i class="fa-solid fa-trash"></i></h:commandLink>
+                                </div>
+                            </div>
+                        </h:panelGroup>
+                        <!-- Render input text if editing -->
+                        <h:panelGroup rendered="#{categoryManagedBean.isEditing(item)}">
                             <div class="row">
-                                <h:inputText class="cat-input" value="#{item.name}" required="true" 
-                                             requiredMessage="The Name field is required." validatorMessage="Name must be between 5 and 20 characters.">
+                                <h:inputText id="update_cat_#{item.id}" class="cat-input" value="#{categoryManagedBean.editingCategory.name}" required="true" 
+                                             requiredMessage="The Name field is required." validatorMessage="Name must be between 5 and 20 characters." >
                                     <f:validateLength minimum="5" maximum="20" />
-                                    <f:ajax execute="@this" render="categoryTable" />
                                 </h:inputText>
-                                <h:message for="name" style="color:red" />
+                                <h:message for="update_cat_#{item.id}" style="color:red" />
                             </div>
                             <div class="btn_container">
-                                <h:commandButton value="Save" action="#{categoryManagedBean.checkUpdate(item)}" class="upd_btn m-0 ms-1"/>
-                                <h:commandButton value="Cancel" class="can_btn m-0 ms-1" action="#{categoryManagedBean.cancelEdit()}" rendered="#{categoryManagedBean.isEditing(item)}" />
+                                <h:commandButton value="Save" action="#{categoryManagedBean.updateCategory()}" class="upd_btn m-0 ms-1" />
+                                <h:commandButton value="Cancel" class="can_btn m-0 ms-1" action="#{categoryManagedBean.cancelEdit()}" onclick="resetForm();" />
                             </div>
-                        </h:form>
-                    </h:panelGroup>
+                        </h:panelGroup>
 
-                </div>
+                    </div>
 
-            </c:forEach>
+                </c:forEach>
+            </h:form>
+
             <h:form>
                 <div class="row">
-                    <h:inputText class="cat-input" a:placeholder="Category Name" value="#{categoryManagedBean.categories.name}"  required="true" 
+                    <h:inputText id="name" class="cat-input" a:placeholder="Category Name" value="#{categoryManagedBean.categories.name}"  required="true" 
                                  requiredMessage="The Name field is required." validatorMessage="Name must be between 5 and 20 characters.">
                         <f:validateLength minimum="5" maximum="20" />
                         <f:ajax execute="@this" render="categoryTable" />
@@ -77,9 +72,15 @@
         </div>
 
 
-        
+
         <ui:include src="../../footer.xhtml"/>
     </h:body>
+    <script>
+        function resetForm() {
+            document.getElementById("editForm").reset();
+        }
+    </script>
+
     <script src="../js/../frontend.js"></script>
 </html>
 

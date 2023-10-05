@@ -197,7 +197,7 @@ CREATE TABLE `employees` (
 --
 
 INSERT INTO `employees` (`id`, `full_name`, `gender`, `activated`, `email`, `password`, `phone_no`, `photo`, `dep_id`) VALUES
-(1, 'Hesham Noaman', 'Male', 1, 'admin@gmail.com', 'admin', '01236547890', 'profile.svg', NULL),
+(1, 'Hesham Noaman', 'Male', 1, 'admin@gmail.com', 'admin', '01236547890', 'profile.svg', 7),
 (2, 'Jane Smith', 'Female', 1, 'janesmith@example.com', 'password2', '555-2222', 'profile.svg', 2),
 (3, 'Mike Johnson', 'Male', 1, 'mikejohnson@example.com', 'password3', '555-3333', 'profile.svg', 3),
 (4, 'Emily Brown', 'Female', 1, 'emilybrown@example.com', 'password4', '555-4444', 'profile.svg', 4),

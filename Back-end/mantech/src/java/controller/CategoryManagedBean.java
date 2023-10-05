@@ -66,17 +66,13 @@ public class CategoryManagedBean implements Serializable {
     }
 
     // cancel editing
-    public void cancelEdit() {
+    public String cancelEdit() {
         stopEditing();
-    }
 
-    // handles the logic for the "Update/OK" button
-    public void checkUpdate(Categories cat) {
-        if (isEditing(cat)) {
-            updateCategory(); // If already editing, update the category
-        } else {
-            startEditing(cat); // If not editing, start editing this category
-        }
+        String tes = (editingCategory == null) ? "ok" : "not";
+        System.out.println("-------------it work: " + tes);
+
+        return "view?faces-redirect=true";
     }
 
     /**
@@ -91,15 +87,17 @@ public class CategoryManagedBean implements Serializable {
     }
 
     // to delete an category
-    public void delete(Categories categories) {
+    public String delete(Categories categories) {
         categoriesFacade.remove(categories);
+        return "view?faces-redirect=true";
     }
 
     // to add a new category
-    public void addCategory() {
+    public String addCategory() {
         categoriesFacade.create(categories);
         // Clear the input field
         categories = new Categories();
+        return "view?faces-redirect=true";
     }
 
 }
