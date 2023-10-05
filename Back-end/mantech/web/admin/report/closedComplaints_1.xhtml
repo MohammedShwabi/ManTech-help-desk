@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <title>Closed Complaints</title>
+    </h:head>
+    <h:body>
+
+        <h:form>
+
+            <!-- Dropdown to select category -->
+            <h:outputLabel for="categoryDropdown" value="Filter by Category: " />
+            <h:selectOneMenu id="categoryDropdown" value="#{closedComplaintManagedBean.selectedCategory}">
+                <f:selectItem itemValue="" itemLabel="All Categories" />
+                <f:selectItems value="#{closedComplaintManagedBean.getFilterItems('cat')}" />
+                <f:ajax render="complaintsTable complaintsCount" />
+            </h:selectOneMenu>
+
+            <!-- Dropdown to select department -->
+            <h:outputLabel for="departmentDropdown" value="Filter by Department: " />
+            <h:selectOneMenu id="departmentDropdown" value="#{closedComplaintManagedBean.selectedDepartment}">
+                <f:selectItem itemValue="0" itemLabel="All Departments" />
+                <f:selectItems value="#{closedComplaintManagedBean.getFilterItems('dep')}" />
+                <f:ajax render="complaintsTable complaintsCount" />
+            </h:selectOneMenu>
+
+            <!-- Dropdown to select priority -->
+            <h:outputLabel for="priorityDropdown" value="Filter by Priority: " />
+            <h:selectOneMenu id="priorityDropdown" value="#{closedComplaintManagedBean.selectedPriority}">
+                <f:selectItem itemValue="all" itemLabel="All Priorities" />
+
+                <f:selectItem itemValue="high" itemLabel="High" />
+                <f:selectItem itemValue="medium" itemLabel="Medium" />
+                <f:selectItem itemValue="low" itemLabel="Low" />
+
+                <f:ajax render="complaintsTable complaintsCount" />
+            </h:selectOneMenu>
+
+            <!-- Radio buttons to select pending days filter -->
+            <br/><br/>
+            <h:outputLabel value="Filter by Created Date:" />
+            <h:selectOneRadio value="#{closedComplaintManagedBean.selectedFilter}">
+                <f:selectItem  itemValue="day" itemLabel="Day" />
+                <f:selectItem itemValue="month" itemLabel="Month" />
+                <f:selectItem itemValue="week" itemLabel="Week" />
+                <f:ajax render="dateInput complaintsTable complaintsCount" />
+            </h:selectOneRadio>
+
+            <!-- Date input based on selected filter -->
+            <h:panelGroup id="dateInput">
+                <!-- input for filter by day -->
+                <h:inputText a:type="date" id="createDate" value="#{closedComplaintManagedBean.selectedDate}" 
+                             rendered="#{closedComplaintManagedBean.selectedFilter eq 'day'}">
+                    <f:convertDateTime pattern="yyyy-MM-dd" />
+                </h:inputText>
+
+                <!-- input for filter by week -->
+                <h:inputText a:type="week" id="createWeeks" value="#{closedComplaintManagedBean.selectedWeek}" 
+                             rendered="#{closedComplaintManagedBean.selectedFilter eq 'week'}" />
+
+                <!-- input for filter by month -->
+                <h:inputText a:type="month" id="createMonthYear" value="#{closedComplaintManagedBean.selectedYearMonth}" 
+                             rendered="#{closedComplaintManagedBean.selectedFilter eq 'month'}" />
+            </h:panelGroup>
+
+
+            <!-- filter and rest buttons -->
+            <h:commandButton value="Filter" action="closedComplaints" />
+            <h:commandButton value="Rest" action="#{closedComplaintManagedBean.restFilter()}" />
+
+
+            <!-- Complaint count -->
+            <h3><h:outputText id="complaintsCount" value="#{closedComplaintManagedBean.getFilteredComplaints().size()} Complaints"/></h3>
+
+            <h:dataTable id="complaintsTable" value="#{closedComplaintManagedBean.getFilteredComplaints()}" var="item" border="1" cellpadding="4px">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Id"/>
+                    </f:facet>
+                    <h:outputText value="#{item.id}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Priority"/>
+                    </f:facet>
+                    <h:outputText value="#{item.priority}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="CreatedDate"/>
+                    </f:facet>
+                    <h:outputText value="#{item.createdDate}">
+                        <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="PendingDate"/>
+                    </f:facet>
+                    <h:outputText value="#{item.pendingDate}">
+                        <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="ClosedDate"/>
+                    </f:facet>
+                    <h:outputText value="#{item.closedDate}">
+                        <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Solved Time"/>
+                    </f:facet>
+                    <h:outputText value="#{complaintsBean.getSolvedTime(item.pendingDate, item.closedDate)}" />
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Employee Name"/>
+                    </f:facet>
+                    <h:outputText value="#{item.employee}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Category"/>
+                    </f:facet>
+                    <h:outputText value="#{item.category}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Department"/>
+                    </f:facet>
+                    <h:outputText value="#{item.department}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Technician Name"/>
+                    </f:facet>
+                    <h:outputText value="#{item.technician}"/>
+                </h:column>
+
+                <!-- Column for showing complaint details -->
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="destails"/>
+                    </f:facet>
+                    <h:commandLink value="more destails" action="#{closedComplaintManagedBean.showDetails(closedComplaintManagedBean.convertComplaintByMonthToCompliants(item))}" />
+                </h:column>
+
+            </h:dataTable>
+
+
+        </h:form>
+
+    </h:body>
+
+</html>
