@@ -272,7 +272,7 @@ AS SELECT `comp`.`id` AS `id`, `title`, `description`, `comp`.`photo`, `priority
 `tech`.`id` AS `tech_id`, `tech`.`full_name` AS `technician`,
 date_format(`comp`.`created_date`,'%Y-%m') AS `formatted_month`, yearweek(`comp`.`created_date`,3) AS `week_number`,
 cast(`comp`.`created_date` as date) AS `date` 
-FROM ((((`compliants` `comp` join `employees` `emp` on(`emp`.`id` = `comp`.`emp_id`)) join `departments` `dep` on(`dep`.`id` = `emp`.`dep_id`)) join `employees` `tech` on(`tech`.`id` = `comp`.`tech_id`)) join `categories` `cat` on(`cat`.`id` = `comp`.`cat_id`)) WHERE `comp`.`status` = 'closed' ORDER BY `comp`.`id` ASC ;
+FROM ((((`compliants` `comp` join `employees` `emp` on(`emp`.`id` = `comp`.`emp_id`)) join `departments` `dep` on(`dep`.`id` = `emp`.`dep_id`)) join `employees` `tech` on(`tech`.`id` = `comp`.`tech_id`)) join `categories` `cat` on(`cat`.`id` = `comp`.`cat_id`)) ORDER BY `comp`.`id` ASC ;
 
 --
 -- Indexes for dumped tables

@@ -101,7 +101,7 @@ public class waitingComplaintManagedBean implements Serializable {
     public String showDetails(Compliants c) {
         // Store the selected complaint in a property for display in a different view
         this.compliants = c;
-        return "waitingComplaintDetails?faces-redirect=true"; // Navigate to a different JSF page to display details
+        return "waitingComplaintDetails"; // Navigate to a different JSF page to display details
     }
 
     // to update the priority in complaintDetails page
