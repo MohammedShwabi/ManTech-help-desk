@@ -2,49 +2,88 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Complaint Details</title>
+        <link rel="stylesheet" href="../../css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="../../css/style.css"/>
+        <link rel="stylesheet" href="../../css/all.min.css"/>
+        <script src="../../js/all.min.js"></script>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
+        <script src="../../js/frontend.js"></script>
     </h:head>
     <h:body>
-        <f:view>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-2  p-0">
+                    <ui:include src="../side_bar.xhtml" />
+                </div>
+                <div class="col-lg-10 ">
+                    <f:view>
 
-            <h:form>
-                <!-- Display the selected complaint details -->
-                <h1><h:outputText value="Complaint Details"/></h1>
+                        <h:form>
+                            <!-- Display the selected complaint details -->
+                            <p class="page_header">Complaint Details</p>
 
-                <h:outputText value="------------------" /><br /><br />
-                <h:outputText value="Create Date: #{closedComplaintManagedBean.fromatDate(closedComplaintManagedBean.compliants.createdDate)}" /><br /><br />
-                <h:outputText value="Pending Date: #{closedComplaintManagedBean.fromatDate(closedComplaintManagedBean.compliants.pendingDate)}" /><br /><br />
+                            <div class="display-container">
+                                <p class="comp-id"># #{closedComplaintManagedBean.compliants.id}</p>
+                                <div class="prog-container">
+                                    <ul class="progressbar-text">
+                                        <li>opened</li>
+                                        <li>waiting</li>
+                                        <li>pending</li>
+                                        <li>&nbsp;closed&nbsp;</li>
+                                    </ul>
+                                    <div class="steps">
+                                        <span class="status-circle done"></span>
+                                        <span class="status-circle done"></span>
+                                        <span class="status-circle done"></span>
+                                        <span class="status-circle done"></span>
+                                        <div class="progressbar">
+                                            <span class="indicator" style="width: 100%"></span>
+                                        </div>
+                                    </div>
+                                    <ul class="progressbar-text">
+                                        <li>#{closedComplaintManagedBean.fromatDate(closedComplaintManagedBean.compliants.createdDate)}</li>
+                                        <li>#{closedComplaintManagedBean.fromatDate(closedComplaintManagedBean.compliants.createdDate)}</li>
+                                        <li>#{closedComplaintManagedBean.fromatDate(closedComplaintManagedBean.compliants.pendingDate)}</li>
+                                        <li>
+                                            <h:outputText value="#{closedComplaintManagedBean.compliants.closedDate}">
+                                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                                            </h:outputText>
+                                        </li>
+                                    </ul>
 
-                <!-- to hide the Closed Date if its empty -->
-                <h:outputText value="Created Date: " rendered="#{not empty closedComplaintManagedBean.compliants.closedDate}" />
-                <h:outputText value="#{closedComplaintManagedBean.compliants.closedDate}">
-                    <f:convertDateTime pattern="dd/MM/yyyy" />
-                </h:outputText>
+                                </div>
 
-                <h:outputText value="------------------" /><br /><br />
-
-                <!-- Display the details of the selected complaint -->
-                <h:outputText value="ID: # #{closedComplaintManagedBean.compliants.id}" /><br /><br />
-                <h:outputText value="priority: #{closedComplaintManagedBean.compliants.priority}" /><br /><br />
-                <h:outputText value="Resend: #{closedComplaintManagedBean.compliants.resend}" /><br /><br />
-                <h:outputText value="Category: #{closedComplaintManagedBean.compliants.catId.name}" /><br /><br />
-                <h:outputText value="Employee: #{closedComplaintManagedBean.compliants.empId.fullName}" /><br /><br />
-                <h:outputText value="Title: #{closedComplaintManagedBean.compliants.title}" /><br /><br />
-                <h:outputText value="Description: #{closedComplaintManagedBean.compliants.description}" /><br /><br />
-                <h:outputText value="Photo: #{closedComplaintManagedBean.compliants.photo}" /><br /><br />
-
-                <h:outputText value="Complaint Answer" /><br /><br />
-                <h:outputText value="Technician: #{closedComplaintManagedBean.compliants.techId.fullName}" /><br /><br />
-
-                <!-- to hide the answer if its no exist -->
-                <h:outputText value="Answer: " rendered="#{not empty closedComplaintManagedBean.compliants.answer}" />
-                <h:outputText value="#{closedComplaintManagedBean.compliants.answer}" /><br /><br />
+                                <div class="row">
+                                    <div class="pri-sec col-1 ">H</div>
+                                    <p class="col-2 m-1  pri-txt">High</p>
+                                    <div class="cat-container col-9 mt-2">
+                                        <p class="cat-txt">#{closedComplaintManagedBean.compliants.catId.name}</p>
+                                    </div>
+                                </div>
+                                <div class="comp-container">
+                                    <h2 class="comp-head">#{closedComplaintManagedBean.compliants.title}</h2>
+                                    <h6 class="comp-head mt-0" >@#{closedComplaintManagedBean.compliants.empId.fullName}</h6>
+                                    <div class="comp-desc">#{closedComplaintManagedBean.compliants.description}</div>
+                                    <img style="height: 50vh;" src="../../img/#{closedComplaintManagedBean.compliants.photo}"></img>
+                                    <h2 class="comp-head">Answer:</h2>
+                                    <h6 class="comp-head mt-0" >@#{closedComplaintManagedBean.compliants.techId.fullName}</h6>
+                                    <div class="comp-desc">#{closedComplaintManagedBean.compliants.answer}
+                                    </div>
+                                </div>
 
 
-            </h:form>
-        </f:view>
+                            </div>
+
+                        </h:form>
+                    </f:view>
+                </div>
+            </div>
+        </div>
+        <ui:include src="../../footer.xhtml" />
 
     </h:body>
 </html>

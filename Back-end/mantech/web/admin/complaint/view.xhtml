@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>waiting complaint</title>
         <link rel="stylesheet" href="../../css/bootstrap.min.css"/>
@@ -12,60 +13,70 @@
         <script src="../../js/all.min.js"></script>
     </h:head>
     <h:body>
-        <f:view>
-            <p class="page_header">Waiting Complaint</p>
-            <div class="admin-list-container col-lg-8">
-                <h:form>
-                    <c:forEach var="item" items="#{waitingComplaintManagedBean.waitingComplaint}" id="complaintTable" >
-                        <div class="row mb-4">
-                            <div class="col-lg-1 mt-4 me-3">
-                                <h:panelGroup class="send-icon" rendered="#{item.resend}">
-                                    <i class="fa-solid fa-rotate-right"></i>
-                                </h:panelGroup>
-                            </div>
-                            <div class="list-item m-0 pe-0 col-lg-10">
-                                <h:commandLink class="col-lg-6 m-1" style="text-decoration: none;display: inherit" action="#{waitingComplaintManagedBean.showDetails(item)}">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-2  p-0">
+                    <ui:include src="../side_bar.xhtml" />
+                </div>
+                <div class="col-lg-10 ">
+                    <f:view>
+                        <p class="page_header">Waiting Complaint</p>
+                        <div class="admin-list-container col-lg-10">
+                            <h:form>
+                                <c:forEach var="item" items="#{waitingComplaintManagedBean.waitingComplaint}" id="complaintTable" >
+                                    <div class="row mb-4">
+                                        <div class="col-lg-1 mt-4 me-3">
+                                            <h:panelGroup class="send-icon" rendered="#{item.resend}">
+                                                <i class="fa-solid fa-rotate-right"></i>
+                                            </h:panelGroup>
+                                        </div>
+                                        <div class="list-item m-0 pe-0 col-lg-10">
+                                            <h:commandLink class="col-lg-6 m-1" style="text-decoration: none;display: inherit" action="#{waitingComplaintManagedBean.showDetails(item)}">
 
-                                    <h:panelGroup rendered="#{item.priority == 'high'}">
-                                        <!-- you can change this to any icon you want -->
-                                        <div class="pri-sec col-lg-1 ">H</div>
-                                    </h:panelGroup>
-                                    <h:panelGroup rendered="#{item.priority == 'medium'}">
-                                        <!-- you can change this to any icon you want -->
-                                        <div class="pri-sec col-lg-1 " style="background-color:#D57900 ;">M</div>
-                                    </h:panelGroup>
-                                    <h:panelGroup rendered="#{item.priority == 'low'}">
-                                        <!-- you can change this to any icon you want -->
-                                        <div class="pri-sec col-lg-1 " style="background-color:#E5CB42 ;">L</div>
-                                    </h:panelGroup>
-                                    <h:inputHidden id="itemId" value="#{item.id}" />
+                                                <h:panelGroup rendered="#{item.priority == 'high'}">
+                                                    <!-- you can change this to any icon you want -->
+                                                    <div class="pri-sec col-lg-1 ">H</div>
+                                                </h:panelGroup>
+                                                <h:panelGroup rendered="#{item.priority == 'medium'}">
+                                                    <!-- you can change this to any icon you want -->
+                                                    <div class="pri-sec col-lg-1 " style="background-color:#D57900 ;">M</div>
+                                                </h:panelGroup>
+                                                <h:panelGroup rendered="#{item.priority == 'low'}">
+                                                    <!-- you can change this to any icon you want -->
+                                                    <div class="pri-sec col-lg-1 " style="background-color:#E5CB42 ;">L</div>
+                                                </h:panelGroup>
+                                                <h:inputHidden id="itemId" value="#{item.id}" />
 
-                                    <div class="list-text col-lg-9 col-md-9 ms-3 ">#{item.title}</div>
-                                </h:commandLink>
-                                <div class="custom-select col-lg-2 ms-1  mt-0">
-                                    <h:selectOneMenu class="select-button" id="technicianDropdown" value="#{waitingComplaintManagedBean.selectedTechnicianID}">
-                                        <f:selectItems value="#{waitingComplaintManagedBean.technicianItems}" />
-                                    </h:selectOneMenu>
+                                                <div class="list-text col-lg-9 col-md-9 ms-3 ">#{item.title}</div>
+                                            </h:commandLink>
+                                            <div class="custom-select col-lg-2 ms-1  mt-0">
+                                                <h:selectOneMenu class="select-button" id="technicianDropdown" value="#{waitingComplaintManagedBean.selectedTechnicianID}">
+                                                    <f:selectItems value="#{waitingComplaintManagedBean.technicianItems}" />
+                                                </h:selectOneMenu>
 
-                                </div>
+                                            </div>
 
 
-                                <div class=" col-lg-1 me-1">
-                                    <h:commandLink class="share-icon " action="#{waitingComplaintManagedBean.assignComplaint(item)}">
-                                        <i class="share-icon-i fa-solid fa-paper-plane "></i>
-                                    </h:commandLink>
-                                </div>
-                            </div>
+                                            <div class=" col-lg-1 me-1">
+                                                <h:commandLink class="share-icon " action="#{waitingComplaintManagedBean.assignComplaint(item)}">
+                                                    <i class="share-icon-i fa-solid fa-paper-plane "></i>
+                                                </h:commandLink>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </c:forEach>
+
+
+
+                            </h:form>
                         </div>
-                    </c:forEach>
-
-
-
-                </h:form>
+                    </f:view>
+                </div>
             </div>
-        </f:view>
+        </div>
 
 
+        <ui:include src="../../footer.xhtml" />
 
     </h:body>
 

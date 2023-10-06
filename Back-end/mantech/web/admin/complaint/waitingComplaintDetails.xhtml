@@ -2,47 +2,94 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Complaint Details</title>
+        <link rel="stylesheet" href="../../css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="../../css/style.css"/>
+        <link rel="stylesheet" href="../../css/all.min.css"/>
+        <script src="../../js/all.min.js"></script>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
+        <script src="../../js/frontend.js"></script>
     </h:head>
     <h:body>
-        <f:view>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-2  p-0">
+                    <ui:include src="../side_bar.xhtml" />
+                </div>
+                <div class="col-lg-10 ">
+                    <f:view>
 
-            <h:form>
-                <!-- Display the selected complaint details -->
-                <h1><h:outputText value="Complaint Details"/></h1>
+                        <h:form>
+                            <!-- Display the selected complaint details -->
+                            <p class="page_header">Complaint Details</p>
 
-                <h:panelGrid columns="4">
-                    <h:outputText value="technician"/>
-                    <!-- Dropdown for selecting a technician -->
-                    <h:selectOneMenu id="technicianDropdown" value="#{waitingComplaintManagedBean.selectedTechnicianID}">
-                        <f:selectItems value="#{waitingComplaintManagedBean.technicianItems}" />
-                    </h:selectOneMenu>
-                    <h:commandButton value="assign" action="#{waitingComplaintManagedBean.assignComplaint(waitingComplaintManagedBean.compliants)}" />
+                            <div class="row menu-container">
+                                <!-- Dropdown for selecting a technician -->
+                                <div class="custom-select col-3 ms-1 mt-0">
+                                    <h:selectOneMenu class="select-button" id="technicianDropdown" value="#{waitingComplaintManagedBean.selectedTechnicianID}">
+                                        <f:selectItems value="#{waitingComplaintManagedBean.technicianItems}" />
+                                    </h:selectOneMenu>
 
-                </h:panelGrid>
-                <br /><br />
-
-                <!-- Dropdown for selecting priority -->
-                <h:selectOneMenu id="priorityDropdown" value="#{waitingComplaintManagedBean.compliants.priority}">
-                    <f:selectItem itemValue="high" itemLabel="High" />
-                    <f:selectItem itemValue="medium" itemLabel="Medium" />
-                    <f:selectItem itemValue="low" itemLabel="Low" />
-
-                    <f:ajax execute="@this" render="@this" listener="#{waitingComplaintManagedBean.updatePriority}" />
-                </h:selectOneMenu>
-                <br /><br />
+                                </div>
+                                <h:commandLink class="share-icon col-1 pb-2" action="#{waitingComplaintManagedBean.assignComplaint(waitingComplaintManagedBean.compliants)}">
+                                    <i class="share-icon-i fa-solid fa-paper-plane "></i>
+                                </h:commandLink>
 
 
-                <!-- Display the details of the selected complaint -->
-                <h:outputText value="Title: #{waitingComplaintManagedBean.compliants.title}" /><br />
-                <h:outputText value="Description: #{waitingComplaintManagedBean.compliants.description}" /><br />
-                <h:outputText value="Photo: #{waitingComplaintManagedBean.compliants.photo}" /><br />
-                <h:outputText value="Resend: #{waitingComplaintManagedBean.compliants.resend}" /><br />
-                <h:outputText value="Category: #{waitingComplaintManagedBean.compliants.catId.name}" /><br />
-            </h:form>
-        </f:view>
+                            </div>
+                            <br /><br />
+                            <div class="display-container">
+                                <h:panelGroup id="prioritySection" class="row">
+
+                                    <h:panelGroup rendered="#{waitingComplaintManagedBean.compliants.priority == 'high'}">
+                                        <!-- you can change this to any icon you want -->
+                                        <div class="pri-sec col-lg-1 mt-2">H</div>
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{waitingComplaintManagedBean.compliants.priority == 'medium'}">
+                                        <!-- you can change this to any icon you want -->
+                                        <div class="pri-sec col-lg-1 mt-2 " style="background-color:#D57900 ;">M</div>
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{waitingComplaintManagedBean.compliants.priority == 'low'}">
+                                        <!-- you can change this to any icon you want -->
+                                        <div class="pri-sec col-lg-1 mt-2" style="background-color:#E5CB42 ;">L</div>
+                                    </h:panelGroup>
+                                    <h:selectOneMenu class="select-button-pri col-2 m-2 me-0 " id="priorityDropdown" value="#{waitingComplaintManagedBean.compliants.priority}">
+                                        <f:selectItem itemValue="high" itemLabel="High" />
+                                        <f:selectItem itemValue="medium" itemLabel="Medium" />
+                                        <f:selectItem itemValue="low" itemLabel="Low" />
+                                        <f:ajax execute="@this" render="prioritySection" listener="#{waitingComplaintManagedBean.updatePriority}" />
+                                    </h:selectOneMenu>
+                                    <div class="cat-container col-8 mt-2">
+                                        <p class="cat-txt">#{waitingComplaintManagedBean.compliants.catId.name}</p>
+                                    </div>
+                                </h:panelGroup>
+                                <!-- Dropdown for selecting priority -->
+
+                                <br /><br />
+                                <div class="comp-container">
+                                    <h2 class="comp-head">#{waitingComplaintManagedBean.compliants.title}</h2>
+                                    <div class="comp-desc">#{waitingComplaintManagedBean.compliants.description}
+                                    </div>
+
+                                    <img style="height: 50vh;" src="../../img/#{waitingComplaintManagedBean.compliants.photo}"></img>
+
+                                </div>
+                                <div class="row">
+                                    <textarea class="comp-answer-input" id="comp-answer" placeholder="Complaint Answer"></textarea>
+                                </div>
+                                <div class="btn_container">
+                                    <button class="web_btn m-0">Submit</button>
+                                </div>
+                            </div>
+                        </h:form>
+                    </f:view>
+                </div>
+            </div>
+        </div>
+        <ui:include src="../../footer.xhtml" />
 
     </h:body>
 </html>
