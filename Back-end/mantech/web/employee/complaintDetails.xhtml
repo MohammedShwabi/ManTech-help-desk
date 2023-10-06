@@ -27,19 +27,19 @@
                     <p class="page_header">Complaint Details</p>
                     <h:panelGroup class="row icons-container" rendered="#{employeeComplaintManagedBean.compliants.status eq 'waiting'}" >
 
-                            <h:commandLink class="col-1 icons-container-items" rendered="#{employeeComplaintManagedBean.renderResend()}" action="#{employeeComplaintManagedBean.resend()}">
-                                <i class="fa-solid fa-rotate-right edit-icon"></i>
-                            </h:commandLink> 
-                            <h:commandLink class="icons-container-items col-1 " action="update">
-                                <i class="fa-solid fa-pen edit-icon"></i>
-                            </h:commandLink>
-                            <h:commandLink class="col-1 icons-container-items" action="#{employeeComplaintManagedBean.delete()}" onclick="return confirm('are sure to delete?')">
-                                <i class="fa-solid fa-trash delete-icon"></i>
-                            </h:commandLink>           
+                        <h:commandLink class="col-1 icons-container-items" rendered="#{employeeComplaintManagedBean.renderResend()}" action="#{employeeComplaintManagedBean.resend()}">
+                            <i class="fa-solid fa-rotate-right edit-icon"></i>
+                        </h:commandLink> 
+                        <h:commandLink class="icons-container-items col-1 " action="update">
+                            <i class="fa-solid fa-pen edit-icon"></i>
+                        </h:commandLink>
+                        <h:commandLink class="col-1 icons-container-items" action="#{employeeComplaintManagedBean.delete()}" onclick="return confirm('are sure to delete?')">
+                            <i class="fa-solid fa-trash delete-icon"></i>
+                        </h:commandLink>           
 
-                        </h:panelGroup>
+                    </h:panelGroup>
                     <div class="list-container ">
-                        
+
                         <p class="comp-id"># #{employeeComplaintManagedBean.compliants.id}</p>
                         <div class="prog-container">
                             <ul class="progressbar-text">
@@ -85,15 +85,21 @@
                                     <h:outputText value="#{employeeComplaintManagedBean.compliants.createdDate}" >
                                         <f:convertDateTime pattern="dd/MM/yyyy" />
                                     </h:outputText></li>
+
                                 <li>
                                     <h:outputText value="#{employeeComplaintManagedBean.compliants.pendingDate}" rendered="#{not empty employeeComplaintManagedBean.compliants.pendingDate}">
                                         <f:convertDateTime pattern="dd/MM/yyyy" />
-                                    </h:outputText></li>
+                                    </h:outputText>
+                                    <h:outputText value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" rendered="#{empty employeeComplaintManagedBean.compliants.pendingDate}"/>
+
+                                </li>
+
+
                                 <li>
                                     <h:outputText value="#{employeeComplaintManagedBean.compliants.closedDate}" rendered="#{not empty employeeComplaintManagedBean.compliants.closedDate}">
                                         <f:convertDateTime pattern="dd/MM/yyyy" />
                                     </h:outputText>
-                                    <h:outputText value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" rendered="#{empty employeeComplaintManagedBean.compliants.closedDate}"/>
+                                    <h:outputText value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" rendered="#{empty employeeComplaintManagedBean.compliants.closedDate}"/>
 
                                 </li>
                             </ul>
