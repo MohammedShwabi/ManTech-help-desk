@@ -28,7 +28,7 @@ public class EmployeeManagedBean implements Serializable {
     @EJB
     private EmployeesFacade employeesFacade;
     private Employees employee = new Employees();
-    String confirm_Password;
+    private String confirm_Password;
 
     public String getConfirm_Password() {
         return confirm_Password;
@@ -60,7 +60,6 @@ public class EmployeeManagedBean implements Serializable {
     public void setSelectedDepartmentId(Integer selectedDepartmentId) {
         this.selectedDepartmentId = selectedDepartmentId;
     }
-    // end of choosed item
 
     // reset the Employee object
     public void resetEmployee() {
@@ -72,21 +71,20 @@ public class EmployeeManagedBean implements Serializable {
 
     // Method to add a new employee
     public String addEmployee() {
-        String after = "";
         if (employee.getPassword().compareTo(confirm_Password) == 0) {
             Departments department = departmentsFacade.find(selectedDepartmentId);
             employee.setDepId(department);
             employee.setPhoto("profile.svg");
             employeesFacade.create(employee);
             this.resetEmployee();
-            return "view?faces-redirect=true";
             // Redirect to a view page
+            return "view?faces-redirect=true";
         } else {
-            //do some thing here
-
-            return "no matchin g password and Confirm  Password";
+            FacesContext context = FacesContext.getCurrentInstance();
+            FacesMessage message = new FacesMessage("Password and Confirm Password do not match.");
+            context.addMessage("emp_form:Confirm_New_Password", message); // "form" is the name of your form
+            return null; // Return null to stay on the same page
         }
-
     }
 
     // to go to update page and pass the current object to fill the form input
@@ -118,7 +116,6 @@ public class EmployeeManagedBean implements Serializable {
     }
 
     // to filter emplyees based on department
-//    private String selectedDepartmentName = "All"; // Default to "All" departments
     private Integer selectedDepartmentID = 0; // Default to "All" departments
 
     public List<Employees> getFilteredEmployees() {
@@ -149,10 +146,7 @@ public class EmployeeManagedBean implements Serializable {
             throw new ValidatorException(message);
         }
 
-        // Check if the email is already used by another employee
         // Check if the email is already used by another employee (excluding the current employee being updated)
-//        Employees currentEmployee = this.getEmployee(); // Get the current employee being updated
-//        boolean isEmailUnique = employeesFacade.isEmailUnique(email, currentEmployee.getId());
         Integer emp_id = (employee.getId() == null) ? 0 : employee.getId();
         boolean isEmailUnique = employeesFacade.isEmailUnique(email, emp_id);
 

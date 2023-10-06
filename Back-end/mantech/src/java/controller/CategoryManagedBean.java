@@ -68,10 +68,6 @@ public class CategoryManagedBean implements Serializable {
     // cancel editing
     public String cancelEdit() {
         stopEditing();
-
-        String tes = (editingCategory == null) ? "ok" : "not";
-        System.out.println("-------------it work: " + tes);
-
         return "view?faces-redirect=true";
     }
 

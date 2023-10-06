@@ -25,7 +25,6 @@ import model.BlogsFacade;
  */
 @Named(value = "blogsManagedBean")
 @SessionScoped
-//@RequestScoped
 public class BlogsManagedBean implements Serializable {
 
     private Part file;
