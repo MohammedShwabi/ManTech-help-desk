@@ -160,6 +160,7 @@ public class EmployeeManagedBean implements Serializable {
     public String gotoAdd() {
         // Reset the Employee object and selected department
         employee = new Employees();
+        confirm_Password = null;
         return "add";
     }
 

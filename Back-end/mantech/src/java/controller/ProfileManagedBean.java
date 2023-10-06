@@ -5,8 +5,6 @@
  */
 package controller;
 
-import entities.Blogs;
-import entities.Departments;
 import entities.Employees;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -15,7 +13,6 @@ import java.io.InputStream;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
-import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.http.Part;
 import model.DepartmentsFacade;
@@ -83,9 +80,7 @@ public class ProfileManagedBean implements Serializable {
     }
 
     public Employees getUser() {
-        //System.out.println(user.getDepId());
         Employees user = employeesFacade.find(2);
-
         return user;
     }
 

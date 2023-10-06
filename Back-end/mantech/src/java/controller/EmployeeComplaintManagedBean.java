@@ -26,7 +26,6 @@ import javax.faces.model.SelectItem;
 import javax.servlet.http.Part;
 import model.CategoriesFacade;
 import model.CompliantsFacade;
-import model.EmployeesFacade;
 
 /**
  *
@@ -35,9 +34,6 @@ import model.EmployeesFacade;
 @Named(value = "employeeComplaintManagedBean")
 @SessionScoped
 public class EmployeeComplaintManagedBean implements Serializable {
-
-    @EJB
-    private EmployeesFacade employeesFacade;
 
     @EJB
     private CategoriesFacade categoriesFacade;
@@ -65,14 +61,6 @@ public class EmployeeComplaintManagedBean implements Serializable {
 
     public void setFile(Part file) {
         this.file = file;
-    }
-
-    public CompliantsFacade getCompliantsFacade() {
-        return compliantsFacade;
-    }
-
-    public void setCompliantsFacade(CompliantsFacade compliantsFacade) {
-        this.compliantsFacade = compliantsFacade;
     }
 
     public Integer getSelectedCategoryId() {
@@ -126,13 +114,14 @@ public class EmployeeComplaintManagedBean implements Serializable {
     public String showDetails(Compliants c) {
         // Store the selected complaint in a property for display in a different view
         this.compliants = c;
-        return "complaintDetails?faces-redirect=true"; // Navigate to a different JSF page to display details
+        return "complaintDetails"; // Navigate to a different JSF page to display details
     }
 
     public String gotoAdd() {
-        // Reset the Employee object and selected department
+        // Reset the compliants object
         compliants = new Compliants();
-
+        // Reset the selectedCategoryId
+        selectedCategoryId = null;
         return "add";
     }
 
