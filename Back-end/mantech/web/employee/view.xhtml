@@ -53,78 +53,50 @@
                             <f:ajax execute="@this" render="complaintTable filterStatus" listener="#{employeeComplaintManagedBean.setSelectedComplaintStatus('closed')}" />
                         </h:commandLink>
                     </h:panelGroup>
-                     <div class="tech-list-container col-lg-8" >
+                    <div class="tech-list-container col-lg-8" >
 
                         <h:panelGroup id="complaintTable">
 
-                            <c:forEach var="item" items="#{employeeComplaintManagedBean.findEmployeeComplaint()}"  >
-                                <div class="row mb-4">
-                                    <h:commandLink style="text-decoration: none;display: inherit" action="#{employeeComplaintManagedBean.showDetails(item)}">
-                                        <div class="list-item m-0 pe-0 col-lg-9">
-                                            <h:panelGroup rendered="#{item.priority == 'high'}">
-                                                <!-- you can change this to any icon you want -->
-                                                <div class="pri-sec col-lg-1 ">H</div>
-                                            </h:panelGroup>
-                                            <h:panelGroup rendered="#{item.priority == 'medium'}">
-                                                <!-- you can change this to any icon you want -->
-                                                <div class="pri-sec col-lg-1 " style="background-color:#D57900 ;">M</div>
-                                            </h:panelGroup>
-                                            <h:panelGroup rendered="#{item.priority == 'low'}">
-                                                <!-- you can change this to any icon you want -->
-                                                <div class="pri-sec col-lg-1 " style="background-color:#E5CB42 ;">L</div>
-                                            </h:panelGroup>
+                            <c:choose>
+                                <c:when test="#{empty employeeComplaintManagedBean.findEmployeeComplaint()}">
+                                    <div class="row mb-4">
+                                        <p>There is no item to show</p>
+                                    </div>
+                                </c:when>
+                                <c:otherwise>
+                                    <c:forEach var="item" items="#{employeeComplaintManagedBean.findEmployeeComplaint()}"  >
+                                        <div class="row mb-4">
+                                            <h:commandLink style="text-decoration: none;display: inherit" action="#{employeeComplaintManagedBean.showDetails(item)}">
+                                                <div class="list-item m-0 pe-0 col-lg-9">
+                                                    <h:panelGroup rendered="#{item.priority == 'high'}">
+                                                        <!-- you can change this to any icon you want -->
+                                                        <div class="pri-sec col-lg-1 ">H</div>
+                                                    </h:panelGroup>
+                                                    <h:panelGroup rendered="#{item.priority == 'medium'}">
+                                                        <!-- you can change this to any icon you want -->
+                                                        <div class="pri-sec col-lg-1 " style="background-color:#D57900 ;">M</div>
+                                                    </h:panelGroup>
+                                                    <h:panelGroup rendered="#{item.priority == 'low'}">
+                                                        <!-- you can change this to any icon you want -->
+                                                        <div class="pri-sec col-lg-1 " style="background-color:#E5CB42 ;">L</div>
+                                                    </h:panelGroup>
 
-                                            <div class="list-text col-lg-9 col-md-9 ms-3 ">#{item.title}</div>
+                                                    <div class="list-text col-lg-9 col-md-9 ms-3 ">#{item.title}</div>
 
 
-                                            <div class="comp-status-text col-lg-2 me-1">
-                                                <h:outputText value="#{item.status}"/>
-                                            </div>
+                                                    <div class="comp-status-text col-lg-2 me-1">
+                                                        <h:outputText value="#{item.status}"/>
+                                                    </div>
+                                                </div>
+                                            </h:commandLink>
                                         </div>
-                                    </h:commandLink>
-                                </div>
-                            </c:forEach>
-
+                                    </c:forEach>
+                                </c:otherwise>
+                            </c:choose>
                         </h:panelGroup>
 
                     </div>
 
-<!--                    <h:dataTable id="complaintTable" value="#{employeeComplaintManagedBean.findEmployeeComplaint()}" var="item" border="1" cellpadding="4px">
-
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Priority"/>
-                            </f:facet>
-                            <h:outputText value="#{item.priority}"/>
-                        </h:column>
-
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Title"/>
-                            </f:facet>
-                            <h:outputText value="#{item.title}"/>
-                        </h:column>
-
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Status"/>
-                            </f:facet>
-                            <h:outputText value="#{item.status}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Resend"/>
-                            </f:facet>
-                            <h:outputText value="#{item.resend}"/>
-                        </h:column>
-
-                         Column for showing complaint details 
-                        <h:column>
-                            <f:facet name="header">destails</f:facet>
-                            <h:commandLink value="more destails" action="#{employeeComplaintManagedBean.showDetails(item)}" />
-                        </h:column>
-
-                    </h:dataTable>-->
                 </h:form>
             </f:view>
         </div>
