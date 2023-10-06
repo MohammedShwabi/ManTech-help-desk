@@ -515,12 +515,17 @@ ul:has(li:nth-child(2)):not(:has( li:nth-child(3)))>li {
 
 }
 
-.page_header {
+.page_header,.comp-id {
     color: var(--main-color);
     font-weight: 500;
     font-size: 3em;
-    margin-top: 8vh;
+    margin-top: 10vh;
     text-align: center;
+}
+.comp-id{
+    margin-top: 0vh;
+    margin-bottom:6vh;
+    text-align: start;
 }
 
 .btn_container {
@@ -669,7 +674,7 @@ ul:has(li:nth-child(2)):not(:has( li:nth-child(3)))>li {
 
 .cat-txt {
     display: inline-block;
-    padding: 0em 2em;
+    padding-left:  2em;
     font-size: 1.7em;
     font-family: Arial;
     color: #707070;
@@ -682,9 +687,7 @@ ul:has(li:nth-child(2)):not(:has( li:nth-child(3)))>li {
     font-size: 2em;
 }
 
-.display-container {
-    margin-top: 10vh;
-}
+
 
 .comp-head {
     color: #606060;
@@ -829,7 +832,8 @@ ul:has(li:nth-child(2)):not(:has( li:nth-child(3)))>li {
 }
 
 .menu-container {
-    margin-right: 12vw;
+    margin-right: 4vw;
+    margin-top:8vh;
     display: flex;
     justify-content: end;
     align-items: end;
@@ -847,7 +851,7 @@ ul:has(li:nth-child(2)):not(:has( li:nth-child(3)))>li {
 .select{
     color: #919191 !important;
 }
-.select-button {
+.select-button,.select-button-pri {
     width: 100%;
     font-size: 1.15rem;
     background-color: #fff;
@@ -859,6 +863,9 @@ ul:has(li:nth-child(2)):not(:has( li:nth-child(3)))>li {
     justify-content: space-between;
     align-items: center;
     color: #3c3c3c;
+}
+.select-button-pri{
+    width: 18%;
 }
 
 .selected-value {
@@ -949,7 +956,7 @@ ul:has(li:nth-child(2)):not(:has( li:nth-child(3)))>li {
 }
 
 .admin-list-container{
-    margin: 12vh 14vw 5vh 16vw;
+    margin: 12vh 8vw 5vh 6vw;
 }
 .upd_btn {
     font-size: 1.2em;
