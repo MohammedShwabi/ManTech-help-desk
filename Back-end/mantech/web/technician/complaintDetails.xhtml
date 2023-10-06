@@ -2,64 +2,128 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
         <title>Complaint Details</title>
+        <link rel="stylesheet" href="../css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="../css/style.css"/>
+        <link rel="stylesheet" href="../css/all.min.css"/>
+        <script src="../js/all.min.js"></script>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script src="../js/frontend.js"></script>
     </h:head>
     <h:body>
-        <f:view>
+        <!-- Include the header -->
+        <ui:include src="../header.xhtml" />
+        <br/>
+        <!-- Main content goes here -->
+        <div id="content" class="mt-5">
 
-            <!-- Display the selected complaint details -->
-            <h1><h:outputText value="Complaint Details"/></h1>
+            <f:view>
 
-            <h:outputText value="------------------" /><br /><br />
+                <!-- Display the selected complaint details -->
+                <p class="page_header">Complaint Details</p>
+                <div class="display-container">
+                    <p class="comp-id"># #{technicianComplaintManagedBean.compliants.id}</p>
+                    <div class="prog-container">
+                        <ul class="progressbar-text">
+                            <li>opened</li>
+                            <li>waiting</li>
+                            <li>pending</li>
+                            <li>&nbsp;closed&nbsp;</li>
+                        </ul>
+                        <div class="steps">
+                            <span class="status-circle done"></span>
+                            <span class="status-circle done"></span>
+                            <h:panelGroup rendered="#{technicianComplaintManagedBean.compliants.status == 'pending'}">
+                                <span class="status-circle "></span>
+                                <span class="status-circle "></span>
+                            </h:panelGroup>
+                            <h:panelGroup rendered="#{technicianComplaintManagedBean.compliants.status == 'closed'}">
+                                <span class="status-circle done"></span>
+                                <span class="status-circle done"></span>
+                            </h:panelGroup>
+                            <div class="progressbar">
+                                <h:panelGroup class="indicator" style="#{technicianComplaintManagedBean.compliants.status eq 'closed' ? 'width: 100%' : 'width: 64%'}"></h:panelGroup>
+                            </div>
+                        </div>
+                        <ul class="progressbar-text">
+                            <li>
+                                <h:outputText value="#{technicianComplaintManagedBean.compliants.createdDate}" >
+                                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                                </h:outputText></li>
+                            <li>
+                                <h:outputText value="#{technicianComplaintManagedBean.compliants.createdDate}" >
+                                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                                </h:outputText></li>
+                            <li>
+                                <h:outputText value="#{technicianComplaintManagedBean.compliants.pendingDate}" rendered="#{not empty technicianComplaintManagedBean.compliants.pendingDate}">
+                                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                                </h:outputText></li>
+                            <li>
+                                <h:outputText value="#{technicianComplaintManagedBean.compliants.closedDate}" rendered="#{not empty technicianComplaintManagedBean.compliants.closedDate}">
+                                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                                </h:outputText>
+                                <h:outputText value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" rendered="#{empty technicianComplaintManagedBean.compliants.closedDate}"/>
 
-            <h:outputText value="Created Date: " />
-            <h:outputText value="#{technicianComplaintManagedBean.compliants.createdDate}" >
-                <f:convertDateTime pattern="dd/MM/yyyy" />
-            </h:outputText>
-            <br /><br />
+                            </li>
+                        </ul>
 
-            <!-- to hide the Closed Date if its empty -->
-            <h:outputText value="Pending Date: " rendered="#{not empty technicianComplaintManagedBean.compliants.pendingDate}" />
-            <h:outputText value="#{technicianComplaintManagedBean.compliants.pendingDate}" >
-                <f:convertDateTime pattern="dd/MM/yyyy" />
-            </h:outputText>
-            <br /><br />
+                    </div>
 
-            <!-- to hide the Closed Date if its empty -->
-            <h:outputText value="Created Date: " rendered="#{not empty technicianComplaintManagedBean.compliants.closedDate}" />
-            <h:outputText value="#{technicianComplaintManagedBean.compliants.closedDate}">
-                <f:convertDateTime pattern="dd/MM/yyyy" />
-            </h:outputText>
-            <br /><br />
+                    <div class="row">
+                        <h:panelGroup rendered="#{technicianComplaintManagedBean.compliants.priority == 'high'}">
+                            <div class="pri-sec col-1 ">H</div>
+                            <p class="col-2 m-1  pri-txt">High</p>
+                        </h:panelGroup>
+                        <h:panelGroup rendered="#{technicianComplaintManagedBean.compliants.priority == 'medium'}">
+                            <div class="pri-sec col-1" style="background-color:#D57900 ;">M</div>
+                            <p class="col-2 m-1  pri-txt" style="color:#D57900 ;">Medium</p>
+                        </h:panelGroup>
+                        <h:panelGroup rendered="#{technicianComplaintManagedBean.compliants.priority == 'low'}">
+                            <!-- you can change this to any icon you want -->
+                            <div class="pri-sec col-1" style="background-color:#E5CB42 ;">L</div>
+                            <p class="col-2 m-1  pri-txt" style="color:#E5CB42 ;">Low</p>
 
-            <h:outputText value="------------------" /><br /><br />
+                        </h:panelGroup>
+                        <div class="cat-container col-9 mt-2">
+                            <p class="cat-txt">#{technicianComplaintManagedBean.compliants.catId.name}</p>
+                        </div>
+                    </div>
+                    <div class="comp-container">
+                        <h2 class="comp-head">#{technicianComplaintManagedBean.compliants.title}</h2>
+                        <h6 class="comp-head mt-0" >@#{technicianComplaintManagedBean.compliants.empId.fullName}</h6>
+                        <div class="comp-desc"> #{technicianComplaintManagedBean.compliants.description}</div>
+                        <h:panelGroup rendered="#{technicianComplaintManagedBean.compliants.photo ne 'defult_image' }">
+                            <img style="height: 50vh;" src="../../upload/complaints_photos/#{technicianComplaintManagedBean.compliants.photo}"></img>
+                        </h:panelGroup>
+                        <h:panelGroup rendered="#{not empty technicianComplaintManagedBean.compliants.answer}">
+                            <h2 class="comp-head">Answer:</h2>
+                            <div class="comp-desc">#{technicianComplaintManagedBean.compliants.answer}</div>
+                        </h:panelGroup>
+                        <h:panelGroup rendered="#{empty technicianComplaintManagedBean.compliants.answer}">
+                            <h:form>
+                                <h:inputTextarea class="comp-answer-input" a:placeholder="Complaint Answer" rows="4" cols="30" id="answer" value="#{technicianComplaintManagedBean.compliants.answer}" title="Answer" required="true" requiredMessage="The Answer field is required." /><br/>
+                                <div class="answer-input-error mt-0" style="justify-content: flex-start;margin-left: 6vw;"><h:message for="answer"/><br/></div>
+                                <div class="btn_container">
+                                    <h:commandButton value="Submit" class="web_btn m-0" action="#{technicianComplaintManagedBean.answerComplaint()}" />
+                                </div>
+                            </h:form> 
+                        </h:panelGroup>
+                    </div>
 
-            <!-- Display the details of the selected complaint -->
 
-            <h:outputText value="priority: #{technicianComplaintManagedBean.compliants.priority}" /><br /><br />
+                </div>
 
-            <h:outputText value="Category: #{technicianComplaintManagedBean.compliants.catId.name}" /><br /><br />
-            <h:outputText value="Employee: #{technicianComplaintManagedBean.compliants.empId.fullName}" /><br /><br />
-            <h:outputText value="Title: #{technicianComplaintManagedBean.compliants.title}" /><br /><br />
-            <h:outputText value="Description: #{technicianComplaintManagedBean.compliants.description}" /><br /><br />
-            <h:outputText value="Photo: #{technicianComplaintManagedBean.compliants.photo}" /><br /><br />
 
-            <!-- to hide the answer if its no exist -->
-            <h:outputText value="Complaint Answer: " rendered="#{not empty technicianComplaintManagedBean.compliants.answer}" />
-            <h:outputText value="#{technicianComplaintManagedBean.compliants.answer}" /><br /><br />
+            </f:view>
 
-            <h:form>
-                <h:panelGroup rendered="#{empty technicianComplaintManagedBean.compliants.answer}" >
-                    <h:outputLabel value="Answer:" for="answer" /><br/>
-                    <h:inputTextarea rows="4" cols="30" id="answer" value="#{technicianComplaintManagedBean.compliants.answer}" title="Answer" required="true" requiredMessage="The Answer field is required." /><br/>
-                    <h:message for="answer" style="color:blue" /><br/>
-                    
-                    <h:commandButton value="Add complaint" action="#{technicianComplaintManagedBean.answerComplaint()}" />
-                </h:panelGroup>
-            </h:form>
-        </f:view>
+        </div>
+
+        <!-- Include the footer -->
+        <ui:include src="../footer.xhtml" />
 
     </h:body>
 </html>

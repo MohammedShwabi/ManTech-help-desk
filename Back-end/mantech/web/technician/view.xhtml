@@ -2,73 +2,97 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Facelet Title</title>
+        <link rel="stylesheet" href="../css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="../css/style.css"/>
+        <link rel="stylesheet" href="../css/all.min.css"/>
+        <script src="../js/all.min.js"></script>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script src="../js/frontend.js"></script>
         <style>            
-            .selected-link {
-                color: red; 
+            .selected-submenu-item,.selected-submenu-item:hover{
+                color: var(--main-color);
+                padding: 1vw 7vw;
+                font-size: 1.5em;
+                text-align: center;
+                font-family: "Simpfxo";
             }
+
 
         </style>
     </h:head>
-    <h:body>
-        <f:view>
+    <h:body><!-- Include the header -->
+        <ui:include src="../header.xhtml" />
+        <br/>
+        <!-- Main content goes here -->
+        <div id="content" class="mt-5">
 
-            <h:form>
-                <h1><h:outputText value="Complaint"/></h1>
+            <f:view>
 
-                <!-- links to filter complaints by status with AJAX -->
-                <h:panelGroup id="filterStatus">
-                    <h:commandLink value="All" styleClass="#{technicianComplaintManagedBean.selectedComplaintStatus eq 'all' ? 'selected-link' : ''}">
-                        <f:ajax execute="@this" render="complaintTable filterStatus" listener="#{technicianComplaintManagedBean.setSelectedComplaintStatus('all')}" />
-                    </h:commandLink><br/>
-                    <h:commandLink value="Pending" styleClass="#{technicianComplaintManagedBean.selectedComplaintStatus eq 'pending' ? 'selected-link' : ''}">
-                        <f:ajax execute="@this" render="complaintTable filterStatus" listener="#{technicianComplaintManagedBean.setSelectedComplaintStatus('pending')}" />
-                    </h:commandLink><br/>
-                    <h:commandLink value="Closed" styleClass="#{technicianComplaintManagedBean.selectedComplaintStatus eq 'closed' ? 'selected-link' : ''}">
-                        <f:ajax execute="@this" render="complaintTable filterStatus" listener="#{technicianComplaintManagedBean.setSelectedComplaintStatus('closed')}" />
-                    </h:commandLink>
-                </h:panelGroup>
+                <h:form>
+                    <p class="page_header">Complaints</p>
 
-                <h:dataTable id="complaintTable" value="#{technicianComplaintManagedBean.findTechnicianComplaint()}" var="item" border="1" cellpadding="4px">
+                    <!-- links to filter complaints by status with AJAX -->
+                    <h:panelGroup id="filterStatus" class="submenu-div">
+                        <h:commandLink value="All" styleClass="#{technicianComplaintManagedBean.selectedComplaintStatus eq 'all' ? 'selected-submenu-item' : 'submenu-items'}">
+                            <f:ajax execute="@this" render="complaintTable filterStatus" listener="#{technicianComplaintManagedBean.setSelectedComplaintStatus('all')}" />
+                        </h:commandLink><br/>
+                        <h:commandLink value="Pending" styleClass="#{technicianComplaintManagedBean.selectedComplaintStatus eq 'pending' ? 'selected-submenu-item' : 'submenu-items'}">
+                            <f:ajax execute="@this" render="complaintTable filterStatus" listener="#{technicianComplaintManagedBean.setSelectedComplaintStatus('pending')}" />
+                        </h:commandLink><br/>
+                        <h:commandLink value="Closed" styleClass="#{technicianComplaintManagedBean.selectedComplaintStatus eq 'closed' ? 'selected-submenu-item' : 'submenu-items'}">
+                            <f:ajax execute="@this" render="complaintTable filterStatus" listener="#{technicianComplaintManagedBean.setSelectedComplaintStatus('closed')}" />
+                        </h:commandLink>
+                    </h:panelGroup>
+                    <div class="tech-list-container col-lg-8" >
 
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Priority"/>
-                        </f:facet>
-                        <h:outputText value="#{item.priority}"/>
-                    </h:column>
+                        <h:panelGroup id="complaintTable">
 
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Title"/>
-                        </f:facet>
-                        <h:outputText value="#{item.title}"/>
-                    </h:column>
+                            <c:forEach var="item" items="#{technicianComplaintManagedBean.findTechnicianComplaint()}"  >
+                                <div class="row mb-4">
+                                    <h:commandLink style="text-decoration: none;display: inherit" action="#{technicianComplaintManagedBean.showDetails(item)}">
+                                        <div class="list-item m-0 pe-0 col-lg-9">
+                                            <h:panelGroup rendered="#{item.priority == 'high'}">
+                                                <!-- you can change this to any icon you want -->
+                                                <div class="pri-sec col-lg-1 ">H</div>
+                                            </h:panelGroup>
+                                            <h:panelGroup rendered="#{item.priority == 'medium'}">
+                                                <!-- you can change this to any icon you want -->
+                                                <div class="pri-sec col-lg-1 " style="background-color:#D57900 ;">M</div>
+                                            </h:panelGroup>
+                                            <h:panelGroup rendered="#{item.priority == 'low'}">
+                                                <!-- you can change this to any icon you want -->
+                                                <div class="pri-sec col-lg-1 " style="background-color:#E5CB42 ;">L</div>
+                                            </h:panelGroup>
 
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Status"/>
-                        </f:facet>
-                        <h:outputText value="#{item.status}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Resend"/>
-                        </f:facet>
-                        <h:outputText value="#{item.resend}"/>
-                    </h:column>
+                                            <div class="list-text col-lg-9 col-md-9 ms-3 ">#{item.title}</div>
 
-                    <!-- Column for showing complaint details -->
-                    <h:column>
-                        <f:facet name="header">destails</f:facet>
-                        <h:commandLink value="more destails" action="#{technicianComplaintManagedBean.showDetails(item)}" />
-                    </h:column>
 
-                </h:dataTable>
-            </h:form>
-        </f:view>
+                                            <div class="comp-status-text col-lg-2 me-1">
+                                                <h:outputText value="#{item.status}"/>
+                                            </div>
+                                        </div>
+                                    </h:commandLink>
+                                </div>
+                            </c:forEach>
+
+                        </h:panelGroup>
+
+                    </div>
+
+
+                </h:form>
+            </f:view>
+        </div>
+
+        <!-- Include the footer -->
+        <ui:include src="../footer.xhtml" />
+
+
 
     </h:body>
 </html>

@@ -58,8 +58,21 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="pri-sec col-1 ">H</div>
-                                    <p class="col-2 m-1  pri-txt">High</p>
+                                    <h:panelGroup rendered="#{closedComplaintManagedBean.compliants.priority == 'high'}">
+                                        <div class="pri-sec col-1 ">H</div>
+                                        <p class="col-2 m-1  pri-txt">High</p>
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{closedComplaintManagedBean.compliants.priority == 'medium'}">
+                                        <div class="pri-sec col-1" style="background-color:#D57900 ;">M</div>
+                                        <p class="col-2 m-1  pri-txt" style="color:#D57900 ;">Medium</p>
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{closedComplaintManagedBean.compliants.priority == 'low'}">
+                                        <!-- you can change this to any icon you want -->
+                                        <div class="pri-sec col-1" style="background-color:#E5CB42 ;">L</div>
+                                        <p class="col-2 m-1  pri-txt" style="color:#E5CB42 ;">Low</p>
+                   
+                                    </h:panelGroup>
+
                                     <div class="cat-container col-9 mt-2">
                                         <p class="cat-txt">#{closedComplaintManagedBean.compliants.catId.name}</p>
                                     </div>
@@ -68,7 +81,9 @@
                                     <h2 class="comp-head">#{closedComplaintManagedBean.compliants.title}</h2>
                                     <h6 class="comp-head mt-0" >@#{closedComplaintManagedBean.compliants.empId.fullName}</h6>
                                     <div class="comp-desc">#{closedComplaintManagedBean.compliants.description}</div>
-                                    <img style="height: 50vh;" src="../../upload/complaints_photos/#{closedComplaintManagedBean.compliants.photo}"></img>
+                                    <h:panelGroup rendered="#{waitingComplaintManagedBean.compliants.photo ne 'defult_image' }">
+                                        <img style="height: 50vh;" src="../../upload/complaints_photos/#{waitingComplaintManagedBean.compliants.photo}"></img>
+                                    </h:panelGroup>
                                     <h2 class="comp-head">Answer:</h2>
                                     <h6 class="comp-head mt-0" >@#{closedComplaintManagedBean.compliants.techId.fullName}</h6>
                                     <div class="comp-desc">#{closedComplaintManagedBean.compliants.answer}

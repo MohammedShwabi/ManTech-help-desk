@@ -570,14 +570,20 @@ ul:has(li:nth-child(2)):not(:has( li:nth-child(3)))>li {
     align-items: center;
 }
 
-.submenu-items {
+.submenu-items{
     color: #808080;
     padding: 1vw 7vw;
     font-size: 1.5em;
     text-align: center;
     font-family: "Simpfxo";
 }
-
+.selected-submenu-item{
+    color: var(--main-color);
+    padding: 1vw 7vw;
+    font-size: 1.5em;
+    text-align: center;
+    font-family: "Simpfxo";
+}
 .submenu-items:hover {
     color: var(--main-color);
 }
@@ -585,6 +591,9 @@ ul:has(li:nth-child(2)):not(:has( li:nth-child(3)))>li {
 .list-container,
 .display-container {
     margin: 5vh 11vw 5vh 9vw;
+}
+.tech-list-container{
+    margin: 5vh 11vw 5vh 25vw;
 }
 
 .list-item {
@@ -665,6 +674,15 @@ ul:has(li:nth-child(2)):not(:has( li:nth-child(3)))>li {
     border-radius: 2em;
     color: #3E3E3E;
 }
+.comp-answer-input {
+    margin: 2vh 10vw 0vw 6vw;
+    width: 60vw;
+    height: 40vh;
+    padding: 2vh 2vw;
+    resize: none;
+    font-size: 1.2em;
+}
+
 
 .cat-container {
     display: flex;
@@ -702,14 +720,7 @@ ul:has(li:nth-child(2)):not(:has( li:nth-child(3)))>li {
     line-height: 3.8vh;
 }
 
-.comp-answer-input {
-    margin: 2vh 10vw 4vw 6vw;
-    width: 45vw;
-    height: 40vh;
-    padding: 2vh 2vw;
-    resize: none;
-    font-size: 1.2em;
-}
+
 
 .delete-icon,.delete-icon:hover {
     color: #D50000;
@@ -1004,13 +1015,20 @@ ul:has(li:nth-child(2)):not(:has( li:nth-child(3)))>li {
 .clickable-div{
     display: none;
 }
-.cat-input-container span{
+.cat-input-container span,.answer-input-error{
     margin-bottom:3vh;
     display: flex;
     justify-content: center;
     align-items: center;
     color:#D50000 !important;
 }
-
+.comp-status-text{
+    color:var(--main-color);
+    font-size: 1.3em;
+    font-family: "Simpfxo";
+    display: flex;
+    justify-content: flex-start;
+    align-items: center
+}
 
 /* End of maryam section*/
