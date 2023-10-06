@@ -2,71 +2,143 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
         <title>Complaint Details</title>
+        <link rel="stylesheet" href="../css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="../css/style.css"/>
+        <link rel="stylesheet" href="../css/all.min.css"/>
+        <script src="../js/all.min.js"></script>
+        <script src="../js/bootstrap.bundle.min.js"></script>
     </h:head>
     <h:body>
-        <f:view>
+        <!-- Include the header -->
+        <ui:include src="../header.xhtml" />
+        <br/>
+        <!-- Main content goes here -->
+        <div id="content" class="mt-5">
+            <f:view>
+                <h:form>
 
-            <h:form>
+                    <!-- Display the selected complaint details -->
+                    <p class="page_header">Complaint Details</p>
+                    <h:panelGroup class="row icons-container" rendered="#{employeeComplaintManagedBean.compliants.status eq 'waiting'}" >
 
+                            <h:commandLink class="col-1 icons-container-items" rendered="#{employeeComplaintManagedBean.renderResend()}" action="#{employeeComplaintManagedBean.resend()}">
+                                <i class="fa-solid fa-rotate-right edit-icon"></i>
+                            </h:commandLink> 
+                            <h:commandLink class="icons-container-items col-1 " action="update">
+                                <i class="fa-solid fa-pen edit-icon"></i>
+                            </h:commandLink>
+                            <h:commandLink class="col-1 icons-container-items" action="#{employeeComplaintManagedBean.delete()}" onclick="return confirm('are sure to delete?')">
+                                <i class="fa-solid fa-trash delete-icon"></i>
+                            </h:commandLink>           
 
-                <h:panelGroup rendered="#{employeeComplaintManagedBean.compliants.status eq 'waiting'}" >
+                        </h:panelGroup>
+                    <div class="list-container ">
+                        
+                        <p class="comp-id"># #{employeeComplaintManagedBean.compliants.id}</p>
+                        <div class="prog-container">
+                            <ul class="progressbar-text">
+                                <li>opened</li>
+                                <li>waiting</li>
+                                <li>pending</li>
+                                <li>&nbsp;closed&nbsp;</li>
+                            </ul>
+                            <div class="steps">
+                                <span class="status-circle done"></span>
+                                <h:panelGroup rendered="#{employeeComplaintManagedBean.compliants.status == 'waiting'}">
+                                    <span class="status-circle "></span>
+                                    <span class="status-circle "></span>
+                                    <span class="status-circle "></span>
+                                    <div class="progressbar">
+                                        <span class="indicator" style="width: 32%"></span>
+                                    </div>
+                                </h:panelGroup>
+                                <h:panelGroup rendered="#{employeeComplaintManagedBean.compliants.status == 'pending'}">
+                                    <span class="status-circle done"></span>
+                                    <span class="status-circle "></span>
+                                    <span class="status-circle "></span>
+                                    <div class="progressbar">
+                                        <span class="indicator" style="width: 65%"></span>
+                                    </div>
+                                </h:panelGroup>
+                                <h:panelGroup rendered="#{employeeComplaintManagedBean.compliants.status == 'closed'}">
+                                    <span class="status-circle done"></span>
+                                    <span class="status-circle done"></span>
+                                    <span class="status-circle done"></span>
+                                    <div class="progressbar">
+                                        <span class="indicator" style="width: 100%"></span>
+                                    </div>
+                                </h:panelGroup>
 
-                    <h:commandLink value="update" action="update" /> <br />
-                    <h:commandLink value="delete" action="#{employeeComplaintManagedBean.delete()}" onclick="return confirm('are sure to delete?')" /> <br />                        
-                    <h:commandLink rendered="#{employeeComplaintManagedBean.renderResend()}" value="resend" action="#{employeeComplaintManagedBean.resend()}" /> <br />
+                            </div>
+                            <ul class="progressbar-text">
+                                <li>
+                                    <h:outputText value="#{employeeComplaintManagedBean.compliants.createdDate}" >
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </h:outputText></li>
+                                <li>
+                                    <h:outputText value="#{employeeComplaintManagedBean.compliants.createdDate}" >
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </h:outputText></li>
+                                <li>
+                                    <h:outputText value="#{employeeComplaintManagedBean.compliants.pendingDate}" rendered="#{not empty employeeComplaintManagedBean.compliants.pendingDate}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </h:outputText></li>
+                                <li>
+                                    <h:outputText value="#{employeeComplaintManagedBean.compliants.closedDate}" rendered="#{not empty employeeComplaintManagedBean.compliants.closedDate}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </h:outputText>
+                                    <h:outputText value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" rendered="#{empty employeeComplaintManagedBean.compliants.closedDate}"/>
 
-                </h:panelGroup>
-                <br />
+                                </li>
+                            </ul>
 
-                <!-- Display the selected complaint details -->
-                <h1><h:outputText value="Complaint Details"/></h1>
+                        </div>
+                        <div class="row">
+                            <h:panelGroup rendered="#{employeeComplaintManagedBean.compliants.priority == 'high'}">
+                                <div class="pri-sec col-1 ">H</div>
+                                <p class="col-2 m-1  pri-txt">High</p>
+                            </h:panelGroup>
+                            <h:panelGroup rendered="#{employeeComplaintManagedBean.compliants.priority == 'medium'}">
+                                <div class="pri-sec col-1" style="background-color:#D57900 ;">M</div>
+                                <p class="col-2 m-1  pri-txt" style="color:#D57900 ;">Medium</p>
+                            </h:panelGroup>
+                            <h:panelGroup rendered="#{employeeComplaintManagedBean.compliants.priority == 'low'}">
+                                <!-- you can change this to any icon you want -->
+                                <div class="pri-sec col-1" style="background-color:#E5CB42 ;">L</div>
+                                <p class="col-2 m-1  pri-txt" style="color:#E5CB42 ;">Low</p>
 
-                <h:outputText value="------------------" /><br /><br />
+                            </h:panelGroup>
+                            <div class="cat-container col-9 mt-2">
+                                <p class="cat-txt">#{employeeComplaintManagedBean.compliants.catId.name}</p>
+                            </div>
+                        </div>
+                        <div class="comp-container">
+                            <h2 class="comp-head">#{employeeComplaintManagedBean.compliants.title}</h2><div class="comp-desc"> #{technicianComplaintManagedBean.compliants.description}</div>
+                            <h:panelGroup rendered="#{employeeComplaintManagedBean.compliants.photo ne 'defult_image' }">
+                                <img style="height: 50vh;" src="../../upload/complaints_photos/#{employeeComplaintManagedBean.compliants.photo}"></img>
+                            </h:panelGroup>
+                            <h:panelGroup rendered="#{not empty employeeComplaintManagedBean.compliants.answer}">
+                                <h2 class="comp-head">Answer:</h2>
+                                <h6 class="comp-head mt-0" >@#{employeeComplaintManagedBean.compliants.techId.fullName}</h6>
+                                <div class="comp-desc">#{employeeComplaintManagedBean.compliants.answer}</div>
+                            </h:panelGroup>
 
-                <h:outputText value="Created Date: " />
-                <h:outputText value="#{employeeComplaintManagedBean.compliants.createdDate}" >
-                    <f:convertDateTime pattern="dd/MM/yyyy" />
-                </h:outputText>
-                <br /><br />
+                        </div>
+                    </div>
 
-                <!-- to hide the Closed Date if its empty -->
-                <h:outputText value="Pending Date: " rendered="#{not empty employeeComplaintManagedBean.compliants.pendingDate}" />
-                <h:outputText value="#{employeeComplaintManagedBean.compliants.pendingDate}" >
-                    <f:convertDateTime pattern="dd/MM/yyyy" />
-                </h:outputText>
-                <br /><br />
+                </h:form>
+            </f:view>
+        </div>
 
-                <!-- to hide the Closed Date if its empty -->
-                <h:outputText value="Created Date: " rendered="#{not empty employeeComplaintManagedBean.compliants.closedDate}" />
-                <h:outputText value="#{employeeComplaintManagedBean.compliants.closedDate}">
-                    <f:convertDateTime pattern="dd/MM/yyyy" />
-                </h:outputText>
-                <br /><br />
+        <!-- Include the footer -->
+        <ui:include src="../footer.xhtml" />
 
-                <h:outputText value="------------------" /><br /><br />
-
-                <!-- Display the details of the selected complaint -->
-                <h:outputText value="ID: # #{employeeComplaintManagedBean.compliants.id}" /><br /><br />
-                <h:outputText value="priority: #{employeeComplaintManagedBean.compliants.priority}" /><br /><br />
-                <h:outputText value="Resend: #{employeeComplaintManagedBean.compliants.resend}" /><br /><br />
-                <h:outputText value="Category: #{employeeComplaintManagedBean.compliants.catId.name}" /><br /><br />
-                <h:outputText value="Employee: #{employeeComplaintManagedBean.compliants.empId.fullName}" /><br /><br />
-                <h:outputText value="Title: #{employeeComplaintManagedBean.compliants.title}" /><br /><br />
-                <h:outputText value="Description: #{employeeComplaintManagedBean.compliants.description}" /><br /><br />
-                <h:outputText value="Photo: #{employeeComplaintManagedBean.compliants.photo}" /><br /><br />
-
-                <h:outputText value="Complaint Answer" /><br /><br />
-                <h:outputText value="Technician: #{employeeComplaintManagedBean.compliants.techId.fullName}" /><br /><br />
-
-                <!-- to hide the answer if its no exist -->
-                <h:outputText value="Answer: " rendered="#{not empty employeeComplaintManagedBean.compliants.answer}" />
-                <h:outputText value="#{employeeComplaintManagedBean.compliants.answer}" /><br /><br />
-
-            </h:form>
-        </f:view>
 
     </h:body>
 </html>

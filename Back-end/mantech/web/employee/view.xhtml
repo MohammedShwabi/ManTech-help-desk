@@ -2,79 +2,136 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Facelet Title</title>
+        <link rel="stylesheet" href="../css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="../css/style.css"/>
+        <link rel="stylesheet" href="../css/all.min.css"/>
+        <script src="../js/all.min.js"></script>
+        <script src="../js/bootstrap.bundle.min.js"></script>
         <style>            
-            .selected-link {
-                color: red; 
+            .selected-submenu-item,.selected-submenu-item:hover{
+                color: var(--main-color);
+                padding: 1vw 7vw;
+                font-size: 1.5em;
+                text-align: center;
+                font-family: "Simpfxo";
             }
 
         </style>
     </h:head>
     <h:body>
-        <f:view>
+        <!-- Include the header -->
+        <ui:include src="../header.xhtml" />
+        <br/>
+        <!-- Main content goes here -->
+        <div id="content" class="mt-5">
 
-            <h:button value="Add" outcome="#{employeeComplaintManagedBean.gotoAdd()}" />
-            <br/><br/>
+            <f:view>
 
-            <h:form>
-                <h1><h:outputText value="Complaint"/></h1>
+                <h:form>
+                    <p class="page_header">Complaints</p>
+                    <div class="btn_container">
+                        <h:button value="Add" class="web_btn" outcome="#{employeeComplaintManagedBean.gotoAdd()}" />
+                    </div>
 
-                <!-- links to filter complaints by status with AJAX -->
-                <h:panelGroup id="filterStatus">
-                    <h:commandLink value="All" styleClass="#{employeeComplaintManagedBean.selectedComplaintStatus eq 'all' ? 'selected-link' : ''}">
-                        <f:ajax execute="@this" render="complaintTable filterStatus" listener="#{employeeComplaintManagedBean.setSelectedComplaintStatus('all')}" />
-                    </h:commandLink><br/>
-                    <h:commandLink value="Waiting" styleClass="#{employeeComplaintManagedBean.selectedComplaintStatus eq 'waiting' ? 'selected-link' : ''}">
-                        <f:ajax execute="@this" render="complaintTable filterStatus" listener="#{employeeComplaintManagedBean.setSelectedComplaintStatus('waiting')}" />
-                    </h:commandLink><br/>
-                    <h:commandLink value="Pending" styleClass="#{employeeComplaintManagedBean.selectedComplaintStatus eq 'pending' ? 'selected-link' : ''}">
-                        <f:ajax execute="@this" render="complaintTable filterStatus" listener="#{employeeComplaintManagedBean.setSelectedComplaintStatus('pending')}" />
-                    </h:commandLink><br/>
-                    <h:commandLink value="Closed" styleClass="#{employeeComplaintManagedBean.selectedComplaintStatus eq 'closed' ? 'selected-link' : ''}">
-                        <f:ajax execute="@this" render="complaintTable filterStatus" listener="#{employeeComplaintManagedBean.setSelectedComplaintStatus('closed')}" />
-                    </h:commandLink>
-                </h:panelGroup>
+                    <!-- links to filter complaints by status with AJAX -->
+                    <h:panelGroup id="filterStatus" class="submenu-div">
+                        <h:commandLink value="All" styleClass="#{employeeComplaintManagedBean.selectedComplaintStatus eq 'all' ? 'selected-submenu-item' : 'submenu-items'}">
+                            <f:ajax execute="@this" render="complaintTable filterStatus" listener="#{employeeComplaintManagedBean.setSelectedComplaintStatus('all')}" />
+                        </h:commandLink><br/>
+                        <h:commandLink value="Waiting" styleClass="#{employeeComplaintManagedBean.selectedComplaintStatus eq 'waiting' ? 'selected-submenu-item' : 'submenu-items'}">
+                            <f:ajax execute="@this" render="complaintTable filterStatus" listener="#{employeeComplaintManagedBean.setSelectedComplaintStatus('waiting')}" />
+                        </h:commandLink><br/>
+                        <h:commandLink value="Pending" styleClass="#{employeeComplaintManagedBean.selectedComplaintStatus eq 'pending' ? 'selected-submenu-item' : 'submenu-items'}">
+                            <f:ajax execute="@this" render="complaintTable filterStatus" listener="#{employeeComplaintManagedBean.setSelectedComplaintStatus('pending')}" />
+                        </h:commandLink><br/>
+                        <h:commandLink value="Closed" styleClass="#{employeeComplaintManagedBean.selectedComplaintStatus eq 'closed' ? 'selected-submenu-item' : 'submenu-items'}">
+                            <f:ajax execute="@this" render="complaintTable filterStatus" listener="#{employeeComplaintManagedBean.setSelectedComplaintStatus('closed')}" />
+                        </h:commandLink>
+                    </h:panelGroup>
+                     <div class="tech-list-container col-lg-8" >
 
-                <h:dataTable id="complaintTable" value="#{employeeComplaintManagedBean.findEmployeeComplaint()}" var="item" border="1" cellpadding="4px">
+                        <h:panelGroup id="complaintTable">
 
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Priority"/>
-                        </f:facet>
-                        <h:outputText value="#{item.priority}"/>
-                    </h:column>
+                            <c:forEach var="item" items="#{employeeComplaintManagedBean.findEmployeeComplaint()}"  >
+                                <div class="row mb-4">
+                                    <h:commandLink style="text-decoration: none;display: inherit" action="#{employeeComplaintManagedBean.showDetails(item)}">
+                                        <div class="list-item m-0 pe-0 col-lg-9">
+                                            <h:panelGroup rendered="#{item.priority == 'high'}">
+                                                <!-- you can change this to any icon you want -->
+                                                <div class="pri-sec col-lg-1 ">H</div>
+                                            </h:panelGroup>
+                                            <h:panelGroup rendered="#{item.priority == 'medium'}">
+                                                <!-- you can change this to any icon you want -->
+                                                <div class="pri-sec col-lg-1 " style="background-color:#D57900 ;">M</div>
+                                            </h:panelGroup>
+                                            <h:panelGroup rendered="#{item.priority == 'low'}">
+                                                <!-- you can change this to any icon you want -->
+                                                <div class="pri-sec col-lg-1 " style="background-color:#E5CB42 ;">L</div>
+                                            </h:panelGroup>
 
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Title"/>
-                        </f:facet>
-                        <h:outputText value="#{item.title}"/>
-                    </h:column>
+                                            <div class="list-text col-lg-9 col-md-9 ms-3 ">#{item.title}</div>
 
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Status"/>
-                        </f:facet>
-                        <h:outputText value="#{item.status}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Resend"/>
-                        </f:facet>
-                        <h:outputText value="#{item.resend}"/>
-                    </h:column>
 
-                    <!-- Column for showing complaint details -->
-                    <h:column>
-                        <f:facet name="header">destails</f:facet>
-                        <h:commandLink value="more destails" action="#{employeeComplaintManagedBean.showDetails(item)}" />
-                    </h:column>
+                                            <div class="comp-status-text col-lg-2 me-1">
+                                                <h:outputText value="#{item.status}"/>
+                                            </div>
+                                        </div>
+                                    </h:commandLink>
+                                </div>
+                            </c:forEach>
 
-                </h:dataTable>
-            </h:form>
-        </f:view>
+                        </h:panelGroup>
+
+                    </div>
+
+<!--                    <h:dataTable id="complaintTable" value="#{employeeComplaintManagedBean.findEmployeeComplaint()}" var="item" border="1" cellpadding="4px">
+
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Priority"/>
+                            </f:facet>
+                            <h:outputText value="#{item.priority}"/>
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Title"/>
+                            </f:facet>
+                            <h:outputText value="#{item.title}"/>
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Status"/>
+                            </f:facet>
+                            <h:outputText value="#{item.status}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Resend"/>
+                            </f:facet>
+                            <h:outputText value="#{item.resend}"/>
+                        </h:column>
+
+                         Column for showing complaint details 
+                        <h:column>
+                            <f:facet name="header">destails</f:facet>
+                            <h:commandLink value="more destails" action="#{employeeComplaintManagedBean.showDetails(item)}" />
+                        </h:column>
+
+                    </h:dataTable>-->
+                </h:form>
+            </f:view>
+        </div>
+
+        <!-- Include the footer -->
+        <ui:include src="../footer.xhtml" />
+
 
     </h:body>
 </html>
