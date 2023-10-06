@@ -14,8 +14,9 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.servlet.http.Part;
-import model.DepartmentsFacade;
 import model.EmployeesFacade;
 
 /**
@@ -26,13 +27,11 @@ import model.EmployeesFacade;
 @SessionScoped
 public class ProfileManagedBean implements Serializable {
 
-    int id = 2;
     @EJB
     private EmployeesFacade employeesFacade;
-    @EJB
-    private DepartmentsFacade departmentsFacade;
-    private Employees employees = new Employees();
-    Employees user;
+
+    // get the current logged in user from the session
+    private Employees employees = LoginManagedBean.getCurrentUser();
 
     String OldPassword;
     String NewPassword;
@@ -79,31 +78,37 @@ public class ProfileManagedBean implements Serializable {
         this.employees = employees;
     }
 
-    public Employees getUser() {
-        Employees user = employeesFacade.find(2);
-        return user;
-    }
-
-    public String goToPasswordReset(Employees user) {
-        this.user = user;
-        return "password_reset";
-    }
-
     public String passwordReset() {
-        String after = "";
-        if (OldPassword.compareTo(user.getPassword()) == 0 && NewPassword.compareTo(ConfirmNewPassword) == 0) {
-            user.setPassword(NewPassword);
-            employeesFacade.edit(user);
+
+        if (OldPassword.compareTo(employees.getPassword()) != 0) {
+
+            // add error message if old password is not correct
+            FacesContext context = FacesContext.getCurrentInstance();
+            FacesMessage message = new FacesMessage("old Password is not correct");
+            context.addMessage("rest_form:old_password", message); // "form" is the name of your form
+
+            return null; // Return null to stay on the same page
+
+        } else if (NewPassword.compareTo(ConfirmNewPassword) != 0) {
+
+             // add error message if new and Confirm  password does not match
+            FacesContext context = FacesContext.getCurrentInstance();
+            FacesMessage message = new FacesMessage("new password and confirm new password does not match.");
+            context.addMessage("rest_form:Confirm_New_Password", message); // "form" is the name of your form
+
+            return null; // Return null to stay on the same page
+
+        } else {
+            // save the new value
+            employees.setPassword(NewPassword);
+            employeesFacade.edit(employees);
+            // to rest variable
             OldPassword = "";
             NewPassword = "";
             ConfirmNewPassword = "";
-            after = "profile?faces-redirect=true";
-        } else {
-            //doing some thing here
-            return after;
+            
+            return "profile?faces-redirect=true";
         }
-
-        return after;
     }
 
     public void editImage() throws IOException {
@@ -111,10 +116,10 @@ public class ProfileManagedBean implements Serializable {
             //doing something here
         } else {
             String pathImage = upload();
-            user.setPhoto(pathImage);
+            employees.setPhoto(pathImage);
         }
 
-        employeesFacade.edit(user);
+        employeesFacade.edit(employees);
     }
 
     public String upload() throws IOException {
