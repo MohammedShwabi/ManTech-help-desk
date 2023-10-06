@@ -74,10 +74,11 @@
                                     <div class="comp-desc">#{waitingComplaintManagedBean.compliants.description}
                                     </div>
 
-                                    <img style="height: 50vh;" src="../../upload/complaints_photos/#{waitingComplaintManagedBean.compliants.photo}"></img>
-
+                                    <h:panelGroup rendered="#{waitingComplaintManagedBean.compliants.photo ne 'defult_image' }">
+                                        <img style="height: 50vh;" src="../../upload/complaints_photos/#{waitingComplaintManagedBean.compliants.photo}"></img>
+                                    </h:panelGroup>
                                 </div>
-                                
+
                             </div>
                         </h:form>
                     </f:view>

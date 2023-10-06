@@ -135,7 +135,7 @@ public class EmployeeComplaintManagedBean implements Serializable {
         compliants.setStatus("waiting");
 
         if (file == null) {
-            compliants.setPhoto("defult image");
+            compliants.setPhoto("defult_image");
         } else {
             String pathImage = upload();
             compliants.setPhoto(pathImage);
