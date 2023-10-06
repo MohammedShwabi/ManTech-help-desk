@@ -27,9 +27,7 @@
                         <div class="report-div text-center p-3 mt-4">
                             <a class="report-items active-report-items">Closed</a>
                             <a class="report-items">Pending</a>
-                            <a class="report-items">Departments</a>
-                            <a class="report-items">Categories</a>
-                            <a class="report-items">Technicians</a>
+                            <a class="report-items">Complaint</a>
                         </div>
 
                         <div class="report-filter p-5 ">
@@ -100,101 +98,70 @@
                                 <!--<span class="number pe-1"> 12 </span> Complaints-->
                             </div>
                         </div>
-
-                        <div class="report-table">
-                            <h:dataTable class="table" id="complaintsTable" value="#{closedComplaintManagedBean.getFilteredComplaints()}" var="item">
-                                <h:column>
-                                    <f:facet name="header" >
-                                        <h:outputText value="Id" class="no-place"/>
-                                    </f:facet>
-                                    <h:outputText class="no-place" value="#{item.id}"/>
-                                </h:column>
-
-                                <h:column>
-                                    <f:facet name="header" class="no-place">
-                                        <h:outputText value="Priority"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.priority}"/>
-                                </h:column>
-
-                                <h:column>
-                                    <f:facet name="header" class="no-place">
-                                        <h:outputText value="CreatedDate"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.createdDate}">
-                                        <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
-                                    </h:outputText>
-                                </h:column>
-
-                                <h:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="PendingDate"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.pendingDate}">
-                                        <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
-                                    </h:outputText>
-                                </h:column>
-
-                                <h:column>
-                                    <f:facet name="header" >
-                                        <h:outputText value="ClosedDate"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.closedDate}">
-                                        <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
-                                    </h:outputText>
-                                </h:column>
-
-                                <h:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="Solved Time"/>
-                                    </f:facet>
-                                    <h:outputText value="#{complaintsBean.getSolvedTime(item.pendingDate, item.closedDate)}" />
-                                </h:column>
-
-                                <h:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="Employee Name"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.employee}"/>
-                                </h:column>
-
-                                <h:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="Category"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.category}"/>
-                                </h:column>
-
-                                <h:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="Department"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.department}"/>
-                                </h:column>
-
-                                <h:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="Technician Name"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.technician}"/>
-                                </h:column>
-
-                                <!-- Column for showing complaint details -->
-                                <h:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="destails"/>
-                                    </f:facet>
-                                    <h:commandLink value="more destails" action="#{closedComplaintManagedBean.showDetails(closedComplaintManagedBean.convertComplaintByMonthToCompliants(item))}" />
-                                </h:column>
-
-                            </h:dataTable>
-                        </div>
-
                     </h:form>
+                    <div class="report-table" >
+
+                        <table >
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="no-place">No.</th>
+                                    <th scope="col">Category</th>
+                                    <th scope="col">CreatedDate</th>
+                                    <th scope="col">ClosedDate</th>
+                                    <th scope="col">Department</th>
+                                    <th scope="col">Technician Name</th>
+                                    <th scope="col">Solved Time</th>
+                                    <th scope="col">Employee Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ui:repeat value="#{closedComplaintManagedBean.getFilteredComplaints()}" var="item">
+                                    <tr class="clickable-row" onclick="handleRowClick(#{item.id})">
+                                        <th scope="row" class="no-place">
+                                            <h:outputText value="##{item.id}" />
+                                        </th>
+                                        <td>
+                                            <h:outputText value="#{item.closedDate}">
+                                                <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+                                            </h:outputText>
+                                        </td>
+                                        <td>
+                                            <h:outputText value="#{item.category}" />
+                                        </td>
+                                        <td>
+                                            <h:outputText value="#{item.createdDate}">
+                                                <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+                                            </h:outputText>
+                                        </td>
+                                        <td>
+                                            <h:outputText value="#{item.closedDate}">
+                                                <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+                                            </h:outputText>
+                                        </td>
+                                        <td>
+                                            <h:outputText value="#{item.department}" />
+                                        </td>
+                                        <td>
+                                            <h:outputText value="#{item.technician}" />
+                                        </td>
+                                        <td>
+                                            <h:outputText value="#{item.employee}" />
+                                        </td>
+                                    </tr>
+                                </ui:repeat>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
 
+        <script>
+            function handleRowClick(itemId) {
+                // Perform your action here, e.g., redirect to a details page with the item ID
+                window.location.href = "complaintDetails.xhtml?id=" + itemId;
+            }
+        </script>
         <!-- Include the footer -->
         <ui:include src="../../footer.xhtml" />
     </h:body>

@@ -2,83 +2,130 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
         <title>Facelet Title</title>
-        <script src="../js/jquery-3.6.0.min.js"></script>
+        <link rel="stylesheet" href="../../css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="../../css/style.css"/>
+        <link rel="stylesheet" href="../../css/all.min.css"/>
+        <script src="../../js/all.min.js"></script>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
+        <script src="../../js/frontend.js"></script>
     </h:head>
     <h:body>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-2  p-0">
+                    <ui:include src="../side_bar.xhtml" />
+                </div>
+                <div class="col-lg-10 p-0">
 
-        <f:view>
+                    <p class="page_header">Reports </p>
+                    <h:form>
+                        <div class="report-div text-center p-3 mt-4">
+                            <a class="report-items">Closed</a>
+                            <a class="report-items">Pending</a>
+                            <a class="report-items active-report-items">Complaint</a>
+                        </div>
 
-            <h:form>
-                <!-- Dropdown to select filter type -->
-                <h:selectOneMenu value="#{complaintsBean.selectedFilterType}">
-                    <f:selectItem itemValue="techId" itemLabel="Technician" />
-                    <f:selectItem itemValue="catId" itemLabel="Category" />
-                    <f:selectItem itemValue="empId.depId" itemLabel="Department" />
-                    <f:ajax render="filterDropdown complaintsTable complaintsCount" listener="#{complaintsBean.resetFilterID}" />
-                </h:selectOneMenu>
+                        <div class="report-filter p-5 ">
+                            <div class="all-filters ps-5 ">>
 
-                <!-- Dropdown to select filter item -->
-                <h:selectOneMenu id="filterDropdown" value="#{complaintsBean.selectedFilterID}">
-                    <f:selectItems value="#{complaintsBean.getFilterItems()}" />
-                    <f:ajax render="complaintsTable complaintsCount" />
-                </h:selectOneMenu>
+                                <!-- Dropdown to select filter type -->
+                                <h:selectOneMenu  class="filters rounded-3 m-4" value="#{complaintsBean.selectedFilterType}">
+                                    <f:selectItem itemValue="techId" itemLabel="Technician" />
+                                    <f:selectItem itemValue="catId" itemLabel="Category" />
+                                    <f:selectItem itemValue="empId.depId" itemLabel="Department" />
+                                    <f:ajax render="filterDropdown complaintsTable complaintsCount" listener="#{complaintsBean.resetFilterID}" />
+                                </h:selectOneMenu>
 
-                <!-- Complaint count -->
-                <h3><h:outputText id="complaintsCount" value="#{complaintsBean.filteredComplaints.size()} Complaints"/></h3>
+                                <!-- Dropdown to select filter item -->
+                                <h:selectOneMenu class="filters rounded-3 m-4" id="filterDropdown" value="#{complaintsBean.selectedFilterID}">
+                                    <f:selectItems value="#{complaintsBean.getFilterItems()}" />
+                                    <f:ajax render="complaintsTable complaintsCount" />
+                                </h:selectOneMenu>
 
-                <!-- Complaints table -->
-                <h:dataTable id="complaintsTable" value="#{complaintsBean.filteredComplaints}" var="complaint" border="1" cellpadding="4px" >
-                    <h:column>
-                        <f:facet name="header">Complaint ID </f:facet>
-                            #{complaint.id}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Category Name</f:facet>
-                            #{complaint.catId.name}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Employee Name</f:facet>
-                            #{complaint.empId.fullName}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Department Name</f:facet>
-                            #{complaint.empId.depId.name}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Created At</f:facet>
-                            #{complaintsBean.fromatDate(complaint.createdDate)}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Pending date</f:facet>
-                            #{complaintsBean.fromatDate(complaint.pendingDate)}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Closed At</f:facet>
-                            #{complaintsBean.fromatDate(complaint.closedDate)}
+                                <!-- Complaint count -->
 
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Solved Time</f:facet>
-                            #{complaintsBean.getSolvedTime(complaint.pendingDate, complaint.closedDate)}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Technician Name</f:facet>
-                            #{complaint.techId.fullName}
-                    </h:column>
 
-                    <!-- Column for showing complaint details -->
-                    <h:column>
-                        <f:facet name="header">destails</f:facet>
-                        <h:commandLink value="more destails" action="#{closedComplaintManagedBean.showDetails(complaint)}" />
-                    </h:column>
 
-                </h:dataTable>
-            </h:form>
-        </f:view>
+                            </div>
+                            <div class="complaints-no">
+                                <!-- Complaint count -->
+                                <h:outputText id="complaintsCount" class="number pe-1"  value="#{complaintsBean.filteredComplaints.size()} Complaints"/>
+                            </div>
+                        </div>
+                    </h:form>
+                    <div class="report-table" >
 
+                        <table >
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="no-place">No.</th>
+                                    <th scope="col">Category</th>
+                                    <th scope="col">CreatedDate</th>
+                                    <th scope="col">PendingDate</th>
+                                    <th scope="col">ClosedDate</th>
+                                    <th scope="col">Department</th>
+                                    <th scope="col">Technician Name</th>
+                                    <th scope="col">Solved Time</th>
+                                    <th scope="col">Employee Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ui:repeat value="#{complaintsBean.filteredComplaints}" var="complaint">
+                                    <tr class="clickable-row" onclick="handleRowClick(#{item.id})">
+                                        <th scope="row" class="no-place">
+                                            <h:outputText value="##{complaint.id}" />
+                                        </th>
+                                        <td>
+                                            <h:outputText value="#{complaint.catId.name}" />
+                                        </td>
+                                        <td>
+                                            <h:outputText value="#{complaintsBean.fromatDate(complaint.createdDate)}">
+                                                <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+                                            </h:outputText>
+                                        </td>
+                                        <td>
+                                            <h:outputText value="#{complaintsBean.fromatDate(complaint.pendingDate)}">
+                                                <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+                                            </h:outputText>
+                                        </td>
+                                        <td>
+                                            <h:outputText value=" #{complaintsBean.fromatDate(complaint.closedDate)}">
+                                                <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+                                            </h:outputText>
+                                        </td>
+                                        <td>
+                                            <h:outputText value="#{complaint.empId.depId.name}" />
+                                        </td>
+                                        <td>
+                                            <h:outputText value="#{complaint.techId.fullName}" />
+                                        </td>
+                                        <td>
+                                            <h:outputText value="#{complaintsBean.getSolvedTime(complaint.pendingDate, complaint.closedDate)}" />
+                                        </td>
+                                        <td>
+                                            <h:outputText value="#{complaint.empId.fullName}" />
+                                        </td>
+                                    </tr>
+                                </ui:repeat>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function handleRowClick(itemId) {
+                // Perform your action here, e.g., redirect to a details page with the item ID
+                window.location.href = "complaintDetails.xhtml?id=" + itemId;
+            }
+        </script>
+        <!-- Include the footer -->
+        <ui:include src="../../footer.xhtml" />
     </h:body>
 </html>
-

@@ -463,49 +463,47 @@ ul:has(li:nth-child(2)):not(:has( li:nth-child(3)))>li {
     font-weight: 500;
 }
 
-.report-table {
+.report-table table {
     width: 100%;
 }
 
-.report-table table {
-    width: 100%;
-    vertical-align: middle;
+
+.report-table table tr td {
+    padding: .8rem 0.5rem;
+    color: #707070;
 }
+
+.report-table table tr th {
+    padding: .8rem 0.5rem;
+    color: #4A4A4A;
+}
+.report-table table .clickable-row{
+    cursor:pointer;
+}
+
+
 .report-table table thead {
     position: relative;
     z-index: 0;
     box-shadow: 0 0px 17px -3px var(--main-color);
-    vertical-align: middle;
-    border: none !important;
 }
 
-.report-table .table tr td {
-    padding: .8rem 0;
-    color: #707070;
-}
-
-.report-table .table tr th {
-    padding: .8rem 0;
-    color: #4A4A4A;
-}
-
-.report-table .table tr .no-place {
+.report-table table tr .no-place {
     padding-left: 1rem;
-    font-weight: bold;
-    color: #4A4A4A;
 }
 
-.report-table .table tr:nth-child(even):not(thead tr) {
+.report-table table tr:nth-child(even):not(thead tr) {
     background-color: #E1E1E1;
     border-bottom: solid 1px var(--main-color);
 }
 
-.report-table .table tr:nth-child(odd):not(thead tr) {
+.report-table table tr:nth-child(odd):not(thead tr) {
     background-color: #ECECEC;
     border-bottom: solid 1px var(--main-color);
 }
 
 /* end report */
+
 /* Start of maryam section*/
 @font-face {
     font-family: 'Simpfxo';
