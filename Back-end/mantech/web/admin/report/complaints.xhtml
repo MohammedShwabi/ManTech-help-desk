@@ -57,61 +57,62 @@
                         </div>
                     </h:form>
                     <div class="report-table" >
-
-                        <table >
-                            <thead>
-                                <tr>
-                                    <th scope="col" class="no-place">No.</th>
-                                    <th scope="col">Category</th>
-                                    <th scope="col">CreatedDate</th>
-                                    <th scope="col">PendingDate</th>
-                                    <th scope="col">ClosedDate</th>
-                                    <th scope="col">Department</th>
-                                    <th scope="col">Technician Name</th>
-                                    <th scope="col">Solved Time</th>
-                                    <th scope="col">Employee Name</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <ui:repeat value="#{complaintsBean.filteredComplaints}" var="complaint">
-                                    <tr class="clickable-row" onclick="handleRowClick(#{item.id})">
-                                        <th scope="row" class="no-place">
-                                            <h:outputText value="##{complaint.id}" />
-                                        </th>
-                                        <td>
-                                            <h:outputText value="#{complaint.catId.name}" />
-                                        </td>
-                                        <td>
-                                            <h:outputText value="#{complaintsBean.fromatDate(complaint.createdDate)}">
-                                                <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
-                                            </h:outputText>
-                                        </td>
-                                        <td>
-                                            <h:outputText value="#{complaintsBean.fromatDate(complaint.pendingDate)}">
-                                                <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
-                                            </h:outputText>
-                                        </td>
-                                        <td>
-                                            <h:outputText value=" #{complaintsBean.fromatDate(complaint.closedDate)}">
-                                                <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
-                                            </h:outputText>
-                                        </td>
-                                        <td>
-                                            <h:outputText value="#{complaint.empId.depId.name}" />
-                                        </td>
-                                        <td>
-                                            <h:outputText value="#{complaint.techId.fullName}" />
-                                        </td>
-                                        <td>
-                                            <h:outputText value="#{complaintsBean.getSolvedTime(complaint.pendingDate, complaint.closedDate)}" />
-                                        </td>
-                                        <td>
-                                            <h:outputText value="#{complaint.empId.fullName}" />
-                                        </td>
+                        <h:panelGroup id="complaintsTable">
+                            <table >
+                                <thead>
+                                    <tr>
+                                        <th scope="col" class="no-place">No.</th>
+                                        <th scope="col">Category</th>
+                                        <th scope="col">CreatedDate</th>
+                                        <th scope="col">PendingDate</th>
+                                        <th scope="col">ClosedDate</th>
+                                        <th scope="col">Department</th>
+                                        <th scope="col">Technician Name</th>
+                                        <th scope="col">Solved Time</th>
+                                        <th scope="col">Employee Name</th>
                                     </tr>
-                                </ui:repeat>
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    <ui:repeat value="#{complaintsBean.filteredComplaints}" var="complaint">
+                                        <tr class="clickable-row" onclick="handleRowClick(#{item.id})">
+                                            <th scope="row" class="no-place">
+                                                <h:outputText value="##{complaint.id}" />
+                                            </th>
+                                            <td>
+                                                <h:outputText value="#{complaint.catId.name}" />
+                                            </td>
+                                            <td>
+                                                <h:outputText value="#{complaintsBean.fromatDate(complaint.createdDate)}">
+                                                    <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+                                                </h:outputText>
+                                            </td>
+                                            <td>
+                                                <h:outputText value="#{complaintsBean.fromatDate(complaint.pendingDate)}">
+                                                    <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+                                                </h:outputText>
+                                            </td>
+                                            <td>
+                                                <h:outputText value=" #{complaintsBean.fromatDate(complaint.closedDate)}">
+                                                    <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+                                                </h:outputText>
+                                            </td>
+                                            <td>
+                                                <h:outputText value="#{complaint.empId.depId.name}" />
+                                            </td>
+                                            <td>
+                                                <h:outputText value="#{complaint.techId.fullName}" />
+                                            </td>
+                                            <td>
+                                                <h:outputText value="#{complaintsBean.getSolvedTime(complaint.pendingDate, complaint.closedDate)}" />
+                                            </td>
+                                            <td>
+                                                <h:outputText value="#{complaint.empId.fullName}" />
+                                            </td>
+                                        </tr>
+                                    </ui:repeat>
+                                </tbody>
+                            </table>
+                        </h:panelGroup>
                     </div>
                 </div>
             </div>
