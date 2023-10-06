@@ -25,9 +25,9 @@
                     <p class="page_header">Reports </p>
                     <h:form>
                         <div class="report-div text-center p-3 mt-4">
-                            <a class="report-items active-report-items">Closed</a>
-                            <a class="report-items">Pending</a>
-                            <a class="report-items">Complaint</a>
+                            <h:link class="report-items active-report-items" value="Closed" outcome="/admin/report/closedComplaints" />
+                            <h:link class="report-items" value="Pending" outcome="/admin/report/pendingComplaints" />
+                            <h:link class="report-items" value="Complaint" outcome="/admin/report/complaints" />
                         </div>
 
                         <div class="report-filter p-5 ">
@@ -106,8 +106,8 @@
                                 <tr>
                                     <th scope="col" class="no-place">No.</th>
                                     <th scope="col">Category</th>
-                                    <th scope="col">CreatedDate</th>
-                                    <th scope="col">ClosedDate</th>
+                                    <th scope="col">Created Date</th>
+                                    <th scope="col">Closed Date</th>
                                     <th scope="col">Department</th>
                                     <th scope="col">Technician Name</th>
                                     <th scope="col">Solved Time</th>
@@ -120,11 +120,6 @@
                                         <th scope="row" class="no-place">
                                             <h:outputText value="##{item.id}" />
                                         </th>
-                                        <td>
-                                            <h:outputText value="#{item.closedDate}">
-                                                <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
-                                            </h:outputText>
-                                        </td>
                                         <td>
                                             <h:outputText value="#{item.category}" />
                                         </td>
@@ -143,6 +138,9 @@
                                         </td>
                                         <td>
                                             <h:outputText value="#{item.technician}" />
+                                        </td>
+                                        <td>
+                                            <h:outputText value="#{complaintsBean.getSolvedTime(item.pendingDate, item.closedDate)}" />
                                         </td>
                                         <td>
                                             <h:outputText value="#{item.employee}" />

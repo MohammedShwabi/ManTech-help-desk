@@ -1,132 +1,137 @@
-<!DOCTYPE html>
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
-        <title>Pending Complaints</title>
+        <title>Facelet Title</title>
+        <link rel="stylesheet" href="../../css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="../../css/style.css"/>
+        <link rel="stylesheet" href="../../css/all.min.css"/>
+        <script src="../../js/all.min.js"></script>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
+        <script src="../../js/frontend.js"></script>
     </h:head>
     <h:body>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-2  p-0">
+                    <ui:include src="../side_bar.xhtml" />
+                </div>
+                <div class="col-lg-10 p-0">
 
-        <h:form>
-            <!-- Dropdown to select category -->
-            <h:outputLabel for="categoryDropdown" value="Filter by Category: " />
-            <h:selectOneMenu id="categoryDropdown" value="#{pendingComplaintManagedBean.selectedCategory}">
-                <f:selectItem itemValue="" itemLabel="All Categories" />
-                <f:selectItems value="#{pendingComplaintManagedBean.getFilterItems('cat')}" />
-                <f:ajax render="complaintsTable complaintsCount" />
-            </h:selectOneMenu>
+                    <p class="page_header">Reports </p>
+                    <h:form>
+                        <div class="report-div text-center p-3 mt-4">
+                            <h:link class="report-items" value="Closed" outcome="/admin/report/closedComplaints" />
+                            <h:link class="report-items active-report-items" value="Pending" outcome="/admin/report/pendingComplaints" />
+                            <h:link class="report-items" value="Complaint" outcome="/admin/report/complaints" />
+                        </div>
 
-            <!-- Dropdown to select department -->
-            <h:outputLabel for="departmentDropdown" value="Filter by Department: " />
-            <h:selectOneMenu id="departmentDropdown" value="#{pendingComplaintManagedBean.selectedDepartment}">
-                <f:selectItem itemValue="0" itemLabel="All Departments" />
-                <f:selectItems value="#{pendingComplaintManagedBean.getFilterItems('dep')}" />
-                <f:ajax render="complaintsTable complaintsCount" />
-            </h:selectOneMenu>
+                        <div class="report-filter p-5 ">
+                            <div class="all-filters ps-5 ">
+                                <!-- Dropdown to select category -->
+                                <h:selectOneMenu class="filters rounded-3 m-4" id="categoryDropdown" value="#{pendingComplaintManagedBean.selectedCategory}">
+                                    <f:selectItem itemValue="" itemLabel="All Categories" />
+                                    <f:selectItems value="#{pendingComplaintManagedBean.getFilterItems('cat')}" />
+                                    <f:ajax render="complaintsTable complaintsCount" />
+                                </h:selectOneMenu>
 
-            <!-- Dropdown to select priority -->
-            <h:outputLabel for="priorityDropdown" value="Filter by Priority: " />
-            <h:selectOneMenu id="priorityDropdown" value="#{pendingComplaintManagedBean.selectedPriority}">
-                <f:selectItem itemValue="all" itemLabel="All Priorities" />
+                                <!-- Dropdown to select department -->
+                                <h:selectOneMenu class="filters rounded-3 m-4" id="departmentDropdown" value="#{pendingComplaintManagedBean.selectedDepartment}">
+                                    <f:selectItem itemValue="0" itemLabel="All Departments" />
+                                    <f:selectItems value="#{pendingComplaintManagedBean.getFilterItems('dep')}" />
+                                    <f:ajax render="complaintsTable complaintsCount" />
+                                </h:selectOneMenu>
 
-                <f:selectItem itemValue="high" itemLabel="High" />
-                <f:selectItem itemValue="medium" itemLabel="Medium" />
-                <f:selectItem itemValue="low" itemLabel="Low" />
+                                <!-- Dropdown to select priority -->
+                                <h:selectOneMenu class="filters rounded-3 m-4" id="priorityDropdown" value="#{pendingComplaintManagedBean.selectedPriority}">
+                                    <f:selectItem itemValue="all" itemLabel="All Priorities" />
 
-                <f:ajax render="complaintsTable complaintsCount" />
-            </h:selectOneMenu>
+                                    <f:selectItem itemValue="high" itemLabel="High" />
+                                    <f:selectItem itemValue="medium" itemLabel="Medium" />
+                                    <f:selectItem itemValue="low" itemLabel="Low" />
 
-            <!-- Dropdown to select Pending Days -->
-            <h:outputLabel for="pendingDaysDropdown" value="Filter by Pending Days: " />
-            <h:selectOneMenu id="pendingDaysDropdown" value="#{pendingComplaintManagedBean.selectedDays}">
-                <f:selectItems value="#{pendingComplaintManagedBean.pendingDaysOptions}" />
-                <f:ajax render="complaintsTable complaintsCount" />
-            </h:selectOneMenu>
+                                    <f:ajax render="complaintsTable complaintsCount" />
+                                </h:selectOneMenu>
 
-            <!-- Complaint count -->
-            <h3><h:outputText id="complaintsCount" value="#{pendingComplaintManagedBean.filteredComplaints.size()} Complaints"/></h3>
+                                <!-- Dropdown to select Pending Days -->
+                                <h:selectOneMenu class="filters rounded-3 m-4" id="pendingDaysDropdown" value="#{pendingComplaintManagedBean.selectedDays}">
+                                    <f:selectItems value="#{pendingComplaintManagedBean.pendingDaysOptions}" />
+                                    <f:ajax render="complaintsTable complaintsCount" />
+                                </h:selectOneMenu>
+                            </div>
+                            <div class="complaints-no">
+                                <!-- Complaint count -->
+                                <h:outputText class="number pe-1" id="complaintsCount" value="#{pendingComplaintManagedBean.filteredComplaints.size()} Complaints"/>
+                            </div>
+                        </div>
+                    </h:form>
+                    <div class="report-table" >
 
-            <!-- Display filtered complaints -->
-            <h:dataTable id="complaintsTable" value="#{pendingComplaintManagedBean.filteredComplaints}" var="item" border="1" cellpadding="4px">
+                        <table >
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="no-place">No.</th>
+                                    <th scope="col">Category</th>
+                                    <th scope="col">Created Date</th>
+                                    <th scope="col">Pending for</th>
+                                    <th scope="col">Department</th>
+                                    <th scope="col">Technician Name</th>
+                                    <th scope="col">Priority</th>
+                                    <th scope="col">Employee Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ui:repeat value="#{pendingComplaintManagedBean.filteredComplaints}" var="item">
+                                    <tr class="clickable-row" onclick="handleRowClick(#{item.id})">
+                                        <th scope="row" class="no-place">
+                                            <h:outputText value="##{item.id}" />
+                                        </th>
+                                        <td>
+                                            <h:outputText value="#{item.catId.name}}" />
+                                        </td>
+                                        <td>
+                                            <h:outputText value="#{item.createdDate}">
+                                                <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+                                            </h:outputText>
+                                        </td>
+                                        <td>
+                                            <h:outputText value="#{pendingComplaintManagedBean.getPendingTime(item.pendingDate)}">
+                                                <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+                                            </h:outputText>
+                                        </td>
+                                        <td>
+                                            <h:outputText value="#{item.empId.depId.name}" />
+                                        </td>
+                                        <td>
+                                            <h:outputText value="#{item.techId.fullName}" />
+                                        </td>
+                                        <td>
+                                            <h:outputText value="#{item.priority}" />
+                                        </td>
+                                        <td>
+                                            <h:outputText value="#{item.empId.depId.name}" />
+                                        </td>
+                                    </tr>
+                                </ui:repeat>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Id"/>
-                    </f:facet>
-                    <h:outputText value="#{item.id}"/>
-                </h:column>
-
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Priority"/>
-                    </f:facet>
-                    <h:outputText value="#{item.priority}"/>
-                </h:column>
-
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="CreatedDate"/>
-                    </f:facet>
-                    <h:outputText value="#{item.createdDate}">
-                        <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
-                    </h:outputText>
-                </h:column>
-
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="PendingDate"/>
-                    </f:facet>
-                    <h:outputText value="#{item.pendingDate}">
-                        <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
-                    </h:outputText>
-                </h:column>
-
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Pending for"/>
-                    </f:facet>
-
-                    <h:outputText value="#{pendingComplaintManagedBean.getPendingTime(item.pendingDate)}">
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </h:outputText>
-                </h:column>
-
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Category"/>
-                    </f:facet>
-                    <h:outputText value="#{item.catId.name}"/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Employee Name"/>
-                    </f:facet>
-                    <h:outputText value="#{item.empId.fullName}"/>
-                </h:column>
-
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Department"/>
-                    </f:facet>
-                    <h:outputText value="#{item.empId.depId.name}"/>
-                </h:column>
-
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Technician Name"/>
-                    </f:facet>
-                    <h:outputText value="#{item.techId.fullName}"/>
-                </h:column>
-
-                <!-- Column for showing complaint details -->
-                <h:column>
-                    <f:facet name="header">destails</f:facet>
-                    <h:commandLink value="more destails" action="#{closedComplaintManagedBean.showDetails(item)}" />
-                </h:column>
-
-            </h:dataTable>
-
-        </h:form>
-
+        <script>
+            function handleRowClick(itemId) {
+                // Perform your action here, e.g., redirect to a details page with the item ID
+                window.location.href = "complaintDetails.xhtml?id=" + itemId;
+            }
+        </script>
+        <!-- Include the footer -->
+        <ui:include src="../../footer.xhtml" />
     </h:body>
 </html>
+

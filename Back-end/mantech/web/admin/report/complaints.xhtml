@@ -25,9 +25,9 @@
                     <p class="page_header">Reports </p>
                     <h:form>
                         <div class="report-div text-center p-3 mt-4">
-                            <a class="report-items">Closed</a>
-                            <a class="report-items">Pending</a>
-                            <a class="report-items active-report-items">Complaint</a>
+                            <h:link class="report-items" value="Closed" outcome="/admin/report/closedComplaints" />
+                            <h:link class="report-items" value="Pending" outcome="/admin/report/pendingComplaints" />
+                            <h:link class="report-items active-report-items" value="Complaint" outcome="/admin/report/complaints" />
                         </div>
 
                         <div class="report-filter p-5 ">
