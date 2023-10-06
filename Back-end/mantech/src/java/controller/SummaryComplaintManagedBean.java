@@ -1,0 +1,95 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package controller;
+
+import javax.inject.Named;
+import javax.enterprise.context.SessionScoped;
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
+import javax.ejb.EJB;
+import model.ComplaintByMonthFacade;
+
+/**
+ *
+ * @author dell
+ */
+@Named(value = "summaryComplaintManagedBean")
+@SessionScoped
+public class SummaryComplaintManagedBean implements Serializable {
+    
+    @EJB
+    private ComplaintByMonthFacade complaintByMonthFacade;
+
+    // these for filtering based on raido btn
+    private String selectedFilter = "day";
+
+    // this if the filter is by day
+    private Date selectedDate;
+
+    // this if the filter is by week
+    private String selectedWeek = "";
+
+    // this if the filter is by month
+    private String selectedYearMonth = "";
+
+    // getter and setter for all radio filter
+    public String getSelectedFilter() {
+        return selectedFilter;
+    }
+
+    public void setSelectedFilter(String selectedFilter) {
+        this.selectedFilter = selectedFilter;
+    }
+
+    public Date getSelectedDate() {
+        return selectedDate;
+    }
+
+    public void setSelectedDate(Date selectedDate) {
+        this.selectedDate = selectedDate;
+    }
+
+    public String getSelectedWeek() {
+        return selectedWeek;
+    }
+
+    public void setSelectedWeek(String selectedWeek) {
+        this.selectedWeek = selectedWeek;
+    }
+
+    public String getSelectedYearMonth() {
+        return selectedYearMonth;
+    }
+
+    public void setSelectedYearMonth(String selectedYearMonth) {
+        this.selectedYearMonth = selectedYearMonth;
+    }
+
+    // to get list of filtered complaints
+    public List<Object[]> getFilteredComplaints() {
+
+        return complaintByMonthFacade.filterSummaryComplaints(selectedFilter, selectedDate, selectedYearMonth, selectedWeek);
+    }
+
+    // to rest the filter
+    public String restFilter() {
+
+        selectedFilter = "day";
+        selectedDate = null;
+        selectedWeek = "";
+        selectedYearMonth = "";
+
+        return "summaryComplaints";
+    }
+
+
+    /**
+     * Creates a new instance of SummaryComplaintManagedBean
+     */
+    public SummaryComplaintManagedBean() {
+    }
+}

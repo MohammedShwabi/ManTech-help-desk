@@ -57,10 +57,10 @@ public class ClosedComplaintManagedBean implements Serializable {
     private Date selectedDate;
 
     // this if the filter is by week
-    private String selectedWeek;
+    private String selectedWeek = "";
 
     // this if the filter is by month
-    private String selectedYearMonth;
+    private String selectedYearMonth = "";
 
     // getter and setter for complaints
     public Compliants getCompliants() {
@@ -141,8 +141,8 @@ public class ClosedComplaintManagedBean implements Serializable {
 
         selectedFilter = "day";
         selectedDate = null;
-        selectedWeek = null;
-        selectedYearMonth = null;
+        selectedWeek = "";
+        selectedYearMonth = "";
 
         return "closedComplaints";
     }

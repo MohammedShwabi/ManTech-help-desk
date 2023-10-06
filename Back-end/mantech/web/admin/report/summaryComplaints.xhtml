@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <title>Closed Complaints</title>
+    </h:head>
+    <h:body>
+
+        <h:form>
+
+            <!-- Radio buttons to select pending days filter -->
+            <h:outputLabel value="Filter by Created Date:" />
+            <h:selectOneRadio value="#{summaryComplaintManagedBean.selectedFilter}">
+                <f:selectItem  itemValue="day" itemLabel="Day" />
+                <f:selectItem itemValue="month" itemLabel="Month" />
+                <f:selectItem itemValue="week" itemLabel="Week" />
+                <f:ajax render="dateInput complaintsTable complaintsCount" />
+            </h:selectOneRadio>
+
+            <!-- Date input based on selected filter -->
+            <h:panelGroup id="dateInput">
+                <!-- input for filter by day -->
+                <h:inputText a:type="date" id="createDate" value="#{summaryComplaintManagedBean.selectedDate}" 
+                             rendered="#{summaryComplaintManagedBean.selectedFilter eq 'day'}">
+                    <f:convertDateTime pattern="yyyy-MM-dd" />
+                </h:inputText>
+
+                <!-- input for filter by week -->
+                <h:inputText a:type="week" id="createWeeks" value="#{summaryComplaintManagedBean.selectedWeek}" 
+                             rendered="#{summaryComplaintManagedBean.selectedFilter eq 'week'}" />
+
+                <!-- input for filter by month -->
+                <h:inputText a:type="month" id="createMonthYear" value="#{summaryComplaintManagedBean.selectedYearMonth}" 
+                             rendered="#{summaryComplaintManagedBean.selectedFilter eq 'month'}" />
+            </h:panelGroup>
+
+
+            <!-- filter and rest buttons -->
+            <h:commandButton value="Filter" action="summaryComplaints" />
+            <h:commandButton value="Rest" action="#{summaryComplaintManagedBean.restFilter()}" />
+
+
+            <!-- Complaint count -->
+            <h3><h:outputText id="complaintsCount" value="#{summaryComplaintManagedBean.getFilteredComplaints().size()} Complaints"/></h3>
+
+            <h:dataTable id="complaintsTable" value="#{summaryComplaintManagedBean.getFilteredComplaints()}" var="complaint" border="1" cellpadding="4px">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="total no."/>
+                    </f:facet>
+                    <h:outputText value="#{complaint[0]}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Department"/>
+                    </f:facet>
+                    <h:outputText value="#{complaint[1]}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Status"/>
+                    </f:facet>
+                    <h:outputText value="#{complaint[2]}"/>
+                </h:column>
+
+            </h:dataTable>
+
+
+        </h:form>
+
+    </h:body>
+
+</html>
