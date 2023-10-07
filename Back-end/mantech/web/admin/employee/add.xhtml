@@ -58,16 +58,16 @@
                             <h:message for="email" style="color:blue" />
 
                             <h:outputLabel class="costoum-lable" value="Password:" for="password" />
-                            <h:inputText  class="input-type" id="password" value="#{employeeManagedBean.employee.password}" title="Password" required="true" 
+                            <h:inputSecret class="input-type" id="password" value="#{employeeManagedBean.employee.password}" title="Password" required="true" 
                                           requiredMessage="The Password field is required." validatorMessage="Validation Error: Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one digit" >
                                 <f:validateRegex pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}$" />
-                            </h:inputText>
+                            </h:inputSecret>
                             <h:message for="password" style="color:blue" />
 
                             <h:outputLabel class="costoum-lable" value="Confirm  Password:" for="Confirm_New_Password" />
-                            <h:inputText  class="input-type" id="Confirm_New_Password" value="#{employeeManagedBean.confirm_Password}" title="Confirm New Password" required="true"  requiredMessage="The Password field is required." validatorMessage="Validation Error: Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one digit">
+                            <h:inputSecret  class="input-type" id="Confirm_New_Password" value="#{employeeManagedBean.confirm_Password}" title="Confirm New Password" required="true"  requiredMessage="The Password field is required." validatorMessage="Validation Error: Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one digit">
                                 <f:validateRegex pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}$" />
-                            </h:inputText>
+                            </h:inputSecret>
                             <h:message for="Confirm_New_Password" style="color:blue" />
                             <br></br>
                             <h:commandButton class="web_btn mb-4 me-0" value="Add Employee" action="#{employeeManagedBean.addEmployee()}" />
