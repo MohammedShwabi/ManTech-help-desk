@@ -2,51 +2,59 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Facelet Title</title>
+        <link rel="stylesheet" href="../css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="../css/style.css"/>
+        <link rel="stylesheet" href="../css/all.min.css"/>
+        <script src="../js/all.min.js"></script>
+        <script src="../js/bootstrap.bundle.min.js"></script>
     </h:head>
-      <h:body class="d-flex flex-column h-100">
-<!--         Include the header 
+    <h:body class="d-flex flex-column h-100">
+        Include the header 
         <ui:include src="../header.xhtml" />
         <br/>
-         Main content goes here 
-        <div id="content" class="mt-5 flex-shrink-0">-->
-        <f:view>
-            <h:form enctype="multipart/form-data">
-                <h1><h:outputText value="Create/Edit"/></h1>
-                <h:panelGrid columns="3">
-
-                    <h:outputLabel value="Title:" for="title" />
-                    <h:inputText id="title" value="#{employeeComplaintManagedBean.compliants.title}" title="Title" required="true" requiredMessage="The Title field is required."/>
+        Main content goes here 
+        <div id="content" class="container mt-5 flex-shrink-0 text-center">
+            <f:view>
+                <h:outputText class="page_header " value="Add Complaint"/>
+                <h:form enctype="multipart/form-data">
+                    <h:outputLabel class="costoum-lable" value="Title:" for="title" />
+                    <h:inputText class="input-type" id="title" value="#{employeeComplaintManagedBean.compliants.title}" title="Title" required="true" requiredMessage="The Title field is required."/>
                     <h:message for="title" style="color:blue" />
 
-                    <h:outputLabel value="Description:" for="description" />
-                    <h:inputTextarea rows="4" cols="30" id="description" value="#{employeeComplaintManagedBean.compliants.description}" title="Description" required="true" requiredMessage="The Description field is required."/>
+                    <h:outputLabel class="costoum-lable" value="Description:" for="description" />
+                    <h:inputTextarea  class="input-type-textarea" rows="4" cols="30" id="description" value="#{employeeComplaintManagedBean.compliants.description}" title="Description" required="true" requiredMessage="The Description field is required."/>
                     <h:message for="description" style="color:blue" />
 
-                    <h:outputLabel value="Photo:" for="photo" />
-                    <h:inputFile value="#{employeeComplaintManagedBean.file}" />
+                    <h:outputLabel class="costoum-lable" value="Photo:" for="photo" />
+                    <h:inputFile class="input-type" value="#{employeeComplaintManagedBean.file}" />
                     <h:message for="photo" style="color:blue" />
 
-                    <h:outputLabel value="Category:" for="categoryDropdown" />
-                    <h:selectOneMenu id="categoryDropdown" value="#{employeeComplaintManagedBean.selectedCategoryId}" title="Category" required="true" requiredMessage="The Category field is required.">
+                    <h:outputLabel class="costoum-lable" value="Category:" for="categoryDropdown" />
+                    <h:selectOneMenu class="input-type" id="categoryDropdown" value="#{employeeComplaintManagedBean.selectedCategoryId}" title="Category" required="true" requiredMessage="The Category field is required.">
                         <f:selectItems value="#{employeeComplaintManagedBean.getCategoryItems()}" />
                     </h:selectOneMenu>
                     <h:message for="categoryDropdown" style="color:blue" />
 
-                    <h:outputLabel value="Priority:" for="priorityDropdown" />
-                    <h:selectOneMenu id="priorityDropdown" value="#{employeeComplaintManagedBean.compliants.priority}" title="Priority" required="true" requiredMessage="The Priority field is required.">
+                    <h:outputLabel class="costoum-lable" value="Priority:" for="priorityDropdown" />
+                    <h:selectOneMenu  class="input-type" id="priorityDropdown" value="#{employeeComplaintManagedBean.compliants.priority}" title="Priority" required="true" requiredMessage="The Priority field is required.">
                         <f:selectItem itemValue="high" itemLabel="High" />
                         <f:selectItem itemValue="medium" itemLabel="Medium" />
                         <f:selectItem itemValue="low" itemLabel="Low" />
                     </h:selectOneMenu>
                     <h:message for="priorityDropdown" style="color:blue" />
+                    <br></br>
+                    <h:commandButton class="web_btn mb-4 me-0" value="Add complaint" action="#{employeeComplaintManagedBean.addComplaint()}" />
+                </h:form>
+            </f:view>
+        </div>
 
-                </h:panelGrid>
-                <h:commandButton value="Add complaint" action="#{employeeComplaintManagedBean.addComplaint()}" />
-            </h:form>
-        </f:view>
+        <!-- Include the footer -->
+        <ui:include src="../footer.xhtml" />
+
 
     </h:body>
 </html>
