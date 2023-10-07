@@ -123,10 +123,6 @@ a.blog-link {
     margin: 0 0.2rem;
 }
 
-ul:has(li:nth-child(2)):not(:has( li:nth-child(3)))>li {
-    margin: 0 1rem;
-}
-
 .blog-links li #delete_icon , #edit_icon{
     background: #fff;
     font-size: 1.4rem;
