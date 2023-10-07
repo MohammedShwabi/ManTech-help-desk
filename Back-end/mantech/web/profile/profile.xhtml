@@ -13,14 +13,9 @@
     </h:head>
     <h:body>
 
-        <!-- Include the header -->
-        <ui:include src="/header.xhtml" />
-        <br/>
-
-
         <!-- Main content goes here -->
-        <div id="content" class="mt-5">
-            <div class="container mt-5">
+        <div id="content">
+            <div class="container ">
                 <h:form enctype="multipart/form-data" >
                     <div class="row justify-content-md-center mb-4 pt-4">
                         <p class="profile-title text-center">
@@ -36,7 +31,7 @@
 
                     <div class="row justify-content-md-center">
                         <div class="profile-container">
-                            <img src="../upload/profiles_photos/profile.svg" alt="image" class="profile-img"></img>
+                            <img src="../../upload/profiles_photos/profile.svg" alt="image" class="profile-img"></img>
                         </div>
                     </div>
                     <div class="row justify-content-md-center mt-4">
@@ -72,9 +67,6 @@
                 </h:form>
             </div>
         </div>
-
-        <!-- Include the footer -->
-        <ui:include src="/footer.xhtml" />
     </h:body>
 </html>
 

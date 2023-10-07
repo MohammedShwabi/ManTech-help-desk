@@ -49,6 +49,7 @@ a.blog-link {
 }
 
 .blog-card {
+    text-align: left;
     position: relative;
     display: inline-block;
     width: 20rem;
@@ -95,7 +96,7 @@ a.blog-link {
     z-index: 1;
     position: fixed;
     text-decoration: none;
-    top: 36rem;
+    top: 78vh;
     right: 3rem;
 }
 
@@ -278,7 +279,7 @@ a.blog-link {
 }
 .scrollable-column {
     overflow-y: auto;
-    height: 125vh; /* Adjust the height as needed */
+    height: 130vh; /* Adjust the height as needed */
 }
 
 /* end header */
@@ -316,10 +317,12 @@ a.blog-link {
 }
 
 .faq-btn-delete{
+    border: red 0.5vh solid!important;
     color: #FFFFFF !important;
     background-color: red !important;
 }
 .faq-btn-delete:hover{
+    border: red 0.5vh solid !important;
     color: red !important;
     background-color: #FFFFFF !important;
 }
@@ -533,7 +536,7 @@ a.blog-link {
     color: var(--main-color);
     font-weight: 500;
     font-size: 3em;
-    margin-top: 10vh;
+    margin-top: 1vh;
     text-align: center;
 }
 .comp-id{
