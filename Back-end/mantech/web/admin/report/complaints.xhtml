@@ -3,8 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Facelet Title</title>
         <link rel="stylesheet" href="../../css/bootstrap.min.css"/>
@@ -75,7 +74,7 @@
                                 </thead>
                                 <tbody>
                                     <ui:repeat value="#{complaintsBean.filteredComplaints}" var="complaint">
-                                        <tr class="clickable-row" onclick="handleRowClick(#{item.id})">
+                                        <tr class="clickable-row" onclick="handleRowClick(#{complaint.id})">
                                             <th scope="row" class="no-place">
                                                 <h:outputText value="##{complaint.id}" />
                                             </th>
@@ -83,17 +82,17 @@
                                                 <h:outputText value="#{complaint.catId.name}" />
                                             </td>
                                             <td>
-                                                <h:outputText value="#{complaintsBean.fromatDate(complaint.createdDate)}">
+                                                <h:outputText value="#{complaint.createdDate}">
                                                     <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
                                                 </h:outputText>
                                             </td>
                                             <td>
-                                                <h:outputText value="#{complaintsBean.fromatDate(complaint.pendingDate)}">
+                                                <h:outputText value="#{complaint.pendingDate}">
                                                     <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
                                                 </h:outputText>
                                             </td>
                                             <td>
-                                                <h:outputText value=" #{complaintsBean.fromatDate(complaint.closedDate)}">
+                                                <h:outputText value=" #{complaint.closedDate}">
                                                     <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
                                                 </h:outputText>
                                             </td>

@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 
     <!-- start navbar -->
@@ -10,7 +11,8 @@
         <nav class="navbar navbar-expand-md fixed-top navbar-light shadow" style="margin-bottom: 2vh;position: fixed">
             <div class="container">
                 <h:link class="navbar-brand" outcome="/blogs_FAQ/view_blogs" >
-                    <img src="../img/helpDeskLogo.svg" alt="Logo" style="width:9rem;" class="img-fluid" />
+                    <!--<img src="img/helpDeskLogo.svg" alt="Logo" style="width:9rem;" class="img-fluid" />-->
+                    <h:graphicImage library="img" name="helpDeskLogo.svg" alt="Logo" style="width:9rem;" class="img-fluid" />
                 </h:link>
                 <button class="navbar-toggler" type="button" aria-label="navbar toggler" data-bs-toggle="collapse"
                         data-bs-target=".navitems">
@@ -30,28 +32,46 @@
                             </h:link>
                         </li>
 
-                        <!--this for Tech-->
-                        <li class="nav-item #{view.viewId == '/technician/view.xhtml' ? 'active' : ''}">
-                            <h:link class="nav-link " outcome="/technician/view" >
-                                <p class="nav-text">Complaint</p>
-                            </h:link>
-                        </li>
-                        <!--this for user-->
-                        <li class="nav-item #{view.viewId == '/employee/view.xhtml' ? 'active' : ''}">
-                            <h:link class="nav-link " outcome="/employee/view" >
-                                <p class="nav-text">Complaint</p>
-                            </h:link>
-                        </li>
+                        <h:panelGroup rendered="#{loginManagedBean.isloggedIn()}">
+                            <!--to show complaint only if the user is logged in-->
+                            <c:choose>
+                                <c:when test="#{loginManagedBean.getCurrentUser().depId.id eq 6}">
+                                    <!--complaint for Tech-->
+                                    <li class="nav-item #{view.viewId == '/technician/view.xhtml' ? 'active' : ''}">
+                                        <h:link class="nav-link " outcome="/technician/view" >
+                                            <p class="nav-text">Complaint</p>
+                                        </h:link>
+                                    </li>
+                                </c:when>
+                                <c:otherwise>
+                                    <!--complaint for user-->
+                                    <li class="nav-item #{view.viewId == '/employee/view.xhtml' ? 'active' : ''}">
+                                        <h:link class="nav-link " outcome="/employee/view" >
+                                            <p class="nav-text">Complaint</p>
+                                        </h:link>
+                                    </li>
+                                </c:otherwise>
+                            </c:choose>
+
+                        </h:panelGroup>
+
                     </ul>
                     <ul class="navbar-nav ms-auto ">
-                        <!--login btn-->
-                        <!--<h:link class="web_btn mt-0 me-0 no-link-style"  value="Login" outcome="/login" />-->
-                        <!--profile--> 
                         <li>
-                            <h:link class="navbar-brand" outcome="/profile/profile" >
-                                <img src="../img/profile.svg" alt="Logo" class=" nav-photo img-fluid"
-                                     id="round-profile" />
-                            </h:link>
+                            <c:choose>
+                                <!--if the user is logged it-->
+                                <c:when test="#{loginManagedBean.isloggedIn()}">
+                                    <!-- show profile --> 
+                                    <h:link class="navbar-brand" outcome="/profile/profile" >
+                                        <img src="../img/profile.svg" alt="Logo" class=" nav-photo img-fluid"
+                                             id="round-profile" />
+                                    </h:link>
+                                </c:when>
+                                <c:otherwise>
+                                    <!-- else show login button -->
+                                    <h:link class="web_btn mt-0 me-0 no-link-style"  value="Login" outcome="/login" />
+                                </c:otherwise>
+                            </c:choose>
                         </li>
                     </ul>
                 </div>

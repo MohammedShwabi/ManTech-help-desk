@@ -84,7 +84,7 @@ public class LoginManagedBean implements Serializable {
             switch (depID) {
                 case 7:
                     // If department ID is 7, go to the admin page
-                    return "/admin/admin_list?faces-redirect=true";
+                    return "/admin/complaint/view?faces-redirect=true";
                 case 6:
                     // If department ID is 6, go to the technician page
                     return "/technician/view?faces-redirect=true";
@@ -152,6 +152,11 @@ public class LoginManagedBean implements Serializable {
         Employees loggedInUser = (Employees) session.getAttribute("loggedInEmployee");
 
         return loggedInUser;
+    }
+
+    // Add a method to check if the user is logged in
+    public boolean isloggedIn() {
+        return getCurrentUser() != null;
     }
 
 }

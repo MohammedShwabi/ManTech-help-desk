@@ -43,8 +43,6 @@ public class ClosedComplaintManagedBean implements Serializable {
     @EJB
     private CategoriesFacade categoriesFacade;
 
-    private Compliants compliants;
-
     // to hold the selected filter options
     private int selectedCategory = 0; // Default to "All Categories"
     private int selectedDepartment = 0; // Default to "All Departments"
@@ -61,15 +59,6 @@ public class ClosedComplaintManagedBean implements Serializable {
 
     // this if the filter is by month
     private String selectedYearMonth = "";
-
-    // getter and setter for complaints
-    public Compliants getCompliants() {
-        return compliants;
-    }
-
-    public void setCompliants(Compliants compliants) {
-        this.compliants = compliants;
-    }
 
     // getter and setter for all selected filter options
     public int getSelectedCategory() {
@@ -189,34 +178,6 @@ public class ClosedComplaintManagedBean implements Serializable {
         });
 
         return selectItems;
-    }
-
-    // to go to complaintDetails page
-    public String showDetails(Compliants c) {
-        // Store the selected complaint in a property for display in a different view
-        this.compliants = c;
-        return "complaintDetails?faces-redirect=true"; // Navigate to a different JSF page to display details
-    }
-
-    public Compliants convertComplaintByMonthToCompliants(ComplaintByMonth complaintByMonth) {
-        Compliants comp = new Compliants();
-
-        comp.setId(complaintByMonth.getId());
-        comp.setTitle(complaintByMonth.getTitle());
-        comp.setDescription(complaintByMonth.getDescription());
-        comp.setPhoto(complaintByMonth.getPhoto());
-        comp.setPriority(complaintByMonth.getPriority());
-        comp.setStatus(complaintByMonth.getStatus());
-        comp.setResend(complaintByMonth.getResend());
-        comp.setCreatedDate(complaintByMonth.getCreatedDate());
-        comp.setPendingDate(complaintByMonth.getPendingDate());
-        comp.setClosedDate(complaintByMonth.getClosedDate());
-        comp.setEmpId(employeesFacade.find(complaintByMonth.getEmpId()));
-        comp.setCatId(categoriesFacade.find(complaintByMonth.getCatId()));
-        comp.setTechId(employeesFacade.find(complaintByMonth.getTechId()));
-        comp.setAnswer(complaintByMonth.getAnswer());
-
-        return comp;
     }
     
      public String fromatDate(Date date) {

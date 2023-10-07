@@ -25,15 +25,13 @@
                         </p>
                     </div>
 
-                    <h:outputText value="photo :    "/>
-                    <h:outputText value="#{profileManagedBean.employees.photo}"/>
                     <h:inputFile value="#{profileManagedBean.file}"  />
-                    <h:commandButton value="edit photo" action="#{profileManagedBean.editImage()}" />
+                    <h:commandButton value="update photo" action="#{profileManagedBean.editImage()}" />
                     <br/>
 
                     <div class="row justify-content-md-center">
                         <div class="profile-container">
-                            <img src="../upload/profiles_photos/profile.svg" alt="image" class="profile-img"></img>
+                            <img src="../upload/profiles_photos/#{profileManagedBean.employees.photo}" alt="image" class="profile-img"></img>
                         </div>
                     </div>
                     <div class="row justify-content-md-center mt-4">

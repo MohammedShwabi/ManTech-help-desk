@@ -12,7 +12,6 @@ import entities.Employees;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -177,11 +176,6 @@ public class ComplaintManagedBean implements Serializable {
         } else {
             return "Less than a minute";
         }
-    }
-
-    public static String fromatDate(Date date) {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEEE dd/MM/yyyy");
-        return simpleDateFormat.format(date);
     }
 
 }

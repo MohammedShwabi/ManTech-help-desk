@@ -24,7 +24,7 @@ import model.EmployeesFacade;
  */
 @Named(value = "waitingComplaintManagedBean")
 @SessionScoped
-public class waitingComplaintManagedBean implements Serializable {
+public class WaitingComplaintManagedBean implements Serializable {
 
     @EJB
     private EmployeesFacade employeesFacade;
@@ -68,7 +68,7 @@ public class waitingComplaintManagedBean implements Serializable {
     /**
      * Creates a new instance of waitingComplaintManagedBean
      */
-    public waitingComplaintManagedBean() {
+    public WaitingComplaintManagedBean() {
     }
 
     // to get all waiting complaint

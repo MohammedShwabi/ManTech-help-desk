@@ -86,7 +86,7 @@ public class ComplaintByMonthFacade extends AbstractFacade<ComplaintByMonth> {
     public List<Object[]> filterSummaryComplaints(
             String selectedFilter, Date selectedDate, String selectedYearMonth, String selectedWeek) {
 
-        String jpql = "SELECT COUNT(c.id) as comp_count, c.department, c.status FROM ComplaintByMonth c";
+        String jpql = "SELECT COUNT(c.id) as comp_count, c.department, c.status, c.createdDate FROM ComplaintByMonth c";
 
         if (null != selectedFilter) {
 

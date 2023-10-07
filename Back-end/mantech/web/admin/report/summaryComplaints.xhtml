@@ -59,16 +59,9 @@
                                                  rendered="#{summaryComplaintManagedBean.selectedFilter eq 'month'}" />
                                 </h:panelGroup>
 
-
                                 <!-- filter and rest buttons -->
                                 <h:commandButton class="web_btn m-0 fs-5" value="Filter" action="summaryComplaints" />
                                 <h:commandButton class="web_btn m-0 fs-5 rest-btn" value="Rest" action="#{summaryComplaintManagedBean.restFilter()}" />
-
-
-                                <!-- Complaint count -->
-
-
-                                <!-- Complaint count -->
 
                             </div>
                             <div class="complaints-no">
@@ -85,11 +78,12 @@
                                         <th scope="col" class="no-place"> Total No.</th>
                                         <th scope="col">Department</th>
                                         <th scope="col">Status</th>
+                                        <th scope="col">Created Date</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <ui:repeat  value="#{summaryComplaintManagedBean.getFilteredComplaints()}" var="complaint">
-                                        <tr class="clickable-row" onclick="handleRowClick(#{item.id})">
+                                        <tr>
                                             <th scope="row" class="no-place">
                                                 <h:outputText value="#{complaint[0]}" />
                                             </th>
@@ -98,6 +92,13 @@
                                             </td>
                                             <td>
                                                 <h:outputText value="#{complaint[2]}" />
+                                            </td>
+                                            
+                                            
+                                            <td>
+                                                <h:outputText value="#{complaint[3]}">
+                                                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                                                </h:outputText>
                                             </td>
                                         </tr>
                                     </ui:repeat>
@@ -108,13 +109,6 @@
                 </div>
             </div>
         </div>
-
-        <script>
-            function handleRowClick(itemId) {
-                // Perform your action here, e.g., redirect to a details page with the item ID
-                window.location.href = "complaintDetails.xhtml?id=" + itemId;
-            }
-        </script>
         <!-- Include the footer -->
         <ui:include src="../../footer.xhtml" />
     </h:body>
