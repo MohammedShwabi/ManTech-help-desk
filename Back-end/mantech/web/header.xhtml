@@ -9,11 +9,9 @@
     <ui:composition>
         <nav class="navbar navbar-expand-md fixed-top navbar-light shadow" style="margin-bottom: 2vh;position: fixed">
             <div class="container">
-                <a class="navbar-brand"
-                   href="#">
+                <h:link class="navbar-brand" outcome="/blogs_FAQ/view_blogs" >
                     <img src="../img/helpDeskLogo.svg" alt="Logo" style="width:9rem;" class="img-fluid" />
-                </a>
-
+                </h:link>
                 <button class="navbar-toggler" type="button" aria-label="navbar toggler" data-bs-toggle="collapse"
                         data-bs-target=".navitems">
                     <span class="navbar-toggler-icon"></span>
@@ -21,25 +19,25 @@
 
                 <div class="collapse navbar-collapse justify-content-center  navitems" id="mynavbar">
                     <ul class="navbar-nav nav-icon ms-auto">
-                        <li class="nav-item active">
+                        <li class="nav-item #{view.viewId == '/blogs_FAQ/view_blogs.xhtml' ? 'active' : ''}">
                             <h:link class="nav-link " outcome="/blogs_FAQ/view_blogs" >
                                 <p class="nav-text">Blogs</p>
                             </h:link>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item #{view.viewId == '/blogs_FAQ/view_FAQ.xhtml' ? 'active' : ''}">
                             <h:link class="nav-link " outcome="/blogs_FAQ/view_FAQ" >
                                 <p class="nav-text">Faqs</p>
                             </h:link>
                         </li>
 
                         <!--this for Tech-->
-                        <li class="nav-item">
+                        <li class="nav-item #{view.viewId == '/technician/view.xhtml' ? 'active' : ''}">
                             <h:link class="nav-link " outcome="/technician/view" >
                                 <p class="nav-text">Complaint</p>
                             </h:link>
                         </li>
                         <!--this for user-->
-                        <li class="nav-item">
+                        <li class="nav-item #{view.viewId == '/employee/view.xhtml' ? 'active' : ''}">
                             <h:link class="nav-link " outcome="/employee/view" >
                                 <p class="nav-text">Complaint</p>
                             </h:link>
