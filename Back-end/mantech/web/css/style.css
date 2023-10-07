@@ -411,6 +411,11 @@ a.blog-link {
     color: var(--gray);
 }
 
+.side-bar .side-bar-container .active {
+    color: var(--main-color);
+    font-weight: bold;
+}
+
 .side-bar .side-bar-container .side-header .side-bar-icon {
     position: absolute;
     right: 2rem;

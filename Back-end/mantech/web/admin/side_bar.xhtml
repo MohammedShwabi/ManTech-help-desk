@@ -33,8 +33,8 @@
                         </button>
                         <div class="collapse show" id="complaints-collapse">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                <li><h:link class="slide-link" value="Waiting Complaint" outcome="/admin/complaint/view" /></li>
-                                <li><h:link class="slide-link" value="Categories" outcome="/admin/category/view" /></li>
+                                <li><h:link class="slide-link #{view.viewId == '/admin/complaint/view.xhtml' ? 'active' : ''}" value="Waiting Complaint" outcome="/admin/complaint/view" /></li>
+                                <li><h:link class="slide-link #{view.viewId == '/admin/category/view.xhtml' ? 'active' : ''}" value="Categories" outcome="/admin/category/view" /></li>
                             </ul>
                         </div>
                     </li>
@@ -53,10 +53,10 @@
                         </button>
                         <div class="collapse show" id="reports-collapse">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                <li><h:link class="slide-link" value="Closed" outcome="/admin/report/closedComplaints" /></li>
-                                <li><h:link class="slide-link" value="Pending" outcome="/admin/report/pendingComplaints" /></li>
-                                <li><h:link class="slide-link" value="Complaint" outcome="/admin/report/complaints" /></li>
-                                <li><h:link class="slide-link" value="Summary" outcome="/admin/report/summaryComplaints" /></li>
+                                <li><h:link class="slide-link #{view.viewId == '/admin/report/closedComplaints.xhtml' ? 'active' : ''}" value="Closed" outcome="/admin/report/closedComplaints" /></li>
+                                <li><h:link class="slide-link #{view.viewId == '/admin/report/pendingComplaints.xhtml' ? 'active' : ''}" value="Pending" outcome="/admin/report/pendingComplaints" /></li>
+                                <li><h:link class="slide-link #{view.viewId == '/admin/report/complaints.xhtml' ? 'active' : ''}" value="Complaint" outcome="/admin/report/complaints" /></li>
+                                <li><h:link class="slide-link #{view.viewId == '/admin/report/summaryComplaints.xhtml' ? 'active' : ''}" value="Summary" outcome="/admin/report/summaryComplaints" /></li>
                             </ul>
                         </div>
                     </li>
@@ -75,8 +75,8 @@
                         </button>
                         <div class="collapse show" id="employees-collapse">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                <li><h:link class="slide-link" value="All Employees" outcome="/admin/employee/view" /></li>
-                                <li><h:link class="slide-link" value="Add Employee" outcome="/admin/employee/add" /></li>
+                                <li><h:link class="slide-link  #{view.viewId == '/admin/employee/view.xhtml' ? 'active' : ''}" value="All Employees" outcome="/admin/employee/view" /></li>
+                                <li><h:link class="slide-link #{view.viewId == '/admin/employee/add.xhtml' ? 'active' : ''}" value="Add Employee" outcome="/admin/employee/add" /></li>
                             </ul>
                         </div>
                     </li>
@@ -95,8 +95,8 @@
                         </button>
                         <div class="collapse show" id="blog-collapse">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                <li><h:link class="slide-link" value="All Blogs" outcome="/admin/blogs/view" /></li>
-                                <li><h:link class="slide-link" value="Add Blog" outcome="/admin/blogs/add" /></li>
+                                <li><h:link class="slide-link #{view.viewId == '/admin/blogs/view.xhtml' ? 'active' : ''}" value="All Blogs" outcome="/admin/blogs/view" /></li>
+                                <li><h:link class="slide-link #{view.viewId == '/admin/blogs/add.xhtml' ? 'active' : ''}" value="Add Blog" outcome="/admin/blogs/add" /></li>
                             </ul>
                         </div>
                     </li>
@@ -114,8 +114,8 @@
                         </button>
                         <div class="collapse show" id="faq-collapse">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                <li><h:link class="slide-link" value="All FAQs" outcome="/admin/faq/view" /></li>
-                                <li><h:link class="slide-link" value="Add FAQ" outcome="/admin/faq/add" /></li>
+                                <li><h:link class="slide-link #{view.viewId == '/admin/faq/view.xhtml' ? 'active' : ''}" value="All FAQs" outcome="/admin/faq/view" /></li>
+                                <li><h:link class="slide-link #{view.viewId == '/admin/faq/add.xhtml' ? 'active' : ''}" value="Add FAQ" outcome="/admin/faq/add" /></li>
                             </ul>
                         </div>
                     </li>
