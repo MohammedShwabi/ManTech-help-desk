@@ -1,77 +1,121 @@
-<!DOCTYPE html>
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
-        <title>Closed Complaints</title>
+        <title>Facelet Title</title>
+        <link rel="stylesheet" href="../../css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="../../css/style.css"/>
+        <link rel="stylesheet" href="../../css/all.min.css"/>
+        <script src="../../js/all.min.js"></script>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
+        <script src="../../js/frontend.js"></script>
     </h:head>
     <h:body>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-2  p-0">
+                    <ui:include src="../side_bar.xhtml" />
+                </div>
+                <div class="col-lg-10 p-0 scrollable-column">
 
-        <h:form>
+                    <p class="page_header">Reports </p>
+                    <h:form>
+                        <div class="report-div text-center p-3 mt-4">
+                            <h:link class="report-items" value="Closed" outcome="/admin/report/closedComplaints" />
+                            <h:link class="report-items" value="Pending" outcome="/admin/report/pendingComplaints" />
+                            <h:link class="report-items" value="Complaint" outcome="/admin/report/complaints" />
+                            <h:link class="report-items active-report-items" value="Summary" outcome="/admin/report/summaryComplaints" />
+                        </div>
 
-            <!-- Radio buttons to select pending days filter -->
-            <h:outputLabel value="Filter by Created Date:" />
-            <h:selectOneRadio value="#{summaryComplaintManagedBean.selectedFilter}">
-                <f:selectItem  itemValue="day" itemLabel="Day" />
-                <f:selectItem itemValue="month" itemLabel="Month" />
-                <f:selectItem itemValue="week" itemLabel="Week" />
-                <f:ajax render="dateInput complaintsTable complaintsCount" />
-            </h:selectOneRadio>
+                        <div class="report-filter p-5 ">
+                            <div class="all-filters ps-5 ">
 
-            <!-- Date input based on selected filter -->
-            <h:panelGroup id="dateInput">
-                <!-- input for filter by day -->
-                <h:inputText a:type="date" id="createDate" value="#{summaryComplaintManagedBean.selectedDate}" 
-                             rendered="#{summaryComplaintManagedBean.selectedFilter eq 'day'}">
-                    <f:convertDateTime pattern="yyyy-MM-dd" />
-                </h:inputText>
+                                <!-- Radio buttons to select pending days filter -->
+                                <h:selectOneRadio  class="date-filter"  value="#{summaryComplaintManagedBean.selectedFilter}">
+                                    <f:selectItem class="date-items" itemValue="day" itemLabel="Day" />
+                                    <f:selectItem class="date-items" itemValue="month" itemLabel="Month" />
+                                    <f:selectItem class="date-items" itemValue="week" itemLabel="Week" />
+                                    <f:ajax render="dateInput complaintsTable complaintsCount" />
+                                </h:selectOneRadio>
 
-                <!-- input for filter by week -->
-                <h:inputText a:type="week" id="createWeeks" value="#{summaryComplaintManagedBean.selectedWeek}" 
-                             rendered="#{summaryComplaintManagedBean.selectedFilter eq 'week'}" />
+                                <!-- Date input based on selected filter -->
+                                <h:panelGroup id="dateInput" >
+                                    <!-- input for filter by day -->
+                                    <h:inputText class="filters rounded-3 m-4"  a:type="date" id="createDate" value="#{summaryComplaintManagedBean.selectedDate}" 
+                                                 rendered="#{summaryComplaintManagedBean.selectedFilter eq 'day'}">
+                                        <f:convertDateTime pattern="yyyy-MM-dd" />
+                                    </h:inputText>
 
-                <!-- input for filter by month -->
-                <h:inputText a:type="month" id="createMonthYear" value="#{summaryComplaintManagedBean.selectedYearMonth}" 
-                             rendered="#{summaryComplaintManagedBean.selectedFilter eq 'month'}" />
-            </h:panelGroup>
+                                    <!-- input for filter by week -->
+                                    <h:inputText class="filters rounded-3 m-4"  a:type="week" id="createWeeks" value="#{summaryComplaintManagedBean.selectedWeek}" 
+                                                 rendered="#{summaryComplaintManagedBean.selectedFilter eq 'week'}" />
 
-
-            <!-- filter and rest buttons -->
-            <h:commandButton value="Filter" action="summaryComplaints" />
-            <h:commandButton value="Rest" action="#{summaryComplaintManagedBean.restFilter()}" />
-
-
-            <!-- Complaint count -->
-            <h3><h:outputText id="complaintsCount" value="#{summaryComplaintManagedBean.getFilteredComplaints().size()} Complaints"/></h3>
-
-            <h:dataTable id="complaintsTable" value="#{summaryComplaintManagedBean.getFilteredComplaints()}" var="complaint" border="1" cellpadding="4px">
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="total no."/>
-                    </f:facet>
-                    <h:outputText value="#{complaint[0]}"/>
-                </h:column>
-
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Department"/>
-                    </f:facet>
-                    <h:outputText value="#{complaint[1]}"/>
-                </h:column>
-
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Status"/>
-                    </f:facet>
-                    <h:outputText value="#{complaint[2]}"/>
-                </h:column>
-
-            </h:dataTable>
+                                    <!-- input for filter by month -->
+                                    <h:inputText class="filters rounded-3 m-4"  a:type="month" id="createMonthYear" value="#{summaryComplaintManagedBean.selectedYearMonth}" 
+                                                 rendered="#{summaryComplaintManagedBean.selectedFilter eq 'month'}" />
+                                </h:panelGroup>
 
 
-        </h:form>
+                                <!-- filter and rest buttons -->
+                                <h:commandButton class="web_btn m-0 fs-5" value="Filter" action="summaryComplaints" />
+                                <h:commandButton class="web_btn m-0 fs-5 rest-btn" value="Rest" action="#{summaryComplaintManagedBean.restFilter()}" />
 
+
+                                <!-- Complaint count -->
+
+
+                                <!-- Complaint count -->
+
+                            </div>
+                            <div class="complaints-no">
+                                <!-- Complaint count -->
+                                <h:outputText id="complaintsCount" class="number pe-1" value="#{summaryComplaintManagedBean.getFilteredComplaints().size()} Complaints"/>
+                            </div>
+                        </div>
+                    </h:form>
+                    <div class="report-table" >
+                        <h:panelGroup id="complaintsTable">
+                            <table >
+                                <thead>
+                                    <tr>
+                                        <th scope="col" class="no-place"> Total No.</th>
+                                        <th scope="col">Department</th>
+                                        <th scope="col">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <ui:repeat  value="#{summaryComplaintManagedBean.getFilteredComplaints()}" var="complaint">
+                                        <tr class="clickable-row" onclick="handleRowClick(#{item.id})">
+                                            <th scope="row" class="no-place">
+                                                <h:outputText value="#{complaint[0]}" />
+                                            </th>
+                                            <td>
+                                                <h:outputText value="#{complaint[1]}" />
+                                            </td>
+                                            <td>
+                                                <h:outputText value="#{complaint[2]}" />
+                                            </td>
+                                        </tr>
+                                    </ui:repeat>
+                                </tbody>
+                            </table>
+                        </h:panelGroup>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function handleRowClick(itemId) {
+                // Perform your action here, e.g., redirect to a details page with the item ID
+                window.location.href = "complaintDetails.xhtml?id=" + itemId;
+            }
+        </script>
+        <!-- Include the footer -->
+        <ui:include src="../../footer.xhtml" />
     </h:body>
-
 </html>

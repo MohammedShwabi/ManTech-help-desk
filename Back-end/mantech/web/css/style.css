@@ -234,7 +234,7 @@ a.blog-link {
     position: absolute;
     right: 4rem;
     top: 1rem;
-    color:  var(--gray)
+    color:  var(--gray);
 }
 @media(max-width: 768px) {
     .blog-title-container .blog-date {
@@ -461,6 +461,22 @@ a.blog-link {
     text-align: center;
     font-family: "Simpfxo";
     font-weight: 500;
+}
+.report-filter .all-filters .date-filter {
+    display: inline;
+}
+.report-filter .all-filters .date-filter td {
+    padding: 1rem;
+}
+
+.report-filter .all-filters .rest-btn {
+    color: var(--main-color) !important;
+    background-color: #FFFFFF !important;
+    margin-left: 2rem !important;
+}
+.report-filter .all-filters .rest-btn:hover{
+    color:  #FFFFFF !important;
+    background-color: #707070 !important;
 }
 
 .report-table table {
@@ -1038,7 +1054,7 @@ a.blog-link {
 .icons-container-items {
     font-size:1em;
     margin:0.5vh 0.5vw;
-    
+
 }
 
 /* End of maryam section*/

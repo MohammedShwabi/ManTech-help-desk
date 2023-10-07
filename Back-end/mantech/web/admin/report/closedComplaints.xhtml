@@ -28,6 +28,7 @@
                             <h:link class="report-items active-report-items" value="Closed" outcome="/admin/report/closedComplaints" />
                             <h:link class="report-items" value="Pending" outcome="/admin/report/pendingComplaints" />
                             <h:link class="report-items" value="Complaint" outcome="/admin/report/complaints" />
+                            <h:link class="report-items" value="Summary" outcome="/admin/report/summaryComplaints" />
                         </div>
 
                         <div class="report-filter p-5 ">
@@ -58,36 +59,35 @@
                                 </h:selectOneMenu>
 
                                 <!-- Radio buttons to select pending days filter -->
-                                <br/><br/>
-                                <h:outputLabel value="Filter by Created Date:" />
-                                <h:selectOneRadio value="#{closedComplaintManagedBean.selectedFilter}">
-                                    <f:selectItem  itemValue="day" itemLabel="Day" />
-                                    <f:selectItem itemValue="month" itemLabel="Month" />
-                                    <f:selectItem itemValue="week" itemLabel="Week" />
+                                <br/>
+                                <h:selectOneRadio class="date-filter" value="#{closedComplaintManagedBean.selectedFilter}">
+                                    <f:selectItem class="date-items" itemValue="day" itemLabel="Day" />
+                                    <f:selectItem class="date-items" itemValue="month" itemLabel="Month" />
+                                    <f:selectItem class="date-items" itemValue="week" itemLabel="Week" />
                                     <f:ajax render="dateInput complaintsTable complaintsCount" />
                                 </h:selectOneRadio>
 
                                 <!-- Date input based on selected filter -->
                                 <h:panelGroup id="dateInput">
                                     <!-- input for filter by day -->
-                                    <h:inputText a:type="date" id="createDate" value="#{closedComplaintManagedBean.selectedDate}" 
+                                    <h:inputText class="filters rounded-3 m-4" a:type="date" id="createDate" value="#{closedComplaintManagedBean.selectedDate}" 
                                                  rendered="#{closedComplaintManagedBean.selectedFilter eq 'day'}">
                                         <f:convertDateTime pattern="yyyy-MM-dd" />
                                     </h:inputText>
 
                                     <!-- input for filter by week -->
-                                    <h:inputText a:type="week" id="createWeeks" value="#{closedComplaintManagedBean.selectedWeek}" 
+                                    <h:inputText class="filters rounded-3 m-4" a:type="week" id="createWeeks" value="#{closedComplaintManagedBean.selectedWeek}" 
                                                  rendered="#{closedComplaintManagedBean.selectedFilter eq 'week'}" />
 
                                     <!-- input for filter by month -->
-                                    <h:inputText a:type="month" id="createMonthYear" value="#{closedComplaintManagedBean.selectedYearMonth}" 
-                                                 rendered="#{closedComplaintManagedBean.selectedFilter eq 'month'}" />
+                                    <h:inputText  class="filters rounded-3 m-4" a:type="month" id="createMonthYear" value="#{closedComplaintManagedBean.selectedYearMonth}" 
+                                                  rendered="#{closedComplaintManagedBean.selectedFilter eq 'month'}" />
                                 </h:panelGroup>
 
 
                                 <!-- filter and rest buttons -->
-                                <h:commandButton value="Filter" action="closedComplaints" />
-                                <h:commandButton value="Rest" action="#{closedComplaintManagedBean.restFilter()}" />
+                                <h:commandButton class="web_btn m-0 fs-5" value="Filter" action="closedComplaints" />
+                                <h:commandButton class="web_btn m-0 fs-5 rest-btn"  value="Rest" action="#{closedComplaintManagedBean.restFilter()}" />
 
 
                             </div>
