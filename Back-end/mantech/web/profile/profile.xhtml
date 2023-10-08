@@ -25,19 +25,15 @@
                         </p>
                     </div>
 
-                    <h:inputFile value="#{profileManagedBean.file}"  />
-                    <h:commandButton value="update photo" action="#{profileManagedBean.editImage()}" />
-                    <br/>
-
-                    <div class="row justify-content-md-center">
+                    <label for="update_profile" class="row justify-content-md-center">
                         <div class="profile-container">
                             <img src="../upload/profiles_photos/#{profileManagedBean.employees.photo}" alt="image" class="profile-img"></img>
                         </div>
-                    </div>
+                    </label>
+                    <h:inputFile id="update_profile" value="#{profileManagedBean.file}"  />
+
                     <div class="row justify-content-md-center mt-4">
-                        <a href="#" class="edit-link edit-photo text-center">
-                            Edit
-                        </a>
+                        <h:commandLink class="edit-link edit-photo text-center" value="Edit" action="#{profileManagedBean.editImage()}" />
                     </div>
                     <div class="row justify-content-center mt-5">
                         <div class="col-md-4 profile-detail">

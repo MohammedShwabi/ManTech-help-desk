@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>Facelet Title</title>
         <link rel="stylesheet" href="../../css/bootstrap.min.css"/>
@@ -69,58 +70,75 @@
                             </div>
                         </div>
                     </h:form>
-                    <div class="report-table" >
-                        <h:panelGroup id="complaintsTable">
-                            <table >
-                                <thead>
-                                    <tr>
-                                        <th scope="col" class="no-place">No.</th>
-                                        <th scope="col">Category</th>
-                                        <th scope="col">Created Date</th>
-                                        <th scope="col">Pending for</th>
-                                        <th scope="col">Department</th>
-                                        <th scope="col">Technician Name</th>
-                                        <th scope="col">Priority</th>
-                                        <th scope="col">Employee Name</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <ui:repeat value="#{pendingComplaintManagedBean.filteredComplaints}" var="item">
-                                        <tr class="clickable-row" onclick="handleRowClick(#{item.id})">
-                                            <th scope="row" class="no-place">
-                                                <h:outputText value="##{item.id}" />
-                                            </th>
-                                            <td>
-                                                <h:outputText value="#{item.catId.name}" />
-                                            </td>
-                                            <td>
-                                                <h:outputText value="#{item.createdDate}">
-                                                    <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
-                                                </h:outputText>
-                                            </td>
-                                            <td>
-                                                <h:outputText value="#{pendingComplaintManagedBean.getPendingTime(item.pendingDate)}">
-                                                    <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
-                                                </h:outputText>
-                                            </td>
-                                            <td>
-                                                <h:outputText value="#{item.empId.depId.name}" />
-                                            </td>
-                                            <td>
-                                                <h:outputText value="#{item.techId.fullName}" />
-                                            </td>
-                                            <td>
-                                                <h:outputText value="#{item.priority}" />
-                                            </td>
-                                            <td>
-                                                <h:outputText value="#{item.empId.depId.name}" />
-                                            </td>
-                                        </tr>
-                                    </ui:repeat>
-                                </tbody>
-                            </table>
-                        </h:panelGroup>
-                    </div>
+                    
+                    <h:panelGroup id="complaintsTable">
+
+                        <c:choose>
+                            <c:when test="#{empty pendingComplaintManagedBean.filteredComplaints}">
+                                <div class="row justify-content-center">
+                                    <div class="mb-5">
+                                        <div class="text-center">
+                                            <h:graphicImage library="img" name="no_data.svg" alt="no data found" class="empty" />
+                                            <h2 class="text-muted">Ups!... no results found</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </c:when>
+                            <c:otherwise>
+                                <div class="report-table" >
+                                    <table >
+                                        <thead>
+                                            <tr>
+                                                <th scope="col" class="no-place">No.</th>
+                                                <th scope="col">Category</th>
+                                                <th scope="col">Created Date</th>
+                                                <th scope="col">Pending for</th>
+                                                <th scope="col">Department</th>
+                                                <th scope="col">Technician Name</th>
+                                                <th scope="col">Priority</th>
+                                                <th scope="col">Employee Name</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <ui:repeat value="#{pendingComplaintManagedBean.filteredComplaints}" var="item">
+                                                <tr class="clickable-row" onclick="handleRowClick(#{item.id})">
+                                                    <th scope="row" class="no-place">
+                                                        <h:outputText value="##{item.id}" />
+                                                    </th>
+                                                    <td>
+                                                        <h:outputText value="#{item.catId.name}" />
+                                                    </td>
+                                                    <td>
+                                                        <h:outputText value="#{item.createdDate}">
+                                                            <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+                                                        </h:outputText>
+                                                    </td>
+                                                    <td>
+                                                        <h:outputText value="#{pendingComplaintManagedBean.getPendingTime(item.pendingDate)}">
+                                                            <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+                                                        </h:outputText>
+                                                    </td>
+                                                    <td>
+                                                        <h:outputText value="#{item.empId.depId.name}" />
+                                                    </td>
+                                                    <td>
+                                                        <h:outputText value="#{item.techId.fullName}" />
+                                                    </td>
+                                                    <td>
+                                                        <h:outputText value="#{item.priority}" />
+                                                    </td>
+                                                    <td>
+                                                        <h:outputText value="#{item.empId.depId.name}" />
+                                                    </td>
+                                                </tr>
+                                            </ui:repeat>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </c:otherwise>
+                        </c:choose>
+                    </h:panelGroup>
                 </div>
             </div>
         </div>

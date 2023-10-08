@@ -24,53 +24,65 @@
                     <div class="btn_container">
                         <h:button class="web_btn" value="Add" outcome="#{employeeManagedBean.gotoAdd()}" />
                     </div>
-                    <h:form>
-                        <div class="list-container ">
 
-                            <div class="custom-select col-3 mt-0">
-                                <h:selectOneMenu class="select-button" id="departmentDropdown" value="#{employeeManagedBean.selectedDepartmentID}">
-                                    <f:selectItem itemValue="0" itemLabel="All Departments" />
-                                    <f:selectItems value="#{departmentManagedBean.departmentItems}" />
-                                    <f:ajax execute="@this" render="employeeTable" />
-                                </h:selectOneMenu>
-                            </div>
-                            <h:panelGroup layout="block" id="employeeTable">
-                                <c:forEach  var="item" items="#{employeeManagedBean.filteredEmployees}" varStatus="item-i">
-                                    <div class="list-item row" >
-                                        <div class="pic-sec col-1 ">
-                                            <img src="../../img/#{item.photo}" />
-                                        </div>
-                                        <div class="list-text col-2">#{item.fullName}</div>
-                                        <div class="list-text col-4 ">#{item.email}</div>
-                                        <div class="list-text col-2">#{item.depId.name}</div>
-                                        <div class="col-2">
-                                            <h:selectBooleanCheckbox styleClass="custom-checkbox" value="#{item.activated}" id="statusCheckbox">
-                                                <f:ajax execute="@this" render="@this" listener="#{employeeManagedBean.changeEmployeeStatus(item, !item.activated)}"/>
-                                            </h:selectBooleanCheckbox>
-                                            <h:outputLabel value="Activate" for="statusCheckbox" />
-                                        </div>
-                                        <div class="col-1">
-                                            <div class="row mt-2 ">
-                                                <h:commandLink class="edit-icon" action="#{employeeManagedBean.gotoUpdate(item)}">
-                                                    <i class="fa-solid fa-pen"></i>
-                                                </h:commandLink>
-                                            </div>
-                                            <div class="row mt-2 ">
-                                                <h:commandLink class="delete-icon" action="#{employeeManagedBean.delete(item)}" onclick="return confirm('are sure to delete this employee?')">
-                                                    <i class="fa-solid fa-trash"></i>
-                                                </h:commandLink>
-                                            </div>
-
-                                        </div>
+                    <c:choose>
+                        <c:when test="#{empty employeeManagedBean.filteredEmployees}">
+                            <div class="row justify-content-center">
+                                <div class="mb-5">
+                                    <div class="text-center">
+                                        <h:graphicImage library="img" name="no_data.svg" alt="no data found" class="empty" />
+                                        <h2 class="text-muted">Ups!... no employee found</h2>
                                     </div>
-                                </c:forEach>
-                            </h:panelGroup>
+                                </div>
+                            </div>
+                        </c:when>
+                        <c:otherwise>
+                            <h:form>
+                                <div class="list-container ">
 
+                                    <div class="custom-select col-3 mt-0">
+                                        <h:selectOneMenu class="select-button" id="departmentDropdown" value="#{employeeManagedBean.selectedDepartmentID}">
+                                            <f:selectItem itemValue="0" itemLabel="All Departments" />
+                                            <f:selectItems value="#{departmentManagedBean.departmentItems}" />
+                                            <f:ajax execute="@this" render="employeeTable" />
+                                        </h:selectOneMenu>
+                                    </div>
+                                    <h:panelGroup layout="block" id="employeeTable">
+                                        <c:forEach  var="item" items="#{employeeManagedBean.filteredEmployees}" varStatus="item-i">
+                                            <div class="list-item row" >
+                                                <div class="pic-sec col-1 ">
+                                                    <img src="../../img/#{item.photo}" />
+                                                </div>
+                                                <div class="list-text col-2">#{item.fullName}</div>
+                                                <div class="list-text col-4 ">#{item.email}</div>
+                                                <div class="list-text col-2">#{item.depId.name}</div>
+                                                <div class="col-2">
+                                                    <h:selectBooleanCheckbox styleClass="custom-checkbox" value="#{item.activated}" id="statusCheckbox">
+                                                        <f:ajax execute="@this" render="@this" listener="#{employeeManagedBean.changeEmployeeStatus(item, !item.activated)}"/>
+                                                    </h:selectBooleanCheckbox>
+                                                    <h:outputLabel value="Activate" for="statusCheckbox" />
+                                                </div>
+                                                <div class="col-1">
+                                                    <div class="row mt-2 ">
+                                                        <h:commandLink class="edit-icon" action="#{employeeManagedBean.gotoUpdate(item)}">
+                                                            <i class="fa-solid fa-pen"></i>
+                                                        </h:commandLink>
+                                                    </div>
+                                                    <div class="row mt-2 ">
+                                                        <h:commandLink class="delete-icon" action="#{employeeManagedBean.delete(item)}" onclick="return confirm('are sure to delete this employee?')">
+                                                            <i class="fa-solid fa-trash"></i>
+                                                        </h:commandLink>
+                                                    </div>
 
+                                                </div>
+                                            </div>
+                                        </c:forEach>
+                                    </h:panelGroup>
 
-
-                        </div>
-                    </h:form>
+                                </div>
+                            </h:form>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
             </div>
         </div>

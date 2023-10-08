@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>Facelet Title</title>
         <link rel="stylesheet" href="../css/bootstrap.min.css"/>
@@ -20,31 +21,43 @@
 
             <div class="container">
                 <div class="row mt-4 justify-content-center">
-                    <div class="cards" id="cards_container">
-                        <!-- check if there is a blog -->
-                        <!-- display all blog -->
-                        <h:form>
 
-
-                            <ui:repeat value="#{bolgs_FAQManagedBean.findAllBlogs()}" var="item">
-                                <h:commandLink styleClass="no-link-style"  action="#{bolgs_FAQManagedBean.gotoDetailsBlog(item)}" >
-                                    <div class="card blog-card m-4" 
-                                         role="button">
-                                        <img src="../upload/blogs_photos/#{item.photo}" class="img-fluid" alt="..." />
-                                        <!-- show blog name and blog desc and limit to a specific character -->
-                                        <div class="blog-card-body pt-4 ps-3">
-                                            <b class="blog-card-title">
-                                                #{item.title}
-                                            </b>
-                                            <div class="blog-card-text pb-2 pt-2">
-                                                #{item.description}
-                                            </div>
-                                        </div>
+                    <c:choose>
+                        <c:when test="#{empty bolgs_FAQManagedBean.findAllBlogs()}">
+                                <div class="mb-5">
+                                    <div class="text-center">
+                                        <h:graphicImage library="img" name="no_data.svg" alt="no data found" class="empty" />
+                                        <h2 class="text-muted">Ups!... no blog found</h2>
                                     </div>
-                                </h:commandLink>
-                            </ui:repeat>
-                        </h:form>
-                    </div>
+                                </div>
+                        </c:when>
+                        <c:otherwise>
+
+                            <div class="cards" id="cards_container">
+                                <!-- display all blog -->
+                                <h:form>
+                                    <ui:repeat value="#{bolgs_FAQManagedBean.findAllBlogs()}" var="item">
+                                        <h:commandLink styleClass="no-link-style"  action="#{bolgs_FAQManagedBean.gotoDetailsBlog(item)}" >
+                                            <div class="card blog-card m-4" 
+                                                 role="button">
+                                                <img src="../upload/blogs_photos/#{item.photo}" class="img-fluid" alt="..." />
+                                                <!-- show blog name and blog desc and limit to a specific character -->
+                                                <div class="blog-card-body pt-4 ps-3">
+                                                    <b class="blog-card-title">
+                                                        #{item.title}
+                                                    </b>
+                                                    <div class="blog-card-text pb-2 pt-2">
+                                                        #{item.description}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </h:commandLink>
+                                    </ui:repeat>
+                                </h:form>
+                            </div>
+
+                        </c:otherwise>
+                    </c:choose>
 
                 </div>
             </div>

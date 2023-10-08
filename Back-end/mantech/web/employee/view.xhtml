@@ -20,7 +20,6 @@
                 text-align: center;
                 font-family: "Simpfxo";
             }
-
         </style>
     </h:head>
     <h:body class="d-flex flex-column h-100">
@@ -52,17 +51,22 @@
                             <f:ajax execute="@this" render="complaintTable filterStatus" listener="#{employeeComplaintManagedBean.setSelectedComplaintStatus('closed')}" />
                         </h:commandLink>
                     </h:panelGroup>
-                    <div class="tech-list-container col-lg-8" >
 
-                        <h:panelGroup id="complaintTable">
+                    <h:panelGroup id="complaintTable">
 
-                            <c:choose>
-                                <c:when test="#{empty employeeComplaintManagedBean.findEmployeeComplaint()}">
-                                    <div class="row mb-4">
-                                        <p>There is no item to show</p>
+                        <c:choose>
+                            <c:when test="#{empty employeeComplaintManagedBean.findEmployeeComplaint()}">
+                                <div class="row justify-content-center">
+                                    <div class="mb-5">
+                                        <div class="text-center">
+                                            <h:graphicImage library="img" name="no_data.svg" alt="no data found" class="empty" />
+                                            <h2 class="text-muted">Ups!... no results found</h2>
+                                        </div>
                                     </div>
-                                </c:when>
-                                <c:otherwise>
+                                </div>
+                            </c:when>
+                            <c:otherwise>
+                                <div class="tech-list-container col-lg-8" >
                                     <c:forEach var="item" items="#{employeeComplaintManagedBean.findEmployeeComplaint()}"  >
                                         <div class="row mb-4">
                                             <h:commandLink style="text-decoration: none;display: inherit" action="#{employeeComplaintManagedBean.showDetails(item)}">
@@ -90,11 +94,10 @@
                                             </h:commandLink>
                                         </div>
                                     </c:forEach>
-                                </c:otherwise>
-                            </c:choose>
-                        </h:panelGroup>
-
-                    </div>
+                                </div>
+                            </c:otherwise>
+                        </c:choose>
+                    </h:panelGroup>
 
                 </h:form>
             </f:view>

@@ -36,7 +36,6 @@
 
                 <h:form>
                     <p class="page_header">Complaints</p>
-                    
 
                     <!-- links to filter complaints by status with AJAX -->
                     <h:panelGroup id="filterStatus" class="submenu-div">
@@ -50,41 +49,59 @@
                             <f:ajax execute="@this" render="complaintTable filterStatus" listener="#{technicianComplaintManagedBean.setSelectedComplaintStatus('closed')}" />
                         </h:commandLink>
                     </h:panelGroup>
-                    <div class="tech-list-container col-lg-8" >
 
-                        <h:panelGroup id="complaintTable">
+                    <h:panelGroup id="complaintTable">
 
-                            <c:forEach var="item" items="#{technicianComplaintManagedBean.findTechnicianComplaint()}"  >
-                                <div class="row mb-4">
-                                    <h:commandLink style="text-decoration: none;display: inherit" action="#{technicianComplaintManagedBean.showDetails(item)}">
-                                        <div class="list-item m-0 pe-0 col-lg-9">
-                                            <h:panelGroup rendered="#{item.priority == 'high'}">
-                                                <!-- you can change this to any icon you want -->
-                                                <div class="pri-sec col-lg-1 ">H</div>
-                                            </h:panelGroup>
-                                            <h:panelGroup rendered="#{item.priority == 'medium'}">
-                                                <!-- you can change this to any icon you want -->
-                                                <div class="pri-sec col-lg-1 " style="background-color:#D57900 ;">M</div>
-                                            </h:panelGroup>
-                                            <h:panelGroup rendered="#{item.priority == 'low'}">
-                                                <!-- you can change this to any icon you want -->
-                                                <div class="pri-sec col-lg-1 " style="background-color:#E5CB42 ;">L</div>
-                                            </h:panelGroup>
-
-                                            <div class="list-text col-lg-9 col-md-9 ms-3 ">#{item.title}</div>
-
-
-                                            <div class="comp-status-text col-lg-2 me-1">
-                                                <h:outputText value="#{item.status}"/>
-                                            </div>
+                        <c:choose>
+                            <c:when test="#{empty technicianComplaintManagedBean.findTechnicianComplaint()}">
+                                <div class="row justify-content-center">
+                                    <div class="mb-5">
+                                        <div class="text-center">
+                                            <h:graphicImage library="img" name="no_data.svg" alt="no data found" class="empty" />
+                                            <h2 class="text-muted">Ups!... no results found</h2>
                                         </div>
-                                    </h:commandLink>
+                                    </div>
                                 </div>
-                            </c:forEach>
+                            </c:when>
+                            <c:otherwise>
 
-                        </h:panelGroup>
+                                <div class="tech-list-container col-lg-8" >
+                                    <c:forEach var="item" items="#{technicianComplaintManagedBean.findTechnicianComplaint()}"  >
 
-                    </div>
+                                        <div class="row mb-4">
+                                            <h:commandLink style="text-decoration: none;display: inherit" action="#{technicianComplaintManagedBean.showDetails(item)}">
+                                                <div class="list-item m-0 pe-0 col-lg-9">
+                                                    <h:panelGroup rendered="#{item.priority == 'high'}">
+                                                        <!-- you can change this to any icon you want -->
+                                                        <div class="pri-sec col-lg-1 ">H</div>
+                                                    </h:panelGroup>
+                                                    <h:panelGroup rendered="#{item.priority == 'medium'}">
+                                                        <!-- you can change this to any icon you want -->
+                                                        <div class="pri-sec col-lg-1 " style="background-color:#D57900 ;">M</div>
+                                                    </h:panelGroup>
+                                                    <h:panelGroup rendered="#{item.priority == 'low'}">
+                                                        <!-- you can change this to any icon you want -->
+                                                        <div class="pri-sec col-lg-1 " style="background-color:#E5CB42 ;">L</div>
+                                                    </h:panelGroup>
+
+                                                    <div class="list-text col-lg-9 col-md-9 ms-3 ">#{item.title}</div>
+
+
+                                                    <div class="comp-status-text col-lg-2 me-1">
+                                                        <h:outputText value="#{item.status}"/>
+                                                    </div>
+                                                </div>
+                                            </h:commandLink>
+                                        </div>
+                                    </c:forEach>
+                                </div>
+
+                            </c:otherwise>
+                        </c:choose>
+
+                    </h:panelGroup>
+
+
 
 
                 </h:form>

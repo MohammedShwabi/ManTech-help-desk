@@ -1087,3 +1087,10 @@ a.blog-link {
 }
 
 /* End of maryam section*/
+/*for empty error message*/
+.empty {
+    height: 500px;
+    max-height: 90vh;
+    max-width: 90vw;
+    width: 500px;
+}

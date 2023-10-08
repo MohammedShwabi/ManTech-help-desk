@@ -4,7 +4,8 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>Facelet Title</title>
         <link rel="stylesheet" href="../../css/bootstrap.min.css"/>
@@ -70,42 +71,59 @@
                             </div>
                         </div>
                     </h:form>
-                    <div class="report-table" >
-                        <h:panelGroup id="complaintsTable">
-                            <table class="text-center">
-                                <thead>
-                                    <tr>
-                                        <th scope="col" class="no-place"> Total No.</th>
-                                        <th scope="col">Department</th>
-                                        <th scope="col">Status</th>
-                                        <th scope="col">Created Date</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <ui:repeat  value="#{summaryComplaintManagedBean.getFilteredComplaints()}" var="complaint">
-                                        <tr>
-                                            <th scope="row" class="no-place">
-                                                <h:outputText value="#{complaint[0]}" />
-                                            </th>
-                                            <td>
-                                                <h:outputText value="#{complaint[1]}" />
-                                            </td>
-                                            <td>
-                                                <h:outputText value="#{complaint[2]}" />
-                                            </td>
-                                            
-                                            
-                                            <td>
-                                                <h:outputText value="#{complaint[3]}">
-                                                    <f:convertDateTime pattern="dd/MM/yyyy" />
-                                                </h:outputText>
-                                            </td>
-                                        </tr>
-                                    </ui:repeat>
-                                </tbody>
-                            </table>
-                        </h:panelGroup>
-                    </div>
+
+                    <h:panelGroup id="complaintsTable">
+
+                        <c:choose>
+                            <c:when test="#{empty summaryComplaintManagedBean.getFilteredComplaints()}">
+                                <div class="row justify-content-center">
+                                    <div class="mb-5">
+                                        <div class="text-center">
+                                            <h:graphicImage library="img" name="no_data.svg" alt="no data found" class="empty" />
+                                            <h2 class="text-muted">Ups!... no results found</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </c:when>
+                            <c:otherwise>
+                                <div class="report-table" >
+                                    <table class="text-center">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col" class="no-place"> Total No.</th>
+                                                <th scope="col">Department</th>
+                                                <th scope="col">Status</th>
+                                                <th scope="col">Created Date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <ui:repeat  value="#{summaryComplaintManagedBean.getFilteredComplaints()}" var="complaint">
+                                                <tr>
+                                                    <th scope="row" class="no-place">
+                                                        <h:outputText value="#{complaint[0]}" />
+                                                    </th>
+                                                    <td>
+                                                        <h:outputText value="#{complaint[1]}" />
+                                                    </td>
+                                                    <td>
+                                                        <h:outputText value="#{complaint[2]}" />
+                                                    </td>
+
+
+                                                    <td>
+                                                        <h:outputText value="#{complaint[3]}">
+                                                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                                                        </h:outputText>
+                                                    </td>
+                                                </tr>
+                                            </ui:repeat>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </c:otherwise>
+                        </c:choose>
+                        
+                    </h:panelGroup>
                 </div>
             </div>
         </div>

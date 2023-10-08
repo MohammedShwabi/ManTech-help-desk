@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>Facelet Title</title>
         <link rel="stylesheet" href="../../css/bootstrap.min.css"/>
@@ -23,37 +23,54 @@
                     <p class="page_header">FAQs </p>
                     <div class="container mb-5">
                         <h:link class="web_btn mb-4 me-0 add-blog-btn  overflow-visible" value="Add FAQ" outcome="#{fAQManagedBean.gotoAdd()}" /> <br/> <br/>
-                        <div class="row justify-content-md-center">
-                            <div class="col-lg-10 col-md-6">
-                                <div class="accordion accordion-flush shadow" id="accordionExample">
-                                    <h:form>
-                                        <ui:repeat value="#{fAQManagedBean.findAll()}" var="item">
-                                            <div class="accordion-item">
-                                                <div class="card">
-                                                    <h2 class="accordion-header" id="heading_#{item.id}">
-                                                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                                                data-bs-target="#collapse_#{item.id}" aria-expanded="true"
-                                                                aria-controls="collapse_#{item.id}">
-                                                            #{item.question}
-                                                        </button>
-                                                    </h2>
-                                                    <div id="collapse_#{item.id}" class="accordion-collapse collapse" aria-labelledby="heading_#{item.id}"
-                                                         data-bs-parent="#accordionExample">
-                                                        <div class="accordion-body">
-                                                            <p>#{item.answer}</p>
-                                                        </div>
-                                                        <div class="text-center mb-3 mt-0 ">
-                                                            <h:commandLink class="web_btn me-0 mt-0 me-lg-5 faq-btn" value="Update" action="#{fAQManagedBean.gotoUpdate(item)}" />
-                                                            <h:commandLink class="web_btn me-0 mt-0 ms-lg-5 faq-btn faq-btn-delete" value="Delete" action="#{fAQManagedBean.delete(item)}" onclick="return confirm('are sure to delete this?')" />
+
+                        <c:choose>
+                            <c:when test="#{empty fAQManagedBean.findAll()}">
+                                <div class="row justify-content-center">
+                                    <div class="mb-5">
+                                        <div class="text-center">
+                                            <h:graphicImage library="img" name="no_data.svg" alt="no data found" class="empty" />
+                                            <h2 class="text-muted">Ups!... no FAQ found</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </c:when>
+                            <c:otherwise>
+
+                                <div class="row justify-content-md-center">
+                                    <div class="col-lg-10 col-md-6">
+                                        <div class="accordion accordion-flush shadow" id="accordionExample">
+                                            <h:form>
+                                                <ui:repeat value="#{fAQManagedBean.findAll()}" var="item">
+                                                    <div class="accordion-item">
+                                                        <div class="card">
+                                                            <h2 class="accordion-header" id="heading_#{item.id}">
+                                                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                                                        data-bs-target="#collapse_#{item.id}" aria-expanded="true"
+                                                                        aria-controls="collapse_#{item.id}">
+                                                                    #{item.question}
+                                                                </button>
+                                                            </h2>
+                                                            <div id="collapse_#{item.id}" class="accordion-collapse collapse" aria-labelledby="heading_#{item.id}"
+                                                                 data-bs-parent="#accordionExample">
+                                                                <div class="accordion-body">
+                                                                    <p>#{item.answer}</p>
+                                                                </div>
+                                                                <div class="text-center mb-3 mt-0 ">
+                                                                    <h:commandLink class="web_btn me-0 mt-0 me-lg-5 faq-btn" value="Update" action="#{fAQManagedBean.gotoUpdate(item)}" />
+                                                                    <h:commandLink class="web_btn me-0 mt-0 ms-lg-5 faq-btn faq-btn-delete" value="Delete" action="#{fAQManagedBean.delete(item)}" onclick="return confirm('are sure to delete this?')" />
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </ui:repeat>
-                                    </h:form>
+                                                </ui:repeat>
+                                            </h:form>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
+
+                            </c:otherwise>
+                        </c:choose>
                     </div>
                 </div>
             </div>
