@@ -3,46 +3,50 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
-        <title>Login Page</title>
+        <title>Facelet Title</title>
         <link rel="stylesheet" href="css/bootstrap.min.css"/>
         <link rel="stylesheet" href="css/style.css"/>
         <link rel="stylesheet" href="css/all.min.css"/>
         <script src="js/all.min.js"></script>
         <script src="js/bootstrap.bundle.min.js"></script>
+        <script src="js/frontend.js"></script>
     </h:head>
-    <h:body>
+    <h:body class="d-flex flex-column h-100">
 
         <!-- Include the header -->
         <ui:include src="header.xhtml" />
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
 
-        <f:view>
+        <div id="content" class="mt-5 flex-shrink-0">
+            <div class="container-fluid mt-3 pt-4">
+                <div class="row justify-content-md-center p-4">
+                    <div class="col-lg-6  p-0">
+                        <h:outputText class="welcome-txt pt-4" value="Welcome Back" />
+                        <f:view>
+                            <h:form>
+                                <h:inputText a:placeholder="Username" class="input-type-login" id="email" value="#{loginManagedBean.email}" required="true" requiredMessage="The Email field is required." />
+                                <h:message for="email" style="color:blue" />
 
-            <h:form>
-                <h1><h:outputText value="Create/Edit"/></h1>
-                <h:panelGrid columns="3">
+                                <h:inputSecret a:placeholder="PassWord" class="input-type-login" id="password" value="#{loginManagedBean.password}" required="true"  requiredMessage="The Password field is required." />
+                                <h:message for="password" style="color:blue" />
 
-                    <h:outputLabel value="Email:" for="email" />
-                    <h:inputText id="email" value="#{loginManagedBean.email}" required="true" requiredMessage="The Email field is required." />
-                    <h:message for="email" style="color:blue" />
+                                <h:commandButton class="web_btn login-btn" value="Login" action="#{loginManagedBean.login}" />
+                                <h:outputText value="#{loginManagedBean.message}" rendered="#{not empty loginManagedBean.message}" />              
+                            </h:form>
+                        </f:view>
+                    </div>
+                    <div class="col-lg-6">
+                        <img src="img/login.svg" class="img-fluid" alt="..." />
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                    <h:outputLabel value="Password:" for="password" />
-                    <h:inputSecret id="password" value="#{loginManagedBean.password}" required="true"  requiredMessage="The Password field is required." />
-                    <h:message for="password" style="color:blue" />
 
-                    <h:commandButton value="Login" action="#{loginManagedBean.login}" />
-                    <h:outputText value="#{loginManagedBean.message}" rendered="#{not empty loginManagedBean.message}" />
-
-                </h:panelGrid>               
-            </h:form>
-        </f:view>
-
+        <!-- Include the footer -->
+        <ui:include src="footer.xhtml" />
     </h:body>
 </html>
 

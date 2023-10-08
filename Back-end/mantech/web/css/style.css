@@ -42,6 +42,27 @@ body {
     padding-left: 10vw;
     color: var(--main-color);
 }
+/*start login*/
+.welcome-txt{
+    margin-left: 8vw;
+    font-size: 3rem;
+}
+.input-type-login{
+    display: block;
+    width: 60%;
+    height: 4rem;
+    margin: 3vw auto 3vw 10vw;
+    border: 2px solid #136567;
+    border-radius: 2rem;
+    padding-left: 15px;
+    font-size: 16px;
+}
+.login-btn{
+    width: 60% !important;
+    height: 4rem;
+    margin: 3vw auto 3vw 10vw;
+}
+/*end login*/
 
 /* start of card design for blog pages */
 a.blog-link {
