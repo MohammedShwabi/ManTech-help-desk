@@ -16,7 +16,7 @@
     <h:body>
         <div class="container-fluid">
             <div class="row justify-content-md-center">
-                <div class="col-lg-2  p-0">
+                <div class="col-lg-2  p-0 fixed-column">
                     <ui:include src="../side_bar.xhtml" />
                 </div>
                 <div class="col-lg-10 scrollable-column">
@@ -54,7 +54,7 @@
                                             </tr>
                                             <tr>
                                                 <td><i class="profile-icon fa-solid fa-lock"></i></td>
-                                                <td><h:outputText value="#{profileManagedBean.employees.password}"/></td>
+                                                <td><h:outputText value="***************"/></td>
                                                 <td>
                                                     <h:link class="edit-link edit-photo text-center" value="Reset" outcome="password_reset" />
                                                 </td>

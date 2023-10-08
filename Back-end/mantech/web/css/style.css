@@ -34,6 +34,11 @@ body {
     font-family: inherit;
     margin: 1vw auto 2vw auto;
 }
+/*error message*/
+.error-msg{
+    color: red;
+}
+
 /*costoum-lable*/
 .costoum-lable{
     display: block;
@@ -267,6 +272,10 @@ a.blog-link {
 
 .blog-text {
     font-size: 18px;
+    color:  black;
+}
+.blog-text .blog-text-header {
+    font-size: 18px;
     color:  var(--main-color);
 }
 
@@ -300,8 +309,12 @@ a.blog-link {
 }
 .scrollable-column {
     overflow-y: auto;
-    height: 130vh; /* Adjust the height as needed */
+    height: 53rem; /* Adjust the height as needed */
 }
+.fixed-column {
+    height: 53rem; /* Adjust the height as needed */
+}
+
 
 /* end header */
 
@@ -333,6 +346,9 @@ a.blog-link {
     box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .125);
 }
 
+.add-faq-btn{
+    z-index: 3;
+}
 .faq-btn{
     text-decoration: none; 
 }
@@ -414,6 +430,15 @@ a.blog-link {
     font-weight: bold;
     position: relative;
 }
+@media(max-width: 768px) {
+    .side-bar .side-bar-container .side-header  {
+        text-align: center;
+    }
+    .side-bar .side-bar-container  {
+        text-align: center;
+    }
+}
+
 
 .side-bar .side-bar-container .side-header:focus {
     color: var(--main-color);
@@ -515,7 +540,7 @@ a.blog-link {
 
 .report-table table tr td {
     padding: .8rem 0.5rem;
-    color: #707070;
+    color: black;
 }
 
 .report-table table tr th {

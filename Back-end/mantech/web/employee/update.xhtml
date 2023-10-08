@@ -24,21 +24,21 @@
 
                     <h:outputLabel class="costoum-lable" value="Title:" for="title" />
                     <h:inputText class="input-type" id="title" value="#{employeeComplaintManagedBean.compliants.title}" title="Title" required="true" requiredMessage="The Title field is required."/>
-                    <h:message for="title" style="color:blue" />
+                    <h:message for="title" class="error-msg" />
 
                     <h:outputLabel class="costoum-lable" value="Description:" for="description" />
                     <h:inputTextarea class="input-type-textarea" rows="4" cols="30" id="description" value="#{employeeComplaintManagedBean.compliants.description}" title="Description" required="true" requiredMessage="The Description field is required."/>
-                    <h:message for="description" style="color:blue" />
+                    <h:message for="description" class="error-msg" />
 
                     <h:outputLabel class="costoum-lable" value="Photo:" for="photo" />
                     <h:inputFile  class="input-type" value="#{employeeComplaintManagedBean.file}" />
-                    <h:message for="photo" style="color:blue" />
+                    <h:message for="photo" class="error-msg" />
 
                     <h:outputLabel class="costoum-lable" value="Category:" for="categoryDropdown" />
                     <h:selectOneMenu class="input-type" id="categoryDropdown" value="#{employeeComplaintManagedBean.selectedCategoryId}" title="Category" required="true" requiredMessage="The Category field is required.">
                         <f:selectItems value="#{employeeComplaintManagedBean.getCategoryItems()}" />
                     </h:selectOneMenu>
-                    <h:message for="categoryDropdown" style="color:blue" />
+                    <h:message for="categoryDropdown" class="error-msg" />
 
                     <h:outputLabel class="costoum-lable" value="Priority:" for="priorityDropdown" />
                     <h:selectOneMenu class="input-type" id="priorityDropdown" value="#{employeeComplaintManagedBean.compliants.priority}" title="Priority" required="true" requiredMessage="The Priority field is required.">
@@ -46,7 +46,7 @@
                         <f:selectItem itemValue="medium" itemLabel="Medium" />
                         <f:selectItem itemValue="low" itemLabel="Low" />
                     </h:selectOneMenu>
-                    <h:message for="priorityDropdown" style="color:blue" />
+                    <h:message for="priorityDropdown" class="error-msg" />
                     <br></br>
                     <h:commandButton class="web_btn mb-4 me-0" value="Save Changes" action="#{employeeComplaintManagedBean.updateComplaint()}" />
                 </h:form>

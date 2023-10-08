@@ -16,7 +16,7 @@
     <h:body>
         <div class="container-fluid">
             <div class="row justify-content-md-center">
-                <div class="col-lg-2  p-0">
+                <div class="col-lg-2  p-0 fixed-column">
                     <ui:include src="../side_bar.xhtml" />
                 </div>
                 <div class="col-lg-10 text-center scrollable-column">
@@ -30,7 +30,7 @@
                                 <f:validateLength minimum="5" maximum="5000" />
                             </h:inputTextarea>
                             <br></br>
-                            <h:message for="question" style="color:blue" />
+                            <h:message for="question" class="error-msg" />
 
                             <h:outputLabel class="costoum-lable" value="Answer:" for="answer" />
                             <h:inputTextarea class="input-type-textarea" rows="4" cols="30" id="answer" value="#{fAQManagedBean.faqs.answer}" title="Answer" required="true" 
@@ -38,7 +38,7 @@
                                 <f:validateLength minimum="5" maximum="5000" />
                             </h:inputTextarea>
                             <br></br>
-                            <h:message for="answer" style="color:blue" />
+                            <h:message for="answer" class="error-msg" />
                             <h:commandButton class="web_btn me-0 mb-4"  value="Save Changes" action="#{fAQManagedBean.update()}" />
                         </h:form>
                     </f:view>

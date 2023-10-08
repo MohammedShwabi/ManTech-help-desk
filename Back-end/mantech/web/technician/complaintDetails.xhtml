@@ -106,7 +106,8 @@
                         <h:panelGroup rendered="#{empty technicianComplaintManagedBean.compliants.answer}">
                             <h:form>
                                 <h:inputTextarea class="comp-answer-input" a:placeholder="Complaint Answer" rows="4" cols="30" id="answer" value="#{technicianComplaintManagedBean.compliants.answer}" title="Answer" required="true" requiredMessage="The Answer field is required." /><br/>
-                                <div class="answer-input-error mt-0" style="justify-content: flex-start;margin-left: 6vw;"><h:message for="answer"/><br/></div>
+                                <div class="answer-input-error mt-0" style="justify-content: flex-start;margin-left: 6vw;">
+                                    <h:message class="error-msg" for="answer"/><br/></div>
                                 <div class="btn_container">
                                     <h:commandButton value="Submit" class="web_btn m-0" action="#{technicianComplaintManagedBean.answerComplaint()}" />
                                 </div>
