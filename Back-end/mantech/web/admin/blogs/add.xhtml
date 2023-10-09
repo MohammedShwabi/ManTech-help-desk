@@ -24,21 +24,34 @@
                         <h:outputText class="page_header " value="Add Blog"/>
                         <h:form enctype="multipart/form-data" >
                             <p > </p>
-                                <h:outputLabel class="costoum-lable" value="Photo:" for="photo" />
-                                <h:inputFile class="input-type" id="photo" value="#{blogsManagedBean.file}" required="true" title="photo" requiredMessage="The photo field is required."/> 
-                                <h:outputLabel class="costoum-lable" value="Title:" for="title" />
-                                <h:inputText class="input-type" id="title" value="#{blogsManagedBean.blogs.title}" title="Title" required="true" requiredMessage="The Title field is required." >
-                                    <f:validateLength minimum="10" maximum="60" />
-                                </h:inputText>
-                                <h:outputLabel class="costoum-lable" value="Description:" for="description" />
-                                <h:inputTextarea class="input-type-textarea"  id="description" value="#{blogsManagedBean.blogs.description}" title="Description" required="true" requiredMessage="The Description field is required.">
-                                    <f:validateLength minimum="10"  />
-                                </h:inputTextarea>
-                                <h:outputLabel class="costoum-lable" value="Blog:" for="blog" />
-                                <h:inputTextarea class="input-type-textarea" id="blog" value="#{blogsManagedBean.blogs.blog}" title="Blog" required="true" requiredMessage="The Blog field is required.">
-                                    <f:validateLength minimum="15" />
-                                </h:inputTextarea><br></br> 
-                                <h:commandButton class="web_btn mb-4 me-0" value="Add blog" action="#{blogsManagedBean.addBlog()}" />
+                            <h:outputLabel class="costoum-lable" value="Photo:" for="photo" />
+                            <h:inputFile class="input-type" id="photo" value="#{blogsManagedBean.file}" required="true" title="photo" requiredMessage="The photo field is required."/> 
+                            <br></br>
+                            <h:message for="photo" class="error-msg" />
+
+                            <h:outputLabel class="costoum-lable" value="Title:" for="title" />
+                            <h:inputText class="input-type" id="title" value="#{blogsManagedBean.blogs.title}" title="Title" required="true" requiredMessage="The Title field is required." >
+                                <f:validateLength minimum="10" maximum="60" />
+                            </h:inputText>
+                            <br></br>
+                            <h:message for="title" class="error-msg" />
+                            
+                            <h:outputLabel class="costoum-lable" value="Description:" for="description" />
+                            <h:inputTextarea class="input-type-textarea"  id="description" value="#{blogsManagedBean.blogs.description}" title="Description" required="true" requiredMessage="The Description field is required.">
+                                <f:validateLength minimum="10"  />
+                            </h:inputTextarea>
+                            <br></br>
+                            <h:message for="description" class="error-msg" />
+                            
+                            <h:outputLabel class="costoum-lable" value="Blog:" for="blog" />
+                            <h:inputTextarea class="input-type-textarea" id="blog" value="#{blogsManagedBean.blogs.blog}" title="Blog" required="true" requiredMessage="The Blog field is required.">
+                                <f:validateLength minimum="15" />
+                            </h:inputTextarea>
+                            <br></br>
+                            <h:message for="blog" class="error-msg" />
+                            <br></br>
+                            
+                            <h:commandButton class="web_btn mb-4 me-0" value="Add blog" action="#{blogsManagedBean.addBlog()}" />
                         </h:form>
                     </f:view>
                 </div>

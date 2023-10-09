@@ -23,6 +23,7 @@ import model.EmployeesFacade;
  */
 @Named(value = "loginManagedBean")
 @SessionScoped
+//@RequestScoped
 public class LoginManagedBean implements Serializable {
 
     // Variables for email and password and message
@@ -68,6 +69,9 @@ public class LoginManagedBean implements Serializable {
     }
 
     public String login() {
+        // first delete the old message 
+        message = "";
+        
         // Check if email and password are valid
         loggedInEmployee = employeesFacade.login(email, password);
 
@@ -81,17 +85,7 @@ public class LoginManagedBean implements Serializable {
             session.setAttribute("loggedInEmployee", loggedInEmployee);
 
             // Redirect the user to the appropriate page based on their role
-            switch (depID) {
-                case 7:
-                    // If department ID is 7, go to the admin page
-                    return "/admin/complaint/view?faces-redirect=true";
-                case 6:
-                    // If department ID is 6, go to the technician page
-                    return "/technician/view?faces-redirect=true";
-                default:
-                    // For other departments, go to the employee page
-                    return "/employee/view?faces-redirect=true";
-            }
+            return redirectToUserPage(depID);
         } else {
             message = "Invalid email or password.";
             return "login";
@@ -113,6 +107,9 @@ public class LoginManagedBean implements Serializable {
         if (session != null) {
             // Remove the loggedInEmployee attribute from the session
             session.removeAttribute("loggedInEmployee");
+
+            // Remove session-managed beans from the session
+            session.invalidate();
         }
 
         // Redirect to the login page
@@ -157,6 +154,20 @@ public class LoginManagedBean implements Serializable {
     // Add a method to check if the user is logged in
     public boolean isloggedIn() {
         return getCurrentUser() != null;
+    }
+
+    private String redirectToUserPage(int depID) {
+        switch (depID) {
+            case 7:
+                // If department ID is 7, go to the admin page
+                return "/admin/complaint/view?faces-redirect=true";
+            case 6:
+                // If department ID is 6, go to the technician page
+                return "/technician/view?faces-redirect=true";
+            default:
+                // For other departments, go to the employee page
+                return "/employee/view?faces-redirect=true";
+        }
     }
 
 }
