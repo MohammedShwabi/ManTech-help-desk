@@ -20,7 +20,7 @@
                 <div class="col-lg-2  p-0 fixed-column">
                     <ui:include src="../side_bar.xhtml" />
                 </div>
-                <div class="col-lg-10 mt-3 scrollable-column">
+                <div class="col-lg-10 scrollable-column">
                     <p class="page_header">Employees </p>
                     <div class="btn_container">
                         <h:button class="web_btn" value="Add" outcome="#{employeeManagedBean.gotoAdd()}" />
@@ -55,7 +55,7 @@
                                                     <img src="../../img/#{item.photo}" />
                                                 </div>
                                                 <div class="list-text col-2">#{item.fullName}</div>
-                                                <div class="list-text col-4 ">#{item.email}</div>
+                                                <div class="list-text col-4" style="word-break: break-word;">#{item.email}</div>
                                                 <div class="list-text col-2">#{item.depId.name}</div>
                                                 <div class="col-2">
                                                     <h:selectBooleanCheckbox styleClass="custom-checkbox" value="#{item.activated}" id="statusCheckbox">
