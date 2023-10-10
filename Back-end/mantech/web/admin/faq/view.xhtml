@@ -22,25 +22,26 @@
                 <div class="col-lg-10 scrollable-column">
                     <p class="page_header">FAQs </p>
                     <div class="container mb-5">
-                        <h:link class="add-faq-btn web_btn mb-4 me-0 add-blog-btn  overflow-visible" value="Add FAQ" outcome="#{fAQManagedBean.gotoAdd()}" /> <br/> <br/>
+                        <h:form>
 
-                        <c:choose>
-                            <c:when test="#{empty fAQManagedBean.findAll()}">
-                                <div class="row justify-content-center">
-                                    <div class="mb-5">
-                                        <div class="text-center">
-                                            <h:graphicImage library="img" name="no_data.svg" alt="no data found" class="empty" />
-                                            <h2 class="text-muted">Ups!... no FAQ found</h2>
+                            <h:commandLink class="add-faq-btn web_btn mb-4 me-0 add-blog-btn  overflow-visible" value="Add FAQ" action="#{fAQManagedBean.gotoAdd()}" /> <br/> <br/>
+
+                            <c:choose>
+                                <c:when test="#{empty fAQManagedBean.findAll()}">
+                                    <div class="row justify-content-center">
+                                        <div class="mb-5">
+                                            <div class="text-center">
+                                                <h:graphicImage library="img" name="no_data.svg" alt="no data found" class="empty" />
+                                                <h2 class="text-muted">Ups!... no FAQ found</h2>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </c:when>
-                            <c:otherwise>
+                                </c:when>
+                                <c:otherwise>
 
-                                <div class="row justify-content-md-center">
-                                    <div class="col-lg-10 col-md-6">
-                                        <div class="accordion accordion-flush shadow" id="accordionExample">
-                                            <h:form>
+                                    <div class="row justify-content-md-center">
+                                        <div class="col-lg-10 col-md-6">
+                                            <div class="accordion accordion-flush shadow" id="accordionExample">
                                                 <ui:repeat value="#{fAQManagedBean.findAll()}" var="item">
                                                     <div class="accordion-item">
                                                         <div class="card">
@@ -64,13 +65,14 @@
                                                         </div>
                                                     </div>
                                                 </ui:repeat>
-                                            </h:form>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
-                            </c:otherwise>
-                        </c:choose>
+                                </c:otherwise>
+                            </c:choose>
+
+                        </h:form>
                     </div>
                 </div>
             </div>
