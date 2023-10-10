@@ -33,7 +33,8 @@
                                 <h:message for="password" class="error-msg" />
 
                                 <h:commandButton class="web_btn login-btn" value="Login" action="#{loginManagedBean.login}" />
-                                <h:outputText value="#{loginManagedBean.message}" rendered="#{not empty loginManagedBean.message}" />              
+                                <h:outputText value="#{loginManagedBean.message}" rendered="#{not empty loginManagedBean.message}" />     
+                                <h:messages styleClass="logout-message" />
                             </h:form>
                         </f:view>
                     </div>

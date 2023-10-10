@@ -64,16 +64,11 @@
                                                     <h:outputLabel value="Activate" for="statusCheckbox" />
                                                 </div>
                                                 <div class="col-1">
-                                                    <div class="row mt-2 ">
+                                                    <div class="row mt-2">
                                                         <h:commandLink class="edit-icon" action="#{employeeManagedBean.gotoUpdate(item)}">
                                                             <i class="fa-solid fa-pen"></i>
                                                         </h:commandLink>
-                                                    </div>
-                                                    <div class="row mt-2 ">
-                                                        <h:commandLink class="delete-icon" action="#{employeeManagedBean.delete(item)}" onclick="return confirm('are sure to delete this employee?')">
-                                                            <i class="fa-solid fa-trash"></i>
-                                                        </h:commandLink>
-                                                    </div>
+                                                    </div>  
 
                                                 </div>
                                             </div>
