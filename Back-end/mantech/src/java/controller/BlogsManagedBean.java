@@ -60,16 +60,23 @@ public class BlogsManagedBean implements Serializable {
         return blogsFacade.findAll();
     }
 
-    public String gotoAdd() {
-        // Reset the Employee object
-        blogs = new Blogs();
-        return "add";
-    }
-
     // to go to update page and pass the current object to fill the form input
     public String gotoUpdate(Blogs blog) {
         this.blogs = blog;
         return "update?faces-redirect=true";
+    }
+
+    public String gotoAdd() {
+        
+        try {
+            System.out.println("hiiiiiiiiiiiiiiiiii");
+            this.blogs=new Blogs();
+        System.out.println(blogs.getTitle());
+       
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return "add2?faces-redirect=true";
     }
 
     // to delete an Blogs

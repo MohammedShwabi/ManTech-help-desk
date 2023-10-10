@@ -53,7 +53,7 @@ public class FAQManagedBean implements Serializable {
     // to go to update page and pass the current object to fill the form input
     public String gotoUpdate(Faqs faq) {
         this.faqs = faq;
-        return "update";
+        return "update?faces-redirect=true";
     }
 
     // to delete an faq
