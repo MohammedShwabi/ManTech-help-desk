@@ -22,6 +22,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 import javax.servlet.http.Part;
 import model.CategoriesFacade;
@@ -140,9 +142,28 @@ public class EmployeeComplaintManagedBean implements Serializable {
             String pathImage = upload();
             compliants.setPhoto(pathImage);
         }
-        compliantsFacade.create(compliants);
-        this.resetComplaint();
-        return "view?faces-redirect=true"; // Redirect to a view page
+
+        // to Create and send the email with the complaint description in the subject
+        EmailSender emailSender = new EmailSender();
+        boolean result = emailSender.sendNewComplaintEmail(compliants.getTitle(), compliants.getDescription());
+
+        if (result) {
+            // save the complaint to the database
+            compliantsFacade.create(compliants);
+
+            // to reset the object
+            this.resetComplaint();
+            
+            // go to the view page
+            return "view?faces-redirect=true"; // Redirect to a view page
+        } else {
+            // display error message and stay in the same page
+            FacesContext context = FacesContext.getCurrentInstance();
+            FacesMessage message = new FacesMessage("failed to save complaint and send email");
+            context.addMessage("employee_complaint:error_message", message); // "form" is the name of your form
+            return null; // Return null to stay on the same page
+        }
+
     }
 
     public String updateComplaint() throws IOException {

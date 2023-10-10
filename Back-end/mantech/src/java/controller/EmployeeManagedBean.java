@@ -147,7 +147,7 @@ public class EmployeeManagedBean implements Serializable {
         }
 
         // Check if the email is already used by another employee (excluding the current employee being updated)
-        Integer emp_id = (employee.getId() == null) ? 0 : employee.getId();
+        int emp_id = (employee.getId() == null) ? 0 : employee.getId();
         boolean isEmailUnique = employeesFacade.isEmailUnique(email, emp_id);
 
         if (!isEmailUnique) {

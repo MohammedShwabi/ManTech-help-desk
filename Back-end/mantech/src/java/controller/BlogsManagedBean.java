@@ -67,16 +67,8 @@ public class BlogsManagedBean implements Serializable {
     }
 
     public String gotoAdd() {
-        
-        try {
-            System.out.println("hiiiiiiiiiiiiiiiiii");
-            this.blogs=new Blogs();
-        System.out.println(blogs.getTitle());
-       
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-        return "add2?faces-redirect=true";
+        this.blogs = new Blogs();
+        return "add";
     }
 
     // to delete an Blogs

@@ -22,7 +22,7 @@
                 <div class="col-lg-10 scrollable-column">
                     <p class="page_header">Blogs </p>
                     <div class="container blog-container ">
-                        <h:link class="web_btn mb-4 me-0 add-blog-btn  overflow-visible" value="Add Blog" outcome="#{blogsManagedBean.gotoAdd(item)}" /> <br/> <br/>
+                        <h:link class="web_btn mb-4 me-0 add-blog-btn  overflow-visible" value="Add Blog" outcome="#{blogsManagedBean.gotoAdd()}" /> <br/> <br/>
 
                         <c:choose>
                             <c:when test="#{empty blogsManagedBean.findAll()}">

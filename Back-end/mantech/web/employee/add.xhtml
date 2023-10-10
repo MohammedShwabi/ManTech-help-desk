@@ -20,7 +20,10 @@
         <div id="content" class="container mt-5 flex-shrink-0 text-center">
             <f:view>
                 <h:outputText class="page_header " value="Add Complaint"/>
-                <h:form enctype="multipart/form-data">
+                <h:form enctype="multipart/form-data" id="employee_complaint" >
+                    
+                    <h:message for="error_message" id="error_message" class="error-msg" /><br/>
+                    
                     <h:outputLabel class="costoum-lable" value="Title:" for="title" />
                     <h:inputText class="input-type" id="title" value="#{employeeComplaintManagedBean.compliants.title}" title="Title" required="true" requiredMessage="The Title field is required."/>
                     <h:message for="title" class="error-msg" />
