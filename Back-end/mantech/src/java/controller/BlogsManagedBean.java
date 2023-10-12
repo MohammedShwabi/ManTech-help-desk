@@ -68,7 +68,7 @@ public class BlogsManagedBean implements Serializable {
 
     public String gotoAdd() {
         this.blogs = new Blogs();
-        return "add";
+        return "/admin/blogs/add";
     }
 
     // to delete an Blogs

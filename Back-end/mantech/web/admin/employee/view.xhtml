@@ -22,23 +22,24 @@
                 </div>
                 <div class="col-lg-10 scrollable-column">
                     <p class="page_header">Employees </p>
-                    <div class="btn_container">
-                        <h:button class="web_btn" value="Add" outcome="#{employeeManagedBean.gotoAdd()}" />
-                    </div>
+                    <h:form>
+                        
+                        <div class="btn_container">
+                            <h:commandButton class="web_btn" value="Add" action="#{employeeManagedBean.gotoAdd()}" />
+                        </div>
 
-                    <c:choose>
-                        <c:when test="#{empty employeeManagedBean.filteredEmployees}">
-                            <div class="row justify-content-center">
-                                <div class="mb-5">
-                                    <div class="text-center">
-                                        <h:graphicImage library="img" name="no_data.svg" alt="no data found" class="empty" />
-                                        <h2 class="text-muted">Ups!... no employee found</h2>
+                        <c:choose>
+                            <c:when test="#{empty employeeManagedBean.filteredEmployees}">
+                                <div class="row justify-content-center">
+                                    <div class="mb-5">
+                                        <div class="text-center">
+                                            <h:graphicImage library="img" name="no_data.svg" alt="no data found" class="empty" />
+                                            <h2 class="text-muted">Ups!... no employee found</h2>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </c:when>
-                        <c:otherwise>
-                            <h:form>
+                            </c:when>
+                            <c:otherwise>
                                 <div class="list-container ">
 
                                     <div class="custom-select col-3 mt-0">
@@ -69,16 +70,15 @@
                                                             <i class="fa-solid fa-pen"></i>
                                                         </h:commandLink>
                                                     </div>  
-
                                                 </div>
                                             </div>
                                         </c:forEach>
                                     </h:panelGroup>
-
                                 </div>
-                            </h:form>
-                        </c:otherwise>
-                    </c:choose>
+                            </c:otherwise>
+                        </c:choose>
+
+                    </h:form>
                 </div>
             </div>
         </div>

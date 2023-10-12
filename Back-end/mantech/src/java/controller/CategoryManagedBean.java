@@ -60,9 +60,10 @@ public class CategoryManagedBean implements Serializable {
     }
 
     // update the edited category
-    public void updateCategory() {
+    public String updateCategory() {
         categoriesFacade.edit(editingCategory);
         stopEditing();
+        return "view?faces-redirect=true";
     }
 
     // cancel editing

@@ -22,24 +22,25 @@
                 <div class="col-lg-10 scrollable-column">
                     <p class="page_header">Blogs </p>
                     <div class="container blog-container ">
-                        <h:link class="web_btn mb-4 me-0 add-blog-btn  overflow-visible" value="Add Blog" outcome="#{blogsManagedBean.gotoAdd()}" /> <br/> <br/>
+                        <h:form>
 
-                        <c:choose>
-                            <c:when test="#{empty blogsManagedBean.findAll()}">
-                                <div class="row justify-content-center">
-                                    <div class="mb-5">
-                                        <div class="text-center">
-                                            <h:graphicImage library="img" name="no_data.svg" alt="no data found" class="empty" />
-                                            <h2 class="text-muted">Ups!... no blog found</h2>
+                            <h:commandLink class="web_btn mb-4 me-0 add-blog-btn  overflow-visible" value="Add Blog" action="#{blogsManagedBean.gotoAdd()}" /> <br/> <br/>
+
+                            <c:choose>
+                                <c:when test="#{empty blogsManagedBean.findAll()}">
+                                    <div class="row justify-content-center">
+                                        <div class="mb-5">
+                                            <div class="text-center">
+                                                <h:graphicImage library="img" name="no_data.svg" alt="no data found" class="empty" />
+                                                <h2 class="text-muted">Ups!... no blog found</h2>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </c:when>
-                            <c:otherwise>
-                                <div class="row text-center justify-content-center">
-                                    <div class="cards" id="cards_container">
-                                        <!-- display all blog -->
-                                        <h:form>
+                                </c:when>
+                                <c:otherwise>
+                                    <div class="row text-center justify-content-center">
+                                        <div class="cards" id="cards_container">
+                                            <!-- display all blog -->
                                             <ui:repeat value="#{blogsManagedBean.findAll()}" var="item">
                                                 <div class="card blog-card m-4" 
                                                      role="button">
@@ -72,12 +73,13 @@
                                                 </div>
 
                                             </ui:repeat>
-                                        </h:form>
+                                        </div>
                                     </div>
-                                </div>
 
-                            </c:otherwise>
-                        </c:choose>
+                                </c:otherwise>
+                            </c:choose>
+
+                        </h:form>
                     </div>
                 </div>
             </div>
