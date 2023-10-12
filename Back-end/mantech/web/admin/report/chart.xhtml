@@ -1,0 +1,194 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Facelet Title</title>
+        <link rel="stylesheet" href="../../css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="../../css/style.css"/>
+        <link rel="stylesheet" href="../../css/all.min.css"/>
+        <script src="../../js/all.min.js"></script>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
+        <script src="../../js/frontend.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    </h:head>
+    <h:body>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-2  p-0 fixed-column">
+                    <ui:include src="../side_bar.xhtml" />
+                </div>
+
+                <div class="col-lg-10 p-0 scrollable-column">
+
+                    <p class="page_header">Reports </p>
+                    <h:form>
+                        <div class="report-div text-center p-3 mt-4">
+                            <h:link class="report-items" value="Closed" outcome="/admin/report/closedComplaints" />
+                            <h:link class="report-items" value="Pending" outcome="/admin/report/pendingComplaints" />
+                            <h:link class="report-items" value="Complaint" outcome="/admin/report/complaints" />
+                            <h:link class="report-items active-report-items" value="Summary" outcome="/admin/report/summaryComplaints" />
+                        </div>
+
+                        <div class="report-filter p-5 ">
+                            <div class="all-filters ps-5 ">
+
+                                <!--Radio buttons to select pending days filter--> 
+                                <h:selectOneRadio  class="date-filter"  value="#{summaryComplaintManagedBean.selectedFilter}">
+                                    <f:selectItem class="date-items" itemValue="day" itemLabel="Day" />
+                                    <f:selectItem class="date-items" itemValue="month" itemLabel="Month" />
+                                    <f:selectItem class="date-items" itemValue="week" itemLabel="Week" />
+                                    <f:ajax render="dateInput complaintsTable complaintsCount" />
+                                </h:selectOneRadio>
+
+                                <!--Date input based on selected filter--> 
+                                <h:panelGroup id="dateInput" >
+                                    <!--input for filter by day--> 
+                                    <h:inputText class="filters rounded-3 m-4"  a:type="date" id="createDate" value="#{summaryComplaintManagedBean.selectedDate}" 
+                                                 rendered="#{summaryComplaintManagedBean.selectedFilter eq 'day'}">
+                                        <f:convertDateTime pattern="yyyy-MM-dd" />
+                                    </h:inputText>
+
+                                    <!--input for filter by week--> 
+                                    <h:inputText class="filters rounded-3 m-4"  a:type="week" id="createWeeks" value="#{summaryComplaintManagedBean.selectedWeek}" 
+                                                 rendered="#{summaryComplaintManagedBean.selectedFilter eq 'week'}" />
+
+                                    <!--input for filter by month--> 
+                                    <h:inputText class="filters rounded-3 m-4"  a:type="month" id="createMonthYear" value="#{summaryComplaintManagedBean.selectedYearMonth}" 
+                                                 rendered="#{summaryComplaintManagedBean.selectedFilter eq 'month'}" />
+                                </h:panelGroup>
+
+                                <!--filter and rest buttons--> 
+                                <h:commandButton class="web_btn m-0 fs-5" value="Filter" action="summaryComplaints" />
+                                <h:commandButton class="web_btn m-0 fs-5 rest-btn" value="Rest" action="#{summaryComplaintManagedBean.restFilter()}" />
+
+                            </div>
+
+                        </div>
+                    </h:form>
+
+                    <div id="complaintsTable">
+                        <h:panelGroup class="row chart-container">
+                            <canvas class="col-lg-5 p-0" id="eduServChar" style="width:90%;max-width:600px"></canvas>
+                            <canvas class="col-lg-5 p-0" id="manServChar" style="width:90%;max-width:600px"></canvas>
+                        </h:panelGroup>
+                        <h:panelGroup class="row chart-container" style="display: flex;justify-content: center;align-items: center;">
+                            <canvas class="col-lg-12 p-0" id="lernServChar" style="width:90%;max-width:600px"></canvas>
+                        </h:panelGroup>
+                        <h:panelGroup class="row chart-container">
+                            <canvas class="col-lg-5 p-0" id="intSysChar" style="widthp:90%;max-width:600px"></canvas>
+                            <canvas class="col-lg-5 p-0" id="humRescChar" style="width:90%;max-width:600px"></canvas>
+                        </h:panelGroup>
+
+
+                        <script>
+                            var xValues = ["waiting", "pending", "closed"];
+                            
+                            var barColors = [
+                                "#136567",
+                                "#00aba9",
+                                "#2b5797",
+                            ];
+
+                            var yValues = [55, 49, 44, 0];
+                            new Chart("manServChar", {
+                                type: "doughnut",
+                                data: {
+                                    labels: xValues,
+                                    datasets: [{
+                                            backgroundColor: barColors,
+                                            data: yValues
+                                        }]
+                                },
+                                options: {
+                                    title: {
+                                        display: true,
+                                        text: "Management Services Complaints"
+                                    }
+                                }
+                            });
+                            var yValues = [55, 49, 44, 0];
+                            new Chart("intSysChar", {
+                                type: "doughnut",
+                                data: {
+                                    labels: xValues,
+                                    datasets: [{
+                                            backgroundColor: barColors,
+                                            data: yValues
+                                        }]
+                                },
+                                options: {
+                                    title: {
+                                        display: true,
+                                        text: "Internal System Complaints"
+                                    }
+                                }
+                            });
+                            var yValues = [55, 49, 44, 0];
+                            new Chart("lernServChar", {
+                                type: "bar",
+                                data: {
+                                    labels: xValues,
+                                    datasets: [{
+                                            backgroundColor: barColors,
+                                            data: yValues
+                                        }]
+                                },
+                                options: {
+                                    legend: {display: false},
+                                    title: {
+                                        display: true,
+                                        text: "Learning Services Complaints"
+                                    }
+                                }
+                            });
+                            var yValues = [55, 49, 44, 0];
+                            new Chart("eduServChar", {
+                                type: "pie",
+                                data: {
+                                    labels: xValues,
+                                    datasets: [{
+                                            backgroundColor: barColors,
+                                            data: yValues
+                                        }]
+                                },
+                                options: {
+                                    title: {
+                                        display: true,
+                                        text: "Educational Services Complaints"
+                                    }
+                                }
+                            });
+                            var yValues = [55, 49, 44, 0];
+                            new Chart("humRescChar", {
+                                type: "pie",
+                                data: {
+                                    labels: xValues,
+                                    datasets: [{
+                                            backgroundColor: barColors,
+                                            data: yValues
+                                        }]
+                                },
+                                options: {
+                                    title: {
+                                        display: true,
+                                        text: "Human Resource Complaints"
+                                    }
+                                }
+                            });
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Include the footer -->
+        <ui:include src="../../footer.xhtml" />
+    </h:body>
+
+</html>

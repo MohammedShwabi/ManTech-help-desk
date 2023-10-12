@@ -1110,6 +1110,10 @@ a.blog-link {
     margin:0.5vh 0.5vw;
 
 }
+.chart-container{
+    margin-bottom: 8vh;
+    margin-top: 10vh;
+}
 
 /* End of maryam section*/
 /*for empty error message*/
