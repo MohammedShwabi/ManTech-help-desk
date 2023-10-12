@@ -65,10 +65,6 @@
                                 <h:commandButton class="web_btn m-0 fs-5 rest-btn" value="Rest" action="#{summaryComplaintManagedBean.restFilter()}" />
 
                             </div>
-                            <div class="complaints-no">
-                                <!-- Complaint count -->
-                                <h:outputText id="complaintsCount" class="number pe-1" value="#{summaryComplaintManagedBean.getFilteredComplaints().size()} Complaints"/>
-                            </div>
                         </div>
                     </h:form>
 
@@ -87,38 +83,9 @@
                             </c:when>
                             <c:otherwise>
                                 <div class="report-table" >
-                                    <table class="text-center">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col" class="no-place"> Total No.</th>
-                                                <th scope="col">Department</th>
-                                                <th scope="col">Status</th>
-                                                <th scope="col">Created Date</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <ui:repeat  value="#{summaryComplaintManagedBean.getFilteredComplaints()}" var="complaint">
-                                                <tr>
-                                                    <th scope="row" class="no-place">
-                                                        <h:outputText value="#{complaint[0]}" />
-                                                    </th>
-                                                    <td>
-                                                        <h:outputText value="#{complaint[1]}" />
-                                                    </td>
-                                                    <td>
-                                                        <h:outputText value="#{complaint[2]}" />
-                                                    </td>
-
-
-                                                    <td>
-                                                        <h:outputText value="#{complaint[3]}">
-                                                            <f:convertDateTime pattern="dd/MM/yyyy" />
-                                                        </h:outputText>
-                                                    </td>
-                                                </tr>
-                                            </ui:repeat>
-                                        </tbody>
-                                    </table>
+                                    <p>
+                                      <h:outputText value=" jjjjjj: #{summaryComplaintManagedBean.getFilteredComplaints()}" />
+                                    </p>
                                 </div>
                             </c:otherwise>
                         </c:choose>

@@ -83,10 +83,10 @@ public class ComplaintByMonthFacade extends AbstractFacade<ComplaintByMonth> {
     }
 
     // for closed report
-    public List<Object[]> filterSummaryComplaints(
+    public Long filterSummaryComplaints(
             String selectedFilter, Date selectedDate, String selectedYearMonth, String selectedWeek, String selectedStatus, int selectedDepartment) {
 
-        String jpql = "SELECT COUNT(c.id) as comp_count, c.department, c.status, c.createdDate FROM ComplaintByMonth c WHERE"
+        String jpql = "SELECT COUNT(c.id) as comp_count FROM ComplaintByMonth c WHERE"
                 + "(:selectedDepartment = 0 OR c.depId = :selectedDepartment) AND "
                 + "(:selectedStatus = 'all' OR c.status = :selectedStatus) ";
 
@@ -94,21 +94,18 @@ public class ComplaintByMonthFacade extends AbstractFacade<ComplaintByMonth> {
 
             if (selectedDate != null && selectedFilter.equals("day")) {
                 // Filter by date using the selectedDate
-                jpql += " c.date = :selectedDate ";
+                jpql += "AND c.date = :selectedDate ";
             } else if (!selectedYearMonth.isEmpty() && selectedFilter.equals("month")) {
                 // Filter by formattedDate using the selectedYearMonth
-                jpql += " c.formattedMonth = :selectedYearMonth ";
+                jpql += "AND  c.formattedMonth = :selectedYearMonth ";
 
             } else if (!selectedWeek.isEmpty() && selectedFilter.equals("week")) {
                 // Filter by week_number
-                jpql += " c.weekNumber = :selectedWeek ";
+                jpql += "AND  c.weekNumber = :selectedWeek ";
             }
         }
 
-        jpql += " GROUP BY c.department, c.status"
-                + " ORDER BY c.department";
-
-        TypedQuery<Object[]> query = em.createQuery(jpql, Object[].class)
+        TypedQuery<Long> query = em.createQuery(jpql, Long.class)
                 .setParameter("selectedDepartment", selectedDepartment)
                 .setParameter("selectedStatus", selectedStatus);
 
@@ -127,7 +124,7 @@ public class ComplaintByMonthFacade extends AbstractFacade<ComplaintByMonth> {
             }
         }
 
-        return query.getResultList();
+        return query.getSingleResult();
     }
 
 }
