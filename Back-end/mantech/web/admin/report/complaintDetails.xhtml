@@ -47,11 +47,21 @@
                                             <div class="steps">
                                                 <span class="status-circle done"></span>
                                                 <span class="status-circle done"></span>
-                                                <span class="status-circle done"></span>
-                                                <span class="status-circle done"></span>
-                                                <div class="progressbar">
-                                                    <span class="indicator" style="width: 100%"></span>
-                                                </div>
+                                                <h:panelGroup rendered="#{complaintDetailsManagedBean.selectedCompliant.status eq 'pending'}">
+                                                    <span class="status-circle"></span>
+                                                    <span class="status-circle"></span>
+                                                    <div class="progressbar">
+                                                        <span class="indicator" style="width: 65%"></span>
+                                                    </div>
+                                                </h:panelGroup>
+
+                                                <h:panelGroup rendered="#{complaintDetailsManagedBean.selectedCompliant.status eq 'closed'}">
+                                                    <span class="status-circle done"></span>
+                                                    <span class="status-circle done"></span>
+                                                    <div class="progressbar">
+                                                        <span class="indicator" style="width: 100%"></span>
+                                                    </div>
+                                                </h:panelGroup>
                                             </div>
                                             <ul class="progressbar-text">
                                                 <li>
@@ -63,16 +73,20 @@
                                                     <h:outputText value="#{complaintDetailsManagedBean.selectedCompliant.createdDate}">
                                                         <f:convertDateTime pattern="dd/MM/yyyy" />
                                                     </h:outputText>
+
                                                 </li>
                                                 <li>
                                                     <h:outputText value="#{complaintDetailsManagedBean.selectedCompliant.pendingDate}">
                                                         <f:convertDateTime pattern="dd/MM/yyyy" />
                                                     </h:outputText>
+
                                                 </li>
                                                 <li>
                                                     <h:outputText value="#{complaintDetailsManagedBean.selectedCompliant.closedDate}">
                                                         <f:convertDateTime pattern="dd/MM/yyyy" />
                                                     </h:outputText>
+                                                    <h:outputText value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" rendered="#{empty complaintDetailsManagedBean.selectedCompliant.closedDate}"/>
+
                                                 </li>
                                             </ul>
 
