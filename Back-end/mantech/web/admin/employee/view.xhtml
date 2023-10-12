@@ -45,7 +45,7 @@
                                     <div class="custom-select col-3 mt-0">
                                         <h:selectOneMenu class="select-button" id="departmentDropdown" value="#{employeeManagedBean.selectedDepartmentID}">
                                             <f:selectItem itemValue="0" itemLabel="All Departments" />
-                                            <f:selectItems value="#{departmentManagedBean.departmentItems}" />
+                                            <f:selectItems value="#{employeeManagedBean.departmentItems}" />
                                             <f:ajax execute="@this" render="employeeTable" />
                                         </h:selectOneMenu>
                                     </div>
