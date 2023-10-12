@@ -63,7 +63,7 @@
                                 <c:when test="#{loginManagedBean.isloggedIn()}">
                                     <!-- show profile --> 
                                     <h:link class="navbar-brand" outcome="/profile/profile" >
-                                        <img src="../img/profile.svg" alt="Logo" class=" nav-photo img-fluid"
+                                        <img src="../upload/profiles_photos/#{loginManagedBean.getCurrentUser().photo}" alt="Logo" class=" nav-photo img-fluid"
                                              id="round-profile" />
                                     </h:link>
                                 </c:when>
