@@ -84,29 +84,33 @@ public class ComplaintByMonthFacade extends AbstractFacade<ComplaintByMonth> {
 
     // for closed report
     public List<Object[]> filterSummaryComplaints(
-            String selectedFilter, Date selectedDate, String selectedYearMonth, String selectedWeek) {
+            String selectedFilter, Date selectedDate, String selectedYearMonth, String selectedWeek, String selectedStatus, int selectedDepartment) {
 
-        String jpql = "SELECT COUNT(c.id) as comp_count, c.department, c.status, c.createdDate FROM ComplaintByMonth c";
+        String jpql = "SELECT COUNT(c.id) as comp_count, c.department, c.status, c.createdDate FROM ComplaintByMonth c WHERE"
+                + "(:selectedDepartment = 0 OR c.depId = :selectedDepartment) AND "
+                + "(:selectedStatus = 'all' OR c.status = :selectedStatus) ";
 
         if (null != selectedFilter) {
 
             if (selectedDate != null && selectedFilter.equals("day")) {
                 // Filter by date using the selectedDate
-                jpql += " WHERE c.date = :selectedDate ";
+                jpql += " c.date = :selectedDate ";
             } else if (!selectedYearMonth.isEmpty() && selectedFilter.equals("month")) {
                 // Filter by formattedDate using the selectedYearMonth
-                jpql += " WHERE c.formattedMonth = :selectedYearMonth ";
+                jpql += " c.formattedMonth = :selectedYearMonth ";
 
             } else if (!selectedWeek.isEmpty() && selectedFilter.equals("week")) {
                 // Filter by week_number
-                jpql += " WHERE c.weekNumber = :selectedWeek ";
+                jpql += " c.weekNumber = :selectedWeek ";
             }
         }
 
         jpql += " GROUP BY c.department, c.status"
                 + " ORDER BY c.department";
 
-        TypedQuery<Object[]> query = em.createQuery(jpql, Object[].class);
+        TypedQuery<Object[]> query = em.createQuery(jpql, Object[].class)
+                .setParameter("selectedDepartment", selectedDepartment)
+                .setParameter("selectedStatus", selectedStatus);
 
         if (null != selectedFilter) {
 

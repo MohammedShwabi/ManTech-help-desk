@@ -119,11 +119,6 @@ public class EmployeeManagedBean implements Serializable {
         return "view"; // Redirect to a view page
     }
 
-    // to delete an employee
-    public void delete(Employees emp) {
-        employeesFacade.remove(emp);
-    }
-
     // to update employee status
     public void changeEmployeeStatus(Employees employeeId, boolean status) {
         employeeId.setActivated(status);

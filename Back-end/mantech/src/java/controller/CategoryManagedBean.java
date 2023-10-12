@@ -83,12 +83,6 @@ public class CategoryManagedBean implements Serializable {
         return categoriesFacade.findAll();
     }
 
-    // to delete an category
-    public String delete(Categories categories) {
-        categoriesFacade.remove(categories);
-        return "view?faces-redirect=true";
-    }
-
     // to add a new category
     public String addCategory() {
         categoriesFacade.create(categories);

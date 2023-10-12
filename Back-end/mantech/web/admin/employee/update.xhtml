@@ -57,12 +57,6 @@
                         </h:inputText>
                         <h:message for="email" class="error-msg" />
 
-                        <h:outputLabel class="costoum-lable" value="Password:" for="password" />
-                        <h:inputText  class="input-type" id="password" value="#{employeeManagedBean.employee.password}" title="Password" required="true" 
-                                     requiredMessage="The Password field is required." validatorMessage="Validation Error: Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one digit" >
-                            <f:validateRegex pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}$" />
-                        </h:inputText>
-                        <h:message for="password" class="error-msg" />
                         <br></br>
                         <h:commandButton class="web_btn mb-4 me-0" value="Save Changes" action="#{employeeManagedBean.update()}" />
                     </h:form>

@@ -35,7 +35,29 @@ public class SummaryComplaintManagedBean implements Serializable {
 
     // this if the filter is by month
     private String selectedYearMonth = "";
+    
+    // for selected status
+//    private String selectedStatus = "all";
+    private String selectedStatus = "closed";
+    // for selected departmane
+    private int selectedDepartment = 2;
 
+    public String getSelectedStatus() {
+        return selectedStatus;
+    }
+
+    public void setSelectedStatus(String selectedStatus) {
+        this.selectedStatus = selectedStatus;
+    }
+
+    public int getSelectedDepartment() {
+        return selectedDepartment;
+    }
+
+    public void setSelectedDepartment(int selectedDepartment) {
+        this.selectedDepartment = selectedDepartment;
+    }
+    
     // getter and setter for all radio filter
     public String getSelectedFilter() {
         return selectedFilter;
@@ -72,7 +94,7 @@ public class SummaryComplaintManagedBean implements Serializable {
     // to get list of filtered complaints
     public List<Object[]> getFilteredComplaints() {
 
-        return complaintByMonthFacade.filterSummaryComplaints(selectedFilter, selectedDate, selectedYearMonth, selectedWeek);
+        return complaintByMonthFacade.filterSummaryComplaints(selectedFilter, selectedDate, selectedYearMonth, selectedWeek, selectedStatus, selectedDepartment);
     }
 
     // to rest the filter
