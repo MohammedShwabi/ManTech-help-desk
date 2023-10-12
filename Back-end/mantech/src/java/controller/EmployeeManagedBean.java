@@ -13,12 +13,14 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
 import javax.faces.validator.ValidatorException;
 
 @ManagedBean
@@ -59,6 +61,19 @@ public class EmployeeManagedBean implements Serializable {
 
     public void setSelectedDepartmentId(Integer selectedDepartmentId) {
         this.selectedDepartmentId = selectedDepartmentId;
+    }
+
+    // create a SelectItem which contains both the displayed label and the corresponding value.
+    // like this 
+    // <f:selectItems value="#{departmentManagedBean.find_all()}" var="dept" itemValue="#{dept.id}" itemLabel="#{dept.name}" />
+    public List<SelectItem> getDepartmentItems() {
+        List<SelectItem> departmentItems = new ArrayList<>();
+
+        List<Departments> departments = departmentsFacade.findEmployeeDepartments();
+        departments.forEach((dept) -> {
+            departmentItems.add(new SelectItem(dept.getId(), dept.getName()));
+        });
+        return departmentItems;
     }
 
     // reset the Employee object

@@ -46,7 +46,7 @@
 
                             <h:outputLabel class="costoum-lable" value="Department:" for="department" />
                             <h:selectOneMenu class="input-type" id="department" value="#{employeeManagedBean.selectedDepartmentId}" title="Department" required="true" requiredMessage="The department field is required." >
-                                <f:selectItems value="#{departmentManagedBean.departmentItems}" />
+                                <f:selectItems value="#{employeeManagedBean.departmentItems}" />
                             </h:selectOneMenu>
                             <h:message for="department" class="error-msg" />
 
