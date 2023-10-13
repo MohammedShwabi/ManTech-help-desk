@@ -92,9 +92,9 @@ public class SummaryComplaintManagedBean implements Serializable {
     }
 
     // to get list of filtered complaints
-    public Long getFilteredComplaints() {
+    public Long getFilteredComplaints(int depId, String status) {
 
-        return complaintByMonthFacade.filterSummaryComplaints(selectedFilter, selectedDate, selectedYearMonth, selectedWeek, selectedStatus, selectedDepartment);
+        return complaintByMonthFacade.filterSummaryComplaints(selectedFilter, selectedDate, selectedYearMonth, selectedWeek, status, depId);
     }
 
     // to rest the filter

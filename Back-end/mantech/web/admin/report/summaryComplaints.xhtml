@@ -7,13 +7,15 @@
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Reports</title>
         <link rel="stylesheet" href="../../css/bootstrap.min.css"/>
         <link rel="stylesheet" href="../../css/style.css"/>
         <link rel="stylesheet" href="../../css/all.min.css"/>
         <script src="../../js/all.min.js"></script>
         <script src="../../js/bootstrap.bundle.min.js"></script>
         <script src="../../js/frontend.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
     </h:head>
     <h:body>
         <div class="container-fluid">
@@ -67,30 +69,144 @@
                             </div>
                         </div>
                     </h:form>
-
-                    <h:panelGroup id="complaintsTable">
-
-                        <c:choose>
-                            <c:when test="#{empty summaryComplaintManagedBean.getFilteredComplaints()}">
-                                <div class="row justify-content-center">
-                                    <div class="mb-5">
-                                        <div class="text-center">
-                                            <h:graphicImage library="img" name="no_data.svg" alt="no data found" class="empty" />
-                                            <h2 class="text-muted">Ups!... no results found</h2>
-                                        </div>
+                    <c:choose>
+                        <c:when test="#{summaryComplaintManagedBean.getFilteredComplaints(0,'all')== 0}">
+                            <div class="row justify-content-center">
+                                <div class="mb-5">
+                                    <div class="text-center">
+                                        <h:graphicImage library="img" name="no_data.svg" alt="no data found" class="empty" />
+                                        <h2 class="text-muted">Ups!... no complaint found</h2>
                                     </div>
                                 </div>
-                            </c:when>
-                            <c:otherwise>
-                                <div class="report-table" >
-                                    <p>
-                                      <h:outputText value=" jjjjjj: #{summaryComplaintManagedBean.getFilteredComplaints()}" />
-                                    </p>
-                                </div>
-                            </c:otherwise>
-                        </c:choose>
-                        
-                    </h:panelGroup>
+                            </div>
+                        </c:when>
+                        <c:otherwise>
+                            <div id="complaintsTable">
+                                <h:panelGroup class="row chart-container">
+                                    <h:panelGroup class="col-lg-5 p-0" rendered="#{summaryComplaintManagedBean.getFilteredComplaints(1,'all')!= 0}">
+                                        <canvas  id="eduServChar" style="width:90%;max-width:600px"></canvas>
+                                    </h:panelGroup>
+                                    <h:panelGroup class="col-lg-5 p-0" rendered="#{summaryComplaintManagedBean.getFilteredComplaints(2,'all')!= 0}">
+                                        <canvas  id="manServChar" style="width:90%;max-width:600px"></canvas>
+                                    </h:panelGroup>
+                                </h:panelGroup>
+                                <h:panelGroup class="row chart-container" rendered="#{summaryComplaintManagedBean.getFilteredComplaints(3,'all') != 0}">
+                                    <canvas class="col-lg-12 p-0" id="lernServChar" style="width:90%;max-width:600px"></canvas>
+                                </h:panelGroup>
+                                <h:panelGroup class="row chart-container" >
+                                    <h:panelGroup class="col-lg-5 p-0" rendered="#{summaryComplaintManagedBean.getFilteredComplaints(4,'all')!= 0}">
+                                        <canvas class="col-lg-5 p-0" id="intSysChar" style="widthp:90%;max-width:600px"></canvas>
+                                    </h:panelGroup>
+                                    <h:panelGroup class="col-lg-5 p-0" rendered="#{summaryComplaintManagedBean.getFilteredComplaints(5,'all')!= 0}">
+                                        <canvas class="col-lg-5 p-0" id="humRescChar" style="width:90%;max-width:600px"></canvas>
+                                    </h:panelGroup>
+                                </h:panelGroup>
+
+
+                                <script>
+                                    var xValues = ["waiting", "pending", "closed"];
+
+                                    var barColors = [
+                                        "#136567",
+                                        "#00aba9",
+                                        "#2b5797",
+                                    ];
+
+                                    var yValues = [#{summaryComplaintManagedBean.getFilteredComplaints(2,'waiting')}, #{summaryComplaintManagedBean.getFilteredComplaints(2,'pending')}, #{summaryComplaintManagedBean.getFilteredComplaints(2,'closed')}];
+                                    new Chart("manServChar", {
+                                        type: "doughnut",
+                                        data: {
+                                            labels: xValues,
+                                            datasets: [{
+                                                    backgroundColor: barColors,
+                                                    data: yValues
+                                                }]
+                                        },
+                                        options: {
+                                            title: {
+                                                display: true,
+                                                text: "Management Services Complaints"
+                                            }
+                                        }
+                                    });
+
+                                    var yValues = [#{summaryComplaintManagedBean.getFilteredComplaints(4,'waiting')}, #{summaryComplaintManagedBean.getFilteredComplaints(4,'pending')}, #{summaryComplaintManagedBean.getFilteredComplaints(4,'closed')}];
+                                    new Chart("intSysChar", {
+                                        type: "doughnut",
+                                        data: {
+                                            labels: xValues,
+                                            datasets: [{
+                                                    backgroundColor: barColors,
+                                                    data: yValues
+                                                }]
+                                        },
+                                        options: {
+                                            title: {
+                                                display: true,
+                                                text: "Internal System Complaints"
+                                            }
+                                        }
+                                    });
+
+                                    var yValues = [#{summaryComplaintManagedBean.getFilteredComplaints(3,'waiting')}, #{summaryComplaintManagedBean.getFilteredComplaints(3,'pending')}, #{summaryComplaintManagedBean.getFilteredComplaints(3,'closed')}, 0];
+                                    new Chart("lernServChar", {
+                                        type: "bar",
+                                        data: {
+                                            labels: xValues,
+                                            datasets: [{
+                                                    backgroundColor: barColors,
+                                                    data: yValues
+                                                }]
+                                        },
+                                        options: {
+                                            legend: {display: false},
+                                            title: {
+                                                display: true,
+                                                text: "Learning Services Complaints"
+                                            }
+                                        }
+                                    });
+
+                                    var yValues = [#{summaryComplaintManagedBean.getFilteredComplaints(1,'waiting')}, #{summaryComplaintManagedBean.getFilteredComplaints(1,'pending')}, #{summaryComplaintManagedBean.getFilteredComplaints(1,'closed')}];
+                                    new Chart("eduServChar", {
+                                        type: "pie",
+                                        data: {
+                                            labels: xValues,
+                                            datasets: [{
+                                                    backgroundColor: barColors,
+                                                    data: yValues
+                                                }]
+                                        },
+                                        options: {
+                                            title: {
+                                                display: true,
+                                                text: "Educational Services Complaints"
+                                            }
+                                        }
+                                    });
+
+                                    var yValues = [#{summaryComplaintManagedBean.getFilteredComplaints(5,'waiting')}, #{summaryComplaintManagedBean.getFilteredComplaints(5,'pending')}, #{summaryComplaintManagedBean.getFilteredComplaints(5,'closed')}];
+                                    new Chart("humRescChar", {
+                                        type: "pie",
+                                        data: {
+                                            labels: xValues,
+                                            datasets: [{
+                                                    backgroundColor: barColors,
+                                                    data: yValues
+                                                }]
+                                        },
+                                        options: {
+                                            title: {
+                                                display: true,
+                                                text: "Human Resource Complaints"
+                                            }
+                                        }
+                                    });
+                                </script>
+                            </div>
+                        </c:otherwise>
+                    </c:choose>
+
                 </div>
             </div>
         </div>

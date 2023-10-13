@@ -36,7 +36,11 @@ body {
 }
 /*error message*/
 .error-msg{
-    color: red;
+    margin: .5vh 10vw 0 10vw;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    color:#D50000 !important;
 }
 
 /*costoum-lable*/
@@ -51,6 +55,9 @@ body {
 .welcome-txt{
     margin-left: 8vw;
     font-size: 3rem;
+    font-weight: 400;
+    margin-bottom: 8vh;
+    
 }
 .input-type-login{
     display: block;
@@ -285,10 +292,12 @@ a.blog-link {
     background-color: var(--white);
 }
 
-.navbar-nav .active {
-    color: var(--main-color);
+
+.navbar-nav .active .nav-link .nav-text  {
+    color: var(--main-color)!important;
     font-weight: bold;
 }
+
 
 .navbar-nav .nav-link p {
     margin-top: 0;
@@ -296,7 +305,7 @@ a.blog-link {
     font-size: 1.5rem;
     margin-left: 2rem;
     margin-right: 4rem;
-    color: var(--main-color);
+    color: var(--gray);
 }
 
 .nav-photo {
@@ -348,21 +357,13 @@ a.blog-link {
 
 .add-faq-btn{
     z-index: 3;
+    
 }
 .faq-btn{
     text-decoration: none; 
+    font-size: 1.4em;
 }
 
-.faq-btn-delete{
-    border: red 0.5vh solid!important;
-    color: #FFFFFF !important;
-    background-color: red !important;
-}
-.faq-btn-delete:hover{
-    border: red 0.5vh solid !important;
-    color: red !important;
-    background-color: #FFFFFF !important;
-}
 /* end faqs */
 
 /* start profile */
@@ -587,7 +588,7 @@ a.blog-link {
     color: var(--main-color);
     font-weight: 500;
     font-size: 3em;
-    margin-top: 1vh;
+    margin-top: 4vh;
     text-align: center;
 }
 .comp-id{
@@ -1113,6 +1114,9 @@ a.blog-link {
 .chart-container{
     margin-bottom: 8vh;
     margin-top: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* End of maryam section*/

@@ -4,7 +4,7 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Profile</title>
         <link rel="stylesheet" href="../css/bootstrap.min.css"/>
         <link rel="stylesheet" href="../css/style.css"/>
         <link rel="stylesheet" href="../css/all.min.css"/>
@@ -30,10 +30,14 @@
                             <img src="../upload/profiles_photos/#{profileManagedBean.employees.photo}" alt="image" class="profile-img"></img>
                         </div>
                     </label>
-                    <h:inputFile id="update_profile" value="#{profileManagedBean.file}"  />
 
-                    <div class="row justify-content-md-center mt-4">
-                        <h:commandLink class="edit-link edit-photo text-center" value="Edit" action="#{profileManagedBean.editImage()}" />
+                    <div class="row justify-content-md-center mt-4" style="margin-left: 7vw">
+                        <div class="col-lg-6" style="display: flex;justify-content: flex-end;align-items: flex-end">
+                            <h:inputFile id="update_profile" value="#{profileManagedBean.file}"  />  
+                        </div>
+                        <div class="col-lg-6" >
+                            <h:commandLink class="edit-link edit-photo text-center" value="Save" action="#{profileManagedBean.editImage()}" />  
+                        </div>
                     </div>
                     <div class="row justify-content-center mt-5">
                         <div class="col-md-4 profile-detail">

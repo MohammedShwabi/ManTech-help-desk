@@ -5,7 +5,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Update FAQ</title>
         <link rel="stylesheet" href="../../css/bootstrap.min.css"/>
         <link rel="stylesheet" href="../../css/style.css"/>
         <link rel="stylesheet" href="../../css/all.min.css"/>
@@ -25,20 +25,20 @@
                     <f:view>
                         <h:form>
                             <h:outputLabel class="costoum-lable" value="Question:" for="question" />
+                            <h:message for="question" class="error-msg" />
                             <h:inputTextarea class="input-type-textarea" rows="4" cols="30" id="question" value="#{fAQManagedBean.faqs.question}" title="Question" required="true" 
                                              requiredMessage="The Question field is required." validatorMessage="Validation Error: Length is less than allowable minimum of '5'" >
                                 <f:validateLength minimum="5" maximum="5000" />
                             </h:inputTextarea>
                             <br></br>
-                            <h:message for="question" class="error-msg" />
 
                             <h:outputLabel class="costoum-lable" value="Answer:" for="answer" />
+                            <h:message for="answer" class="error-msg" />
                             <h:inputTextarea class="input-type-textarea" rows="4" cols="30" id="answer" value="#{fAQManagedBean.faqs.answer}" title="Answer" required="true" 
                                              requiredMessage="The Answer field is required." validatorMessage="Validation Error: Length is less than allowable minimum of '5'" >
                                 <f:validateLength minimum="5" maximum="5000" />
                             </h:inputTextarea>
                             <br></br>
-                            <h:message for="answer" class="error-msg" />
                             <h:commandButton class="web_btn me-0 mb-4"  value="Save Changes" action="#{fAQManagedBean.update()}" />
                         </h:form>
                     </f:view>

@@ -6,7 +6,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Login</title>
         <link rel="stylesheet" href="css/bootstrap.min.css"/>
         <link rel="stylesheet" href="css/style.css"/>
         <link rel="stylesheet" href="css/all.min.css"/>
@@ -23,14 +23,14 @@
             <div class="container-fluid mt-3 pt-4">
                 <div class="row justify-content-md-center p-4">
                     <div class="col-lg-6  p-0">
-                        <h:outputText class="welcome-txt pt-4" value="Welcome Back" />
+                        <h3 class="welcome-txt pt-4">Welcome Back</h3>
                         <f:view>
                             <h:form>
-                                <h:inputText a:placeholder="Username" class="input-type-login" id="email" value="#{loginManagedBean.email}" required="true" requiredMessage="The Email field is required." />
                                 <h:message for="email" class="error-msg" />
+                                <h:inputText a:placeholder="Username" class="input-type-login mt-3" id="email" value="#{loginManagedBean.email}" required="true" requiredMessage="The Email field is required." />
 
-                                <h:inputSecret a:placeholder="PassWord" class="input-type-login" id="password" value="#{loginManagedBean.password}" required="true"  requiredMessage="The Password field is required." />
                                 <h:message for="password" class="error-msg" />
+                                <h:inputSecret a:placeholder="PassWord" class="input-type-login mt-2" id="password" value="#{loginManagedBean.password}" required="true"  requiredMessage="The Password field is required." />
 
                                 <h:commandButton class="web_btn login-btn" value="Login" action="#{loginManagedBean.login}" />
                                 <h:outputText value="#{loginManagedBean.message}" rendered="#{not empty loginManagedBean.message}" />     

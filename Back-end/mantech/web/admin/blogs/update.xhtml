@@ -5,7 +5,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Update Blog</title>
         <link rel="stylesheet" href="../../css/bootstrap.min.css"/>
         <link rel="stylesheet" href="../../css/style.css"/>
         <link rel="stylesheet" href="../../css/all.min.css"/>
@@ -26,37 +26,37 @@
                         <h:form enctype="multipart/form-data">
                             <h:outputText class="page_header" value="Edit Blog"/>
                             <h:outputLabel class="costoum-lable" value="Photo:" for="photo" />
-                            <h:inputFile class="input-type" value="#{blogsManagedBean.file}" />
-                            <br/>
                             <h:message for="photo" class="error-msg" />
+                            <h:inputFile class="input-type" value="#{blogsManagedBean.file}" />
+
 
                             <h:outputLabel class="costoum-lable" value="Title:" for="title" />
+                            <h:message for="title" class="error-msg" />
                             <h:inputText class="input-type" id="title" value="#{blogsManagedBean.blogs.title}" title="Title" required="true" requiredMessage="The Title field is required.">
                                 <f:validateLength minimum="5" maximum="100" />
                             </h:inputText>
                             <br/>
-                            <h:message for="title" class="error-msg" />
 
                             <h:outputLabel class="costoum-lable" value="Description:" for="description" />
+                            <h:message for="description" class="error-msg" />
                             <h:inputTextarea class="input-type-textarea" rows="4" cols="30" id="description" value="#{blogsManagedBean.blogs.description}" title="Description" required="true" requiredMessage="The Description field is required.">
                                 <f:validateLength minimum="10" maximum="100" />
                             </h:inputTextarea>   
-                            <br/>
-                            <h:message for="description" class="error-msg" />
+
 
                             <h:outputLabel class="costoum-lable" value="Blog:" for="blog" />
+                            <h:message for="blog" class="error-msg" />
                             <h:inputTextarea class="input-type-textarea" rows="4" cols="30" id="blog" value="#{blogsManagedBean.blogs.blog}" title="Blog" required="true" requiredMessage="The Blog field is required.">
                                 <f:validateLength minimum="15"  />
                             </h:inputTextarea>
-                            <br/>
-                            <h:message for="blog" class="error-msg" />
+
 
                             <h:outputLabel class="costoum-lable" value="CreatedAt:" for="createdAt" />
+                            <h:message for="createdAt" class="error-msg" />
                             <h:inputText class="input-type" id="createdAt" value="#{blogsManagedBean.blogs.createdAt}" title="CreatedAt" required="true" requiredMessage="The CreatedAt field is required.">
                                 <f:convertDateTime pattern="MM/dd/yyyy" />
                             </h:inputText>
-                            <br/>
-                            <h:message for="createdAt" class="error-msg" />
+
                             <br/>
 
                             <h:commandButton class="web_btn mb-4 me-0" value="Save Changes" action="#{blogsManagedBean.update()}" />

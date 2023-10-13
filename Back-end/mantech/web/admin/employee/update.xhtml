@@ -5,7 +5,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Update Employee</title>
         <link rel="stylesheet" href="../../css/bootstrap.min.css"/>
         <link rel="stylesheet" href="../../css/style.css"/>
         <link rel="stylesheet" href="../../css/all.min.css"/>
@@ -24,38 +24,38 @@
 
                     <h:form>
                         <h:outputLabel class="costoum-lable" value="FullName:" for="fullName" />
+                        <h:message for="fullName" class="error-msg" />
                         <h:inputText class="input-type" id="fullName" value="#{employeeManagedBean.employee.fullName}" title="Full Name" required="true" 
                                      requiredMessage="The Full Name field is required." validatorMessage="Validation Error: Length is less than allowable minimum of '5'" >
                             <f:validateLength minimum="5" maximum="50" />
                         </h:inputText>
-                        <h:message for="fullName" class="error-msg" />
 
                         <h:outputLabel class="costoum-lable" value="PhoneNo:" for="phoneNo" />
+                        <h:message for="phoneNo" class="error-msg" />
                         <h:inputText class="input-type" id="phoneNo" value="#{employeeManagedBean.employee.phoneNo}" title="Phone No" required="true" 
                                      requiredMessage="The Phone No field is required." validatorMessage="Validation Error: Phone No must have exactly 9 digits" >
                             <f:validateRegex pattern="^\d{9}$" />
                         </h:inputText>
-                        <h:message for="phoneNo" class="error-msg" />
 
                         <h:outputLabel class="costoum-lable" value="Gender:" for="gender" />
+                        <h:message for="gender" class="error-msg" />
                         <h:selectOneMenu class="input-type" id="gender" value="#{employeeManagedBean.employee.gender}" title="Gender" required="true" requiredMessage="The gender field is gender." >
                             <f:selectItem itemValue="Male" itemLabel="Male" />
                             <f:selectItem itemValue="Female" itemLabel="Female" />
                         </h:selectOneMenu>
-                        <h:message for="gender" class="error-msg" />
 
                         <h:outputLabel class="costoum-lable" value="Department:" for="department" />
+                        <h:message for="department" class="error-msg" />
                         <h:selectOneMenu class="input-type" id="department" value="#{employeeManagedBean.selectedDepartmentId}" title="Department" required="true" requiredMessage="The department field is required." >
                             <f:selectItems value="#{employeeManagedBean.departmentItems}" />
                         </h:selectOneMenu> 
-                        <h:message for="department" class="error-msg" />
 
                         <h:outputLabel class="costoum-lable" value="Email:" for="email" />
+                        <h:message for="email" class="error-msg" />
                         <h:inputText class="input-type" id="email" value="#{employeeManagedBean.employee.email}" title="Email" required="true"
                                      requiredMessage="The Email field is required." 
                                      validator="#{employeeManagedBean.validateUniqueEmail}">
                         </h:inputText>
-                        <h:message for="email" class="error-msg" />
 
                         <br></br>
                         <h:commandButton class="web_btn mb-4 me-0" value="Save Changes" action="#{employeeManagedBean.update()}" />
