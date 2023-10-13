@@ -9,7 +9,6 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.ejb.EJB;
 import model.ComplaintByMonthFacade;
 
@@ -35,28 +34,6 @@ public class SummaryComplaintManagedBean implements Serializable {
 
     // this if the filter is by month
     private String selectedYearMonth = "";
-    
-    // for selected status
-//    private String selectedStatus = "all";
-    private String selectedStatus = "closed";
-    // for selected departmane
-    private int selectedDepartment = 2;
-
-    public String getSelectedStatus() {
-        return selectedStatus;
-    }
-
-    public void setSelectedStatus(String selectedStatus) {
-        this.selectedStatus = selectedStatus;
-    }
-
-    public int getSelectedDepartment() {
-        return selectedDepartment;
-    }
-
-    public void setSelectedDepartment(int selectedDepartment) {
-        this.selectedDepartment = selectedDepartment;
-    }
     
     // getter and setter for all radio filter
     public String getSelectedFilter() {

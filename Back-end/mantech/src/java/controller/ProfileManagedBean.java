@@ -79,8 +79,10 @@ public class ProfileManagedBean implements Serializable {
     }
 
     public String passwordReset() {
+        
+        String hashedEnteredPassword = EmployeeManagedBean.hashPassword(OldPassword);
 
-        if (OldPassword.compareTo(employees.getPassword()) != 0) {
+        if (hashedEnteredPassword.compareTo(employees.getPassword()) != 0) {
 
             // add error message if old password is not correct
             FacesContext context = FacesContext.getCurrentInstance();
@@ -99,8 +101,10 @@ public class ProfileManagedBean implements Serializable {
             return null; // Return null to stay on the same page
 
         } else {
+            
+            String hashedNewPassword = EmployeeManagedBean.hashPassword(NewPassword);
             // save the new value
-            employees.setPassword(NewPassword);
+            employees.setPassword(hashedNewPassword);
             employeesFacade.edit(employees);
             // to rest variable
             OldPassword = "";

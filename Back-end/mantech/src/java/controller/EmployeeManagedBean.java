@@ -13,6 +13,8 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -90,6 +92,11 @@ public class EmployeeManagedBean implements Serializable {
             Departments department = departmentsFacade.find(selectedDepartmentId);
             employee.setDepId(department);
             employee.setPhoto("profile.svg");
+            
+            String hashedPassword = hashPassword( employee.getPassword() );
+            
+            employee.setPassword(hashedPassword);
+            
             employeesFacade.create(employee);
             this.resetEmployee();
             // Redirect to a view page
@@ -99,6 +106,23 @@ public class EmployeeManagedBean implements Serializable {
             FacesMessage message = new FacesMessage("Password and Confirm Password do not match.");
             context.addMessage("emp_form:Confirm_New_Password", message); // "form" is the name of your form
             return null; // Return null to stay on the same page
+        }
+    }
+
+    // to hash the password
+    public static String hashPassword(String password) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            byte[] hashBytes = md.digest(password.getBytes());
+            StringBuilder hexHash = new StringBuilder();
+            for (byte b : hashBytes) {
+                hexHash.append(String.format("%02x", b));
+            }
+            return hexHash.toString();
+        } catch (NoSuchAlgorithmException e) {
+            // Handle the exception
+            e.printStackTrace();
+            return null;
         }
     }
 

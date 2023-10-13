@@ -186,7 +186,7 @@ CREATE TABLE `employees` (
   `gender` enum('Male','Female') NOT NULL,
   `activated` tinyint(1) NOT NULL DEFAULT 0,
   `email` varchar(50) NOT NULL,
-  `password` varchar(60) NOT NULL,
+  `password` varchar(64) NOT NULL,
   `phone_no` varchar(20) NOT NULL,
   `photo` varchar(30) NOT NULL DEFAULT 'profile.svg',
   `dep_id` int(11) DEFAULT NULL
@@ -197,27 +197,27 @@ CREATE TABLE `employees` (
 --
 
 INSERT INTO `employees` (`id`, `full_name`, `gender`, `activated`, `email`, `password`, `phone_no`, `photo`, `dep_id`) VALUES
-(1, 'Hesham Noaman', 'Male', 1, 'admin@gmail.com', 'admin', '01236547890', 'profile.svg', 7),
-(2, 'Jane Smith', 'Female', 1, 'janesmith@example.com', 'password2', '555-2222', 'profile.svg', 2),
-(3, 'Mike Johnson', 'Male', 1, 'mikejohnson@example.com', 'password3', '555-3333', 'profile.svg', 3),
-(4, 'Emily Brown', 'Female', 1, 'emilybrown@example.com', 'password4', '555-4444', 'profile.svg', 4),
-(5, 'David Wilson', 'Male', 1, 'davidwilson@example.com', 'password5', '555-5555', 'profile.svg', 5),
-(6, 'Sarah Lee', 'Female', 1, 'sarahlee@example.com', 'password6', '555-6666', 'profile.svg', 1),
-(7, 'Michael Chen', 'Male', 1, 'michaelchen@example.com', 'password7', '555-7777', 'profile.svg', 2),
-(8, 'Linda Davis', 'Female', 1, 'lindadavis@example.com', 'password8', '555-8888', 'profile.svg', 3),
-(9, 'Daniel Kim', 'Male', 1, 'danielkim@example.com', 'password9', '555-9999', 'profile.svg', 4),
-(10, 'Lisa Patel', 'Female', 1, 'lisapatel@example.com', 'password10', '555-1010', 'profile.svg', 5),
-(11, 'John Doe', 'Male', 1, 'johndoe@example.com', 'password1', '555-1111', 'profile.svg', 1),
-(12, 'Robert Turner', 'Male', 1, 'robertturner@example.com', 'password12', '555-2222', 'profile.svg', 6),
-(13, 'Karen Baker', 'Female', 1, 'karenbaker@example.com', 'password13', '555-3333', 'profile.svg', 6),
-(14, 'William Garcia', 'Male', 1, 'williamgarcia@example.com', 'password14', '555-4444', 'profile.svg', 6),
-(15, 'Samantha Martinez', 'Female', 1, 'samanthamartinez@example.com', 'password15', '555-5555', 'profile.svg', 6),
-(16, 'Joseph Hernandez', 'Male', 1, 'josephhernandez@example.com', 'password16', '555-6666', 'profile.svg', 6),
-(17, 'Nancy Davis', 'Female', 1, 'nancydavis@example.com', 'password17', '555-7777', 'profile.svg', 6),
-(18, 'Daniel Rodriguez', 'Male', 1, 'danielrodriguez@example.com', 'password18', '555-8888', 'profile.svg', 6),
-(19, 'Linda Martinez', 'Female', 1, 'lindamartinez@example.com', 'password19', '555-9999', 'profile.svg', 6),
-(20, 'Jennifer Adams', 'Male', 1, 'jenniferadams@example.com', 'password11', '555-1111', 'profile.svg', 6),
-(21, 'Christopher Smith', 'Female', 1, 'christophersmith@example.com', 'password20', '555-1010', 'profile.svg', 6);
+(1, 'Hesham Noaman', 'Male', 1, 'admin@gmail.com', '248e484258c0421c65888d3106d5cc54282dd804e4dbf7d36069238becea9686', '01236547890', 'profile.svg', 7), -- 'Admin@121'
+(2, 'Jane Smith', 'Female', 1, 'janesmith@example.com', '3d673f28b35199c69e9a5d9cfb863771378332da1aaa24f21991c86ebef00c09', '555-2222', 'profile.svg', 2), -- 'Password@2'
+(3, 'Mike Johnson', 'Male', 1, 'mikejohnson@example.com', 'ed275197b0970a3d00e3e11c805c28d77857c8c13e17f830b60f8bb474ba29cb', '555-3333', 'profile.svg', 3),
+(4, 'Emily Brown', 'Female', 1, 'emilybrown@example.com', 'd4e8bc5ff124bc108884c0c22e463b3cd35a2ce872cf14b7f3ba09b6fa9dd361', '555-4444', 'profile.svg', 4),
+(5, 'David Wilson', 'Male', 1, 'davidwilson@example.com', '8bf56f7302a67e106b595bc3fcbf78abc091c02277e1cb7e5869172b71fc2268', '555-5555', 'profile.svg', 5),
+(6, 'Sarah Lee', 'Female', 1, 'sarahlee@example.com', '61838b3fdd95bfee0315f78c6ec144662fc9c89520e215c6ef47cc96236894f4', '555-6666', 'profile.svg', 1),
+(7, 'Michael Chen', 'Male', 1, 'michaelchen@example.com', '9812d6317a117976af2d6045c249818ff5c1d23435706119f046c7a42c95a806', '555-7777', 'profile.svg', 2),
+(8, 'Linda Davis', 'Female', 1, 'lindadavis@example.com', '781982b02930cca4379f8bca394d23b566c5b7fb8cd385e84201cf929388f9c1', '555-8888', 'profile.svg', 3),
+(9, 'Daniel Kim', 'Male', 1, 'danielkim@example.com', '0b851d9c1604533b8f3994c2744f2e74d3b8299ef9a61149c6ddccbb4056f221', '555-9999', 'profile.svg', 4),
+(10, 'Lisa Patel', 'Female', 1, 'lisapatel@example.com', '0a021420388e29d06c88450d75d39a945f01541901bd8e9ff88f3df6e46b7900', '555-1010', 'profile.svg', 5),
+(11, 'John Doe', 'Male', 1, 'johndoe@example.com', '03c0d9d083c4c16b9a60ed2be6fa5aec21f6c9f54219c0391fc310e75f444cf4', '555-1111', 'profile.svg', 1),
+(12, 'Robert Turner', 'Male', 1, 'robertturner@example.com', 'f865910c2cfec3f576571dddc010cc313f9021847993d27b8842f9f9f16904a9', '555-2222', 'profile.svg', 6),
+(13, 'Karen Baker', 'Female', 1, 'karenbaker@example.com', '2380603f9916cc98a6f54ec2296b1bc6df882a2fdb8f0f759a1d6a93330f01a5', '555-3333', 'profile.svg', 6),
+(14, 'William Garcia', 'Male', 1, 'williamgarcia@example.com', '0b5b932bfe1fbd28c5fbddbfb43c11a8d2fedda5d26a747919941cd60d500314', '555-4444', 'profile.svg', 6),
+(15, 'Samantha Martinez', 'Female', 1, 'samanthamartinez@example.com', '67e152b191fe09a39c301e5616ef33ff9ad21a0a8bf080757e7502d3855d06ed', '555-5555', 'profile.svg', 6),
+(16, 'Joseph Hernandez', 'Male', 1, 'josephhernandez@example.com', '411fa706c24fdd88c502dacbfab2939555815ea502f89153f897d75227b0f3d0', '555-6666', 'profile.svg', 6),
+(17, 'Nancy Davis', 'Female', 1, 'nancydavis@example.com', '656b5a453d525216d85fc061b6202e26615e8b0ccfa3dd5065cc9e95b07140fe', '555-7777', 'profile.svg', 6),
+(18, 'Daniel Rodriguez', 'Male', 1, 'danielrodriguez@example.com', '9fbf691a3e37bdc91a921ad8fd3b34d04c253dcbfe0819ca6b2b7871488fc1c7', '555-8888', 'profile.svg', 6),
+(19, 'Linda Martinez', 'Female', 1, 'lindamartinez@example.com', '320da1fd1914a027659118f789e5031382f806a4ce9c7fef5c7d8a104cb36af6', '555-9999', 'profile.svg', 6),
+(20, 'Jennifer Adams', 'Male', 1, 'jenniferadams@example.com', '372f2a4b31b109c5cc653c20c7f380628f44a0f2d62e0d2d49b62e713dc95bd4', '555-1111', 'profile.svg', 6),
+(21, 'Christopher Smith', 'Female', 1, 'christophersmith@example.com', 'a20feb9d176b66145ef0ca802a8f83f90289704faa5df088021fe0fffb9e4774', '555-1010', 'profile.svg', 6); -- 'Password@21'
 
 -- --------------------------------------------------------
 
@@ -272,7 +272,7 @@ AS SELECT `comp`.`id` AS `id`, `title`, `description`, `comp`.`photo`, `priority
 `tech`.`id` AS `tech_id`, `tech`.`full_name` AS `technician`,
 date_format(`comp`.`created_date`,'%Y-%m') AS `formatted_month`, yearweek(`comp`.`created_date`,3) AS `week_number`,
 cast(`comp`.`created_date` as date) AS `date` 
-FROM ((((`compliants` `comp` join `employees` `emp` on(`emp`.`id` = `comp`.`emp_id`)) join `departments` `dep` on(`dep`.`id` = `emp`.`dep_id`)) join `employees` `tech` on(`tech`.`id` = `comp`.`tech_id`)) join `categories` `cat` on(`cat`.`id` = `comp`.`cat_id`)) ORDER BY `comp`.`id` ASC ;
+FROM ((((`compliants` `comp` join `employees` `emp` on(`emp`.`id` = `comp`.`emp_id`)) join `departments` `dep` on(`dep`.`id` = `emp`.`dep_id`)) join `categories` `cat` on(`cat`.`id` = `comp`.`cat_id`)) left join `employees` `tech` on(`tech`.`id` = `comp`.`tech_id`)) ORDER BY `comp`.`id` ASC ;
 
 --
 -- Indexes for dumped tables

@@ -30,11 +30,10 @@
                                 <h:inputText a:placeholder="Username" class="input-type-login mt-3" id="email" value="#{loginManagedBean.email}" required="true" requiredMessage="The Email field is required." />
 
                                 <h:message for="password" class="error-msg" />
-                                <h:inputSecret a:placeholder="PassWord" class="input-type-login mt-2" id="password" value="#{loginManagedBean.password}" required="true"  requiredMessage="The Password field is required." />
+                                <h:inputSecret a:placeholder="Password" class="input-type-login mt-2" id="password" value="#{loginManagedBean.password}" required="true"  requiredMessage="The Password field is required." />
 
                                 <h:commandButton class="web_btn login-btn" value="Login" action="#{loginManagedBean.login}" />
-                                <h:outputText value="#{loginManagedBean.message}" rendered="#{not empty loginManagedBean.message}" />     
-                                <h:messages styleClass="logout-message" />
+                                <h:outputText value="#{loginManagedBean.message}" class="error-msg" rendered="#{not empty loginManagedBean.message}" />     
                             </h:form>
                         </f:view>
                     </div>

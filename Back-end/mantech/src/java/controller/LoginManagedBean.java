@@ -10,7 +10,6 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
 import javax.faces.application.NavigationHandler;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -72,8 +71,10 @@ public class LoginManagedBean implements Serializable {
         // first delete the old message 
         message = "";
         
+        String hashedEnteredPassword = EmployeeManagedBean.hashPassword(password);
+        
         // Check if email and password are valid
-        loggedInEmployee = employeesFacade.login(email, password);
+        loggedInEmployee = employeesFacade.login(email, hashedEnteredPassword);
 
         if (loggedInEmployee != null) {
             // to get the department id 
@@ -121,12 +122,6 @@ public class LoginManagedBean implements Serializable {
 
     // Handle redirection to login page
     public static void gotoLogin(FacesContext context) {
-        // Configure the Flash scope to keep messages during a redirect
-        context.getExternalContext().getFlash().setKeepMessages(true);
-
-        // Create an error message and add it to the FacesContext
-        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "You have been logged out.", null));
-
         // Obtain the NavigationHandler associated with the application
         NavigationHandler navHandler = context.getApplication().getNavigationHandler();
 
