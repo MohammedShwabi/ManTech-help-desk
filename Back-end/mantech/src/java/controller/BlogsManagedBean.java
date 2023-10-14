@@ -16,6 +16,8 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.servlet.http.Part;
 import model.BlogsFacade;
 
@@ -68,79 +70,72 @@ public class BlogsManagedBean implements Serializable {
 
     public String gotoAdd() {
         this.blogs = new Blogs();
-        return "/admin/blogs/add";
+        return "/admin/blogs/add?faces-redirect=true";
     }
 
     // to delete an Blogs
-    public void delete(Blogs blogs) {
-        blogsFacade.remove(blogs);
+    public String delete(Blogs blog) {
+        // Check if the complaint already has a photo
+        if (blog.getPhoto() != null ) {
+            // Delete the old photo
+            ImageUploader.deleteOldPhoto("blogs_photos", blog.getPhoto());
+        }
+        
+        blogsFacade.remove(blog);
+        return "view?faces-redirect=true";
     }
 
     // Method to add a new question
     public String addBlog() throws IOException {
 
-        if (file == null) {
-            //doing something here
-            return "image is required";
-        } else {
-            String pathImage = upload();
+        if (file != null) {
+            // uplaod the image
+            String pathImage = ImageUploader.upload(file, "blogs_photos");
+
+            // save the blog to the database
             blogs.setPhoto(pathImage);
             blogs.setCreatedAt(new Date());
             blogsFacade.create(blogs);
+
+            // to reset the object
             this.resetBlogs();
 
-            return "view?faces-redirect=true";
             // Redirect to a view page
-
+            return "view?faces-redirect=true";
+        } else {
+            FacesContext context = FacesContext.getCurrentInstance();
+            FacesMessage message = new FacesMessage("image is required");
+            context.addMessage("blog_form:photo", message); // "form" is the name of your form
+            return null; // Return null to stay on the same page
         }
     }
 
-    // reset the question object
+    // reset the blogs object
     public void resetBlogs() {
-        // clear the question object
+        // clear the blogs object
         blogs = new Blogs();
+        file = null;
     }
 
 // to save edited question details
     public String update() throws IOException {
 
         if (file != null) {
-            String name = upload();
-            blogs.setPhoto(name);
+            // upload the photo
+            String pathImage = ImageUploader.upload(file, "blogs_photos");
+
+            // Check if the blog already has a photo
+            if (blogs.getPhoto() != null) {
+                // Delete the old photo
+                ImageUploader.deleteOldPhoto("blogs_photos", blogs.getPhoto());
+            }
+
+            blogs.setPhoto(pathImage);
         }
+
         blogsFacade.edit(blogs);
         this.resetBlogs();
         // Redirect to a view page
         return "view?faces-redirect=true";
     }
-
-    //upload image blog
-    public String upload() throws IOException {
-        String fileName = file.getSubmittedFileName();
-        InputStream fileContent = file.getInputStream();
-        String uploadDirectory = "C:\\Users\\Almomyz\\Documents\\GitHub\\ManTech-help-desk\\Back-end\\mantech\\web\\upload\\blogs_photos\\";
-        String filePath = uploadDirectory + fileName;
-        try {
-
-            File destinationFile = new File(filePath);
-
-            FileOutputStream outputStream = new FileOutputStream(destinationFile);
-            byte[] buffer = new byte[4096];
-            int bytesRead;
-            while ((bytesRead = fileContent.read(buffer)) != -1) {
-                outputStream.write(buffer, 0, bytesRead);
-            }
-            outputStream.close();
-            fileContent.close();
-
-        } catch (IOException e) {
-
-            e.printStackTrace();
-        }
-
-        System.out.println(filePath);
-
-        return fileName;
-    }
-
 }

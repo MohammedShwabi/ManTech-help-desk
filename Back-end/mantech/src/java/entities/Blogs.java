@@ -46,7 +46,7 @@ public class Blogs implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 30)
+    @Size(min = 1, max = 50)
     @Column(name = "photo")
     private String photo;
     @Basic(optional = false)

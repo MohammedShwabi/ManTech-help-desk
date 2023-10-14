@@ -79,7 +79,7 @@ public class ProfileManagedBean implements Serializable {
     }
 
     public String passwordReset() {
-        
+
         String hashedEnteredPassword = EmployeeManagedBean.hashPassword(OldPassword);
 
         if (hashedEnteredPassword.compareTo(employees.getPassword()) != 0) {
@@ -93,7 +93,7 @@ public class ProfileManagedBean implements Serializable {
 
         } else if (NewPassword.compareTo(ConfirmNewPassword) != 0) {
 
-             // add error message if new and Confirm  password does not match
+            // add error message if new and Confirm  password does not match
             FacesContext context = FacesContext.getCurrentInstance();
             FacesMessage message = new FacesMessage("new password and confirm new password does not match.");
             context.addMessage("rest_form:Confirm_New_Password", message); // "form" is the name of your form
@@ -101,7 +101,7 @@ public class ProfileManagedBean implements Serializable {
             return null; // Return null to stay on the same page
 
         } else {
-            
+
             String hashedNewPassword = EmployeeManagedBean.hashPassword(NewPassword);
             // save the new value
             employees.setPassword(hashedNewPassword);
@@ -110,47 +110,31 @@ public class ProfileManagedBean implements Serializable {
             OldPassword = "";
             NewPassword = "";
             ConfirmNewPassword = "";
-            
+
             return "profile?faces-redirect=true";
         }
     }
 
-    public void editImage() throws IOException {
-        if (file == null) {
-            //doing something here
-        } else {
-            String pathImage = upload();
-            employees.setPhoto(pathImage);
-        }
+    public String editImage() throws IOException {
+        if (file != null) {
+            // upload the new image
+            String pathImage = ImageUploader.upload(file, "profiles_photos");
 
-        employeesFacade.edit(employees);
-    }
-
-    public String upload() throws IOException {
-        String fileName = file.getSubmittedFileName();
-        InputStream fileContent = file.getInputStream();
-        String uploadDirectory = "C:\\Users\\Almomyz\\Documents\\GitHub\\ManTech-help-desk\\Back-end\\mantech\\web\\upload\\profiles_photos\\";
-        String filePath = uploadDirectory + fileName;
-        try {
-
-            File destinationFile = new File(filePath);
-            FileOutputStream outputStream = new FileOutputStream(destinationFile);
-            byte[] buffer = new byte[4096];
-            int bytesRead;
-            while ((bytesRead = fileContent.read(buffer)) != -1) {
-                outputStream.write(buffer, 0, bytesRead);
+            // Check if the employee already has a photo
+            if (employees.getPhoto() != null && !employees.getPhoto().equals("profile.svg")) {
+                // Delete the old photo
+                ImageUploader.deleteOldPhoto("profiles_photos", employees.getPhoto());
             }
-            outputStream.close();
-            fileContent.close();
-
-        } catch (IOException e) {
-
-            e.printStackTrace();
+            // update photo name in database
+            employees.setPhoto(pathImage);
+            employeesFacade.edit(employees);
+            
+            // reset the file object
+            file = null;
+            
+            return "profile?faces-redirect=true";
         }
-
-        System.out.println(filePath);
-
-        return fileName;
+        return null;
     }
 
     /**

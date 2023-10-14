@@ -44,7 +44,7 @@
                                             <ui:repeat value="#{blogsManagedBean.findAll()}" var="item">
                                                 <div class="card blog-card m-4" 
                                                      role="button">
-                                                    <img src="../../upload/blogs_photos/#{item.photo}" class="img-fluid" alt="..." />
+                                                    <h:graphicImage library="blogs_photos" name="#{item.photo}" class="img-fluid" alt="..." />
                                                     <!-- show blog name and blog desc and limit to a specific character -->
                                                     <div class="blog-card-body pt-4 ps-3">
                                                         <b class="blog-card-title">

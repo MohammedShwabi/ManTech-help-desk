@@ -64,7 +64,7 @@ public class Compliants implements Serializable {
     @Size(min = 1, max = 65535)
     @Column(name = "description")
     private String description;
-    @Size(max = 30)
+    @Size(max = 50)
     @Column(name = "photo")
     private String photo;
     @Basic(optional = false)

@@ -126,7 +126,7 @@
                             <h2 class="comp-head">#{employeeComplaintManagedBean.compliants.title}</h2>
                             <div class="comp-desc"> #{employeeComplaintManagedBean.compliants.description}</div>
                             <h:panelGroup rendered="#{employeeComplaintManagedBean.compliants.photo ne 'defult_image' }">
-                                <img style="height: 50vh;" src="../../upload/complaints_photos/#{employeeComplaintManagedBean.compliants.photo}"></img>
+                                <h:graphicImage library="complaints_photos" name="#{employeeComplaintManagedBean.compliants.photo}" alt="compliants photo" style="height: 50vh;" />
                             </h:panelGroup>
                             <h:panelGroup rendered="#{not empty employeeComplaintManagedBean.compliants.answer}">
                                 <h2 class="comp-head">Answer:</h2>

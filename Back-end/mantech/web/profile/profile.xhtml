@@ -27,7 +27,7 @@
 
                     <label for="update_profile" class="row justify-content-md-center">
                         <div class="profile-container">
-                            <img src="../upload/profiles_photos/#{profileManagedBean.employees.photo}" alt="image" class="profile-img"></img>
+                            <h:graphicImage library="profiles_photos" name="#{profileManagedBean.employees.photo}" alt="profile photo" class="profile-img img-fluid" />
                         </div>
                     </label>
 
@@ -65,9 +65,7 @@
                         </div>
                     </div>
                     <div class="text-center mt-4 mb-5">
-                        <h:form>
-                            <h:commandButton class="web_btn m-0" value="Logout" action="#{loginManagedBean.logout}" />  <br />
-                        </h:form>
+                        <h:commandButton class="web_btn m-0" value="Logout" action="#{loginManagedBean.logout}" />  <br />
                     </div>
                 </h:form>
             </div>

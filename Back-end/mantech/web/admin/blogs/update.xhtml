@@ -49,14 +49,6 @@
                             <h:inputTextarea class="input-type-textarea" rows="4" cols="30" id="blog" value="#{blogsManagedBean.blogs.blog}" title="Blog" required="true" requiredMessage="The Blog field is required.">
                                 <f:validateLength minimum="15"  />
                             </h:inputTextarea>
-
-
-                            <h:outputLabel class="costoum-lable" value="CreatedAt:" for="createdAt" />
-                            <h:message for="createdAt" class="error-msg" />
-                            <h:inputText class="input-type" id="createdAt" value="#{blogsManagedBean.blogs.createdAt}" title="CreatedAt" required="true" requiredMessage="The CreatedAt field is required.">
-                                <f:convertDateTime pattern="MM/dd/yyyy" />
-                            </h:inputText>
-
                             <br/>
 
                             <h:commandButton class="web_btn mb-4 me-0" value="Save Changes" action="#{blogsManagedBean.update()}" />

@@ -8,10 +8,7 @@ package controller;
 import entities.Categories;
 import entities.Compliants;
 import entities.Employees;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
@@ -139,7 +136,7 @@ public class EmployeeComplaintManagedBean implements Serializable {
         if (file == null) {
             compliants.setPhoto("defult_image");
         } else {
-            String pathImage = upload();
+            String pathImage = ImageUploader.upload(file, "complaints_photos");
             compliants.setPhoto(pathImage);
         }
 
@@ -153,7 +150,7 @@ public class EmployeeComplaintManagedBean implements Serializable {
 
             // to reset the object
             this.resetComplaint();
-            
+
             // go to the view page
             return "view?faces-redirect=true"; // Redirect to a view page
         } else {
@@ -168,12 +165,18 @@ public class EmployeeComplaintManagedBean implements Serializable {
 
     public String updateComplaint() throws IOException {
 
-        if (file == null) {
-            compliants.setPhoto("defult image");
-        } else {
-            String pathImage = upload();
+        if (file != null) {
+            String pathImage = ImageUploader.upload(file, "complaints_photos");
+
+            // Check if the complaint already has a photo
+            if (compliants.getPhoto() != null && !compliants.getPhoto().equals("default_image")) {
+                // Delete the old photo
+                ImageUploader.deleteOldPhoto("complaints_photos", compliants.getPhoto());
+            }
+
             compliants.setPhoto(pathImage);
         }
+
         compliantsFacade.edit(compliants);
         this.resetComplaint();
         return "view"; // Redirect to a view page
@@ -185,43 +188,18 @@ public class EmployeeComplaintManagedBean implements Serializable {
         compliants = new Compliants();
         // Clear the selectedDepartmentId
         selectedCategoryId = null;
-    }
-
-    public String upload() throws IOException {
-        String fileName = file.getSubmittedFileName();
-        InputStream fileContent = file.getInputStream();
-        String uploadDirectory = "C:\\Users\\Almomyz\\Documents\\GitHub\\ManTech-help-desk\\Back-end\\mantech\\web\\upload\\complaints_photos\\";
-        String filePath = uploadDirectory + fileName;
-        try {
-
-            // Process the uploaded file as needed (e.g., save it to a directory, store it in a database, etc.)
-            // Example: Save the file in a specific directory inside your project
-            // Create a file object representing the destination file
-            File destinationFile = new File(filePath);
-
-            // Use Java I/O streams to save the file
-            FileOutputStream outputStream = new FileOutputStream(destinationFile);
-            byte[] buffer = new byte[4096];
-            int bytesRead;
-            while ((bytesRead = fileContent.read(buffer)) != -1) {
-                outputStream.write(buffer, 0, bytesRead);
-            }
-            outputStream.close();
-            fileContent.close();
-
-            // Optionally, you can show a success message to the user
-        } catch (IOException e) {
-            // Handle any exceptions that may occur during the file upload process
-            e.printStackTrace();
-        }
-
-        System.out.println(filePath);
-
-        return fileName;
+        // Clear file
+        file = null;
     }
 
     // to delete the complaint
     public String delete() {
+        // Check if the complaint already has a photo
+        if (compliants.getPhoto() != null && !compliants.getPhoto().equals("default_image")) {
+            // Delete the old photo
+            ImageUploader.deleteOldPhoto("complaints_photos", compliants.getPhoto());
+        }
+
         compliantsFacade.remove(compliants);
         return "view?faces-redirect=true"; // Navigate to a different JSF page to display details 
     }

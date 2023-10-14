@@ -31,7 +31,7 @@ use `ManTech`;
 
 CREATE TABLE `blogs` (
   `id` int(11) NOT NULL,
-  `photo` varchar(30) NOT NULL,
+  `photo` varchar(50) NOT NULL,
   `title` varchar(60) NOT NULL,
   `description` text NOT NULL,
   `blog` text NOT NULL,
@@ -111,7 +111,7 @@ CREATE TABLE `compliants` (
   `id` int(11) NOT NULL,
   `title` varchar(100) NOT NULL,
   `description` text NOT NULL,
-  `photo` varchar(30) DEFAULT NULL,
+  `photo` varchar(50) DEFAULT NULL,
   `priority` enum('low','medium','high') NOT NULL DEFAULT 'medium',
   `status` enum('waiting','pending','closed') NOT NULL DEFAULT 'waiting',
   `resend` tinyint(1) NOT NULL DEFAULT 0,
@@ -132,7 +132,7 @@ INSERT INTO `compliants` (`id`, `title`, `description`, `photo`, `priority`, `st
 (1, 'Printer Not Printing', 'The office printer is not printing any documents. We need it fixed urgently.', 'printer_issue.jpg', 'high', 'closed', 0, '2020-01-22 23:38:14', '2020-01-23 12:59:33', '2020-01-24 23:38:14', 2, 1, 12, 'Assigned to technician. Technician will check and repair the printer.'),
 (2, 'Email Login Issue', 'I am unable to log in to my email account. It keeps showing an error message.', 'email_issue.png', 'medium', 'closed', 0, '2020-02-21 23:38:14', '2020-02-23 12:21:30', '2020-02-24 23:38:14', 3, 2, 13, 'Email server issue detected. Investigating the problem.'),
 (3, 'Computer Won’t Boot', 'My computer won’t start up. It gets stuck on the loading screen.', 'computer_issue.jpg', 'high', 'closed', 0, '2020-03-23 23:38:14', '2020-03-24 16:48:21', '2020-03-24 23:38:14', 4, 1, 14, 'Diagnosing hardware issue. Replacing faulty components.'),
-(4, 'Software Crashing', 'The software we use for accounting keeps crashing. We can’t do our work.', 'software_issue.png', 'medium', 'closed', 0, '2021-04-20 23:38:14', '2021-04-21 04:07:38', '2021-04-24 23:38:14', 5, 2, 15, 'Updating software to the latest version to resolve crashes.'),
+(4, 'Software Crashing', 'The software we use for accounting keeps crashing. We can’t do our work.', 'Software_Crashing.jpg', 'medium', 'closed', 0, '2021-04-20 23:38:14', '2021-04-21 04:07:38', '2021-04-24 23:38:14', 5, 2, 15, 'Updating software to the latest version to resolve crashes.'),
 (5, 'Network Connection Problem', 'Our office network keeps dropping, causing disruptions in work.', 'network_issue.jpg', 'high', 'closed', 0, '2021-05-22 23:38:14', '2021-05-23 03:51:01', '2021-05-24 23:38:14', 6, 1, 16, 'Identified network router issue. Rebooting router and optimizing settings.'),
 (6, 'Slow Internet Speed', 'The internet speed is painfully slow. It’s affecting our productivity.', 'internet_issue.jpg', 'low', 'closed', 0, '2021-06-19 23:38:14', '2021-06-21 11:27:46', '2021-06-24 23:38:14', 7, 2, 17, 'Investigating internet service provider issue. Contacting ISP for resolution.'),
 (7, 'Printer Jammed', 'The printer is jammed with paper. It needs to be cleared and fixed.', 'printer_Jammed.jpg', 'medium', 'closed', 0, '2022-07-22 23:38:14', '2022-07-23 10:38:57', '2022-07-24 23:38:14', 8, 1, 18, 'Printer cleared and serviced. It should work properly now.'),
@@ -188,7 +188,7 @@ CREATE TABLE `employees` (
   `email` varchar(50) NOT NULL,
   `password` varchar(64) NOT NULL,
   `phone_no` varchar(20) NOT NULL,
-  `photo` varchar(30) NOT NULL DEFAULT 'profile.svg',
+  `photo` varchar(50) NOT NULL DEFAULT 'profile.svg',
   `dep_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 

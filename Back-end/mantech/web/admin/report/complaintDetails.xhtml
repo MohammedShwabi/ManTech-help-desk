@@ -116,7 +116,7 @@
                                             <h6 class="comp-head mt-0" >@#{complaintDetailsManagedBean.selectedCompliant.empId.fullName}</h6>
                                             <div class="comp-desc">#{complaintDetailsManagedBean.selectedCompliant.description}</div>
                                             <h:panelGroup rendered="#{complaintDetailsManagedBean.selectedCompliant.photo ne 'defult_image' }">
-                                                <img style="height: 50vh;" src="../../upload/complaints_photos/#{complaintDetailsManagedBean.selectedCompliant.photo}"></img>
+                                                <h:graphicImage library="complaints_photos" name="#{complaintDetailsManagedBean.selectedCompliant.photo}" style="height: 50vh;" alt="..." />
                                             </h:panelGroup>
                                             <h2 class="comp-head">Answer:</h2>
                                             <h6 class="comp-head mt-0" >@#{complaintDetailsManagedBean.selectedCompliant.techId.fullName}</h6>

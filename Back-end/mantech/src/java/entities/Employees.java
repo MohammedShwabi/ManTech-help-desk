@@ -86,7 +86,7 @@ public class Employees implements Serializable {
     private String phoneNo;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 30)
+    @Size(min = 1, max = 50)
     @Column(name = "photo")
     private String photo;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "empId")

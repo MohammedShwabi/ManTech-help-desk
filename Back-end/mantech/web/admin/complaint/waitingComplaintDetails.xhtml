@@ -75,7 +75,7 @@
                                     </div>
 
                                     <h:panelGroup rendered="#{waitingComplaintManagedBean.compliants.photo ne 'defult_image' }">
-                                        <img style="height: 50vh;" src="../../upload/complaints_photos/#{waitingComplaintManagedBean.compliants.photo}"></img>
+                                        <h:graphicImage library="complaints_photos" name="#{waitingComplaintManagedBean.compliants.photo}" style="height: 50vh;" alt="..." />
                                     </h:panelGroup>
                                 </div>
 

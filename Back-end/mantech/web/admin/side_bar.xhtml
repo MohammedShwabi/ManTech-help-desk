@@ -6,13 +6,13 @@
     <ui:composition>
         <div class="container-fluid side-bar h-100">
             <div class="icon-container p-3">
-                <img src="../../img/helpDeskLogo.svg" alt="Logo" style="width:9rem;" class="img-fluid" />
+                <h:graphicImage library="img" name="helpDeskLogo.svg" alt="Logo" style="width:9rem;" class="img-fluid" />
             </div>
 
 
             <div class="photo-container text-center mt-4">
                 <h:link class="slide-link" outcome="/admin/info/profile" >
-                    <img src="../../img/profile.svg" alt="Logo" class=" nav-photo img-fluid" id="round-profile" />
+                    <h:graphicImage library="profiles_photos" name="#{loginManagedBean.getCurrentUser().photo}" alt="profile photo" class="nav-photo img-fluid" id="round-profile" />
                 </h:link>
 
             </div>

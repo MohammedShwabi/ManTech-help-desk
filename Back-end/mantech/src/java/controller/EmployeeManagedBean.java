@@ -195,7 +195,7 @@ public class EmployeeManagedBean implements Serializable {
         // Reset the Employee object and selected department
         employee = new Employees();
         confirm_Password = null;
-        return "/admin/employee/add";
+        return "/admin/employee/add?faces-redirect=true";
     }
 
 }

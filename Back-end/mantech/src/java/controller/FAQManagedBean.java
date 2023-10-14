@@ -47,7 +47,7 @@ public class FAQManagedBean implements Serializable {
     public String gotoAdd() {
         // Reset the Employee object
         faqs = new Faqs();
-        return "/admin/faq/add";
+        return "/admin/faq/add?faces-redirect=true";
     }
 
     // to go to update page and pass the current object to fill the form input
