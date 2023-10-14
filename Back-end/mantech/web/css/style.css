@@ -693,7 +693,9 @@ a.blog-link {
     box-shadow: #dadada 0vh 0vw 0.5vw, #dadada 0vh 0vw 1vw;
     height: 2.1em;
     width: 2.1em;
+    overflow: hidden;
 }
+
 
 .list-text {
     color: #3c3c3c;
