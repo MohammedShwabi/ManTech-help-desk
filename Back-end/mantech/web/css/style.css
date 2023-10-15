@@ -57,7 +57,7 @@ body {
     font-size: 3rem;
     font-weight: 400;
     margin-bottom: 8vh;
-    
+
 }
 .input-type-login{
     display: block;
@@ -84,11 +84,11 @@ a.blog-link {
 .blog-card {
     text-align: left;
     position: relative;
-    display: inline-block;
     width: 20rem;
-    /* box-shadow: 0 5px 9px -6px black; */
+    display: inline-block;
     box-shadow: 0 0px 17px -3px black;
     cursor: pointer;
+    height: 21rem; 
 }
 
 .blog-card img {
@@ -98,22 +98,28 @@ a.blog-link {
     -o-object-fit: cover;
     object-fit: cover;
 }
+.blog-card .blog-card-body {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 
 .blog-card .blog-card-title {
-    /* font-family: var(--title-font); */
     font-size: 22px;
     color: var(--main-color); 
-    height: 4rem;
-    display: inline-block;
 }
 
 .blog-card .blog-card-text {
     font-size: 16px;
     color: var(--gray) ;
-    height: 4rem;
-    display: inline-block;
-
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2; /* Set the same value as the title's line clamp */
+    -webkit-box-orient: vertical;
 }
+
+
+
 
 .no-link-style , .no-link-style:hover {
     color: inherit; /* Use the parent's text color */
@@ -154,7 +160,7 @@ a.blog-link {
 
 .blog-links li {
     display: inline-block;
-    margin: 0 0.2rem;
+    margin: 0 1rem;
 }
 
 .blog-links li #delete_icon , #edit_icon{
@@ -357,7 +363,7 @@ a.blog-link {
 
 .add-faq-btn{
     z-index: 3;
-    
+
 }
 .faq-btn{
     text-decoration: none; 

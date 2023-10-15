@@ -17,115 +17,119 @@
 
             </div>
 
-            <h:form>
 
-                <div class="side-bar-container mt-4">
-                    <ul class="list-unstyled ">
-                        <li class="mb-2 w-100">
-                            <button class="btn side-header btn-toggle align-items-start collapsed w-100"
-                                    data-bs-toggle="collapse" data-bs-target="#complaints-collapse"
-                                    aria-expanded="false">
-                                <span class="ps-4">
-                                    Complaints
-                                </span>
-                                <span class="side-bar-icon">
-                                    <i class="fa-solid fa-chevron-down open-icon" style="display: none;"></i>
-                                    <i class="fa-solid fa-chevron-up close-icon " ></i>  
-                                </span>
-                            </button>
-                            <div class="collapse show" id="complaints-collapse">
-                                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                    <li><h:link class="slide-link #{view.viewId == '/admin/complaint/view.xhtml' ? 'active' : ''}" value="Waiting Complaint" outcome="/admin/complaint/view" /></li>
-                                    <li><h:link class="slide-link #{view.viewId == '/admin/category/view.xhtml' ? 'active' : ''}" value="Categories" outcome="/admin/category/view" /></li>
-                                </ul>
-                            </div>
-                        </li>
+            <div class="side-bar-container mt-4">
+                <ul class="list-unstyled ">
+                    <li class="mb-2 w-100">
+                        <button class="btn side-header btn-toggle align-items-start collapsed w-100"
+                                data-bs-toggle="collapse" data-bs-target="#complaints-collapse"
+                                aria-expanded="false">
+                            <span class="ps-4">
+                                Complaints
+                            </span>
+                            <span class="side-bar-icon">
+                                <i class="fa-solid fa-chevron-down open-icon" style="display: none;"></i>
+                                <i class="fa-solid fa-chevron-up close-icon " ></i>  
+                            </span>
+                        </button>
+                        <div class="collapse show" id="complaints-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                <li><h:link class="slide-link #{view.viewId == '/admin/complaint/view.xhtml' ? 'active' : ''}" value="Waiting Complaint" outcome="/admin/complaint/view" /></li>
+                                <li><h:link class="slide-link #{view.viewId == '/admin/category/view.xhtml' ? 'active' : ''}" value="Categories" outcome="/admin/category/view" /></li>
+                            </ul>
+                        </div>
+                    </li>
 
 
-                        <li class="mb-2 w-100">
-                            <button class="btn side-header btn-toggle align-items-start collapsed w-100"
-                                    data-bs-toggle="collapse" data-bs-target="#reports-collapse" aria-expanded="false">
-                                <span class="ps-4">
-                                    Reports
-                                </span>
-                                <span class="side-bar-icon">
-                                    <i class="fa-solid fa-chevron-down open-icon" style="display: none;"></i>
-                                    <i class="fa-solid fa-chevron-up close-icon " ></i>  
-                                </span>
-                            </button>
-                            <div class="collapse show" id="reports-collapse">
-                                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                    <li><h:link class="slide-link #{view.viewId == '/admin/report/closedComplaints.xhtml' ? 'active' : ''}" value="Closed" outcome="/admin/report/closedComplaints" /></li>
-                                    <li><h:link class="slide-link #{view.viewId == '/admin/report/pendingComplaints.xhtml' ? 'active' : ''}" value="Pending" outcome="/admin/report/pendingComplaints" /></li>
-                                    <li><h:link class="slide-link #{view.viewId == '/admin/report/complaints.xhtml' ? 'active' : ''}" value="Complaint" outcome="/admin/report/complaints" /></li>
-                                    <li><h:link class="slide-link #{view.viewId == '/admin/report/summaryComplaints.xhtml' ? 'active' : ''}" value="Summary" outcome="/admin/report/summaryComplaints" /></li>
-                                </ul>
-                            </div>
-                        </li>
+                    <li class="mb-2 w-100">
+                        <button class="btn side-header btn-toggle align-items-start collapsed w-100"
+                                data-bs-toggle="collapse" data-bs-target="#reports-collapse" aria-expanded="false">
+                            <span class="ps-4">
+                                Reports
+                            </span>
+                            <span class="side-bar-icon">
+                                <i class="fa-solid fa-chevron-down open-icon" style="display: none;"></i>
+                                <i class="fa-solid fa-chevron-up close-icon " ></i>  
+                            </span>
+                        </button>
+                        <div class="collapse show" id="reports-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                <li><h:link class="slide-link #{view.viewId == '/admin/report/closedComplaints.xhtml' ? 'active' : ''}" value="Closed" outcome="/admin/report/closedComplaints" /></li>
+                                <li><h:link class="slide-link #{view.viewId == '/admin/report/pendingComplaints.xhtml' ? 'active' : ''}" value="Pending" outcome="/admin/report/pendingComplaints" /></li>
+                                <li><h:link class="slide-link #{view.viewId == '/admin/report/complaints.xhtml' ? 'active' : ''}" value="Complaint" outcome="/admin/report/complaints" /></li>
+                                <li><h:link class="slide-link #{view.viewId == '/admin/report/summaryComplaints.xhtml' ? 'active' : ''}" value="Summary" outcome="/admin/report/summaryComplaints" /></li>
+                            </ul>
+                        </div>
+                    </li>
 
-                        <li class="mb-2 w-100">
-                            <button class="btn side-header btn-toggle align-items-start collapsed w-100"
-                                    data-bs-toggle="collapse" data-bs-target="#employees-collapse"
-                                    aria-expanded="false">
-                                <span class="ps-4">
-                                    Employees  
-                                </span>
-                                <span class="side-bar-icon">
-                                    <i class="fa-solid fa-chevron-down open-icon" style="display: none;"></i>
-                                    <i class="fa-solid fa-chevron-up close-icon " ></i>  
-                                </span>
-                            </button>
-                            <div class="collapse show" id="employees-collapse">
-                                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                    <li><h:link class="slide-link  #{view.viewId == '/admin/employee/view.xhtml' ? 'active' : ''}" value="All Employees" outcome="/admin/employee/view" /></li>
-                                    <li><h:commandLink class="slide-link #{view.viewId == '/admin/employee/add.xhtml' ? 'active' : ''}" value="Add Employee" action="#{employeeManagedBean.gotoAdd()}" /></li>
-                                </ul>
-                            </div>
-                        </li>
+                    <li class="mb-2 w-100">
+                        <button class="btn side-header btn-toggle align-items-start collapsed w-100"
+                                data-bs-toggle="collapse" data-bs-target="#employees-collapse"
+                                aria-expanded="false">
+                            <span class="ps-4">
+                                Employees  
+                            </span>
+                            <span class="side-bar-icon">
+                                <i class="fa-solid fa-chevron-down open-icon" style="display: none;"></i>
+                                <i class="fa-solid fa-chevron-up close-icon " ></i>  
+                            </span>
+                        </button>
+                        <div class="collapse show" id="employees-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                <li><h:link class="slide-link  #{view.viewId == '/admin/employee/view.xhtml' ? 'active' : ''}" value="All Employees" outcome="/admin/employee/view" /></li>
+                                <h:form>
+                                    <li><h:commandLink class="slide-link #{view.viewId == '/admin/employee/add.xhtml' ? 'active' : ''}" value="Add Employee" action="#{employeeManagedBean.gotoAdd()}" /></li>    
+                                </h:form> 
+                            </ul>
+                        </div>
+                    </li>
 
-                        <li class="mb-2 w-100">
-                            <button class="btn side-header btn-toggle align-items-start collapsed w-100"
-                                    data-bs-toggle="collapse" data-bs-target="#blog-collapse"
-                                    aria-expanded="false">
-                                <span class="ps-4">
-                                    Blogs  
-                                </span>
-                                <span class="side-bar-icon">
-                                    <i class="fa-solid fa-chevron-down open-icon" style="display: none;"></i>
-                                    <i class="fa-solid fa-chevron-up close-icon " ></i>  
-                                </span>
-                            </button>
-                            <div class="collapse show" id="blog-collapse">
-                                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                    <li><h:link class="slide-link #{view.viewId == '/admin/blogs/view.xhtml' ? 'active' : ''}" value="All Blogs" outcome="/admin/blogs/view" /></li>
+                    <li class="mb-2 w-100">
+                        <button class="btn side-header btn-toggle align-items-start collapsed w-100"
+                                data-bs-toggle="collapse" data-bs-target="#blog-collapse"
+                                aria-expanded="false">
+                            <span class="ps-4">
+                                Blogs  
+                            </span>
+                            <span class="side-bar-icon">
+                                <i class="fa-solid fa-chevron-down open-icon" style="display: none;"></i>
+                                <i class="fa-solid fa-chevron-up close-icon " ></i>  
+                            </span>
+                        </button>
+                        <div class="collapse show" id="blog-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                <li><h:link class="slide-link #{view.viewId == '/admin/blogs/view.xhtml' ? 'active' : ''}" value="All Blogs" outcome="/admin/blogs/view" /></li>
+                                <h:form>
                                     <li><h:commandLink class="slide-link #{view.viewId == '/admin/blogs/add.xhtml' ? 'active' : ''}" value="Add Blog" action="#{blogsManagedBean.gotoAdd()}" /></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="mb-2 w-100">
-                            <button class="btn side-header btn-toggle align-items-start collapsed w-100"
-                                    data-bs-toggle="collapse" data-bs-target="#faq-collapse"
-                                    aria-expanded="false">
-                                <span class="ps-4">
-                                    FAQs  
-                                </span>
-                                <span class="side-bar-icon">
-                                    <i class="fa-solid fa-chevron-down open-icon" style="display: none;"></i>
-                                    <i class="fa-solid fa-chevron-up close-icon " ></i>  
-                                </span>
-                            </button>
-                            <div class="collapse show" id="faq-collapse">
-                                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                    <li><h:link class="slide-link #{view.viewId == '/admin/faq/view.xhtml' ? 'active' : ''}" value="All FAQs" outcome="/admin/faq/view" /></li>
+                                </h:form>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="mb-2 w-100">
+                        <button class="btn side-header btn-toggle align-items-start collapsed w-100"
+                                data-bs-toggle="collapse" data-bs-target="#faq-collapse"
+                                aria-expanded="false">
+                            <span class="ps-4">
+                                FAQs  
+                            </span>
+                            <span class="side-bar-icon">
+                                <i class="fa-solid fa-chevron-down open-icon" style="display: none;"></i>
+                                <i class="fa-solid fa-chevron-up close-icon " ></i>  
+                            </span>
+                        </button>
+                        <div class="collapse show" id="faq-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                <li><h:link class="slide-link #{view.viewId == '/admin/faq/view.xhtml' ? 'active' : ''}" value="All FAQs" outcome="/admin/faq/view" /></li>
+                                <h:form>
                                     <li><h:commandLink class="slide-link #{view.viewId == '/admin/faq/add.xhtml' ? 'active' : ''}" value="Add FAQ" action="#{fAQManagedBean.gotoAdd()}" /></li>
-                                </ul>
-                            </div>
-                        </li>
+                                </h:form>
+                            </ul>
+                        </div>
+                    </li>
 
-                    </ul>
-                </div>
+                </ul>
+            </div>
 
-            </h:form>
         </div>
     </ui:composition>
 
