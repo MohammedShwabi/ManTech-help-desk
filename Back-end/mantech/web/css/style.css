@@ -677,7 +677,7 @@ a.blog-link {
     align-items: center;
 }
 
-.pri-sec,.pic-sec {
+.pri-sec {
     color: #fff;
     display: flex;
     justify-content: center;
@@ -693,7 +693,14 @@ a.blog-link {
     box-shadow: #dadada 0vh 0vw 0.5vw, #dadada 0vh 0vw 1vw;
     height: 2.1em;
     width: 2.1em;
+    overflow: hidden;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 1.5em;
 }
+
 
 .list-text {
     color: #3c3c3c;

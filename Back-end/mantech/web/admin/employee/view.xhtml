@@ -53,7 +53,7 @@
                                         <c:forEach  var="item" items="#{employeeManagedBean.filteredEmployees}" varStatus="item-i">
                                             <div class="list-item row" >
                                                 <div class="pic-sec col-1 ">
-                                                    <h:graphicImage library="profiles_photos" name="#{item.photo}" class="img-fluid" />
+                                                    <h:graphicImage library="profiles_photos" name="#{item.photo}" class="imgSec" />
                                                 </div>
                                                 <div class="list-text col-2">#{item.fullName}</div>
                                                 <div class="list-text col-4" style="word-break: break-word;">#{item.email}</div>
