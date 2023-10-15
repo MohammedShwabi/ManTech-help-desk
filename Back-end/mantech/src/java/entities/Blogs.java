@@ -51,7 +51,7 @@ public class Blogs implements Serializable {
     private String photo;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 60)
+    @Size(min = 10, max = 60)
     @Column(name = "title")
     private String title;
     @Basic(optional = false)

@@ -31,9 +31,7 @@
 
                             <h:outputLabel class="costoum-lable" value="Title:" for="title" />
                             <h:message for="title" class="error-msg" />
-                            <h:inputText class="input-type" id="title" value="#{blogsManagedBean.blogs.title}" title="Title" required="true" requiredMessage="The Title field is required." >
-                                <f:validateLength minimum="10" maximum="60" />
-                            </h:inputText>
+                            <h:inputText class="input-type" id="title" value="#{blogsManagedBean.blogs.title}" title="Title" required="true" requiredMessage="The Title field is required." />
                            
 
                             <h:outputLabel class="costoum-lable" value="Description:" for="description" />
