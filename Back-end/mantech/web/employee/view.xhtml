@@ -33,7 +33,7 @@
                 <h:form>
                     <p class="page_header">Complaints</p>
                     <div class="btn_container">
-                        <h:button value="Add" class="web_btn" outcome="#{employeeComplaintManagedBean.gotoAdd()}" />
+                        <h:commandButton value="Add" class="web_btn" action="#{employeeComplaintManagedBean.gotoAdd()}" />
                     </div>
 
                     <!-- links to filter complaints by status with AJAX -->

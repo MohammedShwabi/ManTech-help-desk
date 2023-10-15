@@ -7,7 +7,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Waiting Complaint</title>
-    <link rel="stylesheet" href="../../css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="../../css/bootstrap.min.css"/>
         <link rel="stylesheet" href="../../css/style.css"/>
         <link rel="stylesheet" href="../../css/all.min.css"/>
         <script src="../../js/all.min.js"></script>
@@ -36,10 +36,11 @@
                                 </div>
                             </c:when>
                             <c:otherwise>
-                                
+
                                 <div class="admin-list-container col-lg-10">
-                                    <h:form>
-                                        <c:forEach var="item" items="#{waitingComplaintManagedBean.waitingComplaint}" id="complaintTable" >
+
+                                    <c:forEach var="item" items="#{waitingComplaintManagedBean.waitingComplaint}" id="complaintTable" >
+                                        <h:form>
                                             <div class="row mb-4">
                                                 <div class="col-lg-1 mt-4 me-3">
                                                     <h:panelGroup class="send-icon" rendered="#{item.resend}">
@@ -80,10 +81,11 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </c:forEach>
-                                    </h:form>
+                                        </h:form>
+                                    </c:forEach>
+
                                 </div>
-                                
+
                             </c:otherwise>
                         </c:choose>
                     </f:view>

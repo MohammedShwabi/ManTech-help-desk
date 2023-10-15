@@ -113,15 +113,12 @@ public class EmployeeComplaintManagedBean implements Serializable {
     public String showDetails(Compliants c) {
         // Store the selected complaint in a property for display in a different view
         this.compliants = c;
-        return "complaintDetails"; // Navigate to a different JSF page to display details
+        return "complaintDetails?faces-redirect=true"; // Navigate to a different JSF page to display details
     }
-
+    
     public String gotoAdd() {
-        // Reset the compliants object
-        compliants = new Compliants();
-        // Reset the selectedCategoryId
-        selectedCategoryId = null;
-        return "add";
+        resetComplaint();
+        return "add?faces-redirect=true";
     }
 
     // Method to add a new employee
@@ -179,7 +176,7 @@ public class EmployeeComplaintManagedBean implements Serializable {
 
         compliantsFacade.edit(compliants);
         this.resetComplaint();
-        return "view"; // Redirect to a view page
+        return "view?faces-redirect=true"; // Redirect to a view page
     }
 
     // reset the complaint object
@@ -208,7 +205,7 @@ public class EmployeeComplaintManagedBean implements Serializable {
     public String resend() {
         compliants.setResend(true);
         compliantsFacade.edit(compliants);
-        return "complaintDetails?faces-redirect=tru1?2e"; // Navigate to a different JSF page to display details 
+        return "complaintDetails?faces-redirect=true"; // Navigate to a different JSF page to display details 
     }
 
     // to show or hide the resend btn

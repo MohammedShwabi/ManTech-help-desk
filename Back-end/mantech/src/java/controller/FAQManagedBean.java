@@ -57,8 +57,9 @@ public class FAQManagedBean implements Serializable {
     }
 
     // to delete an faq
-    public void delete(Faqs faq) {
+    public String delete(Faqs faq) {
         faqsFacade.remove(faq);
+        return "view?faces-redirect=true"; // Redirect to a view page
     }
 
     // Method to add a new question

@@ -5,7 +5,6 @@
  */
 package controller;
 
-import com.sun.xml.bind.v2.TODO;
 import java.util.Properties;
 import javax.mail.Authenticator;
 import javax.mail.Message;
@@ -26,7 +25,7 @@ public class EmailSender {
     private final String senderEmail = "hikayatiapp@gmail.com";
     
     // TODO : change this to "complaint@helpdesk.com"
-    private final String recipientEmail = "heshammohammed890@gmail.com";
+    private final String recipientEmail = "complaint@helpdesk.com";
     
     private final String username = "hikayatiapp";
     private final String password = "mphkqbhaanokmhtz";

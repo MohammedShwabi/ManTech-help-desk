@@ -131,7 +131,7 @@ public class EmployeeManagedBean implements Serializable {
         this.employee = emp;
         // to select option for department
         selectedDepartmentId = employee.getDepId().getId();
-        return "update";
+        return "update?faces-redirect=true";
     }
 
     // to save edited employee details
@@ -140,7 +140,7 @@ public class EmployeeManagedBean implements Serializable {
         employee.setDepId(department);
         employeesFacade.edit(employee); // Use the edit method to update the employee
         this.resetEmployee();
-        return "view"; // Redirect to a view page
+        return "view?faces-redirect=true"; // Redirect to a view page
     }
 
     // to update employee status
