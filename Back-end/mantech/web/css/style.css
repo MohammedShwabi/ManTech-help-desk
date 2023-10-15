@@ -391,10 +391,11 @@ a.blog-link {
 .profile-img {
     width: 100%;
     height: 100%;
-    padding: 12px 25px;
     color: #000;
     cursor: pointer;
     z-index: 100;
+    -o-object-fit: cover;
+    object-fit: cover;
 }
 
 .edit-link {
